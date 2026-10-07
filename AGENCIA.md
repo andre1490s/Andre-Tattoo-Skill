@@ -16,7 +16,7 @@ ESTRATÉGIA ─► CONTEÚDO ─► ATENDIMENTO ─► OPERAÇÃO ─► PÓS-VE
 
 ## Departamentos e skills
 
-Status: ✅ no repositório · 🟡 existe no Claude.ai do André, ainda não importada · ⬜ a criar
+Status: ✅ no repositório · 🟡 existe no Claude.ai do André, ainda não importada (nenhuma pendente hoje) · ⬜ a criar
 
 ### Camada de aprendizado
 | Skill | Função | Status |
@@ -37,45 +37,45 @@ Status: ✅ no repositório · 🟡 existe no Claude.ai do André, ainda não im
 | `buscar-referencias-tattoo` | acha vídeos de tattoo com edição forte e extrai o DNA | ✅ `skills/` |
 | `editor-videos-tattoo` | transforma DNA + material bruto em receita de edição (CapCut/Premiere/DaVinci) | ✅ `skills/` |
 | `diretor-conteudo-copy` | pilares, ideias, hooks, calendário, stories e copy | ✅ `skills/` |
-| `roteiro-reels-tattoo` | roteiro, ideia e texto de tela para Reels | 🟡 |
-| `legenda-tattoo` | legenda para o Instagram a partir da foto/detalhes da tattoo | 🟡 |
-| `posts-semana-instagram` | planejamento semanal e agendamento no Metricool | 🟡 |
+| `roteiro-reels-tattoo` | roteiro, ideia e texto de tela para Reels | ✅ `skills/` |
+| `legenda-tattoo` | legenda para o Instagram a partir da foto/detalhes da tattoo | ✅ `skills/` |
+| `posts-semana-instagram` | planejamento semanal e agendamento no Metricool | ✅ `skills/` |
 
 ### 2. Atendimento e vendas
 | Skill | Função | Status |
 |---|---|---|
 | `closer-vendas` | conduz a conversa 1:1: qualificação, orçamento, objeções, decisão, sinal | ✅ `skills/` |
 | `crm-followup` | organiza a base por etapa do funil e define cadências por idade do lead | ✅ `skills/` |
-| `responder-instagram` | respostas a comentários e Direct | 🟡 |
-| `orcamento-tattoo` | resposta pronta para pedido de orçamento | 🟡 |
-| `followup-orcamento` | retoma quem pediu orçamento e sumiu | 🟡 |
-| `briefing-projeto-tattoo` | ficha do projeto a partir da conversa com o cliente | 🟡 |
+| `responder-instagram` | respostas a comentários e Direct | ✅ `skills/` |
+| `orcamento-tattoo` | resposta pronta para pedido de orçamento | ✅ `skills/` |
+| `followup-orcamento` | retoma quem pediu orçamento e sumiu | ✅ `skills/` |
+| `briefing-projeto-tattoo` | ficha do projeto a partir da conversa com o cliente | ✅ `skills/` |
 
 ### 3. Operação do estúdio
 | Skill | Função | Status |
 |---|---|---|
-| `lembrete-sessao` | confirmação/lembrete de sessão | 🟡 |
-| `resumo-agenda-semanal` | sessões, sinais, material e pendências da semana | 🟡 |
-| `fechamento-mensal-estudio` | faturamento, ticket médio, gastos, meta | 🟡 |
+| `lembrete-sessao` | confirmação/lembrete de sessão | ✅ `skills/` |
+| `resumo-agenda-semanal` | sessões, sinais, material e pendências da semana | ✅ `skills/` |
+| `fechamento-mensal-estudio` | faturamento, ticket médio, gastos, meta | ✅ `skills/` |
 
 ### 4. Pós-venda e relacionamento
 | Skill | Função | Status |
 |---|---|---|
-| `pos-tattoo-avaliacao` | cuidados, cicatrização e pedido de avaliação | 🟡 |
-| `responder-avaliacoes-google` | resposta a avaliações do Google | 🟡 |
-| `reativar-clientes-antigos` | aniversário, retoque, continuação de fechamento | 🟡 |
+| `pos-tattoo-avaliacao` | cuidados, cicatrização e pedido de avaliação | ✅ `skills/` |
+| `responder-avaliacoes-google` | resposta a avaliações do Google | ✅ `skills/` |
+| `reativar-clientes-antigos` | aniversário, retoque, continuação de fechamento | ✅ `skills/` |
 
 ### 5. Análise e aprendizado
 | Skill | Função | Status |
 |---|---|---|
 | `analista-metricas` | dado → diagnóstico → teste → resultado → decisão (conteúdo, vendas, tráfego) | ✅ `skills/` |
 | `gestor-financeiro` | faturamento ≠ lucro ≠ caixa; ponto de equilíbrio, margem, receita por hora | ✅ `skills/` |
-| `relatorio-instagram` | desempenho do perfil via Metricool | 🟡 |
-| `revisao-semanal-estudio` | leads, agenda, caixa, Instagram e 3 ajustes | 🟡 |
-| `revisao-conversas-sofia` | revisão das conversas do agente de WhatsApp | 🟡 |
-| `registrar-no-sistema` | grava o que foi aprendido (ciclo entre agentes) | 🟡 |
+| `relatorio-instagram` | desempenho do perfil via Metricool | ✅ `skills/` |
+| `revisao-semanal-estudio` | leads, agenda, caixa, Instagram e 3 ajustes | ✅ `skills/` |
+| `revisao-conversas-sofia` | revisão das conversas do agente de WhatsApp | ✅ `skills/` |
+| `registrar-no-sistema` | grava o que foi aprendido (ciclo entre agentes) | ✅ `skills/` |
 
-> As 12 skills ✅ foram importadas dos arquivos do André; o contexto global que se repetia nelas está em `contexto/marca.md`. A lista 🟡 vem dos nomes das skills disponíveis na conta do André no Claude.ai. Só conheço o nome e a descrição curta; o conteúdo só entra aqui quando o André enviar cada arquivo.
+> As 29 skills estão importadas. As 17 operacionais (atendimento, conteúdo, agenda, finanças, pós-venda, relatórios) vieram da conta do André no Claude.ai e foram copiadas **sem alteração**. Elas divergem em alguns pontos de `contexto/marca.md`: ver `contexto/conflitos-a-resolver.md`. Até o André decidir, vale o que ele disse diretamente na conversa (registrado em `marca.md`).
 
 ## Aprendizado (Learning Engine)
 

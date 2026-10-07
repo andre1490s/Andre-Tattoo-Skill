@@ -4,17 +4,18 @@ Uso: python3 -I scripts/validar.py   (sai com código 1 se houver erro)"""
 import re, sys, pathlib
 raiz = pathlib.Path(__file__).resolve().parent.parent
 erros, avisos = [], []
+ORIGEM_EXTERNA = {'buscar-referencias-tattoo','editor-videos-tattoo'}  # skills com contexto próprio
+sem_marca = []
 skills = {}
 for f in sorted((raiz/"skills").glob("*/SKILL.md")):
     txt = f.read_text(encoding="utf-8"); pasta = f.parent.name
-    m = re.match(r"---\nname: (.+)\ndescription: (.+)\n---\n", txt)
+    m = re.match(r'---\nname: "?(.+?)"?\ndescription: "?(.+?)"?\n---\n', txt)
     if not m: erros.append(f"{pasta}: frontmatter ausente ou fora do padrão (name/description)"); continue
     nome, desc = m.group(1).strip(), m.group(2).strip()
     if nome != pasta: erros.append(f"{pasta}: name '{nome}' difere da pasta")
-    if not desc.startswith("Use quando"): erros.append(f"{pasta}: description deve começar com 'Use quando'")
+    if not desc.startswith("Use "): erros.append(f"{pasta}: description deve começar com 'Use ' (gatilho de uso)")
     if len(desc) > 600: avisos.append(f"{pasta}: description longa ({len(desc)} caracteres)")
-    if pasta != "buscar-referencias-tattoo" and "contexto/marca.md" not in txt and pasta != "editor-videos-tattoo":
-        avisos.append(f"{pasta}: não aponta para contexto/marca.md")
+    if "contexto/marca.md" not in txt and pasta not in ORIGEM_EXTERNA: sem_marca.append(pasta)
     skills[pasta] = txt
 mapa = (raiz/"AGENCIA.md").read_text(encoding="utf-8")
 linhas = [l for l in mapa.splitlines() if l.startswith("| `")]
@@ -33,6 +34,7 @@ for nome in set(re.findall(r"`([a-z]+(?:-[a-z]+)+)`", mapa)):
 for p in re.findall(r"`((?:contexto|aprendizados|referencias|templates|skills)/[^`\s]*)`", mapa):
     alvo = p.split("<")[0].rstrip("/")
     if alvo and not (raiz/alvo).exists() and "NNNN" not in p and "nome" not in p: avisos.append(f"AGENCIA.md cita caminho inexistente: {p}")
+if sem_marca: avisos.append(f"{len(sem_marca)} skills não apontam para contexto/marca.md (importadas sem alteração; ver contexto/conflitos-a-resolver.md)")
 pend = len(re.findall(r"\[confirmar\]", (raiz/"contexto/marca.md").read_text(encoding="utf-8")))
 print(f"skills: {len(skills)} | no mapa: {len(no_mapa)} | pendências [confirmar] em marca.md: {pend}")
 for a in avisos: print("AVISO:", a)
