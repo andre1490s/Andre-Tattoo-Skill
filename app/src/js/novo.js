@@ -107,6 +107,7 @@ function mesFech(m){
 }
 function renderHoje(){
   const el = $('hGreet'); if(!el) return;
+  renderAvisos();
   const now = new Date(), h = now.getHours();
   $('hGreet').textContent = (h<12?'Bom dia':h<18?'Boa tarde':'Boa noite')+', André';
   $('hKick').textContent = now.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});
@@ -339,6 +340,105 @@ async function decidirSug(id, ok){
   }catch(e){ toast('Não foi possível salvar.'); }
 }
 
+// ---------- Calendário para escolher datas ----------
+const fmtDataBtn = ds => ds ? new Date(ds+'T12:00:00').toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}) : 'Escolher a data';
+let calState = null;
+function sessoesDoDia(ds){ return data.agenda.filter(a=>a.data===ds && !a.ignorado).sort((a,b)=>(a.hora||'').localeCompare(b.hora||'')); }
+function livresDoDia(ds){
+  const wd = DIAS[new Date(ds+'T12:00:00').getDay()];
+  if(!data.cfg.dias.includes(wd)) return null;
+  const minLen = Math.round((+data.cfg.duracao||3)*60);
+  let ini = toMin(data.cfg.inicio), fim = toMin(data.cfg.fim);
+  if(ds===today()){ const n = new Date(); ini = Math.max(ini, Math.ceil((n.getHours()*60+n.getMinutes()+30)/30)*30); }
+  const busy = data.agenda.filter(a=>a.data===ds && a.hora && !a.ignorado).map(sessionRange).sort((x,y)=>x[0]-y[0]);
+  const free = []; let cur = ini;
+  busy.forEach(([b,e])=>{ if(b-cur>=minLen) free.push([cur,b]); cur = Math.max(cur,e); });
+  if(fim-cur>=minLen) free.push([cur,fim]);
+  return free.map(([a,b])=>toHH(a)+' às '+toHH(b));
+}
+function abrirCalendario(inputId){
+  const inp = $(inputId); if(!inp) return;
+  const cur = inp.value || today();
+  calState = { target:inputId, ref:cur.slice(0,7), sel:cur };
+  renderCal(); $('calBg').classList.add('open'); $('cal').classList.add('open');
+}
+function fecharCal(){ $('calBg').classList.remove('open'); $('cal').classList.remove('open'); calState = null; }
+function renderCal(){
+  if(!calState) return;
+  const [y,m] = calState.ref.split('-').map(Number), t = today();
+  const primeiro = new Date(y,m-1,1).getDay(), dim = new Date(y,m,0).getDate();
+  const nomeMes = new Date(y,m-1,1).toLocaleDateString('pt-BR',{month:'long',year:'numeric'});
+  const porDia = {}; data.agenda.filter(a=>!a.ignorado).forEach(a=>{ (porDia[a.data] = porDia[a.data]||[]).push(a); });
+  let g = ['D','S','T','Q','Q','S','S'].map(x=>'<div class="cal-w">'+x+'</div>').join('');
+  for(let i=0;i<primeiro;i++) g += '<button class="cal-d vazio" tabindex="-1" aria-hidden="true"></button>';
+  for(let d=1; d<=dim; d++){
+    const ds = y+'-'+pad(m)+'-'+pad(d), wd = DIAS[new Date(y,m-1,d).getDay()], ss = porDia[ds]||[];
+    const dots = ss.length ? '<span class="dots">'+ss.slice(0,3).map(a=>'<b'+(GRANDES.includes(a.estilo)?' class="big"':'')+'></b>').join('')+'</span>' : '';
+    const cls = ['cal-d', ds<t?'past':'', ds===t?'today':'', !data.cfg.dias.includes(wd)?'off':'', ds===calState.sel?'sel':''].filter(Boolean).join(' ');
+    g += '<button class="'+cls+'" data-act="calDia" data-d="'+ds+'" aria-label="'+esc(fmtDataBtn(ds))+(ss.length?', '+ss.length+(ss.length===1?' sessão':' sessões'):'')+'">'+d+dots+'</button>';
+  }
+  const sel = calState.sel, ss = sessoesDoDia(sel), livres = livresDoDia(sel), grande = ss.filter(a=>GRANDES.includes(a.estilo)).length;
+  const info = '<div class="cal-info"><div class="dia">'+esc(fmtDataBtn(sel))+'</div>'
+    +(ss.length ? ss.map(a=>'<div>'+esc((a.hora||'--')+'  '+a.cliente+(a.estilo?' · '+a.estilo:''))+'</div>').join('') : '<div class="m">Nenhuma sessão neste dia.</div>')
+    +(grande ? '<div class="w">Já há trabalho grande neste dia (regra: 1 por dia).</div>' : '')
+    +(livres===null ? '<div class="m">Fora dos seus dias de atendimento.</div>' : livres.length ? '<div class="m">Horários livres: '+esc(livres.join(', '))+'</div>' : '<div class="m">Sem janela livre para uma sessão de '+fmtNum(+data.cfg.duracao||3)+'h.</div>')
+    +'</div>';
+  $('cal').innerHTML = '<div class="cal-h"><button class="arrow" data-act="calPrev" aria-label="Mês anterior">‹</button><b>'+esc(nomeMes)+'</b><button class="arrow" data-act="calNext" aria-label="Próximo mês">›</button></div>'
+    +'<div class="cal-g">'+g+'</div>'
+    +'<div class="cal-leg"><span><b style="background:var(--gold)"></b>com sessão</span><span><b style="background:var(--out)"></b>trabalho grande</span><span>cinza: fora do atendimento</span></div>'
+    +info
+    +'<div class="cal-act"><button class="btn ghost" data-act="calHoje">Hoje</button><button class="btn primary" data-act="calOk">Escolher este dia</button></div>';
+}
+function calMes(delta){ const [y,m] = calState.ref.split('-').map(Number); const d = new Date(y,m-1+delta,1); calState.ref = d.getFullYear()+'-'+pad(d.getMonth()+1); renderCal(); }
+function calConfirma(){
+  if(!calState) return;
+  const inp = $(calState.target), btn = document.querySelector('[data-pick="'+calState.target+'"]');
+  if(inp) inp.value = calState.sel;
+  if(btn) btn.textContent = fmtDataBtn(calState.sel);
+  fecharCal();
+}
+$('calBg').addEventListener('click', fecharCal);
+
+// ---------- Avisos dos agentes (o ponto de "mensagem nova") ----------
+function avisosAgentes(){
+  const t = today(), cur = curMes(), all = caixaCache || null;
+  const A = { financeiro:[], vendas:[], midia:[] };
+  // Vendas
+  data.orc.filter(o=>orcParado(o)||orcEncerrar(o)).forEach(o=>A.vendas.push({k:'o:'+o.id+':'+(+o.followups||0), t:firstName(o.cliente)+': '+(orcEncerrar(o)?'encerrar com gentileza':'retomar o orçamento')+' ('+orcDias(o)+' dias sem contato)'}));
+  if(all){ const lim = addDays(t,-POLITICA.reativarDias); const n = buildClients(all).filter(c=>c.ultima && c.ultima<=lim && !c.proxima).length; if(n) A.vendas.push({k:'reat:'+cur+':'+n, t:n+(n===1?' cliente':' clientes')+' sem voltar há '+POLITICA.reativarDias+' dias ou mais'}); }
+  data.cli.filter(c=>c.nasc && /^\d{2}-\d{2}$/.test(c.nasc)).forEach(c=>{ const [mm,dd] = c.nasc.split('-').map(Number); const d = new Date(new Date().getFullYear(),mm-1,dd), t0 = new Date(); t0.setHours(0,0,0,0); const dias = Math.round((d-t0)/86400000); if(dias>=0 && dias<=3) A.vendas.push({k:'b:'+c.id+':'+d.getFullYear(), t:'Aniversário de '+(c.nome||'cliente')+(dias===0?' hoje':' em '+dias+(dias===1?' dia':' dias'))}); });
+  // Financeiro
+  data.agenda.filter(a=>!a.concluida && a.data<t).forEach(a=>A.financeiro.push({k:'conc:'+a.id, t:'Concluir a sessão de '+firstName(a.cliente)+' ('+shortDate(a.data)+') e lançar o que falta no caixa'}));
+  const semValor = data.agenda.filter(a=>!a.concluida && a.data>=t && a.data<=addDays(t,30) && !(+a.valor>0)).length;
+  if(semValor) A.financeiro.push({k:'semvalor:'+semValor, t:semValor+(semValor===1?' sessão sem':' sessões sem')+' valor combinado nos próximos 30 dias'});
+  if(!(+data.cfg.custosFixos>0)) A.financeiro.push({k:'cf', t:'Informe os custos fixos em Ajustes para calcular o ponto de equilíbrio'});
+  const f = mesFech(cur), meta = +data.cfg.meta||0, d0 = new Date().getDate(), dm = new Date(new Date().getFullYear(), new Date().getMonth()+1, 0).getDate();
+  if(meta>0 && d0>=10 && f.entradas/d0*dm < meta*0.5) A.financeiro.push({k:'ritmo:'+cur, t:'O ritmo do mês está abaixo da metade da meta'});
+  autoPend().filter(p=>p.auto==='mat').forEach(p=>A.financeiro.push({k:'mat:'+p.ref, t:p.texto}));
+  // Mídias
+  const emSete = data.cont.some(c=>c.data>=t && c.data<=addDays(t,6));
+  if(cloud && !emSete) A.midia.push({k:'semposts:'+t.slice(0,7)+':'+Math.floor(new Date().getDate()/7), t:'Nenhum post planejado para os próximos 7 dias'});
+  data.cont.filter(c=>c.data===t && c.status!=='publicado').forEach(c=>A.midia.push({k:'hoje:'+c.id, t:'Postar hoje: '+c.ideia}));
+  data.cont.filter(c=>c.data<t && c.data>=addDays(t,-7) && c.status!=='publicado' && c.status!=='agendado').forEach(c=>A.midia.push({k:'atras:'+c.id, t:'Post atrasado: '+c.ideia}));
+  return A;
+}
+function avisosVistos(){ try{ return JSON.parse(localStorage.getItem('andre-avisos')||'{}'); }catch(e){ return {}; } }
+function salvarVistos(v){ try{ localStorage.setItem('andre-avisos', JSON.stringify(v)); }catch(e){} }
+function renderAvisos(){
+  if(!$('dot-vendas')) return;
+  const A = avisosAgentes(), v = avisosVistos();
+  window.__avisos = A;
+  ['financeiro','vendas','midia'].forEach(k=>{ const n = A[k].filter(x=>!v[x.k]).length; $('dot-'+k).hidden = !n; });
+}
+function mostrarAvisos(k, tudo){
+  const A = window.__avisos || avisosAgentes(), v = avisosVistos();
+  const lista = (A[k]||[]).filter(x=>tudo || !v[x.k]);
+  if(lista.length) addMsg('ai', esc((tudo?'Avisos de hoje:\n':'Aviso novo:\n')+lista.map(x=>'• '+x.t).join('\n')));
+  (A[k]||[]).forEach(x=>{ v[x.k] = Date.now(); });
+  const ativos = {}; Object.keys(A).forEach(g=>A[g].forEach(x=>{ if(v[x.k]) ativos[x.k] = v[x.k]; }));
+  salvarVistos(ativos); renderAvisos();
+}
+
 // ---------- Agentes (Financeiro, Vendas, Mídias) ----------
 const POST_FORMATOS = ['Reels','Carrossel','Foto','Stories'];
 const POST_PILARES = ['Portfólio','Processo','Educativo','Bastidores'];
@@ -404,6 +504,7 @@ function abrirAgente(k){
     $('chatSug').innerHTML = agenteAtual==='geral' ? chipsGeral : a.chips.map(c=>'<button '+(String(c[1]).startsWith('__fill__') ? 'data-fill="'+esc(String(c[1]).slice(8)).replace(/"/g,'&quot;').replace(/\n/g,'&#10;')+'"' : 'data-q="'+esc(c[1]).replace(/"/g,'&quot;')+'"')+'>'+esc(c[0])+'</button>').join('');
     if(agenteAtual!=='geral') addMsg('ai', esc(a.ola));
   }
+  if(agenteAtual!=='geral') mostrarAvisos(agenteAtual, mudou);
   openChat();
   if(agenteAtual==='midia') ensureInsta();
 }
@@ -579,6 +680,12 @@ function extraAct(act, b, id){
       else if(x.act==='cliente'){ setTab('cli'); setTimeout(()=>{ renderClientes(true).then(()=>openCliente2(x.id)); }, 350); }
       break; }
     case 'regras': openRegras(); break;
+    case 'pickDate': abrirCalendario(b.dataset.pick); break;
+    case 'calDia': if(calState){ calState.sel = b.dataset.d; renderCal(); } break;
+    case 'calPrev': calMes(-1); break;
+    case 'calNext': calMes(1); break;
+    case 'calHoje': if(calState){ calState.sel = today(); calState.ref = today().slice(0,7); renderCal(); } break;
+    case 'calOk': calConfirma(); break;
     case 'agente': abrirAgente(b.dataset.k); break;
     case 'goSemana': setTab('semana'); break;
     case 'addPost': formPost(); break;

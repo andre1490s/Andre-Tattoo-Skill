@@ -365,10 +365,14 @@
         const arr = Array.isArray(v)?v:[];
         h+='<div class="chips multi" data-k="'+f.k+'">'+f.options.map(o=>'<button type="button" class="chip" data-v="'+esc(o)+'" aria-pressed="'+arr.includes(o)+'">'+esc(o)+'</button>').join('')+'</div>';
       } else {
-        const type = f.type==='date'?'date':f.type==='time'?'time':'text';
+        if(f.type==='date'){
+          h+='<input id="f_'+f.k+'" type="hidden" value="'+esc(v||'')+'"><button type="button" class="datebtn" data-act="pickDate" data-pick="f_'+f.k+'" aria-label="Escolher a data">'+esc(fmtDataBtn(v))+'</button>';
+        } else {
+        const type = f.type==='time'?'time':'text';
         const im = (f.type==='money'||f.type==='number')?' inputmode="decimal"':'';
         const val = (f.type==='money'||f.type==='number') ? fmtNum(v) : (v==null?'':v);
         h+='<input id="f_'+f.k+'" type="'+type+'"'+im+' class="'+(f.type==='money'?'money num':'')+'" placeholder="'+esc(f.ph||'')+'" value="'+esc(val)+'" autocomplete="off">';
+        }
       }
       h+='</div>';
     });

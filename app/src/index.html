@@ -46,9 +46,9 @@
     <button class="askbar" data-act="openChat" id="askBar" hidden><span class="spark">✦</span><span class="main"><div class="k">Assistente do estúdio</div><div class="t">Pergunte ou lance algo por texto…</div></span></button>
     <div class="sec">Agentes</div>
     <div class="quick q3">
-      <button class="qk" data-act="agente" data-k="financeiro"><svg viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>Financeiro</button>
-      <button class="qk" data-act="agente" data-k="vendas"><svg viewBox="0 0 24 24"><path d="M3 12l5 5L21 6"/></svg>Vendas</button>
-      <button class="qk" data-act="agente" data-k="midia"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".8"/></svg>Mídias</button>
+      <button class="qk" data-act="agente" data-k="financeiro"><span class="newdot" id="dot-financeiro" hidden></span><svg viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>Financeiro</button>
+      <button class="qk" data-act="agente" data-k="vendas"><span class="newdot" id="dot-vendas" hidden></span><svg viewBox="0 0 24 24"><path d="M3 12l5 5L21 6"/></svg>Vendas</button>
+      <button class="qk" data-act="agente" data-k="midia"><span class="newdot" id="dot-midia" hidden></span><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".8"/></svg>Mídias</button>
     </div>
     <div id="hAlerts"></div>
     <div id="hKpis"></div>
@@ -191,6 +191,8 @@
     </div>
   </div>
 </div>
+<div class="calbg" id="calBg"></div>
+<div class="cal" id="cal" role="dialog" aria-modal="true" aria-label="Escolher a data"></div>
 <div class="toast" id="toast"></div>
 
 <div class="chat" id="chat" role="dialog" aria-modal="true" aria-label="Assistente do estúdio">

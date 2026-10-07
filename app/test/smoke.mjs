@@ -80,6 +80,16 @@ async function run(label, viewport) {
   const cfg = await page.evaluate(() => window.__mock.dump('data/users/u_test').find(d => d.id === 'config'));
   ok(label + ': aplicar padrões grava meta, dias e horário', cfg.padraoV === 2 && cfg.meta === 20000 && cfg.dias.length === 6 && cfg.fim === '22:00' && cfg.custosFixos === 3500, JSON.stringify([cfg.meta, cfg.dias.length, cfg.fim, cfg.custosFixos]));
   ok(label + ': aviso some depois de aplicar', !/Ajustes da casa/.test(await page.textContent('#hAlerts')));
+  const dotOn = (k) => page.evaluate((x) => !document.getElementById('dot-' + x).hidden, k);
+  ok(label + ': pontos de aviso nos três agentes', (await dotOn('vendas')) && (await dotOn('financeiro')) && (await dotOn('midia')));
+  await page.click('[data-view="hoje"] [data-act="agente"][data-k="vendas"]'); await page.waitForTimeout(400);
+  const chatV = await page.textContent('#chatBody');
+  ok(label + ': agente abre mostrando os avisos novos', /Aviso/.test(chatV) && /Julia/.test(chatV), chatV.replace(/\s+/g, ' ').slice(0, 100));
+  await page.click('[data-act="closeChat"]'); await page.waitForTimeout(300);
+  ok(label + ': ponto some depois de ver, e os outros continuam', !(await dotOn('vendas')) && (await dotOn('financeiro')) && (await dotOn('midia')));
+  await page.click('[data-view="hoje"] [data-act="agente"][data-k="vendas"]'); await page.waitForTimeout(300);
+  ok(label + ': reabrir não repete o aviso', (chatV.match(/Aviso novo|Avisos de hoje/g) || []).length === 1 && ((await page.textContent('#chatBody')).match(/Aviso novo|Avisos de hoje/g) || []).length === 1);
+  await page.click('[data-act="closeChat"]'); await page.waitForTimeout(300);
   ok(label + ': sem WhatsApp/leads/Supabase na tela', !/Leads do WhatsApp|Supabase/i.test(await page.content()));
   // abas
   for (const [tab, re] of [['agenda', /Horários livres/], ['cli', /Clientes|Orçamentos/], ['caixa', /Relatórios/], ['mais', /Backup completo/]]) {
@@ -99,6 +109,7 @@ async function run(label, viewport) {
   await page.click('[data-act="instaDias"][data-d="7"]'); await page.waitForTimeout(700);
   ok(label + ': troca de período recarrega', (await page.evaluate(() => window.__mock.calls.filter(c => c[1] === 'getAnalyticsDataByMetrics').length)) >= 4);
   // Google Agenda automático
+  const setData = (d) => page.evaluate((v) => { document.getElementById('f_data').value = v; }, d);
   const gcalls = (tool) => page.evaluate((tl) => window.__mock.calls.filter(c => c[0] === 'Google Calendar' && c[1] === tl).map(c => c[2]), tool);
   await page.click('.tab[data-tab="hoje"]'); await page.waitForTimeout(300);
   ok(label + ': avisa sessões que ainda não estão no Google', /ainda não estão no Google Agenda/.test(await page.textContent('#hAlerts')));
@@ -110,7 +121,19 @@ async function run(label, viewport) {
   ok(label + ': sessões passam a ter googleId', ag1.filter(x => x.googleId).length === 3);
   await page.click('.tab[data-tab="agenda"]'); await page.waitForTimeout(300);
   await page.click('.actionbar [data-act="addAgenda"]'); await page.waitForTimeout(300);
-  await page.fill('#f_cliente', 'Teste Google'); await page.fill('#f_data', ds(10));
+  await page.fill('#f_cliente', 'Teste Google');
+  ok(label + ': campo de data é um botão que abre o calendário', (await page.textContent('.datebtn')).length > 5);
+  await page.click('.datebtn'); await page.waitForTimeout(350);
+  ok(label + ': calendário abre', await page.evaluate(() => document.getElementById('cal').classList.contains('open')));
+  const irPara = async (d) => { for (let i = 0; i < 3 && !(await page.$('#cal [data-d="' + d + '"]')); i++) { await page.click('[data-act="calNext"]'); await page.waitForTimeout(150); } await page.click('#cal [data-d="' + d + '"]'); await page.waitForTimeout(200); };
+  await irPara(ds(5));
+  const infoCal = await page.textContent('#cal .cal-info');
+  ok(label + ': dia com dois trabalhos grandes é marcado e avisa a regra', (await page.$$('#cal [data-d="' + ds(5) + '"] .dots b.big')).length >= 1 && /trabalho grande/.test(infoCal) && /Pedro/.test(infoCal), infoCal.replace(/\s+/g, ' ').slice(0, 100));
+  await page.screenshot({ path: path.join(out, label + '-09-calendario.png') });
+  await irPara(ds(10));
+  ok(label + ': dia livre mostra horários livres', /Horários livres|Fora dos seus dias/.test(await page.textContent('#cal .cal-info')));
+  await page.click('[data-act="calOk"]'); await page.waitForTimeout(300);
+  ok(label + ': escolher o dia preenche o campo', (await page.evaluate(() => document.getElementById('f_data').value)) === ds(10) && !(await page.evaluate(() => document.getElementById('cal').classList.contains('open'))));
   await page.click('#save'); await page.waitForTimeout(250);
   ok(label + ': sem horário não salva (precisa para o Google)', /horário para criar no Google/.test(await page.textContent('#err')));
   await page.fill('#f_hora', '15:00'); await page.click('#save'); await page.waitForTimeout(900);
@@ -125,7 +148,7 @@ async function run(label, viewport) {
   await page.evaluate(() => { window.__mock.mcpHandlers['Google Calendar'].list_events = (a) => ({ payload: { events: [{ id: 'evDEDUP', status: 'confirmed', summary: 'Dedup Cliente Tattoo', start: { dateTime: a.startTime.slice(0, 10) + 'T17:00:00-03:00' }, end: { dateTime: a.startTime.slice(0, 10) + 'T20:00:00-03:00' } }] } }); });
   const n0 = (await gcalls('create_event')).length;
   await page.click('.actionbar [data-act="addAgenda"]'); await page.waitForTimeout(300);
-  await page.fill('#f_cliente', 'Dedup Cliente'); await page.fill('#f_data', ds(11)); await page.fill('#f_hora', '17:00'); await page.click('#save'); await page.waitForTimeout(900);
+  await page.fill('#f_cliente', 'Dedup Cliente'); await setData(ds(11)); await page.fill('#f_hora', '17:00'); await page.click('#save'); await page.waitForTimeout(900);
   const dd = (await page.evaluate(() => window.__mock.dump('data/users/u_test/agenda/itens'))).find(x => x.cliente === 'Dedup Cliente');
   ok(label + ': evento que já existe no Google é adotado, sem duplicar', (await gcalls('create_event')).length === n0 && dd.googleId === 'evDEDUP', dd.googleId);
   await page.evaluate(() => { window.__mock.mcpHandlers['Google Calendar'].list_events = () => ({ payload: { events: [] } }); });
