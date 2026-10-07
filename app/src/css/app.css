@@ -79,6 +79,7 @@ h1,h2,h3{margin:0}
 .quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
 .qk{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 4px 12px;background:linear-gradient(180deg,var(--surface),var(--bg2));border:1px solid var(--line);color:var(--ink);cursor:pointer;font-size:11px;font-weight:700;letter-spacing:.06em;border-radius:var(--r);text-align:center;line-height:1.2}
 .qk svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.quick.q3{grid-template-columns:repeat(3,1fr)}
 .qk:active{transform:scale(.96)}
 
 /* Assistente: barra */

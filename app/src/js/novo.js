@@ -143,6 +143,9 @@ function renderHoje(){
   const bday = data.cli.filter(c=>c.nasc && /^\d{2}-\d{2}$/.test(c.nasc)).map(c=>{ const [mm,dd]=c.nasc.split('-').map(Number); let d=new Date(now.getFullYear(),mm-1,dd); const t0=new Date(now.getFullYear(),now.getMonth(),now.getDate()); if(d<t0) d=new Date(now.getFullYear()+1,mm-1,dd); return {c, dias:Math.round((d-t0)/86400000)}; }).filter(x=>x.dias<=7).sort((a,b)=>a.dias-b.dias);
   bday.slice(0,2).forEach(x=>al.push({ic:'✦', red:false, t:(x.dias===0?'Aniversário hoje: ':'Aniversário em '+x.dias+(x.dias===1?' dia: ':' dias: '))+(x.c.nome||''), s:'Uma mensagem pessoal, sem venda.', act:'cliente', id:x.c.id}));
   if(caixaCache){ const lim = addDays(t, -POLITICA.reativarDias); const nR = buildClients(caixaCache).filter(c=>c.ultima && c.ultima<=lim && !c.proxima).length; if(nR) al.push({ic:'›', red:false, t:nR+(nR===1?' cliente para reativar':' clientes para reativar'), s:POLITICA.reativarDias+'+ dias sem voltar.', act:'goCli'}); }
+  const postsHoje = data.cont.filter(c=>c.data===t && c.status!=='publicado');
+  if(postsHoje.length) al.unshift({ic:'✦', red:false, t: postsHoje.length===1?'Post de hoje: '+postsHoje[0].ideia:postsHoje.length+' posts para hoje', s: postsHoje.map(c=>(c.hora||'')+' '+c.formato).join(', '), act:'goSemana'});
+  else if(cloud && !data.cont.some(c=>c.data>=t && c.data<=addDays(t,6))) al.push({ic:'›', red:false, t:'Nenhum post planejado para os próximos 7 dias', s:'O agente de mídias monta o plano da semana.', act:'agenteMidia'});
   window.__hAl = al;
   $('hAlerts').innerHTML = bannerPadroes() + (al.length ? '<div class="brief"><div class="bh"><span>Atenção</span><small>'+al.length+'</small></div>'+al.map((x,i)=>'<button data-act="alertGo" data-i="'+i+'"><span class="ic'+(x.red?' red':'')+'">'+esc(x.ic)+'</span><span class="main"><div class="t">'+esc(x.t)+'</div><div class="s">'+esc(x.s||'')+'</div></span></button>').join('')+'</div>' : '');
   // agenda
@@ -236,6 +239,7 @@ function renderMais(){
   el.innerHTML =
     it('goTab',' data-tab-go="pend"','<path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/>','Pendências', nPend?nPend+(nPend===1?' coisa para resolver':' coisas para resolver'):'Tudo em dia')
    +it('goTab',' data-tab-go="mat"','<path d="M4 8l8-4 8 4v8l-8 4-8-4z"/><path d="M4 8l8 4 8-4M12 12v8"/>','Materiais e agulhas', low?low+(low===1?' item abaixo do mínimo':' itens abaixo do mínimo'):'Estoque em dia')
+   +it('goTab',' data-tab-go="semana"','<rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 10h18M8 3v4M16 3v4M8 15h3M13 15h3"/>','Conteúdo da semana', (()=>{ const n = data.cont.filter(c=>c.data>=today() && c.data<=addDays(today(),6)).length; return n ? n+(n===1?' post nos próximos 7 dias':' posts nos próximos 7 dias') : 'Nenhum post planejado'; })())
    +it('openInsta','','<rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".8"/>','Instagram','Alcance, seguidores, interações e melhores horários')
    +it('goTab',' data-tab-go="aprend"','<path d="M12 2l1.6 7.4L21 11l-7.4 1.6L12 20l-1.6-7.4L3 11l7.4-1.6z"/>','Aprendizado do Assistente', (nAv?nAv+' respostas sem avaliação':'Avalie as respostas')+(nSug?', '+nSug+(nSug===1?' sugestão':' sugestões'):''))
    +it('regras','','<path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/>','Regras da casa','Sinal, retoque, mínimo e política de preço')
@@ -250,7 +254,7 @@ async function exportar(tipo){
     const caixa = await stores.caixa.all();
     const dia = today();
     if(tipo==='json'){
-      const pacote = { gerado:dia, app:'Caixa Andre Tattoo', caixa, agenda:allAgenda, pendencias:data.pend, materiais:data.mat, orcamentos:data.orc, clientes:data.cli, config:data.cfg };
+      const pacote = { gerado:dia, app:'Caixa Andre Tattoo', caixa, agenda:allAgenda, pendencias:data.pend, materiais:data.mat, orcamentos:data.orc, clientes:data.cli, conteudo:data.cont, config:data.cfg };
       await dl.save({ filename:'andre-tattoo-backup-'+dia+'.json', data:JSON.stringify(pacote,null,2), request:'Backup completo dos dados do app' });
     } else {
       const num = v => String(Math.round((+v||0)*100)/100).replace('.',',');
@@ -291,7 +295,7 @@ function setupLearning(){
 function addFeedback(msgEl, pergunta, resposta, res){
   if(!DBREF) return;
   const id = newId('i');
-  const doc = { ts:Date.now(), dia:today(), pergunta:String(pergunta).slice(0,1500), resposta:String(resposta).slice(0,2500), acoes:((res&&res.acoes)||[]).map(a=>a&&a.tipo).filter(Boolean), feedback:'', nota:'', regrasV:learn.regras.versao||0 };
+  const doc = { ts:Date.now(), dia:today(), pergunta:String(pergunta).slice(0,1500), resposta:String(resposta).slice(0,2500), acoes:((res&&res.acoes)||[]).map(a=>a&&a.tipo).filter(Boolean), feedback:'', nota:'', regrasV:learn.regras.versao||0, agente:agenteAtual };
   const ref = sharedCol('aprendizado_log').doc(id);
   ref.set(doc).catch(()=>{});
   const row = document.createElement('div'); row.className = 'fb';
@@ -319,7 +323,7 @@ function renderAprend(){
    +(learn.regras.texto?'<div class="sec">Regras aprovadas (versão '+learn.regras.versao+')</div><div class="rel"><div style="white-space:pre-line;font-size:14px;line-height:1.5">'+esc(learn.regras.texto)+'</div></div>':'')
    +(hist.length?'<div class="sec">Decididas</div>'+hist.map(s=>'<div class="card"><div class="main" style="padding:12px"><div class="t">'+esc(s.titulo||'Sugestão')+'</div><div class="s">'+esc(s.status)+'</div></div></div>').join(''):'')
    +'<div class="sec">Últimas respostas</div>'
-   +(L.length ? L.slice(0,15).map(x=>'<div class="card"><div class="main" style="padding:12px"><div class="t">'+esc(x.pergunta)+'</div><div class="s">'+esc(shortDate(x.dia||today()))+' · '+(x.acoes&&x.acoes.length?esc(x.acoes.join(', '))+' · ':'')+'</div>'+(x.nota?'<div class="s" style="white-space:normal">Nota: '+esc(x.nota)+'</div>':'')+'</div><div style="padding:0 8px">'+fbPill(x)+'</div></div>').join('') : '<div class="empty">As conversas com o Assistente aparecem aqui, com a sua avaliação.</div>');
+   +(L.length ? L.slice(0,15).map(x=>'<div class="card"><div class="main" style="padding:12px"><div class="t">'+esc(x.pergunta)+'</div><div class="s">'+esc(shortDate(x.dia||today()))+' · '+(x.agente&&x.agente!=='geral'?esc(x.agente)+' · ':'')+(x.acoes&&x.acoes.length?esc(x.acoes.join(', '))+' · ':'')+'</div>'+(x.nota?'<div class="s" style="white-space:normal">Nota: '+esc(x.nota)+'</div>':'')+'</div><div style="padding:0 8px">'+fbPill(x)+'</div></div>').join('') : '<div class="empty">As conversas com o Assistente aparecem aqui, com a sua avaliação.</div>');
 }
 async function decidirSug(id, ok){
   const s = learn.sug.find(x=>x.id===id); if(!s) return;
@@ -331,6 +335,107 @@ async function decidirSug(id, ok){
     await sharedCol('aprendizado_sugestoes').doc(id).update({ status: ok?'aprovada':'recusada', decididoEm:Date.now() });
     toast(ok?'Regra aprovada':'Sugestão recusada');
   }catch(e){ toast('Não foi possível salvar.'); }
+}
+
+// ---------- Agentes (Financeiro, Vendas, Mídias) ----------
+const POST_FORMATOS = ['Reels','Carrossel','Foto','Stories'];
+const POST_PILARES = ['Portfólio','Processo','Educativo','Bastidores'];
+const POST_STATUS = [{k:'ideia',n:'Ideia'},{k:'gravar',n:'Gravar'},{k:'editar',n:'Editar'},{k:'pronto',n:'Pronto'},{k:'agendado',n:'Agendado'},{k:'publicado',n:'Publicado'}];
+const statusNome = k => (POST_STATUS.find(x=>x.k===k)||{n:k}).n;
+let agenteAtual = 'geral', chipsGeral = null;
+const AG = {
+  geral:{ titulo:'Assistente', sub:'Lê os dados do app. Nada é salvo sem você confirmar.' },
+  financeiro:{ titulo:'Financeiro', sub:'Caixa, meta e ponto de equilíbrio. Nada é salvo sem você confirmar.',
+    ola:'Oi, André. Sou o agente financeiro. Olho o caixa, a meta, os custos e o ritmo do mês. Por onde começamos?',
+    chips:[['Fechamento do mês','Faz o fechamento do mês atual, comparando com o mês passado e com a meta.'],['Como estou na meta?','Como estou em relação à meta do mês? Quantas sessões faltam no ticket atual e qual a projeção, marcando o que é estimativa.'],['Ponto de equilíbrio','Qual é o meu ponto de equilíbrio e quantas sessões preciso só para cobrir os custos fixos?'],['Para onde vai o dinheiro?','Analise meus gastos por categoria nos últimos meses e diga o que merece atenção.'],['Receita por hora','Qual é a minha receita por hora e o que eu poderia mudar para aumentar?'],['Quanto falta receber?','Quanto ainda tenho para receber das sessões marcadas?']] },
+  vendas:{ titulo:'Vendas', sub:'Funil, retomadas e clientes antigos. Nada é salvo sem você confirmar.',
+    ola:'Oi, André. Sou o agente de vendas. Cuido do funil de orçamentos, das retomadas e de quem está há tempo sem voltar. O que vamos fechar hoje?',
+    chips:[['Prioridades de hoje','Quem eu devo contatar hoje para fechar mais rápido? Ordene por proximidade de fechar e dê a mensagem de cada um.'],['Orçamentos parados','Quais orçamentos estão parados? Escreva a mensagem de retomada de cada um, respeitando o limite de 2 retomadas.'],['Reativar clientes','Quais clientes antigos devo chamar de volta? Escreva uma mensagem pessoal para cada um.'],['Responder orçamento','__fill__Responder este orçamento:\n'],['Lidar com objeção','__fill__O cliente disse: '],['Como está o funil?','Como está meu funil de orçamentos? Onde estou perdendo gente e o que fazer primeiro?']] },
+  midia:{ titulo:'Mídias', sub:'Plano de posts, legendas e horários. Nada é salvo sem você confirmar.',
+    ola:'Oi, André. Sou o agente de mídias do @andretatuadoor. Monto a semana de posts, escrevo legendas e escolho os melhores horários. Me conta o que você tem de material gravado ou fotografado, ou peço que eu proponha o que filmar.',
+    chips:[['Plano da semana','Monte o plano de posts desta semana (3 a 4 posts), com data, hora, formato, pilar, gancho, texto na tela, legenda e hashtags. Proponha cada post como ação.'],['Ideias de Reels','Me dê 5 ideias de Reels de processo e de resultado em realismo preto e cinza para eu gravar na próxima sessão.'],['Legenda de tattoo','__fill__Escreva a legenda desta tattoo finalizada: '],['O que postar hoje?','O que devo postar hoje e em qual horário, considerando o que já está planejado?'],['Melhores horários','Quais são os melhores dias e horários para postar, segundo os dados do Instagram?'],['Revisar a semana','Revise o plano de conteúdo da semana: tem equilíbrio de pilares, pelo menos um realismo preto e cinza e nenhuma repetição?']] }
+};
+const AG_REGRAS = {
+  financeiro:`AGENTE FINANCEIRO. Papel: analista financeiro gerencial do estúdio. Priorize este papel; as regras de formato e de ações acima continuam valendo. Sempre diferencie faturamento, lucro e dinheiro disponível. Use fechamentoMesAtual, fechamentoMesPassado, ultimosMeses, ajustes.metaMensal e custosFixos. Calcule e explique: ticket médio, receita por hora (entradas divididas pelas horas das sessões, estimativa), ponto de equilíbrio (custos fixos divididos pelo ticket médio), sessões que faltam para a meta no ticket atual, projeção do mês (sempre marcada como estimativa, dizendo a base), gastos por categoria e o que merece atenção. Se faltar dado (custos fixos, comissão, impostos), peça só o número essencial ou trabalhe com cenários claramente marcados como hipótese. Não dê recomendação tributária nem de investimento; para MEI, DAS ou imposto, sugira conferir com um contador. Nunca sugira desconto para bater meta. No fechamento do mês: entradas, saídas, lucro, sinais, sessões, ticket médio, maiores gastos, meta e comparação com o mês anterior, e termine com 3 ações para o próximo mês baseadas só nos números.`,
+  vendas:`AGENTE DE VENDAS. Papel: closer e CRM de tattoo premium. Priorize este papel; as regras de formato e de ações acima continuam valendo. Funil: novo, qualificado, orçamento enviado, aguardando decisão, sinal pago, agendado. Use orcamentos, clientes (sumidos há 90 dias ou mais), horariosLivres7dias e politica. Entenda antes de oferecer: ideia, tamanho, local, referência e foto da área, sem pedir de novo o que o cliente já mandou. O preço final só o Andre passa: use [VALOR] ou o valor que ele já cadastrou. Sinal: R$ 100 até R$ 1.000 e 20% acima, não reembolsável em cancelamento ou reagendamento, avisado antes da cobrança. Retomadas: no máximo 2 por orçamento (a 1ª após 3 dias sem contato, a 2ª após 7), depois só um encerramento gentil; nada de desconto, urgência ou escassez falsa; só cite horário livre se estiver em horariosLivres7dias. Objeções (preço, momento, dúvida, comparação, medo, indecisão): responda com clareza e sem argumentar demais; preço nunca vira desconto, explique tamanho, complexidade, criação e execução. Clientes antigos: mensagem pessoal citando o projeto, no máximo uma a cada 3 meses. Entregue as mensagens prontas em ações mensagem_livre (uma por cliente, até 5 linhas, tom formal que ganha intimidade, tratando pelo nome) e registre novos pedidos com a ação orcamento. Priorize quem está mais perto de fechar, depois quem está parado, e termine dizendo o que fazer primeiro e a métrica que mostra se funcionou (conversas, sinais, conversão).`,
+  midia:`AGENTE DE MÍDIAS SOCIAIS do @andretatuadoor. Priorize este papel; as regras de formato acima continuam valendo. Objetivo: atrair projetos grandes de realismo preto e cinza, com foco orgânico e sem anúncio pago. Voz: artista sofisticado e reservado, formal, sem gíria. Monte a semana com 3 a 4 posts misturando pilares: Portfólio (tattoo finalizada), Processo (estêncil, aplicação, antes e depois), Educativo (cuidados, retoque, dúvidas) e Bastidores. Pelo menos 1 post por semana de realismo preto e cinza; nunca repita ideia nem primeira linha na mesma semana. O gancho dos 3 primeiros segundos mostra o trabalho, nunca o rosto dizendo "oi gente". Texto na tela com até 8 palavras. Legenda: gancho de 1 linha, 1 a 2 linhas de técnica ou contexto, chamada para o link da bio e 5 hashtags (estilo, tema e local, como #realismopretoecinza, #tattooleao, #tattoosp, #vilamatilde, #andretattoo). Nomes de estilo: realismo preto e cinza, realismo colorido, fine line, delicado, aquarela, blackwork, cobertura, fechamento; nunca rotule por técnica (por exemplo, pontilhismo). Nunca cite preço, nome ou história de cliente sem autorização, nem invente promoção, depoimento ou significado. Para cuidados pós-tattoo, use só o texto oficial já usado no app. Use conteudoSemana para não repetir o que já está planejado, instagram e melhoresHorarios para escolher dias e horas, e agendaProxima para ideias de processo e bastidor. Pergunte só o que faltar sobre o material que ele tem; sem material, proponha o que filmar na próxima sessão. Para cada post, proponha uma ação do tipo post neste formato: {"tipo":"post","data":"AAAA-MM-DD","hora":"HH:MM","formato":"Reels|Carrossel|Foto|Stories","pilar":"Portfólio|Processo|Educativo|Bastidores","ideia":"o que mostrar","gancho":"primeiros 3 segundos","textoTela":"até 8 palavras","legenda":"legenda completa","hashtags":"#a #b #c #d #e"}. O Andre agenda no Metricool; você não publica nada.`
+};
+function regrasAgente(){ return RULES + (AG_REGRAS[agenteAtual] ? '\n\n'+AG_REGRAS[agenteAtual] : '') + regrasExtra(); }
+function igResumoAgente(){
+  if(!instaData) return 'não carregado (o Andre abre Mais > Instagram para carregar)';
+  const C = instaData.cur, f = i => C.soma(i);
+  const slots = []; (instaData.best||[]).forEach(dd=>(dd.bestTimesByHour||[]).forEach(h=>slots.push({dia:NOME_DIA[dd.dayOfWeek]||String(dd.dayOfWeek), hora:h.hourOfDay, v:h.value})));
+  slots.sort((a,b)=>b.v-a.v);
+  return { periodoDias:instaData.dias, seguidores:C.ultimo(0), alcance:f(2), visualizacoes:f(1), interacoes:f(3), salvos:f(4), compartilhados:f(5), reelsPublicados:f(8), melhoresHorarios:slots.slice(0,6).map(x=>x.dia+' '+pad(x.hora)+'h') };
+}
+async function snapshotAgente(){
+  const s = await snapshotData(), t = today();
+  if(agenteAtual==='financeiro'){
+    const all = caixaCache || data.caixa, ms = []; let m = curMes();
+    for(let i=0;i<6;i++){ ms.unshift(fechamento(all, m)); m = prevMonth(m); }
+    s.ultimosMeses = ms; s.custosFixos = +data.cfg.custosFixos||0;
+    ['clientes','horariosLivres7dias','estilosValidos'].forEach(k=>delete s[k]);
+    return s;
+  }
+  if(agenteAtual==='vendas'){ ['lancamentosCaixa','materiais','previsaoAgulhas','fechamentoMesPassado'].forEach(k=>delete s[k]); return s; }
+  if(agenteAtual==='midia'){
+    return { hoje:s.hoje, diaDaSemana:s.diaDaSemana, estilosValidos:s.estilosValidos, politica:{semPrecoEmPost:true, semNomeDeClienteSemAutorizacao:true},
+      agendaProxima:data.agenda.filter(a=>!a.concluida && a.data>=t).slice(0,10).map(a=>({data:a.data, hora:a.hora||undefined, estilo:a.estilo||undefined, tattoo:a.tattoo||undefined})),
+      conteudoSemana:data.cont.filter(c=>c.data>=addDays(t,-7)).map(c=>({data:c.data, hora:c.hora||undefined, formato:c.formato, pilar:c.pilar, ideia:c.ideia, status:c.status})),
+      instagram:igResumoAgente() };
+  }
+  return s;
+}
+function ensureInsta(){
+  if(instaSt!=='idle') return;
+  (async()=>{ let st='prompt'; try{ const perm = await window.claude.use('permissions'); if(perm) st = await perm.state('mcp:'+MET).catch(()=> 'unavailable'); }catch(e){} if(st==='granted') loadInsta(); })();
+}
+function abrirAgente(k){
+  if(chipsGeral===null) chipsGeral = $('chatSug').innerHTML;
+  const a = AG[k] || AG.geral, mudou = (k!==agenteAtual);
+  agenteAtual = AG[k] ? k : 'geral';
+  document.querySelector('.chat-h .ttl').textContent = a.titulo;
+  document.querySelector('.chat-h .sub2').textContent = a.sub;
+  if(mudou){
+    chatTurns = []; $('chatBody').innerHTML = '';
+    $('chatSug').innerHTML = agenteAtual==='geral' ? chipsGeral : a.chips.map(c=>'<button '+(String(c[1]).startsWith('__fill__') ? 'data-fill="'+esc(String(c[1]).slice(8)).replace(/"/g,'&quot;').replace(/\n/g,'&#10;')+'"' : 'data-q="'+esc(c[1]).replace(/"/g,'&quot;')+'"')+'>'+esc(c[0])+'</button>').join('');
+    if(agenteAtual!=='geral') addMsg('ai', esc(a.ola));
+  }
+  openChat();
+  if(agenteAtual==='midia') ensureInsta();
+}
+
+// ---------- Conteúdo da semana ----------
+function renderSemana(){
+  const el = $('semanaList'); if(!el) return;
+  const t = today(), fim = addDays(t,6);
+  const todos = [...data.cont].sort((a,b)=>(a.data+(a.hora||'')).localeCompare(b.data+(b.hora||'')));
+  const sem = todos.filter(c=>c.data>=t && c.data<=fim), prox = todos.filter(c=>c.data>fim), ant = todos.filter(c=>c.data<t && c.data>=addDays(t,-7));
+  const feitos = sem.filter(c=>c.status==='publicado').length;
+  $('semanaSub').textContent = sem.length ? sem.length+(sem.length===1?' post nesta semana':' posts nesta semana')+', '+feitos+' publicado'+(feitos===1?'':'s')+'.' : 'Nenhum post planejado para os próximos 7 dias.';
+  const card = c => '<div class="card col"><div class="rowtop"><div class="main"><div class="t" style="white-space:normal">'+esc(c.ideia)+'</div><div class="s">'+esc(shortDate(c.data)+(c.hora?' às '+c.hora:'')+' · '+c.formato+' · '+c.pilar)+'</div></div><span class="pill'+(c.status==='publicado'?' good':'')+'">'+esc(statusNome(c.status))+'</span></div>'
+    +(c.gancho?'<div class="note"><b>Gancho:</b> '+esc(c.gancho)+(c.textoTela?'<br><b>Na tela:</b> '+esc(c.textoTela):'')+'</div>':'')
+    +'<div class="acts">'+(c.legenda?'<button class="mini solid" data-act="postCopy" data-id="'+esc(c.id)+'">Copiar legenda</button>':'')+(c.status!=='publicado'?'<button class="mini" data-act="postNext" data-id="'+esc(c.id)+'">Avançar</button>':'')+'<button class="mini" data-act="editPost" data-id="'+esc(c.id)+'">Editar</button></div></div>';
+  let h = '';
+  if(sem.length) h += '<div class="sec">Próximos 7 dias</div>'+sem.map(card).join('');
+  if(prox.length) h += '<div class="sec">Depois</div>'+prox.map(card).join('');
+  if(ant.length) h += '<div class="sec">Últimos 7 dias</div>'+ant.map(card).join('');
+  el.innerHTML = h || '<div class="empty">Peça ao agente de mídias o plano da semana, ou toque em <b>+ Novo post</b>.</div>';
+}
+function formPost(c, preset){
+  openForm({ title:c?'Editar post':'Novo post', values:c?c:Object.assign({data:today(), formato:'Reels', pilar:'Portfólio', status:'ideia'}, preset||{}),
+    fields:[
+      {k:'data',label:'Data',type:'date'}, {k:'hora',label:'Horário',type:'time'},
+      {k:'formato',label:'Formato',type:'chips',options:POST_FORMATOS}, {k:'pilar',label:'Pilar',type:'chips',options:POST_PILARES},
+      {k:'ideia',label:'Ideia',ph:'O que vai mostrar'}, {k:'gancho',label:'Gancho (3 primeiros segundos)',ph:'Mostra o trabalho'}, {k:'textoTela',label:'Texto na tela (até 8 palavras)'},
+      {k:'legenda',label:'Legenda',type:'textarea'}, {k:'hashtags',label:'Hashtags',ph:'#realismopretoecinza ...'},
+      {k:'status',label:'Etapa',type:'chips',options:POST_STATUS.map(x=>x.k)},
+      {hint:'Nunca cite preço, nome ou história de cliente sem autorização.'}
+    ],
+    validate:v=> !v.ideia?'Escreva a ideia do post.': !v.data?'Escolha a data.':'',
+    onSave: async v=>{ await stores.cont.save(Object.assign({}, c||{}, v, {id:c?c.id:newId('c'), criado:c?(c.criado||Date.now()):Date.now()})); return c?'Post salvo':'Post criado'; },
+    onDelete: c ? ()=>stores.cont.remove(c.id) : null });
+  document.querySelectorAll('.chips[data-k="status"] .chip').forEach(x=>{ x.textContent = statusNome(x.dataset.v); });
 }
 
 // ---------- Ajustes da casa (padrões novos x ajustes antigos) ----------
@@ -458,10 +563,16 @@ function extraAct(act, b, id){
     case 'goFunil': setTab('funil'); break;
     case 'alertGo': {
       const x = (window.__hAl||[])[+b.dataset.i]; if(!x) break;
-      if(x.act==='goFunil') setTab('funil'); else if(x.act==='goAgenda') setTab('agenda'); else if(x.act==='goCli') setTab('cli');
+      if(x.act==='goFunil') setTab('funil'); else if(x.act==='goAgenda') setTab('agenda'); else if(x.act==='goCli') setTab('cli'); else if(x.act==='goSemana') setTab('semana'); else if(x.act==='agenteMidia') abrirAgente('midia');
       else if(x.act==='cliente'){ setTab('cli'); setTimeout(()=>{ renderClientes(true).then(()=>openCliente2(x.id)); }, 350); }
       break; }
     case 'regras': openRegras(); break;
+    case 'agente': abrirAgente(b.dataset.k); break;
+    case 'goSemana': setTab('semana'); break;
+    case 'addPost': formPost(); break;
+    case 'editPost': { const c = find('cont', id); if(c) formPost(c); break; }
+    case 'postNext': { const c = find('cont', id); if(!c) break; const i = POST_STATUS.findIndex(x=>x.k===c.status); const nx = POST_STATUS[Math.min(i+1, POST_STATUS.length-1)].k; stores.cont.save(Object.assign({}, c, {status:nx})).then(()=>toast('Etapa: '+statusNome(nx))).catch(()=>toast('Não foi possível salvar.')); break; }
+    case 'postCopy': { const c = find('cont', id); if(!c) break; const tx = (c.legenda||'')+(c.hashtags?'\n\n'+c.hashtags:''); (navigator.clipboard ? navigator.clipboard.writeText(tx) : Promise.reject()).then(()=>toast('Legenda copiada')).catch(()=>{ openTexto('Legenda', tx, false); }); break; }
     case 'padroesOk': aplicarPadroes(true); break;
     case 'padroesNo': aplicarPadroes(false); break;
     case 'instaLoad': loadInsta(); break;

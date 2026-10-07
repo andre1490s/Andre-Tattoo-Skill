@@ -22,7 +22,7 @@
   let mes = today().slice(0,7);
   let tab = 'caixa';
   try{ tab = localStorage.getItem('andre-tab2') || 'hoje'; }catch(e){}
-  const data = { caixa:[], agenda:[], pend:[], mat:[], orc:[], cli:[] };
+  const data = { caixa:[], agenda:[], pend:[], mat:[], orc:[], cli:[], cont:[] };
   let masked = false;
   try{ masked = localStorage.getItem('andre-mask')==='1'; }catch(e){}
   const money = v => '<span class="mval">'+(masked ? 'R$ ••••' : esc(brl.format(v)))+'</span>';
@@ -32,7 +32,7 @@
   // ---------- Armazenamento ----------
   // Nuvem: Caixa fica em data/users/<id> (mesmo lugar da V1); as abas novas em subcoleções.
   // Sem nuvem: guarda só neste aparelho.
-  const LS = { caixa:'caixa-andre-lancamentos', agenda:'andre-agenda', pend:'andre-pendencias', mat:'andre-materiais', orc:'andre-orcamentos', cli:'andre-clientes' };
+  const LS = { caixa:'caixa-andre-lancamentos', agenda:'andre-agenda', pend:'andre-pendencias', mat:'andre-materiais', orc:'andre-orcamentos', cli:'andre-clientes', cont:'andre-conteudo' };
   function localStore(name){
     const listeners = new Set();
     const all = () => { try{ return JSON.parse(localStorage.getItem(LS[name])||'[]'); }catch(e){ return []; } };
@@ -44,7 +44,7 @@
       async remove(id){ write(all().filter(x=>x.id!==id)); }
     };
   }
-  let stores = { caixa:localStore('caixa'), agenda:localStore('agenda'), pend:localStore('pend'), mat:localStore('mat'), orc:localStore('orc'), cli:localStore('cli') };
+  let stores = { caixa:localStore('caixa'), agenda:localStore('agenda'), pend:localStore('pend'), mat:localStore('mat'), orc:localStore('orc'), cli:localStore('cli'), cont:localStore('cont') };
   const CFG_DEFAULT = {meta:20000, inicio:'09:00', fim:'22:00', dias:['seg','ter','qua','qui','sex','sáb'], duracao:3, reativados:{}, custosFixos:0};
   data.cfg = Object.assign({}, CFG_DEFAULT);
   let cfgStore = {
@@ -70,7 +70,7 @@
     Object.values(unsubs).forEach(u=>{ try{u();}catch(e){} });
     subscribeCaixa();
     unsubs.cfg = cfgStore.subscribe(v => { data.cfg = Object.assign({}, CFG_DEFAULT, v||{}); cfgLoaded = true; renderAll(); });
-    ['agenda','pend','mat','orc','cli'].forEach(n => { unsubs[n] = stores[n].subscribe(null, list => { if(n==='agenda'){ allAgenda=list; list=list.filter(a=>!a.ignorado); } data[n]=list; renderAll(); }); });
+    ['agenda','pend','mat','orc','cli','cont'].forEach(n => { unsubs[n] = stores[n].subscribe(null, list => { if(n==='agenda'){ allAgenda=list; list=list.filter(a=>!a.ignorado); } data[n]=list; renderAll(); }); });
   }
   function subscribeCaixa(){
     if(unsubs.caixa) try{ unsubs.caixa(); }catch(e){}
@@ -91,7 +91,8 @@
         pend: cloudStore(db.doc(base+'/pendencias').collection('itens')),
         mat: cloudStore(db.doc(base+'/materiais').collection('itens')),
         orc: cloudStore(db.doc(base+'/orcamentos').collection('itens')),
-        cli: cloudStore(db.doc(base+'/clientes').collection('itens'))
+        cli: cloudStore(db.doc(base+'/clientes').collection('itens')),
+        cont: cloudStore(db.doc(base+'/conteudo').collection('itens'))
       };
       DBREF = db;
       const cfgDoc = db.collection(base).doc('config');
@@ -160,7 +161,7 @@
   }
 
   // ---------- Telas ----------
-  function renderAll(){ renderCaixa(); renderAgenda(); renderPend(); renderMat(); renderHoje(); renderFunil(); renderMais(); renderAprend(); renderRel(); renderInsta(); renderChrome(); }
+  function renderAll(){ renderCaixa(); renderAgenda(); renderPend(); renderMat(); renderHoje(); renderFunil(); renderMais(); renderAprend(); renderRel(); renderInsta(); renderSemana(); renderChrome(); }
 
   function renderChrome(){
     document.querySelectorAll('[data-view]').forEach(s=>s.hidden = s.dataset.view!==tab);
@@ -174,7 +175,8 @@
       pend:'<button class="btn primary" data-act="addPend">+ Nova pendência</button>',
       mat:'<button class="btn primary" data-act="addMat">+ Novo material</button>',
       cli:'<button class="btn primary" data-act="addAgenda">+ Marcar sessão</button>',
-      funil:'<button class="btn primary" data-act="addOrc">+ Novo orçamento</button>'
+      funil:'<button class="btn primary" data-act="addOrc">+ Novo orçamento</button>',
+      semana:'<button class="btn primary" data-act="addPost">+ Novo post</button>'
     };
     if(ab.dataset.tab!==tab){ ab.innerHTML = map[tab]||''; ab.className = 'in-bar'+(tab==='caixa'?' two':''); ab.dataset.tab = tab; }
   }
@@ -791,8 +793,8 @@ Formatos de ação possíveis:
     const typing = addMsg('ai', '<span class="dots"><i></i><i></i><i></i></span>');
     setBusy(true); chatCtl = new AbortController();
     try{
-      const snap = await snapshotData();
-      const input = chatTurns.slice(-8).concat([{role:'user', content: RULES+regrasExtra()+'\n\nDADOS DO APP (JSON):\n'+JSON.stringify(snap)+'\n\nMENSAGEM DO ANDRE:\n'+q}]);
+      const snap = await snapshotAgente();
+      const input = chatTurns.slice(-8).concat([{role:'user', content: regrasAgente()+'\n\nDADOS DO APP (JSON):\n'+JSON.stringify(snap)+'\n\nMENSAGEM DO ANDRE:\n'+q}]);
       const res = await sampler.json(input, {signal:chatCtl.signal, cache:false});
       const texto = (res && typeof res.texto==='string') ? res.texto : 'Não consegui montar a resposta.';
       typing.innerHTML = esc(texto); addFeedback(typing, q, texto, res);
@@ -876,6 +878,11 @@ Formatos de ação possíveis:
       card.innerHTML = '<div class="k">'+esc(a.titulo||'Mensagem para o cliente')+'</div><div class="line">'+esc(a.texto)+'</div><div class="row"><button class="btn primary">Copiar</button><a class="btn ghost" style="text-align:center;text-decoration:none" target="_blank" rel="noopener" href="'+esc('https://wa.me/?text='+encodeURIComponent(a.texto))+'">WhatsApp</a></div>';
       card.querySelector('button').onclick = async()=>{ try{ await navigator.clipboard.writeText(a.texto); toast('Mensagem copiada'); }catch(e){ toast('Não consegui copiar. Segure o texto para copiar.'); } };
       $('chatBody').appendChild(card); $('chatBody').scrollTop = $('chatBody').scrollHeight; return;
+    } else if(a.tipo==='post'){
+      if(!a.ideia || !/^\d{4}-\d{2}-\d{2}$/.test(String(a.data||''))) return;
+      const hr = /^\d{2}:\d{2}$/.test(String(a.hora||'')) ? a.hora : '';
+      k='Post planejado'; line = shortDate(a.data)+(hr?' às '+hr:'')+', '+(a.formato||'Reels')+', '+(a.pilar||'Portfólio')+'\n'+a.ideia+(a.gancho?'\nGancho: '+a.gancho:'')+(a.textoTela?'\nTexto na tela: '+a.textoTela:'');
+      run = async()=>{ await stores.cont.save({id:newId('c'), data:a.data, hora:hr, formato:POST_FORMATOS.includes(a.formato)?a.formato:'Reels', pilar:POST_PILARES.includes(a.pilar)?a.pilar:'Portfólio', ideia:String(a.ideia), gancho:a.gancho||'', textoTela:a.textoTela||'', legenda:a.legenda||'', hashtags:a.hashtags||'', status:'ideia', criado:Date.now()}); return 'Post salvo na semana'; };
     } else if(a.tipo==='orcamento'){
       if(!a.cliente) return;
       const et = ETAPAS.find(e=>e.k===a.etapa) ? a.etapa : 'novo';
@@ -1143,7 +1150,7 @@ Formatos de ação possíveis:
 
   // ---------- Ações ----------
   const ORDER = ['hoje','agenda','cli','caixa','mais'];
-  const TABOF = {pend:'mais', mat:'mais', aprend:'mais', insta:'mais', funil:'cli'};
+  const TABOF = {pend:'mais', mat:'mais', aprend:'mais', insta:'mais', semana:'mais', funil:'cli'};
   const pt = t => TABOF[t]||t;
   function riseCards(sec){
     if(!sec) return;
@@ -1174,7 +1181,7 @@ Formatos de ação possíveis:
         lastLucro = 0; subscribeCaixa(); renderCaixa(); riseCards(sec); break;
       }
       case 'goTab': setTab(b.dataset.tabGo); break;
-      case 'openChat': openChat(); break;
+      case 'openChat': abrirAgente('geral'); break;
       case 'config': formConfig(); break;
       case 'slots': openSlots(); break;
       case 'cliente': openCliente2(id); break;

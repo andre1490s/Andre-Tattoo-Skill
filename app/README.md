@@ -40,5 +40,11 @@ Republicar `caixa-andre-tattoo.v12-regra-orcamento.html` (ou a v1 original) na m
 - Limites do conector: **não há visitas ao perfil nem cliques no link** (campos marcados "não usar"), e o desempenho por post (`IGPF*`) voltou vazio; por isso não há "melhores posts".
 - Nome do servidor no manifesto: `METRICOOL` (não verificado no app real).
 
+## Versão 15: agentes
+- Três agentes dentro do chat do app (botões na tela Hoje): **Financeiro**, **Vendas** e **Mídias**. Cada um tem regras próprias (derivadas das skills gestor-financeiro, closer-vendas/crm-followup/arquiteto-ofertas e diretor-conteudo-copy/posts-semana-instagram, em `AG_REGRAS` de `js/novo.js`) e recebe só os dados de que precisa (`snapshotAgente`). O de Mídias não recebe nomes de clientes.
+- Conteúdo da semana (Mais): calendário de posts com etapas (ideia, gravar, editar, pronto, agendado, publicado) e botão de copiar legenda. Coleção `data/users/<id>/conteudo/itens`. O agente de Mídias propõe posts (ação `post`) que o André confirma.
+- **O app não agenda nem publica no Instagram/Metricool.** O rascunho do Metricool exige e-mail de revisores e plano de equipe, e o agendamento direto publicaria no perfil sem formato verificado. O envio ao Metricool é feito pelo Claude na conversa, com aprovação do André.
+- O log de aprendizado registra qual agente respondeu (`agente`).
+
 ### Ainda não feito
 Fotos por projeto (capacidade `assets`), rotina semanal automática do aprendizado, melhores posts (se o Metricool passar a devolver dados por post).

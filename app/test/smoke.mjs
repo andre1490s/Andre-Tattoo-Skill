@@ -39,7 +39,9 @@ const seedScript = `(() => {
     getAnalyticsDataByMetrics: (a) => { const rows = []; for (let i = 0; i < 5; i++) { const r = a.metrics.map((m, j) => String((j + 1) * 10 + i) + '.0'); r.push('2026100' + (i + 1)); rows.push(r); } rows.push(a.metrics.map(() => null).concat(['20261009'])); return { payload: { rows } }; },
     getBestTimeToPostByNetwork: () => ({ payload: { data: [{ dayOfWeek: 4, bestTimesByHour: [{ hourOfDay: 10, value: 6000 }, { hourOfDay: 18, value: 5000 }] }, { dayOfWeek: 5, bestTimesByHour: [{ hourOfDay: 10, value: 6700 }] }] } })
   };
-  window.__mock.sampleJson = () => ({ texto:'Olá! Segue a resposta de teste.', acoes:[ {tipo:'orcamento', cliente:'Teste Silva', ideia:'rosa', etapa:'novo'} ] });
+  window.__mock.sampleJson = (input) => JSON.stringify(input).includes('AGENTE DE MÍDIAS')
+    ? ({ texto:'Plano da semana pronto.', acoes:[ {tipo:'post', data:'${ds(1)}', hora:'10:00', formato:'Reels', pilar:'Portfólio', ideia:'Leão preto e cinza finalizado', gancho:'Close no olhar', textoTela:'Realismo em preto e cinza', legenda:'Força e fé no mesmo braço.', hashtags:'#realismopretoecinza #tattooleao #tatuagemrealista #tattoosp #andretattoo'} ] })
+    : ({ texto:'Olá! Segue a resposta de teste.', acoes:[ {tipo:'orcamento', cliente:'Teste Silva', ideia:'rosa', etapa:'novo'} ] });
 })();`;
 
 const results = []; let falhas = 0;
@@ -133,6 +135,32 @@ async function run(label, viewport) {
   const regras = await page.evaluate(() => window.__mock.dump('aprendizado_cfg'));
   ok(label + ': regra aprovada gravada (versão 1)', regras[0]?.versao === 1 && /cor/.test(regras[0].texto));
   await page.screenshot({ path: path.join(out, label + '-06-aprendizado.png') });
+  // agentes
+  const inp2 = () => page.evaluate(() => JSON.stringify(window.__mock.sampleInputs.at(-1)));
+  const falar = async (k, txt) => { await page.click('.tab[data-tab="hoje"]'); await page.waitForTimeout(250); await page.click('[data-view="hoje"] [data-act="agente"][data-k="' + k + '"]'); await page.waitForTimeout(350); await page.fill('#chatIn', txt); await page.click('#chatSend'); await page.waitForTimeout(800); };
+  await falar('financeiro', 'Como estou na meta?');
+  let i2 = await inp2();
+  ok(label + ': agente financeiro com regras e 6 meses de histórico', /AGENTE FINANCEIRO/.test(i2) && /ultimosMeses/.test(i2) && /custosFixos/.test(i2) && /contador/.test(i2));
+  ok(label + ': título do chat vira Financeiro', /Financeiro/.test(await page.textContent('.chat-h .ttl')));
+  await page.click('[data-act="closeChat"]'); await page.waitForTimeout(250);
+  await falar('vendas', 'Orçamentos parados');
+  i2 = await inp2();
+  ok(label + ': agente de vendas vê o funil e não recebe o caixa inteiro', /AGENTE DE VENDAS/.test(i2) && /orcamentos/.test(i2) && !/lancamentosCaixa/.test(i2) && /máximo de 2|no máximo 2/.test(i2));
+  await page.click('[data-act="closeChat"]'); await page.waitForTimeout(250);
+  await falar('midia', 'Plano da semana');
+  i2 = await inp2();
+  ok(label + ': agente de mídias recebe semana e Instagram, sem nomes de clientes', /AGENTE DE MÍDIAS/.test(i2) && /conteudoSemana/.test(i2) && /instagram/.test(i2) && !/Marina Alves|Carlos Mendes|Pedro Lima/.test(i2));
+  await page.click('.act .btn.primary >> nth=-1'); await page.waitForTimeout(500);
+  const cont = await page.evaluate(() => window.__mock.dump('data/users/u_test/conteudo/itens'));
+  ok(label + ': plano de posts salvo no calendário', cont.length === 1 && cont[0].formato === 'Reels' && cont[0].status === 'ideia' && /olhar|Close/.test(cont[0].gancho), JSON.stringify(cont[0] || {}).slice(0, 90));
+  const logA = await page.evaluate(() => window.__mock.dump('aprendizado_log').map(l => l.agente));
+  ok(label + ': log registra qual agente respondeu', logA.includes('financeiro') && logA.includes('vendas') && logA.includes('midia'), logA.join(','));
+  await page.click('[data-act="closeChat"]'); await page.waitForTimeout(250);
+  await page.click('.tab[data-tab="mais"]'); await page.click('[data-act="goTab"][data-tab-go="semana"] >> nth=0'); await page.waitForTimeout(400);
+  ok(label + ': tela Conteúdo lista o post com legenda copiável', /Leão preto e cinza finalizado/.test(await page.textContent('#semanaList')) && /Copiar legenda/.test(await page.textContent('#semanaList')));
+  await page.screenshot({ path: path.join(out, label + '-08-conteudo.png') });
+  await page.click('[data-act="postNext"]'); await page.waitForTimeout(400);
+  ok(label + ': avançar etapa do post', (await page.evaluate(() => window.__mock.dump('data/users/u_test/conteudo/itens')))[0].status === 'gravar');
   // exportar
   await page.click('.tab[data-tab="mais"]'); await page.waitForTimeout(300);
   await page.click('[data-act="exportJson"]'); await page.waitForTimeout(400);
