@@ -4,7 +4,14 @@ As 17 skills operacionais vieram da conta do André no Claude.ai e foram copiada
 `contexto/marca.md` registra o que o André disse diretamente nesta conversa (mais recente).
 Abaixo, onde os dois divergem. **Nada foi mudado nas skills**: o André decide qual versão vale, e só então atualizamos.
 
-## A. Divergências de dados (o André decide a versão certa)
+## A. Divergências de dados: **RESOLVIDAS** (o André confirmou: vale o `marca.md`)
+
+Decisão do André: manter os padrões que ele informou nesta conversa. As skills afetadas foram atualizadas (21 trechos em 11 skills) e todas as 17 importadas passaram a apontar para `contexto/marca.md`. Notas da aplicação:
+- **A4 (anúncio):** "manter os padrões" não cobriu esse ponto diretamente. Apliquei o mais conservador: foco orgânico; nenhuma skill sugere anúncio sozinha; o André decide e aí entra o `gestor-de-trafego`. Se quiser outro critério, é só dizer.
+- **A5 (preço em posts):** passou a valer "nunca citar valor em público, nem 'a partir de'".
+- **A3 (horário):** domingo e feriado ficaram como [confirmar].
+
+(Tabela original abaixo, mantida como registro.)
 
 | # | Tema | Skills importadas dizem | `marca.md` diz (André, nesta conversa) | Skills afetadas |
 |---|---|---|---|---|
@@ -18,7 +25,7 @@ Abaixo, onde os dois divergem. **Nada foi mudado nas skills**: o André decide q
 
 **Sobre o item 2:** o `registrar-no-sistema` e o `revisao-conversas-sofia` tratam "R$ 100 sinal" como verificação de erro (a Sofia "usou corretamente"). Com sinal de 20% acima de R$ 1.000, esse checklist marcaria erro onde não há.
 
-## B. Fatos que só existem nas skills (confirmar e subir para `marca.md`)
+## B. Fatos que só existem nas skills (**ainda a confirmar** e subir para `marca.md`)
 
 | Fato | Onde aparece |
 |---|---|

@@ -3,6 +3,8 @@ name: "followup-orcamento"
 description: "Use quando o Andre quiser retomar contato com clientes que pediram orçamento e não responderam ou não agendaram."
 ---
 
+> Contexto global da marca (tom, sinal, preços, horário, estúdio): `contexto/marca.md`. Em caso de divergência, vale o `contexto/marca.md`.
+
 # Retomar orçamento parado — Andre Tattoo
 
 ## Passos
@@ -19,7 +21,7 @@ description: "Use quando o Andre quiser retomar contato com clientes que pediram
 - Nada de desconto, urgência falsa ou pressão — tom sofisticado e reservado.
 - Pode citar agenda real ("tenho horários em outubro") só se for verdade; se o Google Agenda estiver conectado, conferir vagas.
 - Sempre falar do projeto do cliente, não do estúdio.
-- No máximo 1 emoji.
+- Quase nenhum emoji (de preferência nenhum).
 
 ## Exemplo
 > Olá, [nome]! Tudo bem? Estive pensando no seu projeto de [projeto] e ainda tenho alguns horários em outubro. Se quiser seguir, me avisa que eu reservo pra você.

@@ -3,6 +3,8 @@ name: "revisao-conversas-sofia"
 description: "Use quando o Andre colar conversas do agente de WhatsApp (Sofia) com clientes e quiser saber o que ela errou, acertou e quais regras melhorar no Cérebro."
 ---
 
+> Contexto global da marca (tom, sinal, preços, horário, estúdio): `contexto/marca.md`. Em caso de divergência, vale o `contexto/marca.md`.
+
 # Revisão das conversas da Sofia — Andre Tattoo
 
 ## Passos
@@ -16,7 +18,7 @@ description: "Use quando o Andre colar conversas do agente de WhatsApp (Sofia) c
 - Fingiu ser o Andre ou disse que é humana?
 - Pediu de novo algo que o cliente já tinha mandado?
 - Fez interrogatório (muitas perguntas de uma vez) ou mandou texto enorme?
-- Usou "sinal para reserva do horário" de R$ 100 corretamente (nunca "entrada")?
+- Descreveu o sinal corretamente? ("sinal para reserva do horário", nunca "entrada"; R$ 100 até R$ 1.000, 20% acima; não reembolsável em cancelamento ou reagendamento; valor final só o Andre passa)
 - Deu orientação médica ou prometeu que não dói?
 - Deveria ter encaminhado para o Andre (reclamação, pagamento, saúde, pedido direto) e não encaminhou?
 - Tom: natural e profissional, sem gíria excessiva nem formalidade exagerada?

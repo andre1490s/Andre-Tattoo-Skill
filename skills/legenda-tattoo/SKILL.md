@@ -3,6 +3,8 @@ name: "legenda-tattoo"
 description: "Use quando o Andre mandar foto(s) e/ou detalhes de tattoo finalizada e pedir legenda para o Instagram."
 ---
 
+> Contexto global da marca (tom, sinal, preços, horário, estúdio): `contexto/marca.md`. Em caso de divergência, vale o `contexto/marca.md`.
+
 # Legenda de tattoo finalizada — Andre Tattoo
 
 ## Passos
@@ -21,7 +23,7 @@ description: "Use quando o Andre mandar foto(s) e/ou detalhes de tattoo finaliza
 
 ## Regras fixas
 - Nomes de estilo do Andre: "realismo preto e cinza", "realismo colorido", além de fine line, delicado, aquarela, blackwork, cobertura, fechamento. Nunca rotular por técnica (ex.: não chamar de "pontilhismo"). Na dúvida, perguntar.
-- Tom sofisticado e reservado; no máximo 1 emoji (de preferência nenhum).
+- Tom sofisticado e reservado; quase nenhum emoji (de preferência nenhum).
 - Nunca citar nome do cliente nem história dele sem autorização. Não inventar significado nem tempo de sessão.
 - Chamada para ação: projetos grandes / sob consulta → WhatsApp ou link da bio.
 - Hashtags: estilo (#realismopretoecinza, #realismocolorido, #tatuagemrealista) + tema (#tattooleao, #tattoopet…) + local (#tattoosp, #vilamatilde) ou #andretattoo.

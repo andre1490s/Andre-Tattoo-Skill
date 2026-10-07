@@ -3,6 +3,8 @@ name: "reativar-clientes-antigos"
 description: "Use quando o Andre quiser mensagens para clientes antigos voltarem a tatuar: aniversário, aniversário da tattoo, continuação de fechamento ou retoque."
 ---
 
+> Contexto global da marca (tom, sinal, preços, horário, estúdio): `contexto/marca.md`. Em caso de divergência, vale o `contexto/marca.md`.
+
 # Reativar clientes antigos — Andre Tattoo
 
 ## Passos
@@ -26,7 +28,7 @@ description: "Use quando o Andre quiser mensagens para clientes antigos voltarem
 - No máximo uma mensagem de reativação a cada 3 meses por cliente; respeitar quem pediu para não receber mensagens.
 - Sem desconto, sem urgência falsa, sem inventar vaga na agenda (conferir no Google Agenda se estiver conectado).
 - Nunca inventar data de aniversário ou de tattoo; sem o dado, perguntar ao Andre.
-- Tom sofisticado e reservado, no máximo 1 emoji.
+- Tom sofisticado e reservado, quase nenhum emoji (de preferência nenhum).
 
 ## Exemplo
 > Olá, Rafael! Seu leão no antebraço completou um ano esse mês. Como ele está? Se puder, me manda uma foto, gosto de acompanhar.

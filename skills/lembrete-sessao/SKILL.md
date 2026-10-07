@@ -3,6 +3,8 @@ name: "lembrete-sessao"
 description: "Use quando o Andre pedir as mensagens de confirmação/lembrete para clientes com sessão marcada (véspera ou dia da tattoo)."
 ---
 
+> Contexto global da marca (tom, sinal, preços, horário, estúdio): `contexto/marca.md`. Em caso de divergência, vale o `contexto/marca.md`.
+
 # Lembrete de sessão — Andre Tattoo
 
 ## Passos
@@ -21,8 +23,8 @@ description: "Use quando o Andre pedir as mensagens de confirmação/lembrete pa
 ## Regras fixas
 - Nunca inventar horário, projeto ou valor. O que faltar vira [confirmar] na nota interna.
 - Não dar orientação médica. Pergunta de saúde (medicamento, alergia, condição) → marcar para o Andre responder pessoalmente.
-- Sinal: sempre "sinal para reserva do horário" de R$ 100, abatido do valor final.
-- Tom sofisticado e reservado, sem gíria, no máximo 1 emoji.
+- Sinal: sempre "sinal para reserva do horário", abatido do valor final. Valor: R$ 100 em trabalhos até R$ 1.000; 20% do valor em trabalhos acima de R$ 1.000. O valor final do trabalho é sempre passado pelo Andre. O sinal não é reembolsado em caso de cancelamento ou reagendamento.
+- Tom sofisticado e reservado, sem gíria, quase nenhum emoji (de preferência nenhum).
 - Mensagens de clientes diferentes nunca iguais palavra por palavra.
 
 ## Exemplo

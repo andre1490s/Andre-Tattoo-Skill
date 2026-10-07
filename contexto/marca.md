@@ -29,6 +29,8 @@ Instagram como canal principal, salvo instrução diferente.
 - Descontos e ofertas devem ter motivo estratégico, prazo e limite.
 - Não prometer resultados garantidos.
 - Dados insuficientes: declarar a hipótese em vez de inventar números.
+- **Preço em público:** nunca citar valor em post, comentário ou legenda (nem "a partir de"). Valor só na conversa privada, e sempre passado pelo André.
+- **Anúncio pago:** o foco é orgânico. Nenhuma skill sugere anúncio por conta própria; só o André decide, e então vale o `gestor-de-trafego`.
 - Não criar escassez falsa; urgência só quando verdadeira.
 - Evitar clichês ("cada tatuagem conta uma história") sem contexto real e exageros ("exclusivo", "único", "melhor do Brasil").
 
@@ -37,7 +39,7 @@ Estilos que faz: realismo, fine line, coberturas (cover-up), aquarela e, de rest
 **Não faz: maori** (estilo de alta dificuldade). Se um lead pedir maori, a skill não promete: avisa o André e segue a orientação dele.
 
 Preços de referência (informados pelo André; moeda: **real, R$**):
-- Mínimo: **R$ 250** por tattoo.
+- Mínimo: **R$ 250** por tattoo (substitui o R$ 200 que constava nas skills antigas).
 - Fechamento de costas: pode chegar a **R$ 5.000**.
 
 **Regra de ouro: o preço final de qualquer tattoo é passado SOMENTE pelo André.** Nenhuma skill informa, confirma ou promete valor final ao cliente. As skills qualificam o projeto (ideia, tamanho, local, referência, prazo), organizam o briefing e preparam a conversa; o valor sai do André. Os números acima servem só para o André e para análise interna, nunca para citar a um cliente.
@@ -50,6 +52,6 @@ Sinal (política do André):
 
 ## Estúdio
 - Endereço: Av. Melchert, 606, Vila Matilde (São Paulo/SP presumido, **[confirmar]**).
-- Horário: segunda a sábado, das 9h às 22h.
+- Horário: segunda a sábado, das 9h às 22h. Domingo e feriado: **[confirmar]**.
 - Canal de agendamento: **link na bio** do Instagram (@andretatuadoor). O link leva **direto ao WhatsApp, com formulário**.
 - **[confirmar]** se atende só com hora marcada.

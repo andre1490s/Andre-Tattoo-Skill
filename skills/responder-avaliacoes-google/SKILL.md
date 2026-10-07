@@ -3,6 +3,8 @@ name: "responder-avaliacoes-google"
 description: "Use quando o Andre colar uma avaliação do Google (Perfil da Empresa) do Andre Tattoo e quiser a resposta pronta."
 ---
 
+> Contexto global da marca (tom, sinal, preços, horário, estúdio): `contexto/marca.md`. Em caso de divergência, vale o `contexto/marca.md`.
+
 # Resposta a avaliações do Google — Andre Tattoo
 
 ## Passos

@@ -3,10 +3,12 @@ name: "roteiro-reels-tattoo"
 description: "Use quando o Andre pedir roteiro, ideia ou texto de tela para Reels/vídeo de tatuagem no Instagram."
 ---
 
+> Contexto global da marca (tom, sinal, preços, horário, estúdio): `contexto/marca.md`. Em caso de divergência, vale o `contexto/marca.md`.
+
 # Roteiro de Reels — Andre Tattoo
 
 ## Contexto
-- Objetivo: atrair projetos grandes (principalmente realismo preto e cinza) sem anúncio pago.
+- Objetivo: atrair projetos grandes (principalmente realismo preto e cinza) com foco orgânico (sem depender de anúncio pago).
 - Voz: artista sofisticado e reservado. Nada de dancinha, meme forçado ou exagero.
 - Formatos que combinam: processo (estêncil → contorno → sombra → final), antes/depois, timelapse, detalhe em close, dúvida comum respondida em 20s, bastidores no Procreate.
 
@@ -31,4 +33,4 @@ description: "Use quando o Andre pedir roteiro, ideia ou texto de tela para Reel
 - Gancho nos 3 primeiros segundos sempre mostra o trabalho, nunca o rosto do tatuador falando "oi gente".
 - Nunca mostrar rosto ou nome do cliente sem autorização; lembrar o Andre de pedir.
 - Não prometer resultado, não dizer que não dói, não inventar promoção.
-- Texto na tela curto e legível; no máximo 1 emoji no vídeo todo.
+- Texto na tela curto e legível; quase nenhum emoji (de preferência nenhum) no vídeo todo.

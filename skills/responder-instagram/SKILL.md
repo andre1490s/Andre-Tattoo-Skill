@@ -3,6 +3,8 @@ name: "responder-instagram"
 description: "Use quando o Andre colar comentários ou mensagens de Direct do Instagram (@andretatuadoor) e quiser as respostas prontas."
 ---
 
+> Contexto global da marca (tom, sinal, preços, horário, estúdio): `contexto/marca.md`. Em caso de divergência, vale o `contexto/marca.md`.
+
 # Comentários e Directs — Andre Tattoo
 
 ## Passos
@@ -27,4 +29,4 @@ description: "Use quando o Andre colar comentários ou mensagens de Direct do In
 - Preço nunca em público; no Direct, só as referências da skill orcamento-tattoo (valor final é o Andre que passa).
 - Nunca inventar agenda, promoção ou informação sobre o Andre.
 - Comentários: até 2 linhas. Directs: até 5 linhas.
-- Tom sofisticado e reservado; no máximo 1 emoji por resposta, de preferência nenhum.
+- Tom sofisticado e reservado; quase nenhum emoji (no máximo 1 por resposta, de preferência nenhum).

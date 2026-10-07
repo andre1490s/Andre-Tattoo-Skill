@@ -3,6 +3,8 @@ name: "pos-tattoo-avaliacao"
 description: "Use quando o Andre pedir mensagens de pós-sessão para clientes: cuidados depois da tattoo, acompanhamento da cicatrização e pedido de avaliação no Google."
 ---
 
+> Contexto global da marca (tom, sinal, preços, horário, estúdio): `contexto/marca.md`. Em caso de divergência, vale o `contexto/marca.md`.
+
 # Pós-tattoo e avaliação — Andre Tattoo
 
 Três momentos. Descobrir qual o Andre quer (ou usar a data da sessão para decidir).
@@ -49,4 +51,4 @@ Mensagem pronta para copiar (até 6 linhas, fora o texto de cuidados) + nota int
 - Sinais de problema (dor forte, calor excessivo, inchaço importante, secreção, febre, alergia): não orientar tratamento; dizer para procurar orientação médica e marcar na nota interna para o Andre responder pessoalmente.
 - Pedir avaliação só depois de cicatrizada e só uma vez. Nunca oferecer desconto ou brinde em troca de avaliação.
 - Nunca postar foto de cliente sem autorização.
-- Tom sofisticado e reservado, no máximo 1 emoji.
+- Tom sofisticado e reservado, quase nenhum emoji (de preferência nenhum).

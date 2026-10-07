@@ -3,9 +3,11 @@ name: "relatorio-instagram"
 description: "Use quando o Andre pedir o desempenho do Instagram (@andretatuadoor): métricas do Metricool, melhores posts e o que repetir."
 ---
 
+> Contexto global da marca (tom, sinal, preços, horário, estúdio): `contexto/marca.md`. Em caso de divergência, vale o `contexto/marca.md`.
+
 # Relatório do Instagram — Andre Tattoo
 
-Objetivo do perfil: trazer clientes para projetos grandes, sem anúncio pago. Seguidor importa menos que visita ao perfil, clique no link e mensagem.
+Objetivo do perfil: trazer clientes para projetos grandes, com foco orgânico. Seguidor importa menos que visita ao perfil, clique no link e mensagem.
 
 ## Passos
 1. Período: o que o Andre pedir (padrão: últimos 30 dias) e o período anterior do mesmo tamanho para comparar.
@@ -26,6 +28,6 @@ Objetivo do perfil: trazer clientes para projetos grandes, sem anúncio pago. Se
 
 ## Regras fixas
 - Fazer as contas com código; nunca inventar número.
-- Não sugerir anúncio pago, compra de seguidores ou sorteio "siga para ganhar".
+- Não sugerir anúncio pago por conta própria (decisão do Andre, via gestor-de-trafego), nem compra de seguidores ou sorteio "siga para ganhar".
 - Conclusões com poucos posts: avisar que a amostra é pequena.
 - Direto e sem emoji.

@@ -3,6 +3,8 @@ name: "fechamento-mensal-estudio"
 description: "Use quando o Andre pedir o fechamento do mês do estúdio: faturamento, sinais, ticket médio, gastos, estúdio x pessoal e meta."
 ---
 
+> Contexto global da marca (tom, sinal, preços, horário, estúdio): `contexto/marca.md`. Em caso de divergência, vale o `contexto/marca.md`.
+
 # Fechamento do mês — Andre Tattoo
 
 **Meta mensal do estúdio: R$ 20.000 de entradas.** (Se o Andre informar outra meta para um mês específico, usar a dele.)

@@ -3,6 +3,8 @@ name: "briefing-projeto-tattoo"
 description: "Use quando o Andre colar a conversa com um cliente (WhatsApp, Direct, áudio transcrito ou anotações) e quiser a ficha do projeto organizada para desenhar."
 ---
 
+> Contexto global da marca (tom, sinal, preços, horário, estúdio): `contexto/marca.md`. Em caso de divergência, vale o `contexto/marca.md`.
+
 # Briefing do projeto de tattoo
 
 Transforma conversas soltas com o cliente em uma ficha de uma página que o Andre abre na hora de desenhar e no dia da sessão.

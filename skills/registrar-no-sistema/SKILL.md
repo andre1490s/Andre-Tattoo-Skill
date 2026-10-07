@@ -3,6 +3,8 @@ name: "registrar-no-sistema"
 description: "Use ao fim de qualquer atendimento, orçamento, sessão, post ou revisão do Andre Tattoo para registrar o cliente e o que foi aprendido no sistema (ciclo de aprendizado entre agentes)."
 ---
 
+> Contexto global da marca (tom, sinal, preços, horário, estúdio): `contexto/marca.md`. Em caso de divergência, vale o `contexto/marca.md`.
+
 # Registrar no sistema — Andre Tattoo
 
 É o que faz os agentes aprenderem entre si. Toda skill do estúdio termina passando por aqui.

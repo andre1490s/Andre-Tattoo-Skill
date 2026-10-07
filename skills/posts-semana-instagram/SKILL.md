@@ -3,11 +3,13 @@ name: "posts-semana-instagram"
 description: "Use quando o Andre pedir para planejar os posts da semana no Instagram (@andretatuadoor) ou agendar esses posts no Metricool."
 ---
 
+> Contexto global da marca (tom, sinal, preços, horário, estúdio): `contexto/marca.md`. Em caso de divergência, vale o `contexto/marca.md`.
+
 # Posts da semana — Andre Tattoo
 
 ## Contexto
-- Objetivo: agenda cheia com projetos grandes, sem anúncios pagos. Meta do estúdio: R$ 20.000/mês.
-- Voz: artista sofisticado e reservado; no máximo 1 emoji.
+- Objetivo: agenda cheia com projetos grandes, com foco orgânico (anúncio pago só se o Andre decidir; ver gestor-de-trafego). Meta do estúdio: R$ 20.000/mês.
+- Voz: artista sofisticado e reservado; quase nenhum emoji (de preferência nenhum).
 - Forte: realismo preto e cinza. Também: fine line, delicados, aquarela, colorido, cobertura, nomes.
 - Tempo disponível: 4 a 7 h por semana → 3 a 4 posts.
 
@@ -30,7 +32,7 @@ description: "Use quando o Andre pedir para planejar os posts da semana no Insta
 
 ## Regras fixas
 - Nunca inventar recomendação de cuidado, produto ou orientação médica além do texto oficial.
-- Preço em post: no máximo "a partir de R$ 200"; nunca valor de projeto específico.
+- Preço em post: nunca citar valor (nem "a partir de"); o valor final é sempre passado pelo Andre.
 - Nunca citar nome ou história de cliente sem autorização. Não inventar promoção, escassez nem depoimento.
 - Não repetir a mesma ideia ou a mesma primeira linha na mesma semana.
 - Pelo menos 1 post por semana de realismo preto e cinza.

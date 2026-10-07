@@ -3,6 +3,8 @@ name: "revisao-semanal-estudio"
 description: "Use toda segunda ou quando o Andre pedir a revisão da semana do estúdio: leads, agenda, caixa, Instagram e os 3 ajustes da semana."
 ---
 
+> Contexto global da marca (tom, sinal, preços, horário, estúdio): `contexto/marca.md`. Em caso de divergência, vale o `contexto/marca.md`.
+
 # Revisão de segunda (ritual da Vera) — Andre Tattoo
 
 Objetivo: agenda cheia com projetos grandes e meta mensal de R$ 20.000. A revisão olha a semana passada e decide 3 ajustes para esta.

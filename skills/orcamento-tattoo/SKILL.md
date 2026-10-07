@@ -3,6 +3,8 @@ name: "orcamento-tattoo"
 description: "Use quando o Andre colar uma mensagem de cliente (WhatsApp ou Direct) pedindo orçamento de tatuagem e quiser a resposta pronta para enviar."
 ---
 
+> Contexto global da marca (tom, sinal, preços, horário, estúdio): `contexto/marca.md`. Em caso de divergência, vale o `contexto/marca.md`.
+
 # Resposta de orçamento — Andre Tattoo
 
 ## Passos
@@ -27,13 +29,13 @@ description: "Use quando o Andre colar uma mensagem de cliente (WhatsApp ou Dire
 - Cumprimentar pelo nome do cliente quando ele informar. Cliente antigo: tom mais próximo ("Que bom te ver por aqui de novo").
 - Se veio por indicação: agradecer a confiança e perguntar quem indicou ("E se puder, me conta quem te indicou?").
 - Nunca escrever o valor final: deixar [VALOR] para o Andre preencher (ele avalia o tempo).
-- Referência de valor só na nota interna: mínimo R$ 200; realismo em média R$ 1.200; trabalho grande sob consulta.
-- Sempre "sinal para reserva do horário" de R$ 100, abatido do valor final. Nunca "entrada" ou "adiantamento".
+- Referência de valor só na nota interna: mínimo R$ 250; realismo em média R$ 1.200; trabalho grande sob consulta.
+- Sempre "sinal para reserva do horário", abatido do valor final. Valor: R$ 100 em trabalhos até R$ 1.000; 20% do valor em trabalhos acima de R$ 1.000. O valor final do trabalho é sempre passado pelo Andre. O sinal não é reembolsado em caso de cancelamento ou reagendamento. Nunca "entrada" ou "adiantamento".
 - Ao falar de agendamento: avisar que remarcação perde o sinal.
 - Qualquer indício de menor de idade → informar idade mínima de 18 anos.
-- Não prometer número de sessões nem data. Sessão única depende do tamanho; trabalho grande é um por dia. Atendimento todos os dias a partir das 9h; a data o Andre confirma.
+- Não prometer número de sessões nem data. Sessão única depende do tamanho; trabalho grande é um por dia. Atendimento de segunda a sábado, das 9h às 22h; a data o Andre confirma.
 - Não inventar promoção, desconto, horário livre nem regra que não esteja aqui.
-- Tom de artista sofisticado e reservado: educado, direto, sem gíria, no máximo 1 emoji.
+- Tom de artista sofisticado e reservado: educado, direto, sem gíria, quase nenhum emoji (de preferência nenhum).
 
 ## Situações especiais
 - **Cobertura/reforma**: pedir fotos nítidas da tattoo atual, de ângulos diferentes, e o que quer por cima. Não garantir que a cobertura é possível antes do Andre ver.
