@@ -4,7 +4,7 @@ Uso: python3 -I scripts/validar.py   (sai com código 1 se houver erro)"""
 import re, sys, pathlib
 raiz = pathlib.Path(__file__).resolve().parent.parent
 erros, avisos = [], []
-ORIGEM_EXTERNA = {'buscar-referencias-tattoo','editor-videos-tattoo'}  # skills com contexto próprio
+ORIGEM_EXTERNA = {'buscar-referencias-tattoo','editor-videos-tattoo','buscar-consumo-tokens'}  # skills com contexto próprio
 sem_marca = []
 skills = {}
 for f in sorted((raiz/"skills").glob("*/SKILL.md")):

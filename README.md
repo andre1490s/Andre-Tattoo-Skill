@@ -20,6 +20,7 @@ Sistema de skills para o estúdio André Tattoo (@andretatuadoor): conteúdo, ve
 | entender números | `analista-metricas` e `gestor-financeiro` |
 | auditar o perfil | `estrategista-instagram` |
 | saber o que funcionou e por quê | `learning-engine` |
+| ver quanto as skills gastam de tokens | `buscar-consumo-tokens` |
 
 ## Manutenção
 ```

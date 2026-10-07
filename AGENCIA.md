@@ -75,7 +75,12 @@ Status: ✅ no repositório · 🟡 existe no Claude.ai do André, ainda não im
 | `revisao-conversas-sofia` | revisão das conversas do agente de WhatsApp | ✅ `skills/` |
 | `registrar-no-sistema` | grava o que foi aprendido (ciclo entre agentes) | ✅ `skills/` |
 
-> As 29 skills estão importadas. As 17 operacionais (atendimento, conteúdo, agenda, finanças, pós-venda, relatórios) vieram da conta do André no Claude.ai e foram copiadas **sem alteração**. Elas divergem em alguns pontos de `contexto/marca.md`: ver `contexto/conflitos-a-resolver.md`. Até o André decidir, vale o que ele disse diretamente na conversa (registrado em `marca.md`).
+### 6. Manutenção do sistema
+| Skill | Função | Status |
+|---|---|---|
+| `buscar-consumo-tokens` | mede e busca onde as skills ocupam tokens do Claude (por skill, rotina ou termo) e propõe cortes seguros | ✅ `skills/` |
+
+> As 29 skills importadas estão no repositório; `buscar-consumo-tokens` foi criada aqui. As 17 operacionais (atendimento, conteúdo, agenda, finanças, pós-venda, relatórios) vieram da conta do André no Claude.ai e foram copiadas **sem alteração**. Elas divergem em alguns pontos de `contexto/marca.md`: ver `contexto/conflitos-a-resolver.md`. Até o André decidir, vale o que ele disse diretamente na conversa (registrado em `marca.md`).
 
 ## Aprendizado (Learning Engine)
 
@@ -132,6 +137,7 @@ O `learning-engine` fica **acima** das outras skills: não executa tarefas, apre
 | `analista-metricas` / feedback do André → `learning-engine` | resultado com número e fonte, ou feedback direto |
 | `learning-engine` → `cerebro-estrategico` | aprendizados de nível 3+ que mudam prioridade ou estratégia |
 | `learning-engine` → qualquer skill | recomendação de melhoria (só com OK do André) |
+| `buscar-consumo-tokens` → `learning-engine` | cortes propostos (skill, tokens ganhos, risco), só depois do OK do André |
 
 ## Regras do sistema
 1. **Uma função por skill.** Se a skill faz duas coisas, divida.
