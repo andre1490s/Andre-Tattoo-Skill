@@ -167,6 +167,31 @@ async function run(label, viewport) {
   await page.fill('#f_cliente', 'Nova Cliente'); await page.fill('#f_ideia', 'rosa fine line'); await page.fill('#f_valor', '1200');
   await page.click('#save'); await page.waitForTimeout(400);
   ok(label + ': novo orçamento salvo', (await page.evaluate(() => window.__mock.dump('data/users/u_test/orcamentos/itens'))).some(o => o.cliente === 'Nova Cliente' && o.valor === 1200));
+  // orçamento com data: vira sessão na Agenda e no Google
+  const gOrc = (tl) => page.evaluate((x) => window.__mock.calls.filter(c => c[0] === 'Google Calendar' && c[1] === x).map(c => c[2]), tl);
+  await page.click('.tab[data-tab="cli"]'); await page.click('[data-view="cli"] [data-act="segCli"][data-v="funil"]'); await page.waitForTimeout(300);
+  const nAg0 = (await page.evaluate(() => window.__mock.dump('data/users/u_test/agenda/itens'))).length, nCr0 = (await gOrc('create_event')).length;
+  await page.click('.actionbar [data-act="addOrc"]'); await page.waitForTimeout(300);
+  ok(label + ': formulário do orçamento tem data e horário', /Data da sessão/.test(await page.textContent('#sheet')) && /Horário/.test(await page.textContent('#sheet')));
+  await page.fill('#f_cliente', 'Cliente Leão'); await page.fill('#f_ideia', 'Leão realista'); await page.fill('#f_tamanho', '30 cm'); await page.fill('#f_valor', '15000');
+  await page.click('.chips[data-k="etapa"] .chip[data-v="sinal"]');
+  await page.click('.datebtn'); await page.waitForTimeout(300);
+  for (let i = 0; i < 3 && !(await page.$('#cal [data-d="' + ds(20) + '"]')); i++) { await page.click('[data-act="calNext"]'); await page.waitForTimeout(150); }
+  await page.click('#cal [data-d="' + ds(20) + '"]'); await page.click('[data-act="calOk"]'); await page.waitForTimeout(250);
+  await page.click('#save'); await page.waitForTimeout(250);
+  ok(label + ': Sinal pago com data exige horário', /Informe o horário/.test(await page.textContent('#err')));
+  await page.fill('#f_hora', '14:00'); await page.click('#save'); await page.waitForTimeout(1000);
+  const agO = await page.evaluate(() => window.__mock.dump('data/users/u_test/agenda/itens')), orcO = (await page.evaluate(() => window.__mock.dump('data/users/u_test/orcamentos/itens'))).find(o => o.cliente === 'Cliente Leão');
+  const sessO = agO.find(x => x.cliente === 'Cliente Leão');
+  ok(label + ': sessão criada na Agenda com data, horário, valor e sinal de 20%', agO.length === nAg0 + 1 && sessO && sessO.data === ds(20) && sessO.hora === '14:00' && sessO.valor === 15000 && sessO.sinal === 3000 && sessO.estilo === null, JSON.stringify(sessO && [sessO.data, sessO.hora, sessO.valor, sessO.sinal]));
+  ok(label + ': evento criado no Google Agenda e ligado à sessão', (await gOrc('create_event')).length === nCr0 + 1 && !!sessO.googleId);
+  ok(label + ': orçamento fica Agendado e ligado à sessão', orcO.etapa === 'agendado' && orcO.agendaId === sessO.id);
+  await page.click('#funilChips [data-f="agendado"]'); await page.waitForTimeout(200);
+  await page.locator('#funilList .card', { hasText: 'Cliente Leão' }).locator('[data-act="editOrc"]').click(); await page.waitForTimeout(300);
+  await page.fill('#f_hora', '16:00'); await page.click('#save'); await page.waitForTimeout(900);
+  const sess2 = (await page.evaluate(() => window.__mock.dump('data/users/u_test/agenda/itens'))).find(x => x.cliente === 'Cliente Leão');
+  const up2 = (await gOrc('update_event')).at(-1);
+  ok(label + ': mudar o horário no orçamento atualiza a sessão e o Google, sem duplicar', sess2.hora === '16:00' && up2.eventId === sessO.googleId && (await page.evaluate(() => window.__mock.dump('data/users/u_test/agenda/itens').filter(x => x.cliente === 'Cliente Leão').length)) === 1);
   // ficha do cliente
   await page.click('[data-view="funil"] [data-act="segCli"][data-v="cli"]'); await page.waitForTimeout(500);
   await page.click('#cliList [data-act="cliente"] >> nth=0'); await page.waitForTimeout(300);

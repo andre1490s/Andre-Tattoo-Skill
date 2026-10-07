@@ -21,7 +21,7 @@ const orcParado = o => (o.etapa==='orcamento' || o.etapa==='decisao') && (+o.fol
 const orcEncerrar = o => ATIVAS.includes(o.etapa) && (+o.followups||0) >= POLITICA.maxFollowups && orcDias(o) >= 7;
 let funilFiltro = 'ativos';
 function orcSnapshot(){
-  return data.orc.filter(o=>ATIVAS.includes(o.etapa) || orcDias(o)<=30).map(o=>({ id:o.id, cliente:o.cliente, etapa:o.etapa, ideia:o.ideia||undefined, estilo:o.estilo||undefined, valor:+o.valor||0, followups:+o.followups||0, ultimoContato:o.ultimoContato||msToDs(o.criado), diasSemContato:orcDias(o), parado:orcParado(o)||undefined }));
+  return data.orc.filter(o=>ATIVAS.includes(o.etapa) || orcDias(o)<=30).map(o=>({ id:o.id, cliente:o.cliente, etapa:o.etapa, ideia:o.ideia||undefined, estilo:o.estilo||undefined, valor:+o.valor||0, sessao:o.data?(o.data+(o.hora?' '+o.hora:'')):undefined, followups:+o.followups||0, ultimoContato:o.ultimoContato||msToDs(o.criado), diasSemContato:orcDias(o), parado:orcParado(o)||undefined }));
 }
 function orcTexto(o, tipo){
   const nome = firstName(o.cliente), ideia = o.ideia ? ' de '+o.ideia : '';
@@ -55,11 +55,28 @@ function renderFunil(){
     const msgBtn = o.etapa==='novo'||o.etapa==='qualificado'&&!(v>0) ? ['info','Pedir infos'] : o.etapa==='qualificado' ? ['proposta','Proposta'] : (ATIVAS.includes(o.etapa) ? ['retomada', orcEncerrar(o)?'Encerrar':'Retomar'] : null);
     const next = ATIVAS.includes(o.etapa) && o.etapa!=='decisao' ? '<button class="mini" data-act="orcNext" data-id="'+esc(o.id)+'">Avançar</button>' : (o.etapa==='decisao'?'<button class="mini" data-act="orcAgendar" data-id="'+esc(o.id)+'">Fechou</button>':'');
     return '<div class="card col"><div class="rowtop"><div class="main"><div class="t">'+esc(o.cliente)+'</div><div class="s">'+esc(det||'sem detalhes')+'</div></div><span class="pill">'+esc(etapaNome(o.etapa))+'</span></div>'
-      +'<div class="s" style="white-space:normal">'+badge+esc(dias===0?'contato hoje':dias+(dias===1?' dia':' dias')+' sem contato')+(+o.followups?', '+o.followups+(o.followups==1?' retomada':' retomadas'):'')+(v>0?' · '+(masked?'R$ ••••':esc(brl.format(v)))+', sinal '+(masked?'R$ ••••':esc(brl.format(sinalDe(v)))):'')+'</div>'
+      +'<div class="s" style="white-space:normal">'+badge+esc(dias===0?'contato hoje':dias+(dias===1?' dia':' dias')+' sem contato')+(+o.followups?', '+o.followups+(o.followups==1?' retomada':' retomadas'):'')+(v>0?' · '+(masked?'R$ ••••':esc(brl.format(v)))+', sinal '+(masked?'R$ ••••':esc(brl.format(sinalDe(v)))):'')+(o.data?' · sessão '+esc(shortDate(o.data)+(o.hora?' às '+o.hora:'')):'')+'</div>'
       +(o.notas?'<div class="note">'+esc(o.notas)+'</div>':'')
       +'<div class="acts">'+(msgBtn?'<button class="mini solid" data-act="orcMsg" data-id="'+esc(o.id)+'" data-t="'+msgBtn[0]+'">'+msgBtn[1]+'</button>':'')+next+(ATIVAS.includes(o.etapa)?'<button class="mini" data-act="orcAgendar" data-id="'+esc(o.id)+'">Marcar sessão</button>':'')+'<button class="mini" data-act="editOrc" data-id="'+esc(o.id)+'">Editar</button></div></div>';
   }).join('');
   const nOrc = parados.length; const bg = $('orcBadge'); if(bg){ bg.hidden = !nOrc; bg.textContent = nOrc; }
+}
+async function sessaoDoOrcamento(rec){
+  const base = { cliente:rec.cliente, tattoo:rec.ideia||'', estilo:rec.estilo||null, data:rec.data, hora:rec.hora||'', valor:+rec.valor||0, telefone:rec.telefone||'', notas:rec.notas||'' };
+  const ex = rec.agendaId ? find('agenda', rec.agendaId) : null;
+  if(ex){
+    const upd = Object.assign({}, ex, base);
+    if(ex.hora !== upd.hora) upd.fim = '';
+    if(ex.googleId && (ex.data!==upd.data || ex.hora!==upd.hora)) upd.remarcadoApp = true;
+    await stores.agenda.save(upd);
+    if(upd.googleId && mcp && upd.hora){ try{ await googleUpdate(upd); }catch(e){} }
+    return upd.id;
+  }
+  const sinal = (+rec.valor>0 && (rec.etapa==='sinal' || rec.etapa==='agendado')) ? sinalDe(+rec.valor) : 0;
+  const novo = Object.assign({ id:newId('a'), concluida:false, sinal }, base);
+  await stores.agenda.save(novo);
+  if(mcp && novo.hora){ try{ const r = await googleCreate(novo); if(r) await stores.agenda.save(Object.assign({}, novo, {googleId:r.id, fim:r.fim})); }catch(e){} }
+  return novo.id;
 }
 function formOrc(o, preset){
   openForm({
@@ -74,13 +91,19 @@ function formOrc(o, preset){
       {k:'local',label:'Local do corpo',ph:'Ex.: antebraço'},
       {k:'valor',label:'Valor definido por você',type:'money',ph:'R$ 0,00'},
       {hint:'Só você define o preço final. Mínimo da casa: R$ 250. Sinal: R$ 100 até R$ 1.000 de valor, 20% acima.'},
+      {k:'data',label:'Data da sessão',type:'date'},
+      {k:'hora',label:'Horário',type:'time'},
+      {hint:'Com a etapa Sinal pago ou Agendado, a sessão entra sozinha na Agenda e no Google Agenda.'},
       {k:'etapa',label:'Etapa',type:'chips',options:ETAPAS.map(e=>e.k)},
       {k:'notas',label:'Observações',type:'textarea'}
     ].map(f=> f.k==='etapa' ? Object.assign({}, f, {options:ETAPAS.map(e=>e.k)}) : f),
-    validate:v=> !v.cliente?'Digite o nome do cliente.':'',
+    validate:v=> !v.cliente?'Digite o nome do cliente.': (v.data && (v.etapa==='sinal'||v.etapa==='agendado') && mcp && !v.hora)?'Informe o horário para criar no Google Agenda.':'',
     onSave: async v=>{
       const rec = Object.assign({}, o||{}, v, {id:o?o.id:newId('o'), valor:v.valor||0, followups:o?(+o.followups||0):0, criado:o?(o.criado||Date.now()):Date.now(), atualizado:Date.now(), ultimoContato:o?(o.ultimoContato||today()):today()});
-      await stores.orc.save(rec); return o?'Orçamento salvo':'Orçamento criado';
+      let marcou = false;
+      if(rec.data && (rec.etapa==='sinal' || rec.etapa==='agendado')){ rec.agendaId = await sessaoDoOrcamento(rec); rec.etapa = 'agendado'; marcou = true; }
+      await stores.orc.save(rec);
+      return marcou ? 'Orçamento salvo e sessão na Agenda' : (o?'Orçamento salvo':'Orçamento criado');
     },
     onDelete: o ? ()=>stores.orc.remove(o.id) : null
   });

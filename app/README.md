@@ -57,5 +57,9 @@ Republicar `caixa-andre-tattoo.v12-regra-orcamento.html` (ou a v1 original) na m
 - Todo campo de data dos formulários abre um **calendário próprio** (o campo nativo do navegador não funcionava bem no Safari do André). Mostra pontos nos dias com sessão, vermelho para trabalho grande, cinza fora dos dias de atendimento; ao tocar num dia, lista as sessões, avisa a regra de 1 trabalho grande por dia e mostra os horários livres.
 - **Ponto de aviso** nos botões dos agentes (tela Hoje). Os avisos são calculados por regras, sem usar IA: Vendas (orçamentos para retomar, clientes 90+ dias, aniversários), Financeiro (sessões por concluir, sem valor combinado, custos fixos, ritmo da meta, material), Mídias (semana sem posts, post de hoje, post atrasado). Ao abrir o agente, os avisos aparecem como mensagem e o ponto some; um aviso novo reacende o ponto. O que já foi visto fica em `localStorage` (`andre-avisos`).
 
+## Versão 18: data no orçamento
+- O formulário do orçamento tem **Data da sessão** (com o calendário) e **Horário**. Com a etapa **Sinal pago** ou **Agendado**, a sessão é criada na Agenda (valor, estilo, telefone, sinal da política) e no Google Agenda, e o orçamento passa a **Agendado**, ligado à sessão (`agendaId`). Editar data ou horário no orçamento atualiza a sessão e o evento do Google, sem duplicar. Com outras etapas, a data fica só como data prevista.
+- Orçamentos agendados saem da lista "Em andamento"; ficam no filtro **Agendado**.
+
 ### Ainda não feito
 Fotos por projeto (capacidade `assets`), rotina semanal automática do aprendizado, melhores posts (se o Metricool passar a devolver dados por post).
