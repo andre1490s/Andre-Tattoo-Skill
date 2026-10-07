@@ -17,8 +17,11 @@ Aumentar autoridade, atrair clientes com maior poder aquisitivo, elevar ticket e
 Instagram como canal principal, salvo instrução diferente.
 
 ## Tom de voz
-Direto, brasileiro, natural, profissional, sem linguagem robótica ou corporativa excessiva.
-- **[confirmar]** uso de gírias, emojis e tratamento ("você"/"tu").
+- Formal, com toques ocasionais de humor/comédia. **Sério e técnico quando o assunto é tattoo.**
+- Quase nenhuma gíria.
+- Emojis: quase nenhum (no máximo o mínimo necessário), para não parecer robô.
+- Direto, brasileiro, natural, profissional, sem linguagem robótica ou corporativa excessiva.
+- **[confirmar]** tratamento ("você"/"o senhor/a senhora"/nome do cliente).
 
 ## Regras de comunicação (valem para todas as skills)
 - Nunca criar comunicação que pareça desespero por agenda ou desconto permanente.
@@ -29,7 +32,18 @@ Direto, brasileiro, natural, profissional, sem linguagem robótica ou corporativ
 - Evitar clichês ("cada tatuagem conta uma história") sem contexto real e exageros ("exclusivo", "único", "melhor do Brasil").
 
 ## Serviços e preços
-- **[confirmar]** faixas de valor, política de sinal, estilos que faz e que não faz, tamanho mínimo.
+Estilos que faz: realismo, fine line, coberturas (cover-up) e aquarela. **Foco: preto e cinza.**
+
+Preços de referência (informados pelo André; moeda presumida R$, **[confirmar]**):
+- Mínimo: **R$ 250** por tattoo.
+- Fechamento de costas: pode chegar a **R$ 5.000**.
+
+Regra de uso: são referências de faixa, **não tabela**. Nenhuma skill passa valor ao cliente sem os dados do projeto (tamanho, local, complexidade, estilo). O orçamento sai do projeto (ver `closer-vendas`).
+
+- **[confirmar]** política de sinal (valor/percentual, forma de pagamento, reagendamento).
+- **[confirmar]** estilos que não faz; valores intermediários (ex.: braço fechado, antebraço, cobertura).
 
 ## Estúdio
-- **[confirmar]** cidade/bairro, endereço, horários, canal de agendamento, link da bio.
+- Endereço: Av. Melchert, 606, Vila Matilde (São Paulo/SP presumido, **[confirmar]**).
+- Horário: segunda a sábado, das 9h às 22h.
+- **[confirmar]** canal de agendamento (WhatsApp/Direct), link da bio, se atende com hora marcada ou por ordem de chegada.
