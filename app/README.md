@@ -23,3 +23,16 @@ Constante `RULES` dentro do script da página (seção "Assistente do estúdio")
 - 2026-10-07 (versão 12, id 1791406398-add1): regra 15 do Assistente alinhada ao `contexto/marca.md` (valor mínimo R$ 250; sinal R$ 100 até R$ 1.000 e 20% acima; sinal não reembolsável; só o André passa o preço final; tom e emojis; maori; nota de cor).
 
 Para voltar atrás: republicar `caixa-andre-tattoo.v1791292358-968f.html` na mesma URL (sem passar `capabilities`).
+
+## Versão 13 (2026-10-07): app v2 "Fumaça e Prata"
+- Fonte em `app/src/` (index.html, css/app.css, js/base.js + js/novo.js, manifest.json). Montar: `python3 -I app/build.py` (gera `app/dist/`, fora do git). Testar: `NODE_PATH=$(npm root -g) node app/test/smoke.mjs` (Chromium headless com o simulador `app/test/mock-claude.js`, 50+ verificações).
+- Telas: Hoje, Agenda, Clientes (com Orçamentos), Finanças (com relatórios), Mais (Pendências, Materiais, Aprendizado, Regras da casa, Backup, CSV, Ajustes).
+- Sem WhatsApp/Supabase. Capacidades declaradas: db, sample, user, downloads, mcp (Google Calendar: list_events, create_event). Contrato 0.2.74.
+- Dados antigos: mesmos caminhos e campos. Novos (aditivos): `data/users/<id>/orcamentos/itens`, `.../clientes/itens`, config `custosFixos`. Áreas compartilhadas (legíveis pelo Claude): `aprendizado_log`, `aprendizado_sugestoes`, `aprendizado_cfg/regras`.
+- As regras da casa (sinal, mínimo, retoque...) estão na constante `POLITICA` em `js/novo.js` e na `RULES` do Assistente em `js/base.js`. Ao mudar `contexto/marca.md`, atualizar os dois.
+
+### Voltar atrás
+Republicar `caixa-andre-tattoo.v12-regra-orcamento.html` (ou a v1 original) na mesma URL passando `contract: "0.2.66"` e as capacidades antigas (db, sample, user, mcp com Google Calendar e Supabase).
+
+### Ainda não feito
+Instagram/Metricool dentro do app, fotos por projeto (capacidade `assets`), rotina semanal automática do aprendizado.
