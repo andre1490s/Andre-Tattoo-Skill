@@ -6,6 +6,11 @@ Atualizado em 2026-10-07. Sem dados de clientes neste arquivo.
 - [ ] O repositório `andre1490s/Andre-Tattoo-Skill` está **PÚBLICO**. Tornar privado: GitHub > Settings > Danger Zone > Change repository visibility. Hoje ele expõe: valores de referência e políticas (marca.md, skills), o e-mail do Google (skill registrar-no-sistema) e o id do projeto Supabase (backup do app). Não há senhas, chaves nem dados de clientes.
 - Regra daqui para frente: não commitar fotos de tattoos, dados de clientes nem builds com imagens embutidas.
 
+## PAUSADO: app completo de gestão
+- Estado e plano de retomada em `app/docs/RETOMADA.md`. Dizer "retomar o app" para continuar. A descoberta foi interrompida (só o relatório de identidade terminou).
+- Decisões do André: autorização total, sem WhatsApp por enquanto, visual claramente novo com a identidade dele, continuar na página do Claude.
+- Perguntas ao André para a retomada: (1) prata ou ouro como acento (recomendo prata); (2) o logo original em boa resolução; (3) regras do "Indique e Ganhe".
+
 ## App Caixa Andre Tattoo (melhoria com IA que aprende)
 - [x] Etapa 1: regra de orçamento do Assistente alinhada ao `contexto/marca.md` (versão 12). Cópia de segurança em `app/`.
 - [ ] André testar no app: colar um pedido de orçamento no Assistente e conferir valor mínimo, sinal (R$ 100 até R$ 1.000, 20% acima), tom e ausência de preço final.
