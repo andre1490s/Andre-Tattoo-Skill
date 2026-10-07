@@ -7,7 +7,7 @@ description: "Use quando o Andre pedir o desempenho do Instagram (@andretatuadoo
 
 # Relatório do Instagram — Andre Tattoo
 
-Objetivo do perfil: trazer clientes para projetos grandes, com foco orgânico. Seguidor importa menos que visita ao perfil, clique no link e mensagem.
+Objetivo do perfil: trazer clientes para projetos grandes, com orgânico e anúncio de R$ 20/dia a partir de 08/10/2026. Seguidor importa menos que visita ao perfil, clique no link e mensagem.
 
 ## Passos
 1. Período: o que o Andre pedir (padrão: últimos 30 dias) e o período anterior do mesmo tamanho para comparar.
@@ -28,6 +28,6 @@ Objetivo do perfil: trazer clientes para projetos grandes, com foco orgânico. S
 
 ## Regras fixas
 - Fazer as contas com código; nunca inventar número.
-- Não sugerir anúncio pago por conta própria (decisão do Andre, via gestor-de-trafego), nem compra de seguidores ou sorteio "siga para ganhar".
+- Anúncio: só propor ajustes pelo gestor-de-trafego e com aprovação do Andre. Nunca sugerir compra de seguidores ou sorteio "siga para ganhar".
 - Conclusões com poucos posts: avisar que a amostra é pequena.
 - Direto e sem emoji.

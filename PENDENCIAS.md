@@ -3,7 +3,7 @@
 Atualizado em 2026-10-07. Sem dados de clientes neste arquivo.
 
 ## AMANHÃ: iniciar o Ads (decisão do André em 2026-10-07)
-- Mudança de regra: o app e as skills dizem "foco orgânico, sem anúncio pago". Com a decisão do André, atualizar `contexto/marca.md`, o agente de Mídias do app e as skills `roteiro-reels-tattoo`, `posts-semana-instagram` e `relatorio-instagram`. A skill `gestor-de-trafego` passa a ser usada de verdade.
+- [x] (feito nas skills e marca.md; falta só o agente de Mídias do app) Mudança de regra: "foco orgânico". Atualizar `contexto/marca.md`, o agente de Mídias do app e as skills `roteiro-reels-tattoo`, `posts-semana-instagram` e `relatorio-instagram`. A skill `gestor-de-trafego` passa a ser usada de verdade.
 - Trazer para começar: (1) verba mensal ou diária; (2) objetivo (conversas no WhatsApp, cliques no link da bio ou seguidores); (3) região do público (bairros ou raio em volta da Vila Matilde, ou São Paulo inteira); (4) 2 a 4 fotos ou vídeos de realismo preto e cinza para os criativos; (5) se a conta de anúncios do Meta já existe e está ligada ao Instagram @andretatuadoor; (6) se há alguma oferta com motivo, prazo e limite (sem desconto permanente).
 - Regras do `contexto/marca.md` valem nos anúncios: sem preço em peça pública, sem escassez falsa, sem prometer resultado, só o André passa o valor final.
 - Antes de qualquer gasto ou publicação: o Claude propõe a campanha e o André aprova cada passo. Nada vai ao ar sem confirmação.
@@ -47,5 +47,5 @@ Atualizado em 2026-10-07. Sem dados de clientes neste arquivo.
 - [ ] LE-0002 (etapas "valor + sinal" e "sinal recebido + agendamento"): reavaliar com mais leads; se confirmar, propor extensão do `orcamento-tattoo` ao André.
 
 ## Decisões do André a revisar quando quiser
-- [ ] Anúncio pago: hoje o foco é orgânico e nenhuma skill sugere anúncio sozinha (aplicado por prudência). Confirmar ou mudar.
+- [x] Anúncio pago: autorizado a partir de 08/10/2026 (R$ 20/dia). Ver artifact "Plano de Anúncios".
 - [ ] `registrar-no-sistema` como coletor e `learning-engine` como analista (proposta em `contexto/conflitos-a-resolver.md`).

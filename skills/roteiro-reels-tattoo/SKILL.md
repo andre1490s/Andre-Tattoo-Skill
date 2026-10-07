@@ -8,7 +8,7 @@ description: "Use quando o Andre pedir roteiro, ideia ou texto de tela para Reel
 # Roteiro de Reels — Andre Tattoo
 
 ## Contexto
-- Objetivo: atrair projetos grandes (principalmente realismo preto e cinza) com foco orgânico (sem depender de anúncio pago).
+- Objetivo: atrair projetos grandes (principalmente realismo preto e cinza) com orgânico como base e anúncio de R$ 20/dia a partir de 08/10/2026 (peças sem preço nem antes/depois).
 - Voz: artista sofisticado e reservado. Nada de dancinha, meme forçado ou exagero.
 - Formatos que combinam: processo (estêncil → contorno → sombra → final), antes/depois, timelapse, detalhe em close, dúvida comum respondida em 20s, bastidores no Procreate.
 

@@ -8,7 +8,7 @@ description: "Use quando o Andre pedir para planejar os posts da semana no Insta
 # Posts da semana — Andre Tattoo
 
 ## Contexto
-- Objetivo: agenda cheia com projetos grandes, com foco orgânico (anúncio pago só se o Andre decidir; ver gestor-de-trafego). Meta do estúdio: R$ 20.000/mês.
+- Objetivo: agenda cheia com projetos grandes, com orgânico + anúncio de R$ 20/dia a partir de 08/10/2026 (ver gestor-de-trafego; o André aprova tudo antes). Meta do estúdio: R$ 20.000/mês.
 - Voz: artista sofisticado e reservado; quase nenhum emoji (de preferência nenhum).
 - Forte: realismo preto e cinza. Também: fine line, delicados, aquarela, colorido, cobertura, nomes.
 - Tempo disponível: 4 a 7 h por semana → 3 a 4 posts.

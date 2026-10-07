@@ -30,7 +30,7 @@ Instagram como canal principal, salvo instrução diferente.
 - Não prometer resultados garantidos.
 - Dados insuficientes: declarar a hipótese em vez de inventar números.
 - **Preço em público:** nunca citar valor em post, comentário ou legenda (nem "a partir de"). Valor só na conversa privada, e sempre passado pelo André.
-- **Anúncio pago:** o foco é orgânico. Nenhuma skill sugere anúncio por conta própria; só o André decide, e então vale o `gestor-de-trafego`.
+- **Anúncio pago (Meta Ads):** autorizado pelo André a partir de 08/10/2026, começando com R$ 20/dia, objetivo conversas no WhatsApp. Sem preço, promoção ou antes/depois na peça. Nada vai ao ar nem gasta sem aprovação dele. Valem o `gestor-de-trafego` e o plano do artifact "Plano de Anúncios".
 - Não criar escassez falsa; urgência só quando verdadeira.
 - Evitar clichês ("cada tatuagem conta uma história") sem contexto real e exageros ("exclusivo", "único", "melhor do Brasil").
 
