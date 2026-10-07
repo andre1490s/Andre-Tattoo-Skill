@@ -23,6 +23,8 @@ Status: ✅ no repositório · 🟡 existe no Claude.ai do André, ainda não im
 |---|---|---|
 | `cerebro-estrategico` | diagnóstico, prioridades, plano de ação e decisão entre frentes | ✅ `skills/` |
 | `gestor-de-trafego` | Meta Ads/Instagram: público, criativos, testes e métricas | ✅ `skills/` |
+| `arquiteto-ofertas` | ofertas com motivo, prazo e limite; desconto nunca é a primeira solução | ✅ `skills/` |
+| `estrategista-instagram` | auditoria do perfil como sistema de aquisição e posicionamento | ✅ `skills/` |
 
 ### 1. Conteúdo e vídeo
 | Skill | Função | Status |
@@ -37,7 +39,8 @@ Status: ✅ no repositório · 🟡 existe no Claude.ai do André, ainda não im
 ### 2. Atendimento e vendas
 | Skill | Função | Status |
 |---|---|---|
-| `closer-vendas` | funil lead → sinal → agendamento, objeções e cadências de follow-up | ✅ `skills/` |
+| `closer-vendas` | conduz a conversa 1:1: qualificação, orçamento, objeções, decisão, sinal | ✅ `skills/` |
+| `crm-followup` | organiza a base por etapa do funil e define cadências por idade do lead | ✅ `skills/` |
 | `responder-instagram` | respostas a comentários e Direct | 🟡 |
 | `orcamento-tattoo` | resposta pronta para pedido de orçamento | 🟡 |
 | `followup-orcamento` | retoma quem pediu orçamento e sumiu | 🟡 |
@@ -60,12 +63,35 @@ Status: ✅ no repositório · 🟡 existe no Claude.ai do André, ainda não im
 ### 5. Análise e aprendizado
 | Skill | Função | Status |
 |---|---|---|
+| `analista-metricas` | dado → diagnóstico → teste → resultado → decisão (conteúdo, vendas, tráfego) | ✅ `skills/` |
+| `gestor-financeiro` | faturamento ≠ lucro ≠ caixa; ponto de equilíbrio, margem, receita por hora | ✅ `skills/` |
 | `relatorio-instagram` | desempenho do perfil via Metricool | 🟡 |
 | `revisao-semanal-estudio` | leads, agenda, caixa, Instagram e 3 ajustes | 🟡 |
 | `revisao-conversas-sofia` | revisão das conversas do agente de WhatsApp | 🟡 |
 | `registrar-no-sistema` | grava o que foi aprendido (ciclo entre agentes) | 🟡 |
 
-> As skills ✅ de direção, tráfego, conteúdo e vendas foram importadas dos arquivos do André; o contexto global que se repetia nelas está em `contexto/marca.md`. A lista 🟡 vem dos nomes das skills disponíveis na conta do André no Claude.ai. Só conheço o nome e a descrição curta; o conteúdo só entra aqui quando o André enviar cada arquivo.
+> As 11 skills ✅ foram importadas dos arquivos do André; o contexto global que se repetia nelas está em `contexto/marca.md`. A lista 🟡 vem dos nomes das skills disponíveis na conta do André no Claude.ai. Só conheço o nome e a descrição curta; o conteúdo só entra aqui quando o André enviar cada arquivo.
+
+## Fronteiras entre skills que se sobrepõem
+
+| Tema | Quem faz o quê |
+|---|---|
+| Follow-up | `crm-followup` decide **quem** contatar e **quando** (segmento + cadência). `closer-vendas` conduz a **conversa** com cada lead. As 🟡 `followup-orcamento` e `reativar-clientes-antigos` são tratadas como especialistas de mensagem dentro do CRM, a validar. |
+| Métricas | `analista-metricas` interpreta dados e decide testes. `gestor-de-trafego` só opera anúncios. 🟡 `relatorio-instagram` é a fonte (Metricool) que alimenta o analista. |
+| Dinheiro | `gestor-financeiro` analisa números do estúdio. 🟡 `fechamento-mensal-estudio` é a rotina mensal que o alimenta. |
+| Oferta | `arquiteto-ofertas` cria a condição. `closer-vendas` e `diretor-conteudo-copy` só a usam; nenhum dos dois dá desconto por conta própria. |
+| Instagram | `estrategista-instagram` audita o perfil (estrutura). `diretor-conteudo-copy` produz o conteúdo. 🟡 `posts-semana-instagram` é a execução semanal no Metricool. |
+| Orquestração | Em conflito entre skills, vale a prioridade definida pelo `cerebro-estrategico`. |
+
+## Rotinas (como a agência roda)
+
+| Rotina | Sequência |
+|---|---|
+| **Semanal** | `analista-metricas` (semana passada) → `cerebro-estrategico` (3 prioridades) → `diretor-conteudo-copy` (pauta) → `editor-videos-tattoo` (vídeos) → `crm-followup` (lista de contatos da semana) |
+| **Mensal** | `gestor-financeiro` + `analista-metricas` → `cerebro-estrategico` (metas do mês) → `arquiteto-ofertas` (se agenda com buraco) → `gestor-de-trafego` (testes do mês) |
+| **Por lead novo** | `closer-vendas` → `crm-followup` (entra no funil) → resultado volta ao `cerebro-estrategico` |
+| **Por vídeo novo** | `buscar-referencias-tattoo` → `editor-videos-tattoo` → `gestor-de-trafego` (teste como criativo) |
+| **Perfil parado** | `estrategista-instagram` (auditoria) → `cerebro-estrategico` → execução |
 
 ## Handoffs principais (contratos entre skills)
 
@@ -76,7 +102,12 @@ Status: ✅ no repositório · 🟡 existe no Claude.ai do André, ainda não im
 | `diretor-conteudo-copy` / `roteiro-reels-tattoo` → `editor-videos-tattoo` | ideia aprovada: objetivo, hook, cenas, texto de tela e CTA |
 | `editor-videos-tattoo` → `gestor-de-trafego` | vídeos com melhor retenção viram criativos para teste |
 | `gestor-de-trafego` → `closer-vendas` | leads vindos de anúncio, com origem e criativo |
-| `closer-vendas` → `cerebro-estrategico` | funil: leads, orçamentos, sinais, agendamentos, conversão, ticket |
+| `closer-vendas` ↔ `crm-followup` | lead e etapa atualizada; lista de quem recontatar e a cadência |
+| `crm-followup` / `closer-vendas` → `analista-metricas` | funil: leads, orçamentos, sinais, agendamentos, conversão, ticket, receita recuperada |
+| `analista-metricas` → `cerebro-estrategico` | o que aconteceu, o que não se pode concluir, o que testar |
+| `gestor-financeiro` → `cerebro-estrategico` / `arquiteto-ofertas` | margem, ocupação e meta: define se cabe oferta e quanto de agenda abrir |
+| `arquiteto-ofertas` → `closer-vendas` / `diretor-conteudo-copy` / `gestor-de-trafego` | oferta aprovada: conceito, limite, prazo, copy e CTA |
+| `estrategista-instagram` → `cerebro-estrategico` | problemas críticos, melhorias rápidas e estruturais, testes |
 | `cerebro-estrategico` → qualquer skill | prioridade, objetivo e métrica de sucesso da ação |
 | `editor-videos-tattoo` → `legenda-tattoo` | vídeo final + tema da tattoo |
 | `legenda-tattoo` → `posts-semana-instagram` | legenda aprovada para agendar |
