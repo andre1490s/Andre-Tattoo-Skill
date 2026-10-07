@@ -144,7 +144,7 @@ function renderHoje(){
   bday.slice(0,2).forEach(x=>al.push({ic:'✦', red:false, t:(x.dias===0?'Aniversário hoje: ':'Aniversário em '+x.dias+(x.dias===1?' dia: ':' dias: '))+(x.c.nome||''), s:'Uma mensagem pessoal, sem venda.', act:'cliente', id:x.c.id}));
   if(caixaCache){ const lim = addDays(t, -POLITICA.reativarDias); const nR = buildClients(caixaCache).filter(c=>c.ultima && c.ultima<=lim && !c.proxima).length; if(nR) al.push({ic:'›', red:false, t:nR+(nR===1?' cliente para reativar':' clientes para reativar'), s:POLITICA.reativarDias+'+ dias sem voltar.', act:'goCli'}); }
   window.__hAl = al;
-  $('hAlerts').innerHTML = al.length ? '<div class="brief"><div class="bh"><span>Atenção</span><small>'+al.length+'</small></div>'+al.map((x,i)=>'<button data-act="alertGo" data-i="'+i+'"><span class="ic'+(x.red?' red':'')+'">'+esc(x.ic)+'</span><span class="main"><div class="t">'+esc(x.t)+'</div><div class="s">'+esc(x.s||'')+'</div></span></button>').join('')+'</div>' : '';
+  $('hAlerts').innerHTML = bannerPadroes() + (al.length ? '<div class="brief"><div class="bh"><span>Atenção</span><small>'+al.length+'</small></div>'+al.map((x,i)=>'<button data-act="alertGo" data-i="'+i+'"><span class="ic'+(x.red?' red':'')+'">'+esc(x.ic)+'</span><span class="main"><div class="t">'+esc(x.t)+'</div><div class="s">'+esc(x.s||'')+'</div></span></button>').join('')+'</div>' : '');
   // agenda
   const open = data.agenda.filter(a=>!a.concluida).sort((a,b)=>(a.data+(a.hora||'')).localeCompare(b.data+(b.hora||'')));
   const late = open.filter(a=>a.data<t), prox = open.filter(a=>a.data>=t).slice(0,4);
@@ -236,6 +236,7 @@ function renderMais(){
   el.innerHTML =
     it('goTab',' data-tab-go="pend"','<path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/>','Pendências', nPend?nPend+(nPend===1?' coisa para resolver':' coisas para resolver'):'Tudo em dia')
    +it('goTab',' data-tab-go="mat"','<path d="M4 8l8-4 8 4v8l-8 4-8-4z"/><path d="M4 8l8 4 8-4M12 12v8"/>','Materiais e agulhas', low?low+(low===1?' item abaixo do mínimo':' itens abaixo do mínimo'):'Estoque em dia')
+   +it('openInsta','','<rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".8"/>','Instagram','Alcance, seguidores, interações e melhores horários')
    +it('goTab',' data-tab-go="aprend"','<path d="M12 2l1.6 7.4L21 11l-7.4 1.6L12 20l-1.6-7.4L3 11l7.4-1.6z"/>','Aprendizado do Assistente', (nAv?nAv+' respostas sem avaliação':'Avalie as respostas')+(nSug?', '+nSug+(nSug===1?' sugestão':' sugestões'):''))
    +it('regras','','<path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/>','Regras da casa','Sinal, retoque, mínimo e política de preço')
    +it('exportJson','','<path d="M12 4v11M7 11l5 5 5-5M5 20h14"/>','Backup completo','Baixar todos os dados (arquivo JSON)')
@@ -332,6 +333,103 @@ async function decidirSug(id, ok){
   }catch(e){ toast('Não foi possível salvar.'); }
 }
 
+// ---------- Ajustes da casa (padrões novos x ajustes antigos) ----------
+let cfgLoaded = false;
+const DIAS_CASA = ['seg','ter','qua','qui','sex','sáb'];
+function bannerPadroes(){
+  if(!cfgLoaded || data.cfg.padraoV) return '';
+  const c = data.cfg, meta = +c.meta>0 ? brl.format(+c.meta) : 'não definida';
+  const dias = (c.dias||[]).length===7 ? 'todos os dias' : (c.dias||[]).join(', ');
+  return '<div class="brief"><div class="bh"><span>Ajustes da casa</span></div><div style="padding:4px 14px 14px"><div class="s" style="white-space:normal;margin-bottom:12px;line-height:1.5">Seus ajustes são da versão antiga: meta '+esc(meta)+', atendimento '+esc(dias)+', das '+esc(c.inicio)+' às '+esc(c.fim)+'.<br>Padrão da casa: meta '+esc(brl.format(POLITICA.metaMensal))+', segunda a sábado, das 9h às 22h.</div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="mini solid" data-act="padroesOk">Aplicar padrões</button><button class="mini" data-act="padroesNo">Manter os meus</button></div></div></div>';
+}
+async function aplicarPadroes(ok){
+  try{
+    const v = ok ? Object.assign({}, data.cfg, {meta:POLITICA.metaMensal, dias:DIAS_CASA.slice(), inicio:'09:00', fim:'22:00', padraoV:2}) : Object.assign({}, data.cfg, {padraoV:2});
+    await cfgStore.save(v); toast(ok?'Padrões da casa aplicados':'Ajustes mantidos');
+  }catch(e){ toast('Não foi possível salvar os ajustes.'); }
+}
+
+// ---------- Instagram (Metricool) ----------
+const MET = 'METRICOOL';
+const IG_M = ['IGEV01','IGEV05','IGEV06','IGEV09','IGEV15','IGEV40','IGEV43','IGEV44','IGEV22','IGEV23','IGEV42','IGEV37'];
+// posições em IG_M: 0 seguidores, 1 visualizações, 2 alcance, 3 interações, 4 salvos, 5 compartilhamentos, 6 ganhos, 7 perdidos, 8 reels, 9 views de reels, 10 contas engajadas, 11 posts
+let instaDias = 30, instaSt = 'idle', instaData = null, instaErr = '';
+const NOME_DIA = ['','segunda','terça','quarta','quinta','sexta','sábado','domingo'];
+const fmtN = n => (n==null||isNaN(n)) ? '–' : new Intl.NumberFormat('pt-BR').format(Math.round(n));
+function mcParse(res){
+  let p = res && res.payload;
+  if(!p && res && res.content){ const tb = res.content.find(c=>c.type==='text'); if(tb) p = tb.text; }
+  if(typeof p==='string'){ try{ p = JSON.parse(p); }catch(e){} }
+  return p;
+}
+async function mcCall(tool, args){
+  if(!mcp){ try{ mcp = await window.claude.use('mcp'); }catch(e){ mcp = null; } }
+  if(!mcp) throw {code:'server_not_connected'};
+  return mcParse(await mcp.callTool(MET, tool, args));
+}
+const isoDia = (ds, fim) => ds + (fim ? 'T23:59:59-03:00' : 'T00:00:00-03:00');
+function igResumo(rows){
+  const n = IG_M.length, num = v => (v==null||v==='') ? null : parseFloat(v);
+  const dias = (rows||[]).filter(r=>Array.isArray(r) && r.length>n).map(r=>({d:String(r[n]), v:r.slice(0,n).map(num)})).sort((a,b)=>a.d.localeCompare(b.d));
+  return {
+    dias,
+    soma: i => { let s=0, t=false; dias.forEach(x=>{ if(x.v[i]!=null){ s+=x.v[i]; t=true; } }); return t ? s : null; },
+    ultimo: i => { for(let k=dias.length-1;k>=0;k--) if(dias[k].v[i]!=null) return dias[k].v[i]; return null; }
+  };
+}
+async function loadInsta(){
+  instaSt = 'loading'; renderInsta();
+  try{
+    const b = await mcCall('getBrandSettings', {});
+    const list = (b && b.data) || [];
+    const br = list.find(x=>x.networksData && x.networksData.instagramData) || list[0];
+    if(!br) throw {code:'no_brand'};
+    const t = today(), ini = addDays(t, -(instaDias-1)), pFim = addDays(ini, -1), pIni = addDays(pFim, -(instaDias-1));
+    const q = (a, b2) => mcCall('getAnalyticsDataByMetrics', {brandId:String(br.id), from:isoDia(a), to:isoDia(b2,true), metrics:IG_M});
+    const [cur, prev] = await Promise.all([q(ini, t), q(pIni, pFim)]);
+    let best = [];
+    try{ const bt = await mcCall('getBestTimeToPostByNetwork', {brandId:String(br.id), fromDate:isoDia(addDays(t,-6)), toDate:isoDia(t,true), timezone:br.timezone||'America/Sao_Paulo', socialNetwork:'instagram'}); best = (bt && bt.data) || []; }catch(e){}
+    instaData = {conta:(br.networksData && br.networksData.instagramData) || br.label || '', cur:igResumo(cur && cur.rows), prev:igResumo(prev && prev.rows), best, dias:instaDias, em:Date.now()};
+    instaSt = 'ok'; instaErr = '';
+  }catch(e){
+    const c = e && e.code; instaSt = 'err';
+    instaErr = c==='needs_reauth' ? 'Reconecte o Metricool em Configurações › Conectores do Claude.'
+      : (c==='server_not_connected') ? 'Adicione o Metricool em Configurações › Conectores do Claude.'
+      : (c==='not_granted'||c==='consent_required'||c==='not_in_manifest'||c==='denied') ? 'O acesso ao Metricool não foi autorizado neste app. Toque em Tentar de novo e autorize.'
+      : c==='no_brand' ? 'Não achei uma conta do Instagram no seu Metricool.'
+      : c==='server_unavailable' ? 'O Metricool está fora do ar agora. Tente de novo em instantes.'
+      : 'Não consegui buscar os números. Tente de novo.';
+  }
+  renderInsta();
+}
+function renderInsta(){
+  const box = $('instaBox'); if(!box) return;
+  $('instaChips').innerHTML = [7,30,90].map(d=>'<button class="chip" data-act="instaDias" data-d="'+d+'" aria-pressed="'+(instaDias===d)+'">'+d+' dias</button>').join('');
+  if(instaSt==='idle'){ box.innerHTML = '<div class="empty">Veja alcance, seguidores, interações e os melhores horários para postar.<br><br><button class="btn primary" data-act="instaLoad" style="width:100%">Carregar números</button></div>'; return; }
+  if(instaSt==='loading'){ box.innerHTML = '<div class="empty">Buscando no Metricool…</div>'; return; }
+  if(instaSt==='err'){ box.innerHTML = '<div class="syncbar"><div class="s">'+esc(instaErr)+'</div><button class="mini" data-act="instaLoad">Tentar de novo</button></div>'; return; }
+  const d = instaData, C = d.cur, P = d.prev;
+  const pct = i => { const a = C.soma(i), b = P.soma(i); if(a==null || !(b>0)) return ''; const p = Math.round((a-b)/b*100); return '<small class="'+(p>=0?'up':'down')+'">'+(p>=0?'+':'')+p+'% vs período anterior</small>'; };
+  const k = (rot, val, extra) => '<div class="kpi"><span>'+rot+'</span><strong class="num">'+val+'</strong>'+(extra||'')+'</div>';
+  const seg = C.ultimo(0), gan = C.soma(6), per = C.soma(7);
+  const delta = (gan!=null || per!=null) ? (gan||0)-(per||0) : null;
+  const segExtra = delta==null ? '' : '<small class="'+(delta>=0?'up':'down')+'">'+(delta>=0?'+':'')+fmtN(delta)+' no período</small>';
+  const reels = C.soma(8), rv = C.soma(9);
+  const maxR = Math.max(1, ...C.dias.map(x=>x.v[2]||0));
+  const bars = C.dias.length ? '<div class="rel" style="margin-top:10px"><div class="legend" style="margin:0 0 6px"><span>Alcance por dia</span></div><div class="bars" style="height:80px;gap:2px">'+C.dias.map(x=>'<div class="bar"><div class="cols"><i class="ci" style="width:100%;height:'+Math.max(2,Math.round((x.v[2]||0)/maxR*100))+'%"></i></div></div>').join('')+'</div></div>' : '';
+  const slots = []; (d.best||[]).forEach(dd=>(dd.bestTimesByHour||[]).forEach(h=>slots.push({dia:dd.dayOfWeek, h:h.hourOfDay, v:h.value})));
+  slots.sort((a,b)=>b.v-a.v);
+  const top = slots.slice(0,5);
+  const melhores = top.length ? '<div class="sec">Melhores horários</div><div class="rel">'+top.map(s=>'<div class="hbar"><div class="hl"><span>'+esc(NOME_DIA[s.dia]||'Dia '+s.dia)+', '+pad(s.h)+'h</span><span>'+Math.round(s.v/top[0].v*100)+'%</span></div><div class="hb"><i style="width:'+Math.round(s.v/top[0].v*100)+'%"></i></div></div>').join('')+'<p class="hint" style="margin:10px 0 0">Quando a sua audiência está mais ativa. O primeiro vale 100%.</p></div>' : '';
+  box.innerHTML = '<div class="kpis">'+k('Seguidores', fmtN(seg), segExtra)+k('Alcance', fmtN(C.soma(2)), pct(2))+'</div>'
+    +'<div class="kpis" style="margin-top:8px">'+k('Visualizações', fmtN(C.soma(1)), pct(1))+k('Interações', fmtN(C.soma(3)), pct(3))+'</div>'
+    +'<div class="kpis" style="margin-top:8px">'+k('Salvos', fmtN(C.soma(4)), pct(4))+k('Compartilhados', fmtN(C.soma(5)), pct(5))+'</div>'
+    +'<div class="kpis" style="margin-top:8px">'+k('Reels publicados', fmtN(reels), '<small>'+fmtN(rv)+' visualizações</small>')+k('Contas engajadas', fmtN(C.soma(10)), pct(10))+'</div>'
+    +bars+melhores
+    +'<p class="hint" style="margin-top:14px">Visitas ao perfil e cliques no link da bio não vêm do Metricool. Veja em Instagram › Insights. O alcance por dia soma pessoas que podem se repetir entre os dias. Atualizado '+esc(new Date(d.em).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}))+'.</p>'
+    +'<button class="btn ghost" data-act="instaLoad" style="width:100%;margin-top:6px">Atualizar</button>';
+}
+
 // ---------- Ações extras (chamadas pelo switch principal) ----------
 function extraAct(act, b, id){
   switch(act){
@@ -364,6 +462,14 @@ function extraAct(act, b, id){
       else if(x.act==='cliente'){ setTab('cli'); setTimeout(()=>{ renderClientes(true).then(()=>openCliente2(x.id)); }, 350); }
       break; }
     case 'regras': openRegras(); break;
+    case 'padroesOk': aplicarPadroes(true); break;
+    case 'padroesNo': aplicarPadroes(false); break;
+    case 'instaLoad': loadInsta(); break;
+    case 'instaDias': instaDias = +b.dataset.d; if(instaSt==='ok' || instaSt==='err') loadInsta(); else renderInsta(); break;
+    case 'openInsta': {
+      setTab('insta');
+      if(instaSt==='idle'){ (async()=>{ let st='prompt'; try{ const perm = await window.claude.use('permissions'); if(perm) st = await perm.state('mcp:'+MET).catch(()=> 'unavailable'); }catch(e){} if(st==='granted') loadInsta(); })(); }
+      break; }
     case 'exportJson': exportar('json'); break;
     case 'exportCsv': exportar('csv'); break;
     case 'sugOk': decidirSug(id, true); break;

@@ -34,6 +34,11 @@ const seedScript = `(() => {
   window.__mock.seed(B + '/orcamentos/itens', { o1:{ cliente:'Julia Prado', ideia:'Leão antebraço', estilo:'Realismo P&C', tamanho:'25 cm', local:'antebraço', valor:1500, etapa:'orcamento', followups:0, criado: Date.now()-5*86400000, atualizado: Date.now()-5*86400000, ultimoContato: ds(-5) } });
   window.__mock.seed(B + '/clientes/itens', { 'carlos mendes': { nome:'Carlos Mendes', nasc: ds(2).slice(5), notas:'Prefere sessões de manhã', indicacao:'Rafael' } });
   window.__mock.seed('aprendizado_sugestoes', { s1:{ titulo:'Perguntar a cor do realismo', regra:'Quando o pedido for realismo sem cor definida, perguntar se é preto e cinza ou colorido.', motivo:'Visto em 3 pedidos', confianca:3, status:'proposta', ts: Date.now() } });
+  window.__mock.mcpHandlers.METRICOOL = {
+    getBrandSettings: () => ({ payload: { data: [{ id: 1, label: 't', timezone: 'America/Sao_Paulo', networksData: { instagramData: 't' } }] } }),
+    getAnalyticsDataByMetrics: (a) => { const rows = []; for (let i = 0; i < 5; i++) { const r = a.metrics.map((m, j) => String((j + 1) * 10 + i) + '.0'); r.push('2026100' + (i + 1)); rows.push(r); } rows.push(a.metrics.map(() => null).concat(['20261009'])); return { payload: { rows } }; },
+    getBestTimeToPostByNetwork: () => ({ payload: { data: [{ dayOfWeek: 4, bestTimesByHour: [{ hourOfDay: 10, value: 6000 }, { hourOfDay: 18, value: 5000 }] }, { dayOfWeek: 5, bestTimesByHour: [{ hourOfDay: 10, value: 6700 }] }] } })
+  };
   window.__mock.sampleJson = () => ({ texto:'Olá! Segue a resposta de teste.', acoes:[ {tipo:'orcamento', cliente:'Teste Silva', ideia:'rosa', etapa:'novo'} ] });
 })();`;
 
@@ -63,6 +68,11 @@ async function run(label, viewport) {
   ok(label + ': alerta de dois trabalhos grandes no mesmo dia', /Dois trabalhos grandes/.test(hoje));
   ok(label + ': alerta de orçamento para retomar', /orçamento para retomar/.test(hoje));
   ok(label + ': alerta de aniversário', /Aniversário/.test(hoje));
+  ok(label + ': aviso de ajustes antigos aparece', /Ajustes da casa/.test(hoje) && /Aplicar padrões/.test(hoje));
+  await page.click('[data-act="padroesOk"]'); await page.waitForTimeout(400);
+  const cfg = await page.evaluate(() => window.__mock.dump('data/users/u_test').find(d => d.id === 'config'));
+  ok(label + ': aplicar padrões grava meta, dias e horário', cfg.padraoV === 2 && cfg.meta === 20000 && cfg.dias.length === 6 && cfg.fim === '22:00' && cfg.custosFixos === 3500, JSON.stringify([cfg.meta, cfg.dias.length, cfg.fim, cfg.custosFixos]));
+  ok(label + ': aviso some depois de aplicar', !/Ajustes da casa/.test(await page.textContent('#hAlerts')));
   ok(label + ': sem WhatsApp/leads/Supabase na tela', !/Leads do WhatsApp|Supabase/i.test(await page.content()));
   // abas
   for (const [tab, re] of [['agenda', /Horários livres/], ['cli', /Clientes|Orçamentos/], ['caixa', /Relatórios/], ['mais', /Backup completo/]]) {
@@ -72,6 +82,15 @@ async function run(label, viewport) {
   }
   const rel = await page.textContent('#relBox');
   ok(label + ': relatórios com ponto de equilíbrio', /custos fixos/i.test(rel) && /Gastos por categoria/.test(rel), rel.slice(0, 80).replace(/\s+/g, ' '));
+  // Instagram (Metricool)
+  await page.click('.tab[data-tab="mais"]'); await page.click('[data-act="openInsta"]'); await page.waitForTimeout(900);
+  const ig = await page.textContent('#instaBox');
+  ok(label + ': Instagram carrega seguidores, alcance e melhores horários', /Seguidores/.test(ig) && /Alcance/.test(ig) && /sexta, 10h/.test(ig) && /Visitas ao perfil e cliques/.test(ig), ig.replace(/\s+/g,' ').slice(0,110));
+  const chamadas = await page.evaluate(() => window.__mock.calls.filter(c => c[0] === 'METRICOOL').map(c => c[1]));
+  ok(label + ': usa só ferramentas de leitura do Metricool', chamadas.length >= 3 && chamadas.every(t => /^get/.test(t)), chamadas.join(','));
+  await page.screenshot({ path: path.join(out, label + '-07-instagram.png') });
+  await page.click('[data-act="instaDias"][data-d="7"]'); await page.waitForTimeout(700);
+  ok(label + ': troca de período recarrega', (await page.evaluate(() => window.__mock.calls.filter(c => c[1] === 'getAnalyticsDataByMetrics').length)) >= 4);
   // orçamentos: parado + novo + enviar mensagem
   await page.click('.tab[data-tab="cli"]'); await page.click('[data-view="cli"] [data-act="segCli"][data-v="funil"]'); await page.waitForTimeout(400);
   const funil = await page.textContent('#funilList');

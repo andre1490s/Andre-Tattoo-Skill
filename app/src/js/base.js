@@ -69,7 +69,7 @@
   function subscribeAll(){
     Object.values(unsubs).forEach(u=>{ try{u();}catch(e){} });
     subscribeCaixa();
-    unsubs.cfg = cfgStore.subscribe(v => { data.cfg = Object.assign({}, CFG_DEFAULT, v||{}); renderAll(); });
+    unsubs.cfg = cfgStore.subscribe(v => { data.cfg = Object.assign({}, CFG_DEFAULT, v||{}); cfgLoaded = true; renderAll(); });
     ['agenda','pend','mat','orc','cli'].forEach(n => { unsubs[n] = stores[n].subscribe(null, list => { if(n==='agenda'){ allAgenda=list; list=list.filter(a=>!a.ignorado); } data[n]=list; renderAll(); }); });
   }
   function subscribeCaixa(){
@@ -160,7 +160,7 @@
   }
 
   // ---------- Telas ----------
-  function renderAll(){ renderCaixa(); renderAgenda(); renderPend(); renderMat(); renderHoje(); renderFunil(); renderMais(); renderAprend(); renderRel(); renderChrome(); }
+  function renderAll(){ renderCaixa(); renderAgenda(); renderPend(); renderMat(); renderHoje(); renderFunil(); renderMais(); renderAprend(); renderRel(); renderInsta(); renderChrome(); }
 
   function renderChrome(){
     document.querySelectorAll('[data-view]').forEach(s=>s.hidden = s.dataset.view!==tab);
@@ -1143,7 +1143,7 @@ Formatos de ação possíveis:
 
   // ---------- Ações ----------
   const ORDER = ['hoje','agenda','cli','caixa','mais'];
-  const TABOF = {pend:'mais', mat:'mais', aprend:'mais', funil:'cli'};
+  const TABOF = {pend:'mais', mat:'mais', aprend:'mais', insta:'mais', funil:'cli'};
   const pt = t => TABOF[t]||t;
   function riseCards(sec){
     if(!sec) return;

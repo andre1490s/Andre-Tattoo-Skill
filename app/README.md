@@ -34,5 +34,11 @@ Para voltar atrás: republicar `caixa-andre-tattoo.v1791292358-968f.html` na mes
 ### Voltar atrás
 Republicar `caixa-andre-tattoo.v12-regra-orcamento.html` (ou a v1 original) na mesma URL passando `contract: "0.2.66"` e as capacidades antigas (db, sample, user, mcp com Google Calendar e Supabase).
 
+## Versão 14: ajustes da casa e Instagram
+- Aviso na tela Hoje quando os ajustes salvos são antigos (sem `padraoV`): "Aplicar padrões" (meta R$ 20.000, seg a sáb, 9h às 22h; preserva duração e custos fixos) ou "Manter os meus".
+- Tela Instagram (Mais): conector Metricool, só leitura (`getBrandSettings`, `getAnalyticsDataByMetrics`, `getBestTimeToPostByNetwork`). Métricas `IGEV*`: seguidores, alcance, visualizações, interações, salvos, compartilhados, reels, contas engajadas, mais melhores horários. Período atual x anterior (7, 30 ou 90 dias).
+- Limites do conector: **não há visitas ao perfil nem cliques no link** (campos marcados "não usar"), e o desempenho por post (`IGPF*`) voltou vazio; por isso não há "melhores posts".
+- Nome do servidor no manifesto: `METRICOOL` (não verificado no app real).
+
 ### Ainda não feito
-Instagram/Metricool dentro do app, fotos por projeto (capacidade `assets`), rotina semanal automática do aprendizado.
+Fotos por projeto (capacidade `assets`), rotina semanal automática do aprendizado, melhores posts (se o Metricool passar a devolver dados por post).
