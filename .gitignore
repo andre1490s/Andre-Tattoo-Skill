@@ -1,0 +1,4 @@
+app/dist/
+app/assets-src/
+app/test/out/
+node_modules/
