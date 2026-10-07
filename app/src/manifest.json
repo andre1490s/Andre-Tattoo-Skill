@@ -1,0 +1,24 @@
+{
+ "template": "index.html",
+ "css": [
+  "css/app.css"
+ ],
+ "js": [
+  "js/base.js",
+  "js/novo.js"
+ ],
+ "assets": {
+  "logo": {
+   "src": "assets-src/logo.png",
+   "max": 256,
+   "fmt": "png"
+  },
+  "foto-leao": {
+   "src": "assets-src/foto-leao.jpg",
+   "max": 820,
+   "fmt": "jpg",
+   "q": 62,
+   "gray": true
+  }
+ }
+}

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Andre Tattoo">
+<meta name="theme-color" content="#060607">
+<title>Caixa Andre Tattoo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!--@@CSS@@-->
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brandrow">
+      <div class="brand"><img class="mark" alt="Andre Tattoo" src="@@ASSET:logo@@"></div>
+      <div class="wordmark">Andre Tattoo<small>Gestão do estúdio</small></div>
+    </div>
+    <div class="right"><div class="sync" id="sync">Carregando…</div><button class="gear" data-act="config" aria-label="Ajustes do estúdio"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></div>
+  </header>
+  <div id="notice"></div>
+
+  <!-- HOJE -->
+  <section data-view="hoje">
+    <div class="hero">
+      <div class="hero-img" aria-hidden="true"></div>
+      <div class="hero-in">
+        <div class="kick" id="hKick"></div>
+        <h1 class="greet" id="hGreet">Olá</h1>
+        <div class="lbl"><span id="hLucroLbl">Lucro do mês</span>
+          <button class="eye" data-act="mask" id="hEye" aria-label="Ocultar valores" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path class="slash" d="M4 4l16 16"/></svg></button></div>
+        <div class="big num" id="hLucro">R$ 0,00</div>
+        <div class="meta" id="hMeta" hidden></div>
+      </div>
+    </div>
+    <div class="quick">
+      <button class="qk" data-act="addIn"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Entrada</button>
+      <button class="qk" data-act="addOut"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg>Saída</button>
+      <button class="qk" data-act="addAgenda"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg>Marcar sessão</button>
+      <button class="qk" data-act="addOrc"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg>Orçamento</button>
+    </div>
+    <button class="askbar" data-act="openChat" id="askBar" hidden><span class="spark">✦</span><span class="main"><div class="k">Assistente do estúdio</div><div class="t">Pergunte ou lance algo por texto…</div></span></button>
+    <div id="hAlerts"></div>
+    <div id="hKpis"></div>
+    <div id="homeNext"></div>
+    <div class="sec">Próximas sessões</div>
+    <div id="hAgenda"></div>
+  </section>
+
+  <!-- AGENDA -->
+  <section data-view="agenda" hidden>
+    <h1 class="title">Agenda</h1>
+    <p class="sub" id="agendaSub"></p>
+    <div class="syncbar"><div class="s">Horários livres dos próximos 7 dias</div><button class="mini" data-act="slots">Ver horários</button></div>
+    <div class="syncbar" id="syncbar" hidden><div class="s" id="gStatus">Google Agenda</div><button class="mini" data-act="gsync" id="gBtn">Sincronizar</button></div>
+    <div id="agendaList"></div>
+  </section>
+
+  <!-- CLIENTES -->
+  <section data-view="cli" hidden>
+    <h1 class="title">Clientes</h1>
+    <div class="seg"><button data-act="segCli" data-v="cli" aria-pressed="true">Clientes</button><button data-act="segCli" data-v="funil" aria-pressed="false">Orçamentos</button></div>
+    <p class="sub" id="cliSub" style="margin-top:12px"></p>
+    <input class="search" id="cliSearch" type="search" placeholder="Buscar cliente" autocomplete="off">
+    <div id="cliList"></div>
+  </section>
+
+  <!-- ORÇAMENTOS (funil) -->
+  <section data-view="funil" hidden>
+    <h1 class="title">Orçamentos</h1>
+    <div class="seg"><button data-act="segCli" data-v="cli" aria-pressed="false">Clientes</button><button data-act="segCli" data-v="funil" aria-pressed="true">Orçamentos</button></div>
+    <p class="sub" id="funilSub" style="margin-top:12px"></p>
+    <div class="stage" id="funilChips"></div>
+    <div id="funilList"></div>
+  </section>
+
+  <!-- FINANÇAS -->
+  <section data-view="caixa" hidden>
+    <h1 class="title">Finanças</h1>
+    <div class="month">
+      <button class="arrow" data-act="prev" aria-label="Mês anterior">‹</button>
+      <div class="mwrap"><h2 id="monthName"></h2><span class="orn" aria-hidden="true"><i></i><svg viewBox="0 0 20 20"><path d="M10 0 L11.3 8.7 L20 10 L11.3 11.3 L10 20 L8.7 11.3 L0 10 L8.7 8.7 Z"/></svg><i></i></span><span class="year num" id="yearName"></span></div>
+      <button class="arrow" data-act="next" aria-label="Próximo mês">›</button>
+    </div>
+    <div class="kicker"><span>Lucro do mês</span>
+      <button class="eye" data-act="mask" id="eyeBtn" aria-label="Ocultar valores" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path class="slash" d="M4 4l16 16"/></svg></button></div>
+    <div class="big num" id="lucro">R$ 0,00</div>
+    <div class="meta" id="metaBox" hidden><div class="mrow"><span>Meta <span class="mv" id="metaVal"></span></span><span><b id="metaPct">0%</b></span></div><div class="mbar"><i id="metaBar" style="width:0%"></i></div><div class="mrow" style="margin-top:5px"><span id="metaFalta"></span><span></span></div></div>
+    <div class="needle" id="needle" aria-hidden="true">
+      <svg viewBox="0 0 300 80" preserveAspectRatio="none"><path class="base" d="M0 79.5H300"/><path class="area" id="nArea" d=""/><path class="line" id="nLine" d="" pathLength="1"/></svg>
+      <span class="tip" id="nTip"></span>
+      <div class="axis"><span>dia 1</span><span id="nEnd"></span></div>
+    </div>
+    <div class="stubs">
+      <div class="stub in"><span class="lbl">Entrou</span><strong class="num" id="totIn">R$ 0,00</strong><i class="perf"></i><span class="foot" id="nIn">0 lançamentos</span></div>
+      <div class="stub out"><span class="lbl">Saiu</span><strong class="num" id="totOut">R$ 0,00</strong><i class="perf"></i><span class="foot" id="nOut">0 lançamentos</span></div>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><span>Sessões</span><strong class="num" id="sessoes">0</strong></div>
+      <div class="kpi"><span>Ticket médio</span><strong class="num" id="ticket">R$ 0,00</strong></div>
+    </div>
+    <div class="sec">Relatórios</div>
+    <div id="relBox"></div>
+    <div class="sec rowsec"><span>Lançamentos</span><span class="count num" id="lancCount"></span></div>
+    <div id="caixaList" class="timeline"></div>
+  </section>
+
+  <!-- MAIS -->
+  <section data-view="mais" hidden>
+    <h1 class="title">Mais</h1>
+    <p class="sub">Tudo o que sustenta o estúdio, num só lugar.</p>
+    <div class="menu" id="maisList"></div>
+  </section>
+
+  <!-- PENDÊNCIAS -->
+  <section data-view="pend" hidden>
+    <button class="link back" data-act="goTab" data-tab-go="mais">‹ Mais</button>
+    <h1 class="title" style="margin-top:8px">Pendências</h1>
+    <p class="sub" id="pendSub"></p>
+    <div id="pendList"></div>
+  </section>
+
+  <!-- MATERIAIS -->
+  <section data-view="mat" hidden>
+    <button class="link back" data-act="goTab" data-tab-go="mais">‹ Mais</button>
+    <h1 class="title" style="margin-top:8px">Materiais</h1>
+    <p class="sub" id="matSub"></p>
+    <div class="sec" style="margin-top:6px">Agulhas</div>
+    <div id="needleBox"></div>
+    <div id="matList"></div>
+  </section>
+
+  <!-- APRENDIZADO -->
+  <section data-view="aprend" hidden>
+    <button class="link back" data-act="goTab" data-tab-go="mais">‹ Mais</button>
+    <h1 class="title" style="margin-top:8px">Aprendizado</h1>
+    <p class="sub">O Assistente aprende com a sua avaliação. Nada muda nas regras sem você aprovar.</p>
+    <div id="aprendBox"></div>
+  </section>
+</div>
+
+<div class="actionbar"><div class="in-bar" id="actionbar"></div></div>
+
+<nav class="tabs" aria-label="Seções"><div class="in-tabs" role="tablist"><span class="tab-ind" id="tabInd"></span>
+  <button class="tab" role="tab" data-tab="hoje"><svg viewBox="0 0 24 24"><path d="M12 2l1.6 7.4L21 11l-7.4 1.6L12 20l-1.6-7.4L3 11l7.4-1.6z"/></svg>Hoje</button>
+  <button class="tab" role="tab" data-tab="agenda"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Agenda</button>
+  <button class="tab" role="tab" data-tab="cli"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.6c2 .7 3.2 2.5 3.6 5.4"/></svg>Clientes<span class="badge" id="orcBadge" hidden></span></button>
+  <button class="tab" role="tab" data-tab="caixa"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="1"/><path d="M3 10h18M16 15h2"/></svg>Finanças</button>
+  <button class="tab" role="tab" data-tab="mais"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="19" cy="12" r="1.2"/></svg>Mais<span class="badge" id="pendBadge" hidden></span></button>
+</div></nav>
+
+<div class="sheet-bg" id="sheetBg"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="sheet-inner">
+    <div class="grab"></div>
+    <h3 id="sheetTitle"></h3>
+    <div id="sheetFields"></div>
+    <div class="err" id="err"></div>
+    <div class="actions">
+      <button class="btn primary" id="save">Salvar</button>
+      <button class="btn danger" id="del" hidden>Apagar</button>
+      <button class="btn ghost" id="cancel">Cancelar</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<div class="chat" id="chat" role="dialog" aria-modal="true" aria-label="Assistente do estúdio">
+  <div class="chat-h"><div><div class="ttl">Assistente</div><div class="sub2">Lê os dados do app. Nada é salvo sem você confirmar.</div></div><button class="chat-x" data-act="closeChat" aria-label="Fechar">✕</button></div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chips-sug" id="chatSug">
+    <button data-q="Me dá o resumo do dia.">Resumo do dia</button>
+    <button data-fill="Responder este orçamento:&#10;">Responder orçamento</button>
+    <button data-q="Quais orçamentos estão parados e precisam de retomada? Sugira a mensagem de cada um.">Orçamentos parados</button>
+    <button data-q="Faz o fechamento do mês atual, comparando com o mês passado e com a meta.">Fechamento do mês</button>
+    <button data-q="Quais sessões estão sem estilo? Me lista para eu responder o estilo de cada uma.">Definir estilos</button>
+    <button data-q="Prepara os lembretes de WhatsApp para os clientes de amanhã.">Lembretes de amanhã</button>
+    <button data-q="Quais horários livres eu tenho nos próximos 7 dias?">Horários livres</button>
+    <button data-q="Quanto ainda tenho para receber das sessões marcadas?">Quanto falta receber?</button>
+    <button data-q="Preciso comprar agulha ou material para as sessões marcadas?">Preciso comprar algo?</button>
+    <button data-q="Quais clientes antigos devo chamar de volta? Sugira a mensagem.">Reativar clientes</button>
+  </div>
+  <div class="chat-in"><textarea id="chatIn" rows="1" placeholder="Ex.: recebi 450 do Carlos no Pix"></textarea><button class="send" id="chatSend" aria-label="Enviar">↑</button></div>
+</div>
+<!--@@JS@@-->
+</body>
+</html>
