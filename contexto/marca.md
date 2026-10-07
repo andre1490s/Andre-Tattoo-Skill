@@ -33,22 +33,23 @@ Instagram como canal principal, salvo instrução diferente.
 - Evitar clichês ("cada tatuagem conta uma história") sem contexto real e exageros ("exclusivo", "único", "melhor do Brasil").
 
 ## Serviços e preços
-Estilos que faz: realismo, fine line, coberturas (cover-up) e aquarela. **Foco: preto e cinza.**
+Estilos que faz: realismo, fine line, coberturas (cover-up), aquarela e, de resto, praticamente todos os estilos. **Foco: preto e cinza.**
+**Não faz: maori** (estilo de alta dificuldade). Se um lead pedir maori, a skill não promete: avisa o André e segue a orientação dele.
 
-Preços de referência (informados pelo André; moeda presumida R$, **[confirmar]**):
+Preços de referência (informados pelo André; moeda: **real, R$**):
 - Mínimo: **R$ 250** por tattoo.
 - Fechamento de costas: pode chegar a **R$ 5.000**.
 
 **Regra de ouro: o preço final de qualquer tattoo é passado SOMENTE pelo André.** Nenhuma skill informa, confirma ou promete valor final ao cliente. As skills qualificam o projeto (ideia, tamanho, local, referência, prazo), organizam o briefing e preparam a conversa; o valor sai do André. Os números acima servem só para o André e para análise interna, nunca para citar a um cliente.
 
 Sinal (política do André):
-- Tattoos pequenas: a partir de **R$ 100**.
-- Trabalhos acima de **R$ 1.000**: **20% do valor**.
-- **[confirmar]** faixa entre as duas (ex.: trabalho de R$ 300 a R$ 1.000), forma de pagamento e regra de reagendamento/cancelamento.
-- **[confirmar]** estilos que não faz; valores intermediários (ex.: braço fechado, antebraço, cobertura).
+- Trabalhos até R$ 1.000 (inclui pequenos e médios, ex.: R$ 500): **R$ 100**.
+- Trabalhos **acima de R$ 1.000**: **20% do valor**.
+- **O sinal não é reembolsado em caso de cancelamento ou reagendamento.** As skills comunicam a regra com clareza e sem dureza, antes da cobrança. Exceções são decisão exclusiva do André; nenhuma skill oferece, sugere ou negocia exceção.
+- **[confirmar]** valor exato de R$ 1.000 (entra na faixa de R$ 100 ou na de 20%?) e formas de pagamento aceitas.
 
 ## Estúdio
 - Endereço: Av. Melchert, 606, Vila Matilde (São Paulo/SP presumido, **[confirmar]**).
 - Horário: segunda a sábado, das 9h às 22h.
-- Canal de agendamento: **link na bio** do Instagram (@andretatuadoor).
-- **[confirmar]** se o link leva ao WhatsApp ou a um formulário/agenda; se atende só com hora marcada.
+- Canal de agendamento: **link na bio** do Instagram (@andretatuadoor). O link leva **direto ao WhatsApp, com formulário**.
+- **[confirmar]** se atende só com hora marcada.
