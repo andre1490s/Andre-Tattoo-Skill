@@ -18,6 +18,11 @@ ESTRATÉGIA ─► CONTEÚDO ─► ATENDIMENTO ─► OPERAÇÃO ─► PÓS-VE
 
 Status: ✅ no repositório · 🟡 existe no Claude.ai do André, ainda não importada · ⬜ a criar
 
+### Camada de aprendizado
+| Skill | Função | Status |
+|---|---|---|
+| `learning-engine` | observa resultados, feedback e skills; extrai padrões com nível de confiança; propõe melhorias entre skills | ✅ `skills/` |
+
 ### 0. Direção e aquisição
 | Skill | Função | Status |
 |---|---|---|
@@ -70,7 +75,15 @@ Status: ✅ no repositório · 🟡 existe no Claude.ai do André, ainda não im
 | `revisao-conversas-sofia` | revisão das conversas do agente de WhatsApp | 🟡 |
 | `registrar-no-sistema` | grava o que foi aprendido (ciclo entre agentes) | 🟡 |
 
-> As 11 skills ✅ foram importadas dos arquivos do André; o contexto global que se repetia nelas está em `contexto/marca.md`. A lista 🟡 vem dos nomes das skills disponíveis na conta do André no Claude.ai. Só conheço o nome e a descrição curta; o conteúdo só entra aqui quando o André enviar cada arquivo.
+> As 12 skills ✅ foram importadas dos arquivos do André; o contexto global que se repetia nelas está em `contexto/marca.md`. A lista 🟡 vem dos nomes das skills disponíveis na conta do André no Claude.ai. Só conheço o nome e a descrição curta; o conteúdo só entra aqui quando o André enviar cada arquivo.
+
+## Aprendizado (Learning Engine)
+
+O `learning-engine` fica **acima** das outras skills: não executa tarefas, aprende com elas.
+- **Entrada:** métricas (via `analista-metricas`), feedback do André, fichas de `referencias/` e conflitos entre skills.
+- **Memória:** `aprendizados/` (um arquivo por aprendizado + `INDEX.md`), com nível de confiança de 1 a 5.
+- **Saída:** proposta de melhoria ao André. Nenhuma skill é alterada sem o OK dele.
+- **Relação com `registrar-no-sistema` 🟡:** é a skill mais próxima do Learning Engine (ciclo de aprendizado). Quando o André enviar o arquivo, decidimos se ela vira o "coletor" que alimenta o Learning Engine ou se é substituída por ele.
 
 ## Fronteiras entre skills que se sobrepõem
 
@@ -116,6 +129,9 @@ Status: ✅ no repositório · 🟡 existe no Claude.ai do André, ainda não im
 | `pos-tattoo-avaliacao` → `responder-avaliacoes-google` | avaliações recebidas |
 | `relatorio-instagram` → `buscar-referencias-tattoo` / `roteiro-reels-tattoo` | o que performou, para repetir |
 | qualquer skill → `registrar-no-sistema` | cliente, decisão e aprendizado ao fim do atendimento |
+| `analista-metricas` / feedback do André → `learning-engine` | resultado com número e fonte, ou feedback direto |
+| `learning-engine` → `cerebro-estrategico` | aprendizados de nível 3+ que mudam prioridade ou estratégia |
+| `learning-engine` → qualquer skill | recomendação de melhoria (só com OK do André) |
 
 ## Regras do sistema
 1. **Uma função por skill.** Se a skill faz duas coisas, divida.
@@ -132,6 +148,7 @@ AGENCIA.md              este mapa
 contexto/marca.md       identidade, tom, serviços, estúdio
 skills/<nome>/SKILL.md  uma pasta por skill (+ scripts/ se houver)
 referencias/            DNAs de edição aprovados
+aprendizados/           memória do Learning Engine (LE-NNNN.md + INDEX.md)
 reels/<projeto>/        projetos de vídeo em andamento
 templates/              modelo para novas skills
 ```
