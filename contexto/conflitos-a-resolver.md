@@ -25,7 +25,12 @@ Decisão do André: manter os padrões que ele informou nesta conversa. As skill
 
 **Sobre o item 2:** o `registrar-no-sistema` e o `revisao-conversas-sofia` tratam "R$ 100 sinal" como verificação de erro (a Sofia "usou corretamente"). Com sinal de 20% acima de R$ 1.000, esse checklist marcaria erro onde não há.
 
-## B. Fatos que só existem nas skills (**ainda a confirmar** e subir para `marca.md`)
+## B. Fatos que só existem nas skills
+
+**Confirmados pelo André e já em `marca.md`:** meta de R$ 20.000/mês; retoque a partir de 40 dias (com a política de falha e de desgaste); idade mínima de 18 anos; um trabalho grande por dia. "Indique e Ganhe" existe, mas as regras seguem indefinidas.
+**Ainda não confirmados (continuam só nas skills):** vocabulário ("sinal para reserva do horário", nunca "entrada"; nunca rotular por técnica), texto oficial de cuidados (Cicaplast), referência interna de realismo (média R$ 1.200), tempo de conteúdo (4 a 7 h/semana, 3 a 4 posts), agente Sofia e fluxos do n8n.
+
+Tabela original:
 
 | Fato | Onde aparece |
 |---|---|

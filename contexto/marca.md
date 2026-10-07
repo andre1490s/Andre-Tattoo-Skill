@@ -50,6 +50,16 @@ Sinal (política do André):
 - **O sinal não é reembolsado em caso de cancelamento ou reagendamento.** As skills comunicam a regra com clareza e sem dureza, antes da cobrança. Exceções são decisão exclusiva do André; nenhuma skill oferece, sugere ou negocia exceção.
 - **[confirmar]** valor exato de R$ 1.000 (entra na faixa de R$ 100 ou na de 20%?) e formas de pagamento aceitas.
 
+## Políticas operacionais (confirmadas pelo André)
+- **Meta mensal do estúdio:** R$ 20.000 de entradas. Se o André informar outra meta para um mês específico, vale a dele.
+- **Retoque:** a partir de 40 dias da sessão, se necessário, depois que o André avaliar por foto ou pessoalmente.
+  - Falha na aplicação: retoque sem custo.
+  - Inflamação ou desgaste por cuidados inadequados do cliente: a área é refeita e o valor é cobrado novamente.
+  - Com o cliente, explicar com educação, sem acusar. Quem decide cada caso é o André; nenhuma skill promete retoque gratuito antes dele ver.
+- **Idade mínima:** 18 anos. Qualquer indício de menor de idade: informar a regra.
+- **Trabalho grande:** um por dia. Alertar se houver mais de um no mesmo dia.
+- **"Indique e Ganhe":** existe, mas as regras ainda **não foram definidas**. Nenhuma skill menciona o programa até o André definir.
+
 ## Estúdio
 - Endereço: Av. Melchert, 606, Vila Matilde (São Paulo/SP presumido, **[confirmar]**).
 - Horário: segunda a sábado, das 9h às 22h. Domingo e feriado: **[confirmar]**.
