@@ -20,4 +20,6 @@ Constante `RULES` dentro do script da página (seção "Assistente do estúdio")
 - Checar a sintaxe do script antes de publicar (`node --check` no conteúdo do `<script>`).
 
 ## Registro de mudanças
-- 2026-10-07: regra 15 do Assistente alinhada ao `contexto/marca.md` (valor mínimo R$ 250; sinal R$ 100 até R$ 1.000 e 20% acima; sinal não reembolsável; só o André passa o preço final; tom e emojis; maori; nota de cor).
+- 2026-10-07 (versão 12, id 1791406398-add1): regra 15 do Assistente alinhada ao `contexto/marca.md` (valor mínimo R$ 250; sinal R$ 100 até R$ 1.000 e 20% acima; sinal não reembolsável; só o André passa o preço final; tom e emojis; maori; nota de cor).
+
+Para voltar atrás: republicar `caixa-andre-tattoo.v1791292358-968f.html` na mesma URL (sem passar `capabilities`).
