@@ -137,10 +137,10 @@ O `learning-engine` fica **acima** das outras skills: não executa tarefas, apre
 1. **Uma função por skill.** Se a skill faz duas coisas, divida.
 2. **Contexto compartilhado (`contexto/marca.md`):** nada de repetir preço, tom ou identidade dentro da skill; leia `contexto/marca.md`.
 3. **Preço final é só do André.** Nenhuma skill informa valor final ao cliente (ver `contexto/marca.md`).
-3b. **Sem invenção:** dado ausente vira `[confirmar]`, nunca um palpite.
-4. **Ações externas só com confirmação:** enviar mensagem, publicar, agendar, apagar. O padrão é preparar o rascunho.
-5. **Dados de clientes:** não vão para o repositório (fotos de clientes, telefones, conversas). Só padrões e aprendizados anonimizados.
-6. **Honestidade de capacidade:** cada skill declara o que não consegue fazer (ex.: ver vídeo sem acesso à rede).
+4. **Sem invenção:** dado ausente vira `[confirmar]`, nunca um palpite.
+5. **Ações externas só com confirmação:** enviar mensagem, publicar, agendar, apagar. O padrão é preparar o rascunho.
+6. **Dados de clientes:** não vão para o repositório (fotos de clientes, telefones, conversas). Só padrões e aprendizados anonimizados.
+7. **Honestidade de capacidade:** cada skill declara o que não consegue fazer (ex.: ver vídeo sem acesso à rede).
 
 ## Estrutura do repositório
 
