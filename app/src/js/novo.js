@@ -146,6 +146,8 @@ function renderHoje(){
   const postsHoje = data.cont.filter(c=>c.data===t && c.status!=='publicado');
   if(postsHoje.length) al.unshift({ic:'✦', red:false, t: postsHoje.length===1?'Post de hoje: '+postsHoje[0].ideia:postsHoje.length+' posts para hoje', s: postsHoje.map(c=>(c.hora||'')+' '+c.formato).join(', '), act:'goSemana'});
   else if(cloud && !data.cont.some(c=>c.data>=t && c.data<=addDays(t,6))) al.push({ic:'›', red:false, t:'Nenhum post planejado para os próximos 7 dias', s:'O agente de mídias monta o plano da semana.', act:'agenteMidia'});
+  if(mcp){ const nP = data.agenda.filter(a=>!a.concluida && a.hora && a.data>=t && !a.googleId && !a.ignorado).length;
+    if(nP) al.push({ic:'!', red:false, t:nP+(nP===1?' sessão ainda não está':' sessões ainda não estão')+' no Google Agenda', s:'Toque para enviar agora. Eventos iguais que já existirem não são duplicados.', act:'googleSync'}); }
   window.__hAl = al;
   $('hAlerts').innerHTML = bannerPadroes() + (al.length ? '<div class="brief"><div class="bh"><span>Atenção</span><small>'+al.length+'</small></div>'+al.map((x,i)=>'<button data-act="alertGo" data-i="'+i+'"><span class="ic'+(x.red?' red':'')+'">'+esc(x.ic)+'</span><span class="main"><div class="t">'+esc(x.t)+'</div><div class="s">'+esc(x.s||'')+'</div></span></button>').join('')+'</div>' : '');
   // agenda
@@ -292,10 +294,10 @@ function setupLearning(){
   }catch(e){}
   loadCaixaAll(true).then(()=>renderAll()).catch(()=>{});
 }
-function addFeedback(msgEl, pergunta, resposta, res){
+function addFeedback(msgEl, pergunta, resposta, res, ag){
   if(!DBREF) return;
   const id = newId('i');
-  const doc = { ts:Date.now(), dia:today(), pergunta:String(pergunta).slice(0,1500), resposta:String(resposta).slice(0,2500), acoes:((res&&res.acoes)||[]).map(a=>a&&a.tipo).filter(Boolean), feedback:'', nota:'', regrasV:learn.regras.versao||0, agente:agenteAtual };
+  const doc = { ts:Date.now(), dia:today(), pergunta:String(pergunta).slice(0,1500), resposta:String(resposta).slice(0,2500), acoes:((res&&res.acoes)||[]).map(a=>a&&a.tipo).filter(Boolean), feedback:'', nota:'', regrasV:learn.regras.versao||0, agente:ag||agenteAtual };
   const ref = sharedCol('aprendizado_log').doc(id);
   ref.set(doc).catch(()=>{});
   const row = document.createElement('div'); row.className = 'fb';
@@ -391,6 +393,7 @@ function ensureInsta(){
   (async()=>{ let st='prompt'; try{ const perm = await window.claude.use('permissions'); if(perm) st = await perm.state('mcp:'+MET).catch(()=> 'unavailable'); }catch(e){} if(st==='granted') loadInsta(); })();
 }
 function abrirAgente(k){
+  if(chatBusy && k!==agenteAtual){ toast('Aguarde o agente terminar de responder.'); openChat(); return; }
   if(chipsGeral===null) chipsGeral = $('chatSug').innerHTML;
   const a = AG[k] || AG.geral, mudou = (k!==agenteAtual);
   agenteAtual = AG[k] ? k : 'geral';
@@ -535,6 +538,15 @@ function renderInsta(){
     +'<button class="btn ghost" data-act="instaLoad" style="width:100%;margin-top:6px">Atualizar</button>';
 }
 
+async function enviarPendentesGoogle(){
+  if(!mcp){ toast('O Google Agenda não está conectado.'); return; }
+  const t = today(); let ok = 0, falhas = 0;
+  for(const a of data.agenda.filter(x=>!x.concluida && x.hora && x.data>=t && !x.googleId && !x.ignorado)){
+    try{ const r = await googleCreate(a); if(r){ await stores.agenda.save(Object.assign({}, find('agenda', a.id)||a, {googleId:r.id, fim:r.fim})); ok++; } else falhas++; }catch(e){ falhas++; }
+  }
+  toast(ok ? ok+(ok===1?' sessão enviada':' sessões enviadas')+' ao Google Agenda'+(falhas?', '+falhas+' falharam':'') : 'Não consegui enviar ao Google Agenda.');
+}
+
 // ---------- Ações extras (chamadas pelo switch principal) ----------
 function extraAct(act, b, id){
   switch(act){
@@ -563,7 +575,7 @@ function extraAct(act, b, id){
     case 'goFunil': setTab('funil'); break;
     case 'alertGo': {
       const x = (window.__hAl||[])[+b.dataset.i]; if(!x) break;
-      if(x.act==='goFunil') setTab('funil'); else if(x.act==='goAgenda') setTab('agenda'); else if(x.act==='goCli') setTab('cli'); else if(x.act==='goSemana') setTab('semana'); else if(x.act==='agenteMidia') abrirAgente('midia');
+      if(x.act==='goFunil') setTab('funil'); else if(x.act==='goAgenda') setTab('agenda'); else if(x.act==='goCli') setTab('cli'); else if(x.act==='goSemana') setTab('semana'); else if(x.act==='googleSync') enviarPendentesGoogle(); else if(x.act==='agenteMidia') abrirAgente('midia');
       else if(x.act==='cliente'){ setTab('cli'); setTimeout(()=>{ renderClientes(true).then(()=>openCliente2(x.id)); }, 350); }
       break; }
     case 'regras': openRegras(); break;

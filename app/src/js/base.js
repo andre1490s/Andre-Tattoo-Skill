@@ -507,13 +507,15 @@
         {k:'telefone',label:'WhatsApp do cliente (opcional)',ph:'(11) 90000-0000'},
         {k:'notas',label:'Observações (opcional)',ph:'Anotações sobre o projeto'},
         {hint:'Sinal: R$ 100 até R$ 1.000 de valor, 20% acima. Serve para calcular quanto falta receber. Lance o sinal também no Caixa, como entrada do tipo Sinal, no dia em que receber.'}
-      ].concat(canG?[{k:'google',label:'Criar também no Google Agenda',type:'chips',options:['Sim','Não']}]:[]).concat(a && a.googleId?[{hint:'Se mudar a data ou o horário aqui, remarque também no Google Agenda. O app passa a manter a data que você definiu.'}]:[]),
-      validate:v=> !v.cliente?'Digite o nome do cliente.': !v.data?'Escolha a data.':'',
+      ].concat(canG?[{hint:'Este horário entra automaticamente no Google Agenda.'}]:[]).concat(a && a.googleId?[{hint:'As mudanças vão para o Google Agenda automaticamente.'}]:[]),
+      validate:v=> !v.cliente?'Digite o nome do cliente.': !v.data?'Escolha a data.': (canG && !v.hora)?'Informe o horário para criar no Google Agenda.':'',
       onSave: async v=>{
-        const g = v.google; delete v.google;
+        const g = canG ? 'Sim' : null; delete v.google;
         const rec = Object.assign({}, a||{}, v, {id: a?a.id:newId('a'), valor:v.valor||0, sinal:v.sinal||0, concluida: a?!!a.concluida:false});
         if(a && a.googleId && (a.data!==rec.data || a.hora!==rec.hora)) rec.remarcadoApp = true;
+        if(a && a.hora!==rec.hora) rec.fim = '';
         await stores.agenda.save(rec);
+        if(a && a.googleId && mcp && rec.hora){ try{ await googleUpdate(rec); return 'Sessão salva e atualizada no Google'; }catch(e){ return 'Sessão salva. Não consegui atualizar o Google'; } }
         if(g==='Sim'){
           if(!rec.hora) return 'Sessão marcada. Sem horário, não criei no Google';
           try{ const r = await googleCreate(rec); if(r){ await stores.agenda.save(Object.assign({}, rec, {googleId:r.id, fim:r.fim})); return 'Sessão marcada no app e no Google'; } }catch(e){ return 'Sessão marcada no app. Não consegui criar no Google'; }
@@ -793,11 +795,11 @@ Formatos de ação possíveis:
     const typing = addMsg('ai', '<span class="dots"><i></i><i></i><i></i></span>');
     setBusy(true); chatCtl = new AbortController();
     try{
-      const snap = await snapshotAgente();
+      const ag0 = agenteAtual; const snap = await snapshotAgente();
       const input = chatTurns.slice(-8).concat([{role:'user', content: regrasAgente()+'\n\nDADOS DO APP (JSON):\n'+JSON.stringify(snap)+'\n\nMENSAGEM DO ANDRE:\n'+q}]);
       const res = await sampler.json(input, {signal:chatCtl.signal, cache:false});
       const texto = (res && typeof res.texto==='string') ? res.texto : 'Não consegui montar a resposta.';
-      typing.innerHTML = esc(texto); addFeedback(typing, q, texto, res);
+      typing.innerHTML = esc(texto); addFeedback(typing, q, texto, res, ag0);
       chatTurns.push({role:'user', content:q}, {role:'assistant', content:texto});
       (Array.isArray(res && res.acoes) ? res.acoes : []).slice(0,5).forEach(renderAction);
     }catch(e){
@@ -842,8 +844,8 @@ Formatos de ação possíveis:
     } else if(a.tipo==='remarcar'){
       const x = find('agenda', a.agendaId); if(!x || !/^\d{4}-\d{2}-\d{2}$/.test(String(a.data||''))) return;
       const hora = /^\d{2}:\d{2}$/.test(String(a.hora||'')) ? a.hora : x.hora;
-      k='Remarcar sessão'; line = x.cliente+'\nDe '+shortDate(x.data)+(x.hora?' às '+x.hora:'')+' para '+shortDate(a.data)+(hora?' às '+hora:'')+(x.googleId?'\nRemarque também no Google Agenda':'');
-      run = async()=>{ const cur = find('agenda', x.id)||x; await stores.agenda.save(Object.assign({}, cur, {data:a.data, hora, fim:'', lembrado:null, remarcadoApp: !!cur.googleId})); return 'Sessão remarcada'; };
+      k='Remarcar sessão'; line = x.cliente+'\nDe '+shortDate(x.data)+(x.hora?' às '+x.hora:'')+' para '+shortDate(a.data)+(hora?' às '+hora:'')+(x.googleId?'\nO Google Agenda será atualizado':'');
+      run = async()=>{ const cur = find('agenda', x.id)||x; const nv = Object.assign({}, cur, {data:a.data, hora, fim:'', lembrado:null, remarcadoApp: !!cur.googleId}); await stores.agenda.save(nv); if(cur.googleId && mcp && hora){ try{ await googleUpdate(nv); return 'Sessão remarcada e atualizada no Google'; }catch(e){ return 'Remarcada no app. Não consegui atualizar o Google'; } } return 'Sessão remarcada'; };
     } else if(a.tipo==='estilos'){
       const itens = (Array.isArray(a.itens)?a.itens:[]).map(i=>({s:find('agenda', i.agendaId), e:i.estilo})).filter(i=>i.s && ESTILOS.includes(i.e));
       if(!itens.length) return;
@@ -1047,16 +1049,42 @@ Formatos de ação possíveis:
     if(!it.length) return '';
     return '<div class="brief"><div class="bh"><span>Hoje</span><small>'+(total>3?'+'+(total-3)+' em Pendências':'')+'</small></div>'+it.map((x,i)=>'<button data-act="briefGo" data-i="'+i+'"><span class="ic'+(x.red?' red':'')+'">'+esc(x.ic)+'</span><span class="main"><div class="t">'+esc(x.t)+'</div><div class="s">'+esc(x.s||'')+'</div></span></button>').join('')+'</div>';
   }
-  async function googleCreate(a){
-    if(!mcp || !a.hora) return null;
-    const ini = toMin(a.hora), fimM = ini + Math.round((+data.cfg.duracao||3)*60);
-    const fim = fimM >= 24*60 ? '23:59' : toHH(fimM);
-    const desc = [a.estilo?'Estilo: '+a.estilo:'', +a.sinal>0?'Sinal: '+brl.format(+a.sinal):'', +a.valor>0?'Valor combinado: '+brl.format(+a.valor):'', a.notas||''].filter(Boolean).join('\n');
-    const res = await mcp.callTool('Google Calendar','create_event',{summary:a.cliente+' Tattoo'+(a.tattoo?' '+a.tattoo:''), startTime:a.data+'T'+a.hora+':00-03:00', endTime:a.data+'T'+fim+':00-03:00', timeZone:'America/Sao_Paulo', description:desc, notificationLevel:'NONE'});
+  function gParse(res){
     let p = res && res.payload;
     if(!p && res && res.content){ const tb = res.content.find(c=>c.type==='text'); if(tb){ try{ p = JSON.parse(tb.text); }catch(e){} } }
     if(typeof p==='string'){ try{ p = JSON.parse(p); }catch(e){} }
-    return p && p.id ? {id:p.id, fim} : null;
+    return p;
+  }
+  function gTempos(a){
+    const ini = toMin(a.hora);
+    let fimM = (a.fim && toMin(a.fim)>ini) ? toMin(a.fim) : ini + Math.round((+data.cfg.duracao||3)*60);
+    if(fimM >= 24*60) fimM = 24*60-1;
+    const fim = toHH(fimM);
+    return { fim, startTime:a.data+'T'+a.hora+':00-03:00', endTime:a.data+'T'+fim+':00-03:00' };
+  }
+  const gDesc = a => [a.estilo?'Estilo: '+a.estilo:'', +a.sinal>0?'Sinal: '+brl.format(+a.sinal):'', +a.valor>0?'Valor combinado: '+brl.format(+a.valor):'', a.notas||''].filter(Boolean).join('\n');
+  const gTitulo = a => a.cliente+' Tattoo'+(a.tattoo?' '+a.tattoo:'');
+  async function googleDia(a){
+    try{
+      const res = await mcp.callTool('Google Calendar','list_events',{startTime:a.data+'T00:00:00-03:00', endTime:a.data+'T23:59:59-03:00', orderBy:'startTime', pageSize:50, timeZone:'America/Sao_Paulo'}, {cache:false});
+      const p = gParse(res); return (p && p.events) || [];
+    }catch(e){ return []; }
+  }
+  // cria o evento no Google Agenda; se já existir um no mesmo dia, horário e com o nome do cliente, adota o existente (sem duplicar)
+  async function googleCreate(a){
+    if(!mcp || !a.hora) return null;
+    const T = gTempos(a), nome = normName(firstName(a.cliente));
+    const ja = nome ? (await googleDia(a)).find(ev=>ev && ev.status!=='cancelled' && ev.start && ev.start.dateTime && ev.start.dateTime.slice(11,16)===a.hora && normName(ev.summary||'').includes(nome)) : null;
+    if(ja) return {id:ja.id, fim: ja.end && ja.end.dateTime ? ja.end.dateTime.slice(11,16) : T.fim, adotado:true};
+    const res = await mcp.callTool('Google Calendar','create_event',{summary:gTitulo(a), startTime:T.startTime, endTime:T.endTime, timeZone:'America/Sao_Paulo', description:gDesc(a), location:ENDERECO, notificationLevel:'NONE'});
+    const p = gParse(res);
+    return p && p.id ? {id:p.id, fim:T.fim} : null;
+  }
+  async function googleUpdate(a){
+    if(!mcp || !a.googleId || !a.hora) return null;
+    const T = gTempos(a);
+    await mcp.callTool('Google Calendar','update_event',{eventId:a.googleId, summary:gTitulo(a), startTime:T.startTime, endTime:T.endTime, timeZone:'America/Sao_Paulo', description:gDesc(a), location:ENDERECO, notificationLevel:'NONE'});
+    return true;
   }
 
 
@@ -1111,7 +1139,9 @@ Formatos de ação possíveis:
         if(!ev || ev.status==='cancelled' || !ev.start || !ev.start.dateTime) continue;
         const id = 'g'+ev.id, info = fromEvent(ev);
         const cur = allAgenda.find(x=>x.id===id || x.googleId===ev.id);
-        if(!cur){
+        const dup = !cur ? allAgenda.find(x=>!x.googleId && !x.concluida && x.data===info.data && x.hora===info.hora && normName(info.cliente).includes(normName(firstName(x.cliente))) && normName(firstName(x.cliente))) : null;
+        if(dup){ await stores.agenda.save(Object.assign({}, dup, {googleId:ev.id, fim:info.fim})); atual++; }
+        else if(!cur){
           await stores.agenda.save(Object.assign({id, googleId:ev.id, telefone:'', concluida:false}, info)); novos++;
         } else if(!cur.ignorado && !cur.concluida){
           const upd = Object.assign({}, cur); let ch = false;

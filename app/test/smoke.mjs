@@ -34,6 +34,11 @@ const seedScript = `(() => {
   window.__mock.seed(B + '/orcamentos/itens', { o1:{ cliente:'Julia Prado', ideia:'Leão antebraço', estilo:'Realismo P&C', tamanho:'25 cm', local:'antebraço', valor:1500, etapa:'orcamento', followups:0, criado: Date.now()-5*86400000, atualizado: Date.now()-5*86400000, ultimoContato: ds(-5) } });
   window.__mock.seed(B + '/clientes/itens', { 'carlos mendes': { nome:'Carlos Mendes', nasc: ds(2).slice(5), notas:'Prefere sessões de manhã', indicacao:'Rafael' } });
   window.__mock.seed('aprendizado_sugestoes', { s1:{ titulo:'Perguntar a cor do realismo', regra:'Quando o pedido for realismo sem cor definida, perguntar se é preto e cinza ou colorido.', motivo:'Visto em 3 pedidos', confianca:3, status:'proposta', ts: Date.now() } });
+  window.__mock.mcpHandlers['Google Calendar'] = {
+    list_events: () => ({ payload: { events: [] } }),
+    create_event: () => ({ payload: { id: 'ev' + Math.random().toString(36).slice(2, 8) } }),
+    update_event: (a) => ({ payload: { id: a.eventId } })
+  };
   window.__mock.mcpHandlers.METRICOOL = {
     getBrandSettings: () => ({ payload: { data: [{ id: 1, label: 't', timezone: 'America/Sao_Paulo', networksData: { instagramData: 't' } }] } }),
     getAnalyticsDataByMetrics: (a) => { const rows = []; for (let i = 0; i < 5; i++) { const r = a.metrics.map((m, j) => String((j + 1) * 10 + i) + '.0'); r.push('2026100' + (i + 1)); rows.push(r); } rows.push(a.metrics.map(() => null).concat(['20261009'])); return { payload: { rows } }; },
@@ -93,6 +98,37 @@ async function run(label, viewport) {
   await page.screenshot({ path: path.join(out, label + '-07-instagram.png') });
   await page.click('[data-act="instaDias"][data-d="7"]'); await page.waitForTimeout(700);
   ok(label + ': troca de período recarrega', (await page.evaluate(() => window.__mock.calls.filter(c => c[1] === 'getAnalyticsDataByMetrics').length)) >= 4);
+  // Google Agenda automático
+  const gcalls = (tool) => page.evaluate((tl) => window.__mock.calls.filter(c => c[0] === 'Google Calendar' && c[1] === tl).map(c => c[2]), tool);
+  await page.click('.tab[data-tab="hoje"]'); await page.waitForTimeout(300);
+  ok(label + ': avisa sessões que ainda não estão no Google', /ainda não estão no Google Agenda/.test(await page.textContent('#hAlerts')));
+  const antes = (await gcalls('create_event')).length;
+  await page.click('#hAlerts button:has-text("Google Agenda")'); await page.waitForTimeout(1500);
+  const criados = (await gcalls('create_event')).slice(antes);
+  ok(label + ': enviar pendentes cria os eventos com horário, fuso e endereço', criados.length === 3 && criados.every(c => /-03:00$/.test(c.startTime) && c.timeZone === 'America/Sao_Paulo' && /Melchert/.test(c.location) && /Tattoo/.test(c.summary)), criados.length + ' eventos');
+  const ag1 = await page.evaluate(() => window.__mock.dump('data/users/u_test/agenda/itens'));
+  ok(label + ': sessões passam a ter googleId', ag1.filter(x => x.googleId).length === 3);
+  await page.click('.tab[data-tab="agenda"]'); await page.waitForTimeout(300);
+  await page.click('.actionbar [data-act="addAgenda"]'); await page.waitForTimeout(300);
+  await page.fill('#f_cliente', 'Teste Google'); await page.fill('#f_data', ds(10));
+  await page.click('#save'); await page.waitForTimeout(250);
+  ok(label + ': sem horário não salva (precisa para o Google)', /horário para criar no Google/.test(await page.textContent('#err')));
+  await page.fill('#f_hora', '15:00'); await page.click('#save'); await page.waitForTimeout(900);
+  const c2 = (await gcalls('create_event')).at(-1);
+  ok(label + ': nova sessão cria evento no Google automaticamente', /Teste Google/.test(c2.summary) && c2.startTime === (ds(10) + 'T15:00:00-03:00') && c2.endTime === (ds(10) + 'T18:00:00-03:00'), c2.startTime);
+  const nova = (await page.evaluate(() => window.__mock.dump('data/users/u_test/agenda/itens'))).find(x => x.cliente === 'Teste Google');
+  ok(label + ': sessão guarda o googleId e o fim', !!nova.googleId && nova.fim === '18:00');
+  await page.locator('[data-view="agenda"] .card', { hasText: 'Teste Google' }).locator('[data-act="editAgenda"]').click(); await page.waitForTimeout(300);
+  await page.fill('#f_hora', '16:30'); await page.click('#save'); await page.waitForTimeout(900);
+  const up = (await gcalls('update_event')).at(-1);
+  ok(label + ': remarcar atualiza o evento no Google', up && up.eventId === nova.googleId && up.startTime === (ds(10) + 'T16:30:00-03:00') && up.endTime === (ds(10) + 'T19:30:00-03:00'), JSON.stringify(up && [up.eventId, up.startTime, up.endTime]));
+  await page.evaluate(() => { window.__mock.mcpHandlers['Google Calendar'].list_events = (a) => ({ payload: { events: [{ id: 'evDEDUP', status: 'confirmed', summary: 'Dedup Cliente Tattoo', start: { dateTime: a.startTime.slice(0, 10) + 'T17:00:00-03:00' }, end: { dateTime: a.startTime.slice(0, 10) + 'T20:00:00-03:00' } }] } }); });
+  const n0 = (await gcalls('create_event')).length;
+  await page.click('.actionbar [data-act="addAgenda"]'); await page.waitForTimeout(300);
+  await page.fill('#f_cliente', 'Dedup Cliente'); await page.fill('#f_data', ds(11)); await page.fill('#f_hora', '17:00'); await page.click('#save'); await page.waitForTimeout(900);
+  const dd = (await page.evaluate(() => window.__mock.dump('data/users/u_test/agenda/itens'))).find(x => x.cliente === 'Dedup Cliente');
+  ok(label + ': evento que já existe no Google é adotado, sem duplicar', (await gcalls('create_event')).length === n0 && dd.googleId === 'evDEDUP', dd.googleId);
+  await page.evaluate(() => { window.__mock.mcpHandlers['Google Calendar'].list_events = () => ({ payload: { events: [] } }); });
   // orçamentos: parado + novo + enviar mensagem
   await page.click('.tab[data-tab="cli"]'); await page.click('[data-view="cli"] [data-act="segCli"][data-v="funil"]'); await page.waitForTimeout(400);
   const funil = await page.textContent('#funilList');

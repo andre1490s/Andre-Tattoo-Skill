@@ -46,5 +46,12 @@ Republicar `caixa-andre-tattoo.v12-regra-orcamento.html` (ou a v1 original) na m
 - **O app não agenda nem publica no Instagram/Metricool.** O rascunho do Metricool exige e-mail de revisores e plano de equipe, e o agendamento direto publicaria no perfil sem formato verificado. O envio ao Metricool é feito pelo Claude na conversa, com aprovação do André.
 - O log de aprendizado registra qual agente respondeu (`agente`).
 
+## Versão 16: Google Agenda automático e correção dos agentes
+- Toda sessão marcada no app (formulário, Assistente ou "Fechou" no funil) vira evento no Google Agenda com horário, fuso, endereço e descrição (estilo, sinal, valor). O horário passa a ser obrigatório quando o Google está conectado. Remarcar ou editar atualiza o evento (`update_event`).
+- Sem duplicar: antes de criar, o app procura no Google um evento do mesmo dia e horário com o nome do cliente e, se houver, adota o existente. A importação do Google também adota a sessão do app em vez de duplicar.
+- Aviso na tela Hoje: sessões futuras que ainda não estão no Google, com botão para enviar (não envia sozinho as antigas, para não gravar em massa no calendário sem você pedir).
+- Cancelar ou apagar uma sessão no app **não** apaga o evento no Google (falta a ferramenta de exclusão no manifesto).
+- Correção: o log gravava o agente errado se você trocasse de agente durante a resposta. Agora o agente é capturado na pergunta e a troca fica bloqueada enquanto há resposta em andamento.
+
 ### Ainda não feito
 Fotos por projeto (capacidade `assets`), rotina semanal automática do aprendizado, melhores posts (se o Metricool passar a devolver dados por post).
