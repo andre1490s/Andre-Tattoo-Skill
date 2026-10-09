@@ -81,6 +81,7 @@ PROIBIDO: qualquer outro texto, logo, marca d'água, moldura, emoji ou elemento 
 
 ## 6. Limites e honestidade
 - Sem a API, não vejo a imagem que o Gemini gera; o aprendizado depende do Andre contar o resultado. Com a API, eu confiro, mas a palavra final de que a tattoo está fiel é do Andre.
+- **Custo da API (testado em 2026-10-09):** a cota grátis da API para modelos de imagem é **zero** (gemini-2.5-flash-image, 3.1-flash-image e 3.1-flash-lite-image deram erro 429, limit 0). Gerar por aqui exige cobrança ativa no Google AI Studio. Sem cobrança, o caminho grátis é o Andre colar o prompt no app do Gemini.
 - A chave do Gemini fica só no ambiente (variável `GEMINI_API_KEY`); nunca no chat nem no repositório. Artes geradas ficam em `artes-geradas/`, fora do git.
 - O Gemini pode errar acento e letra, e às vezes altera a tattoo. Por isso a conferência lado a lado com a original é obrigatória antes de postar.
 - Não invento história do cliente, tempo de sessão nem significado pessoal. Sem informação, vale o simbolismo do elemento, marcado como tal.

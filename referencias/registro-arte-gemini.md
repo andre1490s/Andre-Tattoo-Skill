@@ -8,7 +8,7 @@ Mudanças no modelo do prompt. Só entram como "Aprovado" com OK do André; a pa
 
 | Data | Ajuste | Motivo (vezes visto) | Status |
 |---|---|---|---|
-| — | — | — | — |
+| 2026-10-09 | API do Gemini sem cota grátis para imagem (429, limit 0 em 2.5-flash-image, 3.1-flash-image, 3.1-flash-lite-image); a chave via segredo de rede funcionou | teste direto (1x) | Fato registrado |
 
 ## Significados
 Elemento → significado usado na arte. Reutilizar para manter coerência entre posts.
