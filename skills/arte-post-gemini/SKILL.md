@@ -11,7 +11,7 @@ description: Use quando o Andre mandar foto de tattoo (pronta ou arte/desenho) e
 Recebe a foto de uma tattoo, entende o que está nela e entrega **um prompt pronto para colar no Gemini**, que trata a foto no padrão editorial (fundo escuro, luz lateral quente, tinta preta e cinza neutra) e **escreve os textos na imagem**: título, palavra em cursiva, linha de significado e rodapé da marca.
 A cada foto, registra o que funcionou e o que o Gemini errou, para o prompt melhorar com o uso.
 
-Não faz: legenda do Instagram (é da `legenda-tattoo`), agendamento (é da `posts-semana-instagram`), não gera a imagem (quem gera é o Gemini, do lado do Andre).
+Não faz: legenda do Instagram (é da `legenda-tattoo`), agendamento (é da `posts-semana-instagram`), não publica nada. Gera a imagem pela API do Gemini quando `GEMINI_API_KEY` está no ambiente; sem a chave, entrega o prompt para o Andre colar no app.
 
 ## 2. Entradas
 - **Obrigatório:** foto da tattoo (ou da arte/desenho).
@@ -33,7 +33,9 @@ Não faz: legenda do Instagram (é da `legenda-tattoo`), agendamento (é da `pos
    - **Rodapé fixo:** "ANDRE TATTOO" e, abaixo, o estilo (ex.: "REALISMO PRETO E CINZA").
    - Tom da marca: sério e técnico, sem emoji, sem clichê ("cada tatuagem conta uma história"), sem exagero ("único", "melhor"), sem preço.
 5. **Montar o prompt** no modelo da seção 4, trocando só os campos. **Lugar do texto:** escolher a área vazia e escura da foto (ex.: canto superior esquerdo quando o braço está na diagonal) e descrever essa área no bloco LAYOUT. Texto nunca em cima da tattoo; leitura vem antes de seguir o terço inferior à risca. Arte/desenho: usar o cenário de papel sobre mesa de estúdio (Prompt 2 de `referencias/prompts-gemini-fotos.md`) no bloco CENÁRIO.
-6. **Entregar** no formato da seção 4.
+6. **Gerar ou entregar:**
+   - **Com `GEMINI_API_KEY` no ambiente:** salvar o prompt num arquivo temporário e rodar `python3 -I skills/arte-post-gemini/scripts/gerar_imagem.py <foto> <prompt.txt>`. Abrir a arte gerada e **conferir lado a lado com a foto original**: tattoo idêntica? textos sem erro de letra/acento? texto fora da tattoo? Se falhar em algo, refazer com a frase de correção da seção 4 (até 2 tentativas) e anotar o erro no registro. Entregar ao Andre só a versão aprovada nessa conferência, junto com o prompt usado.
+   - **Sem a chave:** entregar no formato da seção 4.
 7. **Aprender:** ao entregar, acrescentar o elemento e o significado usado na tabela "Significados" do registro (se ainda não estiver lá). Quando o Andre contar o resultado (ficou bom, errou letra, mudou a tattoo, ficou claro demais), acrescentar uma linha em `referencias/registro-arte-gemini.md`. Se o mesmo erro aparecer **2 vezes ou mais**, propor ao Andre a mudança no modelo do prompt; só alterar a skill ou a base com o OK dele.
 
 ## 4. Saída
@@ -78,7 +80,8 @@ PROIBIDO: qualquer outro texto, logo, marca d'água, moldura, emoji ou elemento 
 - Cliente e post publicado → `registrar-no-sistema`.
 
 ## 6. Limites e honestidade
-- Não vejo a imagem que o Gemini gera; o aprendizado depende do Andre contar o resultado.
+- Sem a API, não vejo a imagem que o Gemini gera; o aprendizado depende do Andre contar o resultado. Com a API, eu confiro, mas a palavra final de que a tattoo está fiel é do Andre.
+- A chave do Gemini fica só no ambiente (variável `GEMINI_API_KEY`); nunca no chat nem no repositório. Artes geradas ficam em `artes-geradas/`, fora do git.
 - O Gemini pode errar acento e letra, e às vezes altera a tattoo. Por isso a conferência lado a lado com a original é obrigatória antes de postar.
 - Não invento história do cliente, tempo de sessão nem significado pessoal. Sem informação, vale o simbolismo do elemento, marcado como tal.
 - Nada de nome, rosto identificável ou foto de cliente no repositório (regra 6 do `AGENCIA.md`): o registro guarda só o tema da tattoo e o aprendizado.
