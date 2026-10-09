@@ -25,6 +25,7 @@ description: "Use quando o Andre mandar foto(s) e/ou detalhes de tattoo finaliza
 - Nomes de estilo do Andre: "realismo preto e cinza", "realismo colorido", além de fine line, delicado, aquarela, blackwork, cobertura, fechamento. Nunca rotular por técnica (ex.: não chamar de "pontilhismo"). Na dúvida, perguntar.
 - Tom sofisticado e reservado; quase nenhum emoji (de preferência nenhum).
 - Nunca citar nome do cliente nem história dele sem autorização. Não inventar história pessoal nem tempo de sessão; significado só como simbolismo tradicional do elemento ou história autorizada.
+- **Foco no significado (preferência do Andre, 2026-10-09):** em post de tattoo finalizada, a legenda mostra o que o elemento representa em tatuagem (origem do símbolo, por que as pessoas escolhem, que fase ou sentimento marca), não a descrição do que se vê na foto. Técnica no máximo em meia linha, ou nenhuma. Gancho com um fato curioso e verdadeiro do símbolo funciona bem (ex.: o lírio floresce de novo todo ano a partir do bulbo).
 - Post com arte da `arte-post-gemini`: a legenda aprofunda o significado da arte sem repetir o título e termina, antes das hashtags, com "Foto tratada, tatuagem real."
 - Chamada para ação: projetos grandes / sob consulta → WhatsApp ou link da bio.
 - Hashtags: estilo (#realismopretoecinza, #realismocolorido, #tatuagemrealista) + tema (#tattooleao, #tattoopet…) + local (#tattoosp, #vilamatilde) ou #andretattoo.

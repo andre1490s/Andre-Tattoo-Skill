@@ -11,6 +11,7 @@ Mudanças no modelo do prompt. Só entram como "Aprovado" com OK do André; a pa
 | 2026-10-09 | Rodapé só com "ANDRE TATTOO"; tirar a linha de estilo (ex.: "FINE LINE") | preferência do André após a arte do lírio | Aprovado |
 | 2026-10-09 | Texto no canto superior esquerdo como padrão do feed; se faltar espaço, afastar o enquadramento estendendo o fundo | funcionou no lírio; padroniza o grid | Aprovado |
 | 2026-10-09 | Modo INTENSO para peças agressivas (preto-carvão, fumaça, luz dura de claro-escuro, ar masculino), mesma tipografia do modo delicado | pedido do André | Aprovado |
+| 2026-10-09 | Legenda foca no que o elemento representa em tatuagem, não nos detalhes da foto | pedido do André na legenda do lírio | Aprovado |
 | 2026-10-09 | API do Gemini sem cota grátis para imagem (429, limit 0 em 2.5-flash-image, 3.1-flash-image, 3.1-flash-lite-image); a chave via segredo de rede funcionou | teste direto (1x) | Fato registrado |
 
 ## Significados

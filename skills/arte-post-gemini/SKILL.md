@@ -88,7 +88,7 @@ No modo intenso, o título pode pedir "traço um pouco mais forte"; o resto da t
 **Depois de testar, me conte:** ficou bom? Algo mudou na tattoo ou nos textos? (é isso que faz a skill aprender)
 
 ## 5. Handoff
-- Significado e textos aprovados → `legenda-tattoo` (a legenda aprofunda o que a arte resume, sem repetir o título).
+- Significado e textos aprovados → `legenda-tattoo` (a legenda aprofunda o que o elemento representa em tatuagem, sem repetir o título e sem descrever a foto).
 - Arte pronta → `posts-semana-instagram` para agendar.
 - Resultado e erro do Gemini → `referencias/registro-arte-gemini.md`; padrão repetido (2x ou mais) → `learning-engine`.
 - Cliente e post publicado → `registrar-no-sistema`.

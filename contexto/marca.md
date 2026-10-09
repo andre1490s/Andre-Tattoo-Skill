@@ -14,6 +14,7 @@ Itens marcados **[confirmar]** ainda não foram informados pelo André e não de
 - **Padrão editorial:** foto real da tattoo tratada por IA só no fundo e na luz (fundo escuro, luz lateral quente, tinta preta e cinza neutra), formato 4:5. Textos no **canto superior esquerdo**: título serifado creme em caixa alta (até 3 palavras), palavra cursiva dourada (o nome do elemento), uma linha de significado (até 8 palavras) e rodapé centralizado só com **"ANDRE TATTOO"**.
 - **Dois modos, mesma tipografia:** **Delicado** (fine line, floral, aquarela, peças femininas): preto, verde-musgo e marrom, luz de fim de tarde. **Intenso** (animais selvagens, religioso ou épico, peças agressivas): preto-carvão com fumaça e luz dura de claro-escuro, ar mais masculino.
 - **A tattoo nunca é alterada pela IA.** Conferir lado a lado com a foto original antes de postar. Legenda de post com arte tratada inclui "Foto tratada, tatuagem real."
+- **Legenda de portfólio:** foco no que o elemento representa em tatuagem, não na descrição da foto (técnica no máximo em meia linha).
 - **Significado sempre presente:** história do cliente só com autorização; sem ela, o simbolismo tradicional do elemento, apresentado como simbolismo (tabela em `referencias/registro-arte-gemini.md`).
 - **Como produzir:** skill `arte-post-gemini` (prompt pronto) e o app do Gemini (grátis). A API do Gemini não tem cota grátis para imagem.
 - Referência aprovada: arte do lírio "PUREZA E RECOMEÇO".
