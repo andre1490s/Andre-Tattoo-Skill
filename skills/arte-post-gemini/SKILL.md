@@ -30,7 +30,7 @@ Não faz: legenda do Instagram (é da `legenda-tattoo`), agendamento (é da `pos
    - **Título:** 1 a 3 palavras, caixa alta (ex.: "FORÇA E FÉ").
    - **Palavra em cursiva:** 1 palavra que complementa o título (ex.: "proteção").
    - **Linha de significado:** no máximo 8 palavras (ex.: "O leão guarda. A cruz conduz.").
-   - **Rodapé fixo:** "ANDRE TATTOO" e, abaixo, o estilo (ex.: "REALISMO PRETO E CINZA").
+   - **Rodapé fixo:** só "ANDRE TATTOO". Sem linha de estilo (decisão do Andre, 2026-10-09).
    - Tom da marca: sério e técnico, sem emoji, sem clichê ("cada tatuagem conta uma história"), sem exagero ("único", "melhor"), sem preço.
 5. **Montar o prompt** no modelo da seção 4, trocando só os campos. **Lugar do texto:** escolher a área vazia e escura da foto (ex.: canto superior esquerdo quando o braço está na diagonal) e descrever essa área no bloco LAYOUT. Texto nunca em cima da tattoo; leitura vem antes de seguir o terço inferior à risca. Arte/desenho: usar o cenário de papel sobre mesa de estúdio (Prompt 2 de `referencias/prompts-gemini-fotos.md`) no bloco CENÁRIO.
 6. **Gerar ou entregar:**
@@ -60,7 +60,6 @@ TEXTOS NA IMAGEM (escreva exatamente como está entre aspas, em português, com 
 2. Logo abaixo do título, em letra cursiva fina, cor dourada: "[cursiva]"
 3. Abaixo, em letra serifada pequena, cor creme: "[linha de significado]"
 4. Rodapé centralizado, letra pequena com espaçamento largo entre as letras, cor creme: "ANDRE TATTOO"
-5. Embaixo do rodapé, ainda menor: "[ESTILO]"
 Os textos ficam alinhados à esquerda na área de texto (o rodapé centralizado na base da imagem), com margem confortável das bordas, bem legíveis e sem cobrir a tatuagem.
 
 PROIBIDO: qualquer outro texto, logo, marca d'água, moldura, emoji ou elemento gráfico além dos listados.
