@@ -10,7 +10,14 @@ Mudanças no modelo do prompt. Só entram como "Aprovado" com OK do André; a pa
 |---|---|---|---|
 | — | — | — | — |
 
+## Significados
+Elemento → significado usado na arte. Reutilizar para manter coerência entre posts.
+
+| Elemento | Título | Cursiva | Linha de significado | Fonte |
+|---|---|---|---|---|
+| Lírio | PUREZA E RECOMEÇO | lírio | Pureza, renovação e força para recomeçar. | simbolismo do elemento |
+
 ## Diário por foto
 | Data | Tattoo (tema · estilo) | Textos usados | Resultado | O que o Gemini errou | Correção que funcionou |
 |---|---|---|---|---|---|
-| — | — | — | — | — | — |
+| 2026-10-09 | Lírios (2 flores, botões e folhas) · fine line [confirmar estilo] · antebraço | PUREZA E RECOMEÇO / lírio / Pureza, renovação e força para recomeçar. | aguardando teste | — | — |

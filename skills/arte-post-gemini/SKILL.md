@@ -21,7 +21,8 @@ Não faz: legenda do Instagram (é da `legenda-tattoo`), agendamento (é da `pos
 ## 3. Passos
 1. **Ler a memória antes de tudo:** `referencias/prompts-gemini-fotos.md` (base do estilo) e `referencias/registro-arte-gemini.md` (ajustes aprovados e erros do Gemini já vistos). Aplicar todo ajuste com status "Aprovado".
 2. **Analisar a foto:** elementos do desenho, estilo (vocabulário da `legenda-tattoo`: "realismo preto e cinza", "realismo colorido", fine line, delicado, aquarela, blackwork, cobertura, fechamento), local do corpo, se é foto de pele ou de papel.
-3. **Significado:**
+3. **Significado (sempre entra na arte, em toda tattoo; preferência do Andre):**
+   - Antes, procurar o elemento na tabela "Significados" de `referencias/registro-arte-gemini.md`. Se já existe, reutilizar o texto aprovado para manter coerência entre posts.
    - Se o Andre trouxe a história do cliente e ela foi autorizada: usar a história, sem nome do cliente.
    - Se não: usar o **simbolismo tradicional dos elementos** (ex.: leão = força e proteção; rosa = amor e beleza que exige cuidado; relógio = tempo e finitude). Apresentar ao Andre como "simbolismo do elemento", nunca como se fosse a história do cliente.
    - Elemento com simbolismo incerto ou com mais de uma leitura forte: dar as opções e perguntar. Não inventar.
@@ -31,9 +32,9 @@ Não faz: legenda do Instagram (é da `legenda-tattoo`), agendamento (é da `pos
    - **Linha de significado:** no máximo 8 palavras (ex.: "O leão guarda. A cruz conduz.").
    - **Rodapé fixo:** "ANDRE TATTOO" e, abaixo, o estilo (ex.: "REALISMO PRETO E CINZA").
    - Tom da marca: sério e técnico, sem emoji, sem clichê ("cada tatuagem conta uma história"), sem exagero ("único", "melhor"), sem preço.
-5. **Montar o prompt** no modelo da seção 4, trocando só os campos. Arte/desenho: usar o cenário de papel sobre mesa de estúdio (Prompt 2 de `referencias/prompts-gemini-fotos.md`) no bloco CENÁRIO.
+5. **Montar o prompt** no modelo da seção 4, trocando só os campos. **Lugar do texto:** escolher a área vazia e escura da foto (ex.: canto superior esquerdo quando o braço está na diagonal) e descrever essa área no bloco LAYOUT. Texto nunca em cima da tattoo; leitura vem antes de seguir o terço inferior à risca. Arte/desenho: usar o cenário de papel sobre mesa de estúdio (Prompt 2 de `referencias/prompts-gemini-fotos.md`) no bloco CENÁRIO.
 6. **Entregar** no formato da seção 4.
-7. **Aprender:** quando o Andre contar o resultado (ficou bom, errou letra, mudou a tattoo, ficou claro demais), acrescentar uma linha em `referencias/registro-arte-gemini.md`. Se o mesmo erro aparecer **2 vezes ou mais**, propor ao Andre a mudança no modelo do prompt; só alterar a skill ou a base com o OK dele.
+7. **Aprender:** ao entregar, acrescentar o elemento e o significado usado na tabela "Significados" do registro (se ainda não estiver lá). Quando o Andre contar o resultado (ficou bom, errou letra, mudou a tattoo, ficou claro demais), acrescentar uma linha em `referencias/registro-arte-gemini.md`. Se o mesmo erro aparecer **2 vezes ou mais**, propor ao Andre a mudança no modelo do prompt; só alterar a skill ou a base com o OK dele.
 
 ## 4. Saída
 
@@ -50,7 +51,7 @@ PRESERVAR (obrigatório): a tatuagem deve ficar EXATAMENTE igual à original: me
 
 CENÁRIO E LUZ: fundo escuro e desfocado de estúdio de tatuagem, em preto, verde-musgo escuro e marrom. Luz quente e lateral de fim de tarde batendo na tatuagem, realçando o relevo da pele, sombras profundas. A tinta continua preta e cinza neutra, sem amarelar. Fotografia editorial de revista, cinematográfica, alto contraste, leve granulação de filme, profundidade de campo rasa com a tatuagem nítida.
 
-LAYOUT: formato vertical 4:5. A tatuagem ocupa o centro e a parte de cima. O terço inferior fica escuro, com degradê suave para preto, e é onde ficam os textos.
+LAYOUT: formato vertical 4:5. [onde fica a tatuagem]. [área escura e vazia onde ficam os textos, ex.: o terço inferior com degradê suave para preto]. Os textos nunca cobrem a tatuagem.
 
 TEXTOS NA IMAGEM (escreva exatamente como está entre aspas, em português, com acentos, sem trocar nem acrescentar nenhuma letra):
 1. Título, em letra serifada elegante, grande, caixa alta, cor creme: "[TÍTULO]"
@@ -58,7 +59,7 @@ TEXTOS NA IMAGEM (escreva exatamente como está entre aspas, em português, com 
 3. Abaixo, em letra serifada pequena, cor creme: "[linha de significado]"
 4. Rodapé centralizado, letra pequena com espaçamento largo entre as letras, cor creme: "ANDRE TATTOO"
 5. Embaixo do rodapé, ainda menor: "[ESTILO]"
-Os textos ficam alinhados à esquerda no terço inferior (o rodapé centralizado), com margem confortável das bordas, sem cobrir a tatuagem.
+Os textos ficam alinhados à esquerda na área de texto (o rodapé centralizado na base da imagem), com margem confortável das bordas, bem legíveis e sem cobrir a tatuagem.
 
 PROIBIDO: qualquer outro texto, logo, marca d'água, moldura, emoji ou elemento gráfico além dos listados.
 ```
