@@ -20,4 +20,4 @@ Elemento → significado usado na arte. Reutilizar para manter coerência entre 
 ## Diário por foto
 | Data | Tattoo (tema · estilo) | Textos usados | Resultado | O que o Gemini errou | Correção que funcionou |
 |---|---|---|---|---|---|
-| 2026-10-09 | Lírios (2 flores, botões e folhas) · fine line [confirmar estilo] · antebraço | PUREZA E RECOMEÇO / lírio / Pureza, renovação e força para recomeçar. | aguardando teste | — | — |
+| 2026-10-09 | Lírios (2 flores, botões e folhas) · fine line [confirmar estilo] · antebraço | PUREZA E RECOMEÇO / lírio / Pureza, renovação e força para recomeçar. | Aprovado pelo André ("impecável"); gerado no app do Gemini. Tattoo fiel na comparação lado a lado; acentos e Ç corretos; texto no canto superior esquerdo funcionou | Omitiu a 5ª linha ("FINE LINE" abaixo do rodapé) | — (arte aprovada sem ela) |
