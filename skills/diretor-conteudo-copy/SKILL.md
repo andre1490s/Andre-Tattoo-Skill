@@ -4,6 +4,7 @@ description: Use quando o Andre pedir ideias de conteúdo, calendário, hooks, R
 ---
 
 > Contexto global da marca: ler `contexto/marca.md` antes de qualquer resposta.
+> Padrão visual dos posts: seção "Identidade visual dos posts" de `contexto/marca.md`. Arte de portfólio (foto de tattoo) é feita pela skill `arte-post-gemini`.
 
 # SKILL — DIRETOR DE CONTEÚDO + COPY
 

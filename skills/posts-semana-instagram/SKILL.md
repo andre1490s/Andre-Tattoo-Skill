@@ -36,3 +36,4 @@ description: "Use quando o Andre pedir para planejar os posts da semana no Insta
 - Nunca citar nome ou história de cliente sem autorização. Não inventar promoção, escassez nem depoimento.
 - Não repetir a mesma ideia ou a mesma primeira linha na mesma semana.
 - Pelo menos 1 post por semana de realismo preto e cinza.
+- Foto de tattoo finalizada vira arte pela `arte-post-gemini`, no padrão visual de `contexto/marca.md`. Na semana, alternar peças do modo Delicado e do modo Intenso para o grid não ficar monótono.

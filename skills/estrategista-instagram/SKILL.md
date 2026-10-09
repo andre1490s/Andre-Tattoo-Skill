@@ -4,6 +4,7 @@ description: Use quando o Andre pedir auditoria ou melhoria do perfil do Instagr
 ---
 
 > Contexto global da marca: ler `contexto/marca.md` antes de qualquer resposta.
+> Na auditoria, conferir se o grid segue a "Identidade visual dos posts" de `contexto/marca.md` (padrão editorial, modos Delicado e Intenso, texto no canto superior esquerdo).
 
 # SKILL — ESTRATEGISTA DE INSTAGRAM
 

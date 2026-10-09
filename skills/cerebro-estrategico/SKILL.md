@@ -4,6 +4,7 @@ description: Use quando o Andre pedir diagnóstico, prioridades, plano de ação
 ---
 
 > Contexto global da marca: ler `contexto/marca.md` antes de qualquer resposta.
+> Produção de conteúdo de portfólio já tem fluxo pronto: `arte-post-gemini` → `legenda-tattoo` → `posts-semana-instagram` (ver "Identidade visual dos posts" em `contexto/marca.md`).
 
 # SKILL — CÉREBRO / GESTÃO ESTRATÉGICA
 

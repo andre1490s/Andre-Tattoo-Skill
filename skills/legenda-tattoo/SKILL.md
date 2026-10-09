@@ -8,7 +8,7 @@ description: "Use quando o Andre mandar foto(s) e/ou detalhes de tattoo finaliza
 # Legenda de tattoo finalizada — Andre Tattoo
 
 ## Passos
-1. Olhar a foto e pegar os detalhes: estilo, elementos do desenho, local do corpo. Usar história/significado e tempo de sessão só se o Andre informar.
+1. Olhar a foto e pegar os detalhes: estilo, elementos do desenho, local do corpo. Usar história do cliente e tempo de sessão só se o Andre informar. Significado: história autorizada ou o simbolismo tradicional do elemento (tabela "Significados" em `referencias/registro-arte-gemini.md`), dito como simbolismo.
 2. Nomear o estilo com o vocabulário do Andre (ver regras).
 3. Escrever gancho de 1 linha sobre o trabalho, não sobre promoção.
 4. Corpo em 1–2 linhas: técnica, luz/sombra, composição.
@@ -24,7 +24,8 @@ description: "Use quando o Andre mandar foto(s) e/ou detalhes de tattoo finaliza
 ## Regras fixas
 - Nomes de estilo do Andre: "realismo preto e cinza", "realismo colorido", além de fine line, delicado, aquarela, blackwork, cobertura, fechamento. Nunca rotular por técnica (ex.: não chamar de "pontilhismo"). Na dúvida, perguntar.
 - Tom sofisticado e reservado; quase nenhum emoji (de preferência nenhum).
-- Nunca citar nome do cliente nem história dele sem autorização. Não inventar significado nem tempo de sessão.
+- Nunca citar nome do cliente nem história dele sem autorização. Não inventar história pessoal nem tempo de sessão; significado só como simbolismo tradicional do elemento ou história autorizada.
+- Post com arte da `arte-post-gemini`: a legenda aprofunda o significado da arte sem repetir o título e termina, antes das hashtags, com "Foto tratada, tatuagem real."
 - Chamada para ação: projetos grandes / sob consulta → WhatsApp ou link da bio.
 - Hashtags: estilo (#realismopretoecinza, #realismocolorido, #tatuagemrealista) + tema (#tattooleao, #tattoopet…) + local (#tattoosp, #vilamatilde) ou #andretattoo.
 

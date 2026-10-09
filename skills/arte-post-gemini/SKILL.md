@@ -21,6 +21,10 @@ Não faz: legenda do Instagram (é da `legenda-tattoo`), agendamento (é da `pos
 ## 3. Passos
 1. **Ler a memória antes de tudo:** `referencias/prompts-gemini-fotos.md` (base do estilo) e `referencias/registro-arte-gemini.md` (ajustes aprovados e erros do Gemini já vistos). Aplicar todo ajuste com status "Aprovado".
 2. **Analisar a foto:** elementos do desenho, estilo (vocabulário da `legenda-tattoo`: "realismo preto e cinza", "realismo colorido", fine line, delicado, aquarela, blackwork, cobertura, fechamento), local do corpo, se é foto de pele ou de papel.
+2b. **Escolher o modo** (mesma tipografia e posição de texto nos dois, para o feed ficar com cara de uma marca só):
+   - **Delicado:** fine line, floral, aquarela, peças femininas e leves (referência aprovada: lírio "PUREZA E RECOMEÇO"). Usa o bloco CENÁRIO DELICADO.
+   - **Intenso:** animais selvagens, religioso ou épico, guerreiros, caveiras, peças agressivas de realismo. Ar mais masculino: preto-carvão, fumaça, luz dura de claro-escuro. Usa o bloco CENÁRIO INTENSO. (Pedido do Andre, 2026-10-09.)
+   - Na dúvida, perguntar. O Andre pode trocar o modo de qualquer peça.
 3. **Significado (sempre entra na arte, em toda tattoo; preferência do Andre):**
    - Antes, procurar o elemento na tabela "Significados" de `referencias/registro-arte-gemini.md`. Se já existe, reutilizar o texto aprovado para manter coerência entre posts.
    - Se o Andre trouxe a história do cliente e ela foi autorizada: usar a história, sem nome do cliente.
@@ -32,7 +36,7 @@ Não faz: legenda do Instagram (é da `legenda-tattoo`), agendamento (é da `pos
    - **Linha de significado:** no máximo 8 palavras (ex.: "O leão guarda. A cruz conduz.").
    - **Rodapé fixo:** só "ANDRE TATTOO". Sem linha de estilo (decisão do Andre, 2026-10-09).
    - Tom da marca: sério e técnico, sem emoji, sem clichê ("cada tatuagem conta uma história"), sem exagero ("único", "melhor"), sem preço.
-5. **Montar o prompt** no modelo da seção 4, trocando só os campos. **Lugar do texto:** escolher a área vazia e escura da foto (ex.: canto superior esquerdo quando o braço está na diagonal) e descrever essa área no bloco LAYOUT. Texto nunca em cima da tattoo; leitura vem antes de seguir o terço inferior à risca. Arte/desenho: usar o cenário de papel sobre mesa de estúdio (Prompt 2 de `referencias/prompts-gemini-fotos.md`) no bloco CENÁRIO.
+5. **Montar o prompt** no modelo da seção 4, trocando só os campos e colando o bloco CENÁRIO do modo. **Lugar do texto:** padrão do feed é o **canto superior esquerdo** (aprovado com o lírio). Se a foto não tiver espaço ali, pedir para afastar levemente o enquadramento estendendo o fundo escuro, sem cortar a tattoo; só usar outra área se mesmo assim não couber. Fundo com objeto que distrai (quadro, porta, parede clara, toalha): mandar trocar pelo fundo do modo. Várias fotos de uma vez: um prompt por foto, numerados, e lembrar o Andre de abrir uma conversa nova no Gemini para cada tattoo. Texto nunca em cima da tattoo; leitura vem antes de seguir o terço inferior à risca. Arte/desenho: usar o cenário de papel sobre mesa de estúdio (Prompt 2 de `referencias/prompts-gemini-fotos.md`) no bloco CENÁRIO.
 6. **Gerar ou entregar:**
    - **Com a chave no ambiente (`GEMINI_API_KEY` ou segredo de rede):** salvar o prompt num arquivo temporário e rodar `python3 -I skills/arte-post-gemini/scripts/gerar_imagem.py <foto> <prompt.txt>`. Abrir a arte gerada e **conferir lado a lado com a foto original**: tattoo idêntica? textos sem erro de letra/acento? texto fora da tattoo? Se falhar em algo, refazer com a frase de correção da seção 4 (até 2 tentativas) e anotar o erro no registro. Entregar ao Andre só a versão aprovada nessa conferência, junto com o prompt usado.
    - **Sem a chave:** entregar no formato da seção 4.
@@ -51,7 +55,7 @@ TAREFA: Edite a foto anexada para virar a arte de um post de Instagram de um est
 
 PRESERVAR (obrigatório): a tatuagem deve ficar EXATAMENTE igual à original: mesmos traços, sombras, tons de preto e cinza, tamanho e posição. Não redesenhe, não corrija, não adicione nem remova nenhum detalhe. Mantenha o corpo, a pele e a anatomia como estão.
 
-CENÁRIO E LUZ: fundo escuro e desfocado de estúdio de tatuagem, em preto, verde-musgo escuro e marrom. Luz quente e lateral de fim de tarde batendo na tatuagem, realçando o relevo da pele, sombras profundas. A tinta continua preta e cinza neutra, sem amarelar. Fotografia editorial de revista, cinematográfica, alto contraste, leve granulação de filme, profundidade de campo rasa com a tatuagem nítida.
+[bloco CENÁRIO do modo, abaixo]
 
 LAYOUT: formato vertical 4:5. [onde fica a tatuagem]. [área escura e vazia onde ficam os textos, ex.: o terço inferior com degradê suave para preto]. Os textos nunca cobrem a tatuagem.
 
@@ -64,6 +68,17 @@ Os textos ficam alinhados à esquerda na área de texto (o rodapé centralizado 
 
 PROIBIDO: qualquer outro texto, logo, marca d'água, moldura, emoji ou elemento gráfico além dos listados.
 ```
+
+**Bloco CENÁRIO DELICADO:**
+```
+CENÁRIO E LUZ: fundo escuro e desfocado de estúdio de tatuagem, em preto, verde-musgo escuro e marrom; se houver superfície sob o corpo, tecido de linho verde-musgo quase preto. Luz quente e lateral de fim de tarde batendo na tatuagem, realçando o relevo da pele, sombras profundas. A tinta continua preta e cinza neutra, sem amarelar. Fotografia editorial de revista, cinematográfica, alto contraste, leve granulação de filme, profundidade de campo rasa com a tatuagem nítida.
+```
+
+**Bloco CENÁRIO INTENSO:**
+```
+CENÁRIO E LUZ: fundo preto-carvão quase total, com leve névoa de fumaça e um toque de marrom muito escuro; se houver superfície sob o corpo, couro preto fosco ou concreto escuro. Luz dura e lateral, em claro-escuro de pintura barroca: um único feixe quente recortando o relevo do músculo e da tatuagem, o resto caindo em sombra profunda. Atmosfera dramática, intensa e masculina. A tinta continua preta e cinza neutra, com pretos profundos e realces brancos limpos, sem amarelar. Fotografia editorial de revista, cinematográfica, alto contraste, leve granulação de filme, profundidade de campo rasa com a tatuagem nítida.
+```
+No modo intenso, o título pode pedir "traço um pouco mais forte"; o resto da tipografia não muda.
 
 **Se o Gemini errar:**
 - Mudou a tattoo: "A tatuagem mudou. Refaça mantendo a tatuagem idêntica à foto original, traço por traço, mudando só o fundo, a luz e os textos."
@@ -90,6 +105,7 @@ PROIBIDO: qualquer outro texto, logo, marca d'água, moldura, emoji ou elemento 
 ## 7. Checklist final
 [ ] Li o registro e apliquei os ajustes aprovados
 [ ] O bloco PRESERVAR está intacto no prompt
+[ ] Modo certo (delicado ou intenso) e texto no canto superior esquerdo
 [ ] Significado marcado como "simbolismo do elemento" ou "história do cliente (autorizada)"
 [ ] Título até 3 palavras, linha até 8 palavras, sem emoji, clichê ou preço
 [ ] Textos entre aspas, com acentos, e o mesmo texto repetido na lista "Textos da arte"

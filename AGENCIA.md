@@ -109,6 +109,7 @@ O `learning-engine` fica **acima** das outras skills: não executa tarefas, apre
 | **Semanal** | `analista-metricas` (semana passada) → `cerebro-estrategico` (3 prioridades) → `diretor-conteudo-copy` (pauta) → `editor-videos-tattoo` (vídeos) → `crm-followup` (lista de contatos da semana) |
 | **Mensal** | `gestor-financeiro` + `analista-metricas` → `cerebro-estrategico` (metas do mês) → `arquiteto-ofertas` (se agenda com buraco) → `gestor-de-trafego` (testes do mês) |
 | **Por lead novo** | `closer-vendas` → `crm-followup` (entra no funil) → resultado volta ao `cerebro-estrategico` |
+| **Por tattoo finalizada (foto)** | `arte-post-gemini` (arte no padrão visual) → `legenda-tattoo` → `posts-semana-instagram` → resultado no registro da skill e em `registrar-no-sistema` |
 | **Por vídeo novo** | `buscar-referencias-tattoo` → `editor-videos-tattoo` → `gestor-de-trafego` (teste como criativo) |
 | **Perfil parado** | `estrategista-instagram` (auditoria) → `cerebro-estrategico` → execução |
 
