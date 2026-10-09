@@ -4,7 +4,8 @@
 Uso:
   python3 -I skills/arte-post-gemini/scripts/gerar_imagem.py FOTO PROMPT.txt [SAIDA.png]
 
-Lê a chave da variável de ambiente GEMINI_API_KEY (nunca do código nem do chat).
+Chave: variável de ambiente GEMINI_API_KEY, ou "segredo de rede" do ambiente (o proxy injeta a
+chave na chamada e o script não precisa vê-la). Nunca no código nem no chat.
 Modelo: variável GEMINI_MODELO (padrão gemini-2.5-flash-image).
 A saída padrão fica em artes-geradas/ (fora do git: fotos de cliente não vão para o repositório).
 """
@@ -14,8 +15,6 @@ def main():
     if len(sys.argv) < 3:
         sys.exit(__doc__)
     chave = os.environ.get("GEMINI_API_KEY")
-    if not chave:
-        sys.exit("GEMINI_API_KEY não configurada no ambiente.")
     foto, arq_prompt = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
     saida = pathlib.Path(sys.argv[3]) if len(sys.argv) > 3 else pathlib.Path("artes-geradas") / f"{foto.stem}-arte.png"
     modelo = os.environ.get("GEMINI_MODELO", "gemini-2.5-flash-image")
@@ -31,7 +30,7 @@ def main():
     req = urllib.request.Request(
         f"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent",
         data=json.dumps(corpo).encode(),
-        headers={"Content-Type": "application/json", "x-goog-api-key": chave},
+        headers={"Content-Type": "application/json", **({"x-goog-api-key": chave} if chave else {})},
     )
     ca = os.environ.get("SSL_CERT_FILE") or ("/root/.ccr/ca-bundle.crt" if os.path.exists("/root/.ccr/ca-bundle.crt") else None)
     ctx = ssl.create_default_context(cafile=ca)
@@ -39,7 +38,8 @@ def main():
         with urllib.request.urlopen(req, context=ctx, timeout=180) as r:
             resp = json.load(r)
     except urllib.error.HTTPError as e:
-        sys.exit(f"Erro {e.code} do Gemini: {e.read().decode()[:800]}")
+        dica = "" if chave or e.code not in (401, 403) else "\nSem GEMINI_API_KEY e sem segredo de rede ativo para generativelanguage.googleapis.com."
+        sys.exit(f"Erro {e.code} do Gemini: {e.read().decode()[:800]}{dica}")
 
     partes = (resp.get("candidates") or [{}])[0].get("content", {}).get("parts", [])
     imagens = [p for p in partes if "inlineData" in p or "inline_data" in p]
