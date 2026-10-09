@@ -2,6 +2,8 @@
 
 Padrão visual para os posts do @andretatuadoor: foto editorial, escura, com luz lateral e espaço reservado para texto. A IA muda só **fundo, luz e clima**. A tatuagem nunca é alterada.
 
+Quer a arte já com título, significado e rodapé escritos na imagem? Use a skill `arte-post-gemini`: ela monta o prompt completo a partir da foto. Os prompts abaixo são a versão sem texto.
+
 Como usar: abra o Gemini, anexe a foto, cole o prompt e troque só o que está entre [colchetes].
 
 ---

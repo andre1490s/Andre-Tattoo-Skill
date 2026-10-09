@@ -39,6 +39,7 @@ Status: ✅ no repositório · 🟡 existe no Claude.ai do André, ainda não im
 | `diretor-conteudo-copy` | pilares, ideias, hooks, calendário, stories e copy | ✅ `skills/` |
 | `roteiro-reels-tattoo` | roteiro, ideia e texto de tela para Reels | ✅ `skills/` |
 | `legenda-tattoo` | legenda para o Instagram a partir da foto/detalhes da tattoo | ✅ `skills/` |
+| `arte-post-gemini` | prompt do Gemini para a arte do post (foto tratada + textos + significado), aprendendo a cada foto | ✅ `skills/` |
 | `posts-semana-instagram` | planejamento semanal e agendamento no Metricool | ✅ `skills/` |
 
 ### 2. Atendimento e vendas
@@ -80,7 +81,7 @@ Status: ✅ no repositório · 🟡 existe no Claude.ai do André, ainda não im
 |---|---|---|
 | `buscar-consumo-tokens` | mede e busca onde as skills ocupam tokens do Claude (por skill, rotina ou termo) e propõe cortes seguros | ✅ `skills/` |
 
-> As 29 skills importadas estão no repositório; `buscar-consumo-tokens` foi criada aqui. As 17 operacionais (atendimento, conteúdo, agenda, finanças, pós-venda, relatórios) vieram da conta do André no Claude.ai e foram copiadas **sem alteração**. Elas divergem em alguns pontos de `contexto/marca.md`: ver `contexto/conflitos-a-resolver.md`. Até o André decidir, vale o que ele disse diretamente na conversa (registrado em `marca.md`).
+> As 29 skills importadas estão no repositório; `buscar-consumo-tokens` e `arte-post-gemini` foram criadas aqui. As 17 operacionais (atendimento, conteúdo, agenda, finanças, pós-venda, relatórios) vieram da conta do André no Claude.ai e foram copiadas **sem alteração**. Elas divergem em alguns pontos de `contexto/marca.md`: ver `contexto/conflitos-a-resolver.md`. Até o André decidir, vale o que ele disse diretamente na conversa (registrado em `marca.md`).
 
 ## Aprendizado (Learning Engine)
 
@@ -129,6 +130,7 @@ O `learning-engine` fica **acima** das outras skills: não executa tarefas, apre
 | `cerebro-estrategico` → qualquer skill | prioridade, objetivo e métrica de sucesso da ação |
 | `editor-videos-tattoo` → `legenda-tattoo` | vídeo final + tema da tattoo |
 | `legenda-tattoo` → `posts-semana-instagram` | legenda aprovada para agendar |
+| `arte-post-gemini` → `legenda-tattoo` / `posts-semana-instagram` | significado e textos aprovados; arte pronta para agendar |
 | `responder-instagram` / `orcamento-tattoo` → `briefing-projeto-tattoo` | lead com ideia de tattoo |
 | `briefing-projeto-tattoo` → `resumo-agenda-semanal` | projeto fechado e data |
 | `pos-tattoo-avaliacao` → `responder-avaliacoes-google` | avaliações recebidas |
