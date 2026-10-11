@@ -90,7 +90,7 @@
     var economiza = con.saveData === true || /2g/.test(con.effectiveType || "");
     if (REDUCE || economiza) return;                 /* fica só o poster */
 
-    var base = mobile ? "/video/hero-mobile" : "/video/hero-desktop";
+    var base = mobile ? "video/hero-mobile" : "video/hero-desktop";
     [["webm", "video/webm"], ["mp4", "video/mp4"]].forEach(function (f) {
       var s = document.createElement("source");
       s.src = base + "." + f[0]; s.type = f[1];
@@ -304,7 +304,7 @@
 
   /* o navegador escolhe o arquivo pelo tamanho real exibido: economiza dados no celular */
   function fig(nome, alt, sizes) {
-    var b = "/img/portfolio/" + nome;
+    var b = "img/portfolio/" + nome;
     var set = b + "-sm.EXT 640w, " + b + ".EXT 1200w";
     var s = sizes ? ' sizes="' + sizes + '"' : "";
     return '<picture>' +

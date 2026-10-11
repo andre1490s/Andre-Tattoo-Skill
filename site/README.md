@@ -91,3 +91,11 @@ Mande o vídeo novo ao Claude. A receita usada (ffmpeg) foi:
 ```
 Alvo: **até 1,5 MB no desktop e 600 KB no celular**. Acima disso o topo trava no 4G e você perde o cliente
 antes da primeira dobra.
+
+## 9. Prévia pelo celular
+Há uma cópia navegável publicada em **https://claude.ai/artifact/GDtCW8VDthc1cBajSBqWzf**
+(privada: só abre na conta do André). Serve para ver o site no iPhone antes do deploy.
+Nela, o formulário **não grava no servidor** (isso só existe na Netlify) e a abertura do
+WhatsApp pode ser bloqueada pelo ambiente da prévia. Para gerar de novo após mudanças:
+`python3` monta a versão de prévia a partir de `index.html` removendo `<head>`/`<body>`
+(a hospedagem injeta o próprio esqueleto) — peça ao Claude "atualiza a prévia".

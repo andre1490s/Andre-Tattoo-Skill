@@ -626,7 +626,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
   opacity:0;transition:opacity 1.4s var(--ease)}
 .hero__video.is-on{opacity:.62}
 .hero__media::before{content:"";position:absolute;inset:0;z-index:1;
-  background:url("/video/hero-poster.jpg") 58% 55%/cover no-repeat;opacity:.52;filter:saturate(.3)}
+  background:url("../video/hero-poster.jpg") 58% 55%/cover no-repeat;opacity:.52;filter:saturate(.3)}
 .hero__video{position:relative;z-index:2}
 .hero__veil{position:absolute;inset:0;z-index:3;
   background:
