@@ -41,6 +41,8 @@ Status: ✅ no repositório · 🟡 existe no Claude.ai do André, ainda não im
 | `legenda-tattoo` | legenda para o Instagram a partir da foto/detalhes da tattoo | ✅ `skills/` |
 | `arte-post-gemini` | prompt do Gemini para a arte do post (foto tratada + textos + significado), aprendendo a cada foto | ✅ `skills/` |
 | `posts-semana-instagram` | planejamento semanal e agendamento no Metricool | ✅ `skills/` |
+| `publicar-no-site` | publica tattoo nova no portfólio do site e atualiza informações | ✅ `skills/` |
+| `depoimento-para-o-site` | transforma elogio real de cliente em depoimento publicado no site | ✅ `skills/` |
 
 ### 2. Atendimento e vendas
 | Skill | Função | Status |

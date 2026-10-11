@@ -1,62 +1,64 @@
 /* =====================================================================
    ANDRE TATTOO — configuração do site
-   Este é o único arquivo que precisa ser editado no dia a dia.
+   Único arquivo que precisa ser editado no dia a dia.
    ===================================================================== */
 
 window.SITE = {
-  /* ---------------------------------------------------------------
-     1. CONTATO  — PREENCHER o WhatsApp antes de publicar.
-     Formato: código do país + DDD + número, só dígitos. Ex.: 5511912345678
-     Enquanto estiver vazio, os botões de orçamento levam ao Direct
-     do Instagram em vez de abrir um WhatsApp inexistente.
-  --------------------------------------------------------------- */
-  whatsapp: "",
-  instagram: "andretatuadoor",
-  email: "",
 
-  /* ---------------------------------------------------------------
-     2. ESTÚDIO
-  --------------------------------------------------------------- */
+  /* ---------- 1. CONTATO ---------- */
+  whatsapp: "5511982713543",          // DDI + DDD + número, só dígitos
+  instagram: "andretatuadoor",
+
+  /* ---------- 2. ESTÚDIO ---------- */
   estudio: {
     endereco: "Av. Melchert, 606 — Vila Matilde",
     cidade: "São Paulo, SP",
     horario: "Segunda a sábado, 9h às 22h",
-    atendimento: "Com hora marcada",
+    atendimento: "Somente com hora marcada",
     maps: "https://www.google.com/maps/search/?api=1&query=Av.+Melchert,+606+-+Vila+Matilde,+Sao+Paulo"
   },
 
-  /* ---------------------------------------------------------------
-     3. PORTFÓLIO
-     Para publicar uma tattoo: salve a foto em  img/portfolio/
-     e acrescente uma linha aqui. Nada mais precisa ser mexido.
-
-       src   : caminho do arquivo (deixe "" para o espaço ficar reservado)
-       alt   : descrição da imagem (acessibilidade e Google)
-       titulo: até 3 palavras, caixa alta no site
-       palavra: a palavra em cursiva dourada (o elemento)
-       significado: até 8 palavras
-       estilo: "realismo" | "fineline" | "colorido" | "coverup" | "delicado"
-       local : região do corpo
-       tratada: true se a foto passou por tratamento de fundo e luz por IA
-                (acrescenta o aviso "Foto tratada, tatuagem real.")
-  --------------------------------------------------------------- */
+  /* ---------- 3. PORTFÓLIO ----------
+     Para publicar uma peça nova:
+     1) salve a foto em img/portfolio/  (JPG e WEBP, 1200px e 640px de largura)
+     2) copie uma linha abaixo e troque os dados.
+     estilo: "realismo" | "fineline" | "blackwork" | "lettering"
+     destaque: true  -> aparece também no slider do topo
+  ------------------------------------- */
   portfolio: [
-    { src: "", alt: "Leão em realismo preto e cinza no antebraço", titulo: "Força Serena", palavra: "leão", significado: "Coragem que não precisa rugir", estilo: "realismo", local: "Antebraço", tratada: false },
-    { src: "", alt: "Lírio em fine line no braço", titulo: "Pureza e Recomeço", palavra: "lírio", significado: "O que floresce depois do inverno", estilo: "fineline", local: "Braço", tratada: true },
-    { src: "", alt: "Retrato em realismo preto e cinza nas costas", titulo: "Memória Viva", palavra: "retrato", significado: "Quem a gente carrega na pele", estilo: "realismo", local: "Costas", tratada: false },
-    { src: "", alt: "Rosa delicada em fine line na costela", titulo: "Delicadeza Firme", palavra: "rosa", significado: "Beleza que escolheu ter espinhos", estilo: "delicado", local: "Costela", tratada: false },
-    { src: "", alt: "Cobertura de tatuagem antiga em preto e cinza", titulo: "Virada de Página", palavra: "cover-up", significado: "A pele aceita ser reescrita", estilo: "coverup", local: "Ombro", tratada: false },
-    { src: "", alt: "Beija-flor em aquarela no ombro", titulo: "Movimento Leve", palavra: "aquarela", significado: "Cor que respira junto com a pele", estilo: "colorido", local: "Ombro", tratada: false },
-    { src: "", alt: "Olho em realismo preto e cinza com alto contraste", titulo: "Olhar Direto", palavra: "realismo", significado: "Luz e sombra no lugar exato", estilo: "realismo", local: "Braço", tratada: false },
-    { src: "", alt: "Composição floral fine line no antebraço", titulo: "Linha Contínua", palavra: "fine line", significado: "O mínimo dito com precisão", estilo: "fineline", local: "Antebraço", tratada: false }
+    { img:"retrato-bone",    estilo:"realismo",  local:"Braço",      titulo:"Memória Viva",       palavra:"retrato",       significado:"Quem a gente carrega na pele",        alt:"Retrato masculino em realismo preto e cinza no braço", destaque:true },
+    { img:"nossa-senhora",   estilo:"realismo",  local:"Antebraço",  titulo:"Fé e Amparo",        palavra:"Nossa Senhora", significado:"Proteção que se carrega em silêncio", alt:"Nossa Senhora com coroa de espinhos e rosa em realismo preto e cinza", destaque:true },
+    { img:"fada-fineline",   estilo:"fineline",  local:"Antebraço",  titulo:"Leveza e Recomeço",  palavra:"fada",          significado:"O que ainda acredita em magia",       alt:"Fada em fine line com pontilhismo no antebraço", destaque:true },
+    { img:"raposa-perna",    estilo:"blackwork", local:"Perna",      titulo:"Astúcia Silenciosa", palavra:"raposa",        significado:"Inteligência que não faz barulho",    alt:"Raposa em blackwork com traços de aquarela preta na perna", destaque:true },
+    { img:"cigana-braco",    estilo:"realismo",  local:"Braço",      titulo:"Mistério e Intuição",palavra:"cigana",        significado:"O que se enxerga de olhos fechados",  alt:"Cigana com manto e lua em realismo preto e cinza no braço", destaque:true },
+    { img:"lirio-costas",    estilo:"fineline",  local:"Costas",     titulo:"Pureza e Recomeço",  palavra:"lírio",         significado:"O que floresce depois do inverno",    alt:"Lírio em fine line com sombreado suave nas costas", destaque:true },
+    { img:"retrato-oculos",  estilo:"realismo",  local:"Panturrilha",titulo:"Olhar Direto",       palavra:"retrato",       significado:"Luz e sombra no lugar exato",         alt:"Retrato com óculos em realismo preto e cinza na panturrilha" },
+    { img:"lirio-perna",     estilo:"fineline",  local:"Perna",      titulo:"Floração Contínua",  palavra:"lírios",        significado:"Beleza que atravessa a pele",         alt:"Composição de lírios em fine line na perna" }
   ],
 
-  /* ---------------------------------------------------------------
-     4. FOTOS DO ARTISTA E DO ESTÚDIO (opcional)
-     Salve em img/estudio/ e aponte aqui. "" deixa o espaço reservado.
-     retrato      -> foto que aparece na seção "Sobre"
-     fotosEstudio -> três fotos do ambiente (ordem: ambiente, bancada, detalhe)
-  --------------------------------------------------------------- */
-  retrato: "",
-  fotosEstudio: ["", "", ""]
+  /* ---------- 4. PROCESSO (stencil -> resultado) ---------- */
+  processo: [
+    { img:"fada-stencil", alt:"Stencil da fada aplicado no antebraço antes da sessão",
+      legenda:"Stencil aplicado", nota:"O desenho nasce do seu corpo: posição, escala e fluxo são decididos com a peça já na pele." },
+    { img:"vaso-stencil", alt:"Stencil de vaso grego com rosas aplicado na costela",
+      legenda:"Projeto nas costelas", nota:"Nada começa antes de você aprovar o desenho no espelho." }
+  ],
+
+  /* ---------- 5. DEPOIMENTOS ----------
+     DESLIGADO até você me mandar depoimentos REAIS de clientes.
+     Para ligar: ativo: true e preencha a lista (nome, texto, peça).
+     Não invente nem use texto genérico — o cliente percebe.
+  ------------------------------------- */
+  depoimentos: {
+    ativo: false,
+    googleUrl: "",            // link do seu Perfil da Empresa no Google
+    lista: [
+      // { nome:"Marina", peca:"Lírio nas costas", texto:"..." },
+    ]
+  },
+
+  /* ---------- 6. MEDIÇÃO (CRO) ----------
+     Cole os IDs quando criar as contas. Vazio = nada é carregado.
+  ------------------------------------- */
+  analytics: { ga4: "", metaPixel: "" }
 };

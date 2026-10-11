@@ -28,13 +28,19 @@ Atualizado em 2026-10-07. Sem dados de clientes neste arquivo.
 - [ ] Revisar em Ajustes do app: dias e horário de atendimento (padrão do app é todos os dias, 09:00 às 18:00; o André atende seg a sáb, 9h às 22h).
 - [ ] Mensagem de lembrete do app diz "remarcação perde o sinal"; a política inclui cancelamento. Alinhar quando o André quiser.
 
-## Site do estúdio (`site/`, novo)
-- [ ] **Número do WhatsApp** em `site/js/config.js` (campo `whatsapp`, com DDI e DDD). Sem ele, todo botão de orçamento abre o Direct do Instagram.
-- [ ] Fotos do portfólio em `site/img/portfolio/` + a linha de cada uma em `config.js` (só com autorização do cliente). Enquanto não houver nenhuma, a grade mostra espaços "Em breve".
-- [ ] Opcional: retrato do André e fotos do estúdio em `site/img/estudio/`.
-- [ ] Publicar: arrastar a pasta `site/` na Netlify ou ligar o repositório (base e publish = `site`). Passo a passo em `site/README.md`.
-- [ ] Confirmar no texto do site: cidade, domingo/feriado e se atende só com hora marcada.
-- [ ] Decidir se entra uma seção de avaliações reais do Google (nenhum depoimento foi inventado).
+## Site do estúdio (`site/`) — v2 no ar
+Estudo completo em `site/ESTUDO-MERCADO-UX-CRO.md`. O que falta é só você:
+- [ ] **3 a 5 depoimentos reais** de clientes (texto + primeiro nome + peça). É o único bloco de prova que
+      falta; a seção está pronta e desligada em `config.js`. Impacto alto na conversão.
+- [ ] **Link do seu Perfil da Empresa no Google** (avaliações públicas valem mais que depoimento no site).
+- [ ] **Autorização de imagem** dos clientes das 9 peças publicadas — regra do repositório.
+- [ ] Ligar as **notificações por e-mail** do Netlify Forms (Forms → Form notifications) para receber os pedidos.
+- [ ] Criar **GA4 e Meta Pixel** e me passar os IDs (os eventos já estão instrumentados).
+- [ ] 2 a 3 fotos do ambiente do estúdio (bancada, sala) — hoje só há fotos suas.
+- [ ] Confirmar: atende só com hora marcada? domingo e feriado?
+- [ ] Opcional, alto impacto: vídeo de 10 s de uma peça **cicatrizada** (30+ dias).
+- [ ] Liberar na rede do ambiente os domínios dos sites de referência (fernandosouzatattoo.com.br,
+      robertocarlosart.com, dobskennel.com.br, camilotuero.art) para eu completar a análise de concorrência.
 
 ## Aguardando o André
 - [ ] Foto da tattoo do leão pronta (e autorização do cliente) → `legenda-tattoo`, `pos-tattoo-avaliacao`, portfólio e possível Reels.
