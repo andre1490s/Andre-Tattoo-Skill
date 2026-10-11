@@ -7,6 +7,7 @@ Sistema de skills para o estúdio André Tattoo (@andretatuadoor): conteúdo, ve
 - **Skills:** [`skills/`](skills/) (uma pasta por skill, com `SKILL.md`)
 - **Memória de aprendizados:** [`aprendizados/`](aprendizados/)
 - **Referências de edição aprovadas:** [`referencias/`](referencias/)
+- **Site do estúdio (andretattoo.netlify.app):** [`site/`](site/) — ver [`site/README.md`](site/README.md)
 
 ## Por onde começar
 | Quero... | Use |

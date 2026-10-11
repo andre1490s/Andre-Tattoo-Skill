@@ -28,6 +28,14 @@ Atualizado em 2026-10-07. Sem dados de clientes neste arquivo.
 - [ ] Revisar em Ajustes do app: dias e horário de atendimento (padrão do app é todos os dias, 09:00 às 18:00; o André atende seg a sáb, 9h às 22h).
 - [ ] Mensagem de lembrete do app diz "remarcação perde o sinal"; a política inclui cancelamento. Alinhar quando o André quiser.
 
+## Site do estúdio (`site/`, novo)
+- [ ] **Número do WhatsApp** em `site/js/config.js` (campo `whatsapp`, com DDI e DDD). Sem ele, todo botão de orçamento abre o Direct do Instagram.
+- [ ] Fotos do portfólio em `site/img/portfolio/` + a linha de cada uma em `config.js` (só com autorização do cliente). Enquanto não houver nenhuma, a grade mostra espaços "Em breve".
+- [ ] Opcional: retrato do André e fotos do estúdio em `site/img/estudio/`.
+- [ ] Publicar: arrastar a pasta `site/` na Netlify ou ligar o repositório (base e publish = `site`). Passo a passo em `site/README.md`.
+- [ ] Confirmar no texto do site: cidade, domingo/feriado e se atende só com hora marcada.
+- [ ] Decidir se entra uma seção de avaliações reais do Google (nenhum depoimento foi inventado).
+
 ## Aguardando o André
 - [ ] Foto da tattoo do leão pronta (e autorização do cliente) → `legenda-tattoo`, `pos-tattoo-avaliacao`, portfólio e possível Reels.
 - [ ] Gravação de tela (ou frames) de um Reels de referência → `buscar-referencias-tattoo` / DNA em `referencias/`. O Instagram está bloqueado na rede deste ambiente.

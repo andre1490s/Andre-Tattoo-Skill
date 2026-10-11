@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>André Tattoo — Realismo preto e cinza em São Paulo</title>
+<meta name="description" content="Estúdio de tatuagem em São Paulo especializado em realismo preto e cinza, fine line, aquarela e coberturas. Projeto desenhado para a sua pele, com hora marcada na Vila Matilde.">
+<meta name="theme-color" content="#07080a">
+<meta name="author" content="André Tattoo">
+<link rel="canonical" href="https://andretattoo.netlify.app/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="André Tattoo">
+<meta property="og:title" content="André Tattoo — Realismo preto e cinza">
+<meta property="og:description" content="Realismo preto e cinza, fine line, aquarela e coberturas. Estúdio na Vila Matilde, São Paulo, com hora marcada.">
+<meta property="og:url" content="https://andretattoo.netlify.app/">
+<meta property="og:image" content="/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=Pinyon+Script&display=swap">
+<link rel="stylesheet" href="/css/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TattooParlor",
+  "name": "André Tattoo",
+  "description": "Estúdio de tatuagem especializado em realismo preto e cinza, fine line, aquarela e coberturas.",
+  "url": "https://andretattoo.netlify.app/",
+  "image": "https://andretattoo.netlify.app/img/og.png",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Av. Melchert, 606",
+    "addressLocality": "Vila Matilde, São Paulo",
+    "addressRegion": "SP",
+    "addressCountry": "BR"
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens": "09:00",
+    "closes": "22:00"
+  }],
+  "sameAs": ["https://www.instagram.com/andretatuadoor/"],
+  "priceRange": "$$"
+}
+</script>
+</head>
+<body>
+
+<!-- ============================== PRELOADER ============================== -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__inner">
+    <svg class="loader__mark" viewBox="0 0 120 120" aria-hidden="true">
+      <circle class="loader__ring" cx="60" cy="60" r="52"></circle>
+      <path class="loader__a" d="M38 84 L60 34 L82 84 M47 68 H73"></path>
+    </svg>
+    <div class="loader__bar"><span id="loaderFill"></span></div>
+    <p class="loader__txt">Preparando o traço<span class="dots"><i>.</i><i>.</i><i>.</i></span></p>
+  </div>
+</div>
+
+<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
+<div class="scrollbar" id="scrollbar" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<a class="skip" href="#sobre">Pular para o conteúdo</a>
+
+<!-- ============================== HEADER ============================== -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top" aria-label="André Tattoo, início">
+    <svg class="nav__mark" viewBox="0 0 120 120" aria-hidden="true">
+      <circle cx="60" cy="60" r="52"></circle>
+      <path d="M38 84 L60 34 L82 84 M47 68 H73"></path>
+    </svg>
+    <span class="nav__name">André<em>Tattoo</em></span>
+  </a>
+
+  <nav class="nav__links" aria-label="Navegação principal">
+    <a href="#sobre" data-link>Sobre</a>
+    <a href="#estilos" data-link>Estilos</a>
+    <a href="#portfolio" data-link>Portfólio</a>
+    <a href="#processo" data-link>Processo</a>
+    <a href="#estudio" data-link>Estúdio</a>
+    <a href="#duvidas" data-link>Dúvidas</a>
+  </nav>
+
+  <a class="btn btn--ghost nav__cta" href="#orcamento" data-link>
+    <span>Pedir orçamento</span>
+  </a>
+
+  <button class="burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
+    <span></span><span></span>
+  </button>
+</header>
+
+<!-- ============================== MENU MOBILE ============================== -->
+<div class="menu" id="menu" hidden>
+  <nav class="menu__links" aria-label="Navegação">
+    <a href="#sobre" data-link><i>01</i> Sobre</a>
+    <a href="#estilos" data-link><i>02</i> Estilos</a>
+    <a href="#portfolio" data-link><i>03</i> Portfólio</a>
+    <a href="#processo" data-link><i>04</i> Processo</a>
+    <a href="#estudio" data-link><i>05</i> Estúdio</a>
+    <a href="#duvidas" data-link><i>06</i> Dúvidas</a>
+    <a href="#orcamento" data-link><i>07</i> Orçamento</a>
+  </nav>
+  <div class="menu__foot">
+    <a href="#" data-ig>Instagram @andretatuadoor</a>
+    <p>Av. Melchert, 606 — Vila Matilde, São Paulo</p>
+  </div>
+</div>
+
+<!-- ============================== HERO ============================== -->
+<main id="top">
+<section class="hero" id="hero">
+  <canvas class="hero__canvas" id="smoke" aria-hidden="true"></canvas>
+  <div class="hero__vignette" aria-hidden="true"></div>
+
+  <div class="hero__inner">
+    <p class="eyebrow reveal-up" data-d="1">Estúdio em São Paulo — Vila Matilde</p>
+
+    <h1 class="hero__title">
+      <span class="line"><span>Realismo</span></span>
+      <span class="line"><span>em preto</span></span>
+      <span class="line"><span>e <em class="cursive">cinza</em></span></span>
+    </h1>
+
+    <p class="hero__lead reveal-up" data-d="4">
+      Projetos desenhados para a sua pele, com precisão de luz e sombra.
+      Realismo, fine line, aquarela e coberturas — sempre com hora marcada.
+    </p>
+
+    <div class="hero__cta reveal-up" data-d="5">
+      <a class="btn btn--solid magnetic" href="#orcamento" data-link><span>Começar meu projeto</span></a>
+      <a class="btn btn--line magnetic" href="#portfolio" data-link><span>Ver portfólio</span></a>
+    </div>
+  </div>
+
+  <div class="hero__meta">
+    <div class="hero__stat reveal-up" data-d="6"><b data-count="18">0</b><span>anos, idade mínima</span></div>
+    <div class="hero__stat reveal-up" data-d="7"><b data-count="40">0</b><span>dias para o retoque</span></div>
+    <div class="hero__stat reveal-up" data-d="8"><b data-count="1">0</b><span>trabalho grande por dia</span></div>
+  </div>
+
+  <a class="hero__scroll" href="#sobre" data-link aria-label="Rolar para o conteúdo">
+    <span class="hero__scrollLine"></span>
+    <span class="hero__scrollTxt">Role</span>
+  </a>
+</section>
+
+<!-- ============================== MARQUEE ============================== -->
+<div class="marquee" id="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Realismo preto e cinza</span><i>✦</i><span>Fine line</span><i>✦</i><span>Cobertura</span><i>✦</i>
+    <span>Aquarela</span><i>✦</i><span>Realismo colorido</span><i>✦</i><span>Trabalhos delicados</span><i>✦</i>
+    <span>Realismo preto e cinza</span><i>✦</i><span>Fine line</span><i>✦</i><span>Cobertura</span><i>✦</i>
+    <span>Aquarela</span><i>✦</i><span>Realismo colorido</span><i>✦</i><span>Trabalhos delicados</span><i>✦</i>
+  </div>
+</div>
+
+<!-- ============================== SOBRE ============================== -->
+<section class="sec sobre" id="sobre">
+  <div class="sec__head">
+    <p class="eyebrow reveal-up">01 — Sobre</p>
+    <h2 class="h2 reveal-lines">Tatuagem é <em class="cursive">técnica</em> antes de ser estilo</h2>
+  </div>
+
+  <div class="sobre__grid">
+    <div class="sobre__txt">
+      <p class="reveal-up" data-d="1">
+        Meu trabalho vive do contraste: onde a luz entra, onde a sombra fecha e quanto de pele
+        fica respirando entre as duas. É isso que faz um realismo continuar legível dez anos depois
+        da sessão — e é nisso que gasto a maior parte do tempo antes de encostar a agulha.
+      </p>
+      <p class="reveal-up" data-d="2">
+        Cada projeto começa por uma conversa: a ideia, a região do corpo, o tamanho possível e o que
+        a peça precisa representar. Só depois vem o desenho. Não repito modelo de catálogo nem adapto
+        no improviso o que não cabe na pele.
+      </p>
+      <p class="reveal-up" data-d="3">
+        Atendo realismo preto e cinza, fine line, aquarela, realismo colorido, trabalhos delicados e
+        cobertura de tatuagens antigas. <strong>Maori eu não faço</strong> — é um estilo de alta
+        dificuldade que merece quem o estuda a fundo, e prefiro indicar a entregar o aproximado.
+      </p>
+
+      <ul class="pills reveal-up" data-d="4">
+        <li>18 anos ou mais</li>
+        <li>Hora marcada</li>
+        <li>Material descartável</li>
+        <li>Orçamento direto comigo</li>
+      </ul>
+    </div>
+
+    <figure class="sobre__frame reveal-scale" data-slot="retrato">
+      <div class="frame" data-photo="retrato">
+        <span class="frame__label">Retrato do artista</span>
+        <span class="frame__hint">foto em breve</span>
+      </div>
+      <figcaption>André — realismo preto e cinza</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================== ESTILOS ============================== -->
+<section class="sec estilos" id="estilos">
+  <div class="sec__head">
+    <p class="eyebrow reveal-up">02 — Estilos</p>
+    <h2 class="h2 reveal-lines">O que entra na <em class="cursive">agulha</em></h2>
+    <p class="sec__sub reveal-up" data-d="2">Passe o dedo ou o mouse em cada estilo.</p>
+  </div>
+
+  <div class="cards" id="cards">
+    <article class="card tilt" tabindex="0">
+      <span class="card__n">01</span>
+      <h3>Realismo preto e cinza</h3>
+      <p>A especialidade da casa. Retratos, animais, religioso e épico construídos em camadas de cinza, com luz dura e preto fechado onde a peça precisa de peso.</p>
+      <ul><li>Retrato</li><li>Animais</li><li>Religioso</li></ul>
+    </article>
+
+    <article class="card tilt" tabindex="0">
+      <span class="card__n">02</span>
+      <h3>Fine line</h3>
+      <p>Linha fina contínua, sem excesso. Floral, lettering e composições pequenas em que o desenho se sustenta pelo traço, não pelo preenchimento.</p>
+      <ul><li>Floral</li><li>Minimalista</li><li>Lettering</li></ul>
+    </article>
+
+    <article class="card tilt" tabindex="0">
+      <span class="card__n">03</span>
+      <h3>Cobertura (cover-up)</h3>
+      <p>Tatuagem antiga, borrada ou arrependida vira base de um projeto novo. Avalio pessoalmente o que dá para esconder e o que precisa de clareamento antes.</p>
+      <ul><li>Cover-up</li><li>Reparo</li><li>Reconstrução</li></ul>
+    </article>
+
+    <article class="card tilt" tabindex="0">
+      <span class="card__n">04</span>
+      <h3>Aquarela e colorido</h3>
+      <p>Cor aplicada com critério: transições suaves, respiro de pele e pigmento pensado para envelhecer bem no seu tom de pele.</p>
+      <ul><li>Aquarela</li><li>Realismo colorido</li></ul>
+    </article>
+
+    <article class="card tilt" tabindex="0">
+      <span class="card__n">05</span>
+      <h3>Trabalhos delicados</h3>
+      <p>Peças pequenas e femininas com acabamento de projeto grande. Nada de miniatura improvisada: escala, posição e espessura calculadas.</p>
+      <ul><li>Delicado</li><li>Feminino</li></ul>
+    </article>
+
+    <article class="card tilt" tabindex="0">
+      <span class="card__n">06</span>
+      <h3>Fechamentos</h3>
+      <p>Braço, perna e costas em sessões planejadas, com mapa da peça inteira antes da primeira linha. Um trabalho grande por dia, só seu.</p>
+      <ul><li>Braço</li><li>Costas</li><li>Perna</li></ul>
+    </article>
+  </div>
+</section>
+
+<!-- ============================== PORTFÓLIO ============================== -->
+<section class="sec port" id="portfolio">
+  <div class="sec__head">
+    <p class="eyebrow reveal-up">03 — Portfólio</p>
+    <h2 class="h2 reveal-lines">Trabalhos na <em class="cursive">pele</em></h2>
+    <p class="sec__sub reveal-up" data-d="2">Filtre por estilo e toque para ampliar.</p>
+  </div>
+
+  <div class="filters" id="filters" role="tablist" aria-label="Filtrar portfólio por estilo">
+    <button role="tab" aria-selected="true" data-f="todos">Todos</button>
+    <button role="tab" aria-selected="false" data-f="realismo">Realismo</button>
+    <button role="tab" aria-selected="false" data-f="fineline">Fine line</button>
+    <button role="tab" aria-selected="false" data-f="delicado">Delicados</button>
+    <button role="tab" aria-selected="false" data-f="coverup">Cobertura</button>
+    <button role="tab" aria-selected="false" data-f="colorido">Cor</button>
+  </div>
+
+  <div class="grid" id="grid"><!-- preenchido por js/main.js a partir de js/config.js --></div>
+
+  <p class="port__note reveal-up">
+    O portfólio completo e os trabalhos mais recentes ficam no
+    <a href="#" data-ig>Instagram @andretatuadoor</a>.
+  </p>
+</section>
+
+<!-- ============================== PROCESSO ============================== -->
+<section class="sec proc" id="processo">
+  <div class="sec__head">
+    <p class="eyebrow reveal-up">04 — Processo</p>
+    <h2 class="h2 reveal-lines">Do primeiro contato à <em class="cursive">cicatrização</em></h2>
+  </div>
+
+  <ol class="steps" id="steps">
+    <span class="steps__rail" aria-hidden="true"><i id="railFill"></i></span>
+
+    <li class="step">
+      <span class="step__n">01</span>
+      <h3>Conversa</h3>
+      <p>Você manda a ideia, a região do corpo, o tamanho aproximado e as referências que gosta. Quanto mais claro, menos tempo a gente perde depois.</p>
+    </li>
+
+    <li class="step">
+      <span class="step__n">02</span>
+      <h3>Orçamento e sinal</h3>
+      <p>Eu avalio o projeto e passo o valor pessoalmente — orçamento não sai por robô nem por tabela. A data só fica reservada depois do sinal, que não é devolvido em cancelamento ou reagendamento.</p>
+    </li>
+
+    <li class="step">
+      <span class="step__n">03</span>
+      <h3>Desenho</h3>
+      <p>Faço o desenho em cima do seu corpo e do seu tema. Ajustes acontecem antes da sessão, com calma, não na cadeira.</p>
+    </li>
+
+    <li class="step">
+      <span class="step__n">04</span>
+      <h3>Sessão</h3>
+      <p>Material descartável, pausas quando precisar e um trabalho grande por dia — o seu. Venha alimentado, dormido e sem álcool nas últimas 24 horas.</p>
+    </li>
+
+    <li class="step">
+      <span class="step__n">05</span>
+      <h3>Cicatrização e retoque</h3>
+      <p>Você sai com as orientações de cuidado. A partir de 40 dias, se precisar, eu avalio por foto ou pessoalmente e combinamos o retoque.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ============================== ESTÚDIO ============================== -->
+<section class="sec studio" id="estudio">
+  <div class="sec__head">
+    <p class="eyebrow reveal-up">05 — Estúdio</p>
+    <h2 class="h2 reveal-lines">Onde a <em class="cursive">sessão</em> acontece</h2>
+  </div>
+
+  <div class="studio__grid">
+    <div class="studio__info">
+      <dl class="info reveal-up" data-d="1">
+        <div><dt>Endereço</dt><dd>Av. Melchert, 606<br>Vila Matilde — São Paulo, SP</dd></div>
+        <div><dt>Horário</dt><dd>Segunda a sábado<br>9h às 22h</dd></div>
+        <div><dt>Atendimento</dt><dd>Com hora marcada<br>Agenda pelo WhatsApp</dd></div>
+        <div><dt>Idade mínima</dt><dd>18 anos<br>Documento com foto</dd></div>
+      </dl>
+      <div class="studio__btns reveal-up" data-d="2">
+        <a class="btn btn--line magnetic" id="mapsBtn" href="#" target="_blank" rel="noopener"><span>Abrir no mapa</span></a>
+        <a class="btn btn--ghost magnetic" href="#" data-ig><span>Instagram</span></a>
+      </div>
+    </div>
+
+    <div class="studio__shots" id="studioShots">
+      <figure class="frame frame--tall reveal-scale" data-photo="estudio-1"><span class="frame__label">Ambiente</span><span class="frame__hint">foto em breve</span></figure>
+      <figure class="frame reveal-scale" data-d="1" data-photo="estudio-2"><span class="frame__label">Bancada</span><span class="frame__hint">foto em breve</span></figure>
+      <figure class="frame reveal-scale" data-d="2" data-photo="estudio-3"><span class="frame__label">Detalhe</span><span class="frame__hint">foto em breve</span></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== DÚVIDAS ============================== -->
+<section class="sec faq" id="duvidas">
+  <div class="sec__head">
+    <p class="eyebrow reveal-up">06 — Dúvidas</p>
+    <h2 class="h2 reveal-lines">Antes de <em class="cursive">perguntar</em></h2>
+  </div>
+
+  <div class="acc" id="acc">
+    <details class="acc__item reveal-up">
+      <summary><span>Quanto custa uma tatuagem?</span><i aria-hidden="true"></i></summary>
+      <div class="acc__body"><p>Depende do tamanho, da região do corpo, do estilo e do tempo de sessão. Por isso eu não trabalho com tabela nem passo valor por aqui: você me manda o projeto pelo WhatsApp e eu avalio e respondo pessoalmente.</p></div>
+    </details>
+
+    <details class="acc__item reveal-up">
+      <summary><span>Como funciona o sinal?</span><i aria-hidden="true"></i></summary>
+      <div class="acc__body"><p>O sinal é o que reserva a sua data na agenda e é descontado do valor da tattoo. Ele <strong>não é devolvido em caso de cancelamento ou reagendamento</strong> — a data bloqueada não volta a ser vendida. Combino tudo com você antes de qualquer cobrança.</p></div>
+    </details>
+
+    <details class="acc__item reveal-up">
+      <summary><span>E o retoque?</span><i aria-hidden="true"></i></summary>
+      <div class="acc__body"><p>A partir de 40 dias da sessão, se for necessário, depois de eu avaliar por foto ou pessoalmente. Falha minha na aplicação, retoque sem custo. Área inflamada ou desgastada por cuidado inadequado precisa ser refeita, e aí o trabalho é cobrado novamente — explico isso antes, sem susto depois.</p></div>
+    </details>
+
+    <details class="acc__item reveal-up">
+      <summary><span>Dá para cobrir uma tatuagem antiga?</span><i aria-hidden="true"></i></summary>
+      <div class="acc__body"><p>Na maioria dos casos, sim. Mande uma foto da peça atual com boa luz: eu digo o que é possível esconder, se vale clarear antes e quais desenhos funcionam naquele formato. Cobertura exige honestidade — se não der bom resultado, eu falo.</p></div>
+    </details>
+
+    <details class="acc__item reveal-up">
+      <summary><span>Você faz maori?</span><i aria-hidden="true"></i></summary>
+      <div class="acc__body"><p>Não. É um estilo de alta dificuldade, com repertório próprio, e eu prefiro não entregar o aproximado. Se é isso que você quer, posso tentar indicar alguém.</p></div>
+    </details>
+
+    <details class="acc__item reveal-up">
+      <summary><span>Menor de idade pode tatuar?</span><i aria-hidden="true"></i></summary>
+      <div class="acc__body"><p>Não atendo menores de 18 anos, com ou sem autorização dos pais. Traga documento com foto no dia da sessão.</p></div>
+    </details>
+
+    <details class="acc__item reveal-up">
+      <summary><span>Como me preparo para a sessão?</span><i aria-hidden="true"></i></summary>
+      <div class="acc__body"><p>Durma bem, coma antes de vir e evite álcool nas 24 horas anteriores. Use roupa confortável que dê acesso à região e traga o que precisar para passar o tempo. Sessão longa tem pausa — é só pedir.</p></div>
+    </details>
+
+    <details class="acc__item reveal-up">
+      <summary><span>Posso levar acompanhante?</span><i aria-hidden="true"></i></summary>
+      <div class="acc__body"><p>Pode, uma pessoa. O estúdio funciona com hora marcada e um trabalho grande por dia, então o ambiente é tranquilo — e a ideia é que continue assim.</p></div>
+    </details>
+  </div>
+</section>
+
+<!-- ============================== ORÇAMENTO ============================== -->
+<section class="sec quote" id="orcamento">
+  <div class="sec__head">
+    <p class="eyebrow reveal-up">07 — Orçamento</p>
+    <h2 class="h2 reveal-lines">Monte seu <em class="cursive">projeto</em></h2>
+    <p class="sec__sub reveal-up" data-d="2">Três passos. No fim, abre no WhatsApp com tudo escrito — você só confere e envia.</p>
+  </div>
+
+  <div class="quote__wrap">
+    <form class="form" id="form" novalidate>
+      <div class="form__bar" aria-hidden="true"><i id="formFill"></i></div>
+      <p class="form__count"><b id="stepNow">1</b> de 3</p>
+
+      <!-- passo 1 -->
+      <fieldset class="fs is-on" data-step="1">
+        <legend>A ideia</legend>
+
+        <label class="field">
+          <span>Seu nome</span>
+          <input type="text" name="nome" autocomplete="name" placeholder="Como posso te chamar?" required>
+        </label>
+
+        <div class="field">
+          <span>Estilo</span>
+          <div class="chips" id="chipsEstilo" role="radiogroup" aria-label="Estilo">
+            <button type="button" role="radio" aria-checked="false" data-v="Realismo preto e cinza">Realismo P&amp;B</button>
+            <button type="button" role="radio" aria-checked="false" data-v="Fine line">Fine line</button>
+            <button type="button" role="radio" aria-checked="false" data-v="Cobertura (cover-up)">Cobertura</button>
+            <button type="button" role="radio" aria-checked="false" data-v="Aquarela ou colorido">Aquarela / cor</button>
+            <button type="button" role="radio" aria-checked="false" data-v="Trabalho delicado">Delicado</button>
+            <button type="button" role="radio" aria-checked="false" data-v="Fechamento">Fechamento</button>
+            <button type="button" role="radio" aria-checked="false" data-v="Ainda não sei">Não sei ainda</button>
+          </div>
+        </div>
+
+        <label class="field">
+          <span>O que você quer tatuar</span>
+          <textarea name="ideia" rows="3" placeholder="Ex.: um leão em realismo, olhando de frente, com fundo de fumaça" required></textarea>
+        </label>
+      </fieldset>
+
+      <!-- passo 2 -->
+      <fieldset class="fs" data-step="2">
+        <legend>Pele e tamanho</legend>
+
+        <div class="field">
+          <span>Região do corpo</span>
+          <div class="chips" id="chipsLocal" role="radiogroup" aria-label="Região do corpo">
+            <button type="button" role="radio" aria-checked="false" data-v="Antebraço">Antebraço</button>
+            <button type="button" role="radio" aria-checked="false" data-v="Braço">Braço</button>
+            <button type="button" role="radio" aria-checked="false" data-v="Ombro">Ombro</button>
+            <button type="button" role="radio" aria-checked="false" data-v="Costas">Costas</button>
+            <button type="button" role="radio" aria-checked="false" data-v="Peito">Peito</button>
+            <button type="button" role="radio" aria-checked="false" data-v="Costela">Costela</button>
+            <button type="button" role="radio" aria-checked="false" data-v="Perna">Perna</button>
+            <button type="button" role="radio" aria-checked="false" data-v="Mão ou pé">Mão / pé</button>
+            <button type="button" role="radio" aria-checked="false" data-v="Outra região">Outra</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <span>Tamanho aproximado: <b id="sizeOut">15 cm</b></span>
+          <input type="range" name="tamanho" id="size" min="3" max="45" value="15" step="1" aria-describedby="sizeHelp">
+          <div class="ruler" id="ruler" aria-hidden="true"><i></i><span id="rulerBar"></span></div>
+          <small id="sizeHelp">Arraste para ver a escala. Pode ser estimativa — eu ajusto na avaliação.</small>
+        </div>
+
+        <div class="field field--row">
+          <label class="check"><input type="checkbox" name="primeira"><span>É minha primeira tatuagem</span></label>
+          <label class="check"><input type="checkbox" name="cobrir"><span>Quero cobrir uma tattoo antiga</span></label>
+        </div>
+      </fieldset>
+
+      <!-- passo 3 -->
+      <fieldset class="fs" data-step="3">
+        <legend>Agenda</legend>
+
+        <div class="field">
+          <span>Quando você pode</span>
+          <div class="chips" id="chipsQuando" role="radiogroup" aria-label="Disponibilidade">
+            <button type="button" role="radio" aria-checked="false" data-v="Semana (manhã)">Semana manhã</button>
+            <button type="button" role="radio" aria-checked="false" data-v="Semana (tarde)">Semana tarde</button>
+            <button type="button" role="radio" aria-checked="false" data-v="Semana (noite)">Semana noite</button>
+            <button type="button" role="radio" aria-checked="false" data-v="Sábado">Sábado</button>
+            <button type="button" role="radio" aria-checked="false" data-v="Flexível">Flexível</button>
+          </div>
+        </div>
+
+        <label class="field">
+          <span>Algo mais que eu precise saber <i>(opcional)</i></span>
+          <textarea name="extra" rows="2" placeholder="Referências, prazo, alergia, cicatriz na região..."></textarea>
+        </label>
+
+        <label class="check check--big">
+          <input type="checkbox" name="idade" required>
+          <span>Confirmo que tenho 18 anos ou mais e que o valor será combinado direto com o André.</span>
+        </label>
+      </fieldset>
+
+      <div class="form__nav">
+        <button type="button" class="btn btn--ghost" id="prev" disabled><span>Voltar</span></button>
+        <button type="button" class="btn btn--solid magnetic" id="next"><span>Continuar</span></button>
+        <button type="submit" class="btn btn--solid magnetic" id="send" hidden><span>Abrir no WhatsApp</span></button>
+      </div>
+      <p class="form__err" id="err" role="alert" aria-live="polite"></p>
+    </form>
+
+    <aside class="preview" aria-label="Prévia da mensagem">
+      <header><span class="preview__dot"></span> Prévia da mensagem</header>
+      <div class="preview__bubble" id="previewTxt">Vá preenchendo ao lado — a mensagem se monta aqui.</div>
+      <button type="button" class="btn btn--line btn--sm" id="copyBtn"><span>Copiar mensagem</span></button>
+      <p class="preview__note">Nada é enviado por este site: a mensagem abre no seu WhatsApp e você decide se manda.</p>
+    </aside>
+  </div>
+</section>
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="foot">
+  <div class="foot__top">
+    <div class="foot__brand">
+      <svg class="foot__mark" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"></circle><path d="M38 84 L60 34 L82 84 M47 68 H73"></path></svg>
+      <p class="foot__tag">Realismo preto e cinza<br>São Paulo — Vila Matilde</p>
+    </div>
+
+    <nav class="foot__nav" aria-label="Rodapé">
+      <a href="#sobre" data-link>Sobre</a>
+      <a href="#estilos" data-link>Estilos</a>
+      <a href="#portfolio" data-link>Portfólio</a>
+      <a href="#processo" data-link>Processo</a>
+      <a href="#duvidas" data-link>Dúvidas</a>
+      <a href="#orcamento" data-link>Orçamento</a>
+    </nav>
+
+    <div class="foot__contact">
+      <a class="foot__big" href="#" data-ig>@andretatuadoor</a>
+      <p>Av. Melchert, 606 — Vila Matilde<br>Segunda a sábado, 9h às 22h</p>
+      <a class="btn btn--line btn--sm magnetic" href="#orcamento" data-link><span>Pedir orçamento</span></a>
+    </div>
+  </div>
+
+  <div class="foot__bot">
+    <p>© <span id="year">2026</span> André Tattoo. Todos os direitos reservados.</p>
+    <p>Atendimento somente para maiores de 18 anos.</p>
+  </div>
+</footer>
+
+<!-- WhatsApp flutuante -->
+<a class="fab" id="fab" href="#orcamento" data-link aria-label="Pedir orçamento">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.7-.1-.4-.1-1-.3-1.7-.6a11 11 0 0 1-4.2-3.9c-.5-.9-.8-1.7-.8-2.4 0-.7.3-1.3.7-1.7.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .5.4l.7 1.7c.1.2 0 .4-.1.5l-.3.4c-.2.2-.3.3-.2.5.5 1.1 1.5 2.1 2.7 2.6.2.1.4.1.5-.1l.5-.6c.2-.2.3-.2.5-.1l1.6.8c.3.1.4.3.4.5 0 .2 0 .6-.2 1.1Z"/></svg>
+  <span>Orçamento</span>
+</a>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Imagem ampliada" hidden>
+  <button class="lb__x" id="lbX" aria-label="Fechar">✕</button>
+  <button class="lb__nav lb__nav--prev" id="lbPrev" aria-label="Anterior">‹</button>
+  <button class="lb__nav lb__nav--next" id="lbNext" aria-label="Próxima">›</button>
+  <figure class="lb__fig">
+    <div class="lb__media" id="lbMedia"></div>
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="/js/config.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>
