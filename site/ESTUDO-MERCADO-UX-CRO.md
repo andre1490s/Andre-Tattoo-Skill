@@ -178,6 +178,35 @@ ganho de conversão de toda a reforma.
 
 ---
 
+### 6.1 O que fotografar (prioridade 1)
+
+O site tem 8 peças publicadas. Para um estúdio de alto padrão, o acervo precisa de **25 a 30**.
+Isso é o que mais separa este site de um site caro — mais do que qualquer ajuste de layout.
+
+**Quantidade e variedade (o que o cliente procura):**
+| Precisa de | Quantas | Por quê |
+|---|---|---|
+| Realismo preto e cinza | 8 a 10 | É o seu posicionamento. Hoje são 4 |
+| Fine line / delicado | 5 a 6 | Público feminino, ticket de entrada. Hoje são 3 |
+| Cobertura (antes e depois) | 2 a 3 | Objeção cara de resolver, e você não tem nenhuma |
+| Fechamento de braço / perna / costas | 3 a 4 | Mostra que você aguenta projeto grande. Hoje: nenhuma |
+| Blackwork | 2 a 3 | Hoje é 1 |
+| **Cicatrizada (30+ dias)** | 3 a 4 | **A prova que nenhum concorrente mostra.** Resolve "vai ficar bom na minha pele?" |
+| Peles de tons diferentes | o que tiver | O cliente quer se ver na foto |
+| Stencil → resultado da mesma peça | 2 a 3 | Prova de autoria; o par da fada é o melhor bloco do site hoje |
+
+**Como fotografar (muda mais que a câmera):**
+- **Luz lateral**, não de frente. Luz de frente apaga o cinza e achata o realismo.
+- **Fundo escuro e limpo** — sem lixeira, sem papel toalha, sem rosto de cliente no reflexo.
+- Pele **limpa e sem brilho** de pomada (dá estourado na foto). Secar antes.
+- **Peça inteira enquadrada**, com um palmo de pele em volta. Sem cortar extremidade.
+- **Vertical (3:4)** — é o formato do site e do Instagram.
+- 3 fotos por peça: inteira, um detalhe, e uma com o membro em posição natural.
+- Celular serve. Foto tremida, amarelada ou com flash direto, não.
+
+**Vídeo (vale muito):** 10 a 15 s de uma peça **cicatrizada**, girando devagar. É o conteúdo que
+mais falta no mercado inteiro e o que mais derruba objeção.
+
 ## 7. Como medir (sem isso, CRO é chute)
 
 1. **GA4 + Meta Pixel** no site (eu instalo quando você me passar os IDs)

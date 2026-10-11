@@ -30,6 +30,8 @@ Atualizado em 2026-10-07. Sem dados de clientes neste arquivo.
 
 ## Site do estúdio (`site/`) — v2 no ar
 Estudo completo em `site/ESTUDO-MERCADO-UX-CRO.md`. O que falta é só você:
+- [ ] **MAIS FOTOS (prioridade 1).** O site está visualmente pobre porque tem 8 peças. Alvo: **25 a 30**.
+      Lista do que mandar em `site/ESTUDO-MERCADO-UX-CRO.md`, seção 6.1.
 - [ ] **3 a 5 depoimentos reais** de clientes (texto + primeiro nome + peça). É o único bloco de prova que
       falta; a seção está pronta e desligada em `config.js`. Impacto alto na conversão.
 - [ ] **Link do seu Perfil da Empresa no Google** (avaliações públicas valem mais que depoimento no site).

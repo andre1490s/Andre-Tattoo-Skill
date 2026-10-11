@@ -38,10 +38,8 @@ window.SITE = {
 
   /* ---------- 4. PROCESSO (stencil -> resultado) ---------- */
   processo: [
-    { img:"fada-stencil", alt:"Stencil da fada aplicado no antebraço antes da sessão",
-      legenda:"Stencil aplicado", nota:"O desenho nasce do seu corpo: posição, escala e fluxo são decididos com a peça já na pele." },
     { img:"vaso-stencil", alt:"Stencil de vaso grego com rosas aplicado na costela",
-      legenda:"Projeto nas costelas", nota:"Nada começa antes de você aprovar o desenho no espelho." }
+      legenda:"Projeto nas costelas", nota:"Nada começa antes de você aprovar o desenho no espelho. Posição, escala e fluxo são decididos com a peça já na pele." }
   ],
 
   /* ---------- 5. DEPOIMENTOS ----------
