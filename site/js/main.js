@@ -192,6 +192,43 @@
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeMenu(); });
 
   var bar = $("#scrollbar"), fixa = $("#bar"), last = 0;
+
+  /* --- animação contínua: parallax das fotos + saída do topo + espinha --- */
+  var pars = [], heroEl = $("#hero"), heroIn = $(".hero__inner"), heroVid = $("#heroVideo");
+  var spineFill = $("#spineFill"), spineItens = [];
+
+  function mapeiaPar() {
+    pars = $$("[data-par]").map(function (el) {
+      return { el: el, img: $("img", el), v: parseFloat(el.getAttribute("data-par")) || 0.06 };
+    }).filter(function (p) { return p.img; });
+  }
+
+  function anima(y) {
+    var vh = window.innerHeight;
+
+    /* fotos: deslocam mais devagar que a página */
+    for (var i = 0; i < pars.length; i++) {
+      var p = pars[i], r = p.el.getBoundingClientRect();
+      if (r.bottom < -120 || r.top > vh + 120) continue;
+      var centro = r.top + r.height / 2 - vh / 2;
+      p.img.style.transform = "translate3d(0," + (-centro * p.v).toFixed(1) + "px,0) scale(1.1)";
+    }
+
+    /* topo: conteúdo sobe e some, vídeo abre devagar */
+    if (heroEl && heroIn && y < vh * 1.2) {
+      var k = Math.min(1, y / (vh * 0.85));
+      heroIn.style.transform = "translate3d(0," + (y * 0.22).toFixed(1) + "px,0)";
+      heroIn.style.opacity = Math.max(0, 1 - k * 1.05).toFixed(3);
+      if (heroVid) heroVid.style.transform = "scale(" + (1 + k * 0.08).toFixed(4) + ")";
+    }
+
+    /* espinha */
+    if (spineFill) {
+      var h = document.documentElement.scrollHeight - vh;
+      spineFill.style.transform = "scaleY(" + (h > 0 ? Math.min(1, y / h) : 0).toFixed(4) + ")";
+    }
+  }
+
   function onScroll() {
     var y = window.pageYOffset;
     var h = document.documentElement.scrollHeight - window.innerHeight;
@@ -201,6 +238,7 @@
       nav.classList.toggle("is-hidden", y > 420 && y > last && (!menu || menu.hidden));
     }
     if (fixa) fixa.classList.toggle("is-on", y > window.innerHeight * 0.65);
+    if (!REDUCE) anima(y);
     last = y;
   }
   var ticking = false;
@@ -211,12 +249,31 @@
   }, { passive: true });
 
   var secs = $$("main section[id]"), navLinks = $$(".nav__links a");
+
+  /* espinha: um item por seção, ligada ao mesmo observador do menu */
+  (function montaEspinha() {
+    var ul = $("#spineList"); if (!ul) return;
+    var nomes = { destaques:"Trabalhos", estilos:"Estilos", como:"Processo", processo:"Bastidor",
+                  artista:"O artista", portfolio:"Portfólio", duvidas:"Dúvidas",
+                  agendar:"Agendar", estudio:"Estúdio" };
+    secs.forEach(function (sec) {
+      if (!nomes[sec.id]) return;
+      var li = document.createElement("li");
+      li.textContent = nomes[sec.id];
+      li.setAttribute("data-sec", sec.id);
+      ul.appendChild(li);
+      spineItens.push(li);
+    });
+  })();
   if ("IntersectionObserver" in window && secs.length) {
     var ioNav = new IntersectionObserver(function (es) {
       es.forEach(function (en) {
         if (!en.isIntersecting) return;
         navLinks.forEach(function (a) {
           a.classList.toggle("is-active", a.getAttribute("href") === "#" + en.target.id);
+        });
+        spineItens.forEach(function (li) {
+          li.classList.toggle("is-on", li.getAttribute("data-sec") === en.target.id);
         });
       });
     }, { rootMargin: "-45% 0px -50% 0px" });
@@ -416,7 +473,7 @@
   var bast = $("#bastGrid");
   if (bast) (CFG.processo || []).forEach(function (p, i) {
     var f = document.createElement("figure");
-    f.className = "bast__card reveal-scale"; f.setAttribute("data-d", i);
+    f.className = "bast__card reveal-scale"; f.setAttribute("data-d", i); f.setAttribute("data-par", "0.05");
     f.innerHTML = fig(p.img, p.alt, "(max-width:760px) 92vw, 420px") +
       "<figcaption><b>" + p.legenda + "</b><p>" + p.nota + "</p></figcaption>";
     bast.appendChild(f);
@@ -771,5 +828,8 @@
     tTimer = setTimeout(function () { tEl.classList.remove("is-on"); }, 2800);
   }
 
+  mapeiaPar();
+  window.addEventListener("resize", mapeiaPar, { passive: true });
+  window.addEventListener("load", function () { mapeiaPar(); onScroll(); });
   onScroll();
 })();

@@ -60,6 +60,10 @@
 <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
 <div class="scrollbar" id="scrollbar" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
+<nav class="spine" id="spine" aria-label="Progresso da página">
+  <span class="spine__rail"><i id="spineFill"></i></span>
+  <ul id="spineList"></ul>
+</nav>
 <a class="skip" href="#destaques">Pular para o conteúdo</a>
 
 <!-- ============ NAV ============ -->
@@ -172,7 +176,7 @@
 
   <div class="scards">
     <article class="scard">
-      <div class="scard__img" style="--pos:50% 35%">
+      <div class="scard__img" data-par="0.05" style="--pos:50% 35%">
         <picture>
           <source srcset="img/portfolio/retrato-bone-sm.webp 640w, img/portfolio/retrato-bone.webp 1200w" sizes="(max-width:720px) 92vw, 300px" type="image/webp">
           <img src="img/portfolio/retrato-bone-sm.jpg" srcset="img/portfolio/retrato-bone-sm.jpg 640w, img/portfolio/retrato-bone.jpg 1200w" sizes="(max-width:720px) 92vw, 300px" alt="Retrato em realismo preto e cinza no braço" loading="lazy" decoding="async">
@@ -186,7 +190,7 @@
       </div>
     </article>
     <article class="scard">
-      <div class="scard__img" style="--pos:50% 45%">
+      <div class="scard__img" data-par="0.05" style="--pos:50% 45%">
         <picture>
           <source srcset="img/portfolio/lirio-costas-sm.webp 640w, img/portfolio/lirio-costas.webp 1200w" sizes="(max-width:720px) 92vw, 300px" type="image/webp">
           <img src="img/portfolio/lirio-costas-sm.jpg" srcset="img/portfolio/lirio-costas-sm.jpg 640w, img/portfolio/lirio-costas.jpg 1200w" sizes="(max-width:720px) 92vw, 300px" alt="Lírio em fine line nas costas" loading="lazy" decoding="async">
@@ -200,7 +204,7 @@
       </div>
     </article>
     <article class="scard">
-      <div class="scard__img" style="--pos:50% 40%">
+      <div class="scard__img" data-par="0.05" style="--pos:50% 40%">
         <picture>
           <source srcset="img/portfolio/raposa-perna-sm.webp 640w, img/portfolio/raposa-perna.webp 1200w" sizes="(max-width:720px) 92vw, 300px" type="image/webp">
           <img src="img/portfolio/raposa-perna-sm.jpg" srcset="img/portfolio/raposa-perna-sm.jpg 640w, img/portfolio/raposa-perna.jpg 1200w" sizes="(max-width:720px) 92vw, 300px" alt="Raposa em blackwork na perna" loading="lazy" decoding="async">
@@ -214,7 +218,7 @@
       </div>
     </article>
     <article class="scard">
-      <div class="scard__img" style="--pos:50% 30%">
+      <div class="scard__img" data-par="0.05" style="--pos:50% 30%">
         <picture>
           <source srcset="img/portfolio/cigana-braco-sm.webp 640w, img/portfolio/cigana-braco.webp 1200w" sizes="(max-width:720px) 92vw, 300px" type="image/webp">
           <img src="img/portfolio/cigana-braco-sm.jpg" srcset="img/portfolio/cigana-braco-sm.jpg 640w, img/portfolio/cigana-braco.jpg 1200w" sizes="(max-width:720px) 92vw, 300px" alt="Cigana em realismo preto e cinza no braço" loading="lazy" decoding="async">
@@ -259,7 +263,7 @@
   </div>
 
   <figure class="pair reveal-scale">
-    <div class="pair__item">
+    <div class="pair__item" data-par="0.06">
       <picture>
         <source srcset="img/portfolio/fada-stencil-sm.webp 640w, img/portfolio/fada-stencil.webp 1200w" sizes="(max-width:760px) 92vw, 430px" type="image/webp">
         <img src="img/portfolio/fada-stencil-sm.jpg" srcset="img/portfolio/fada-stencil-sm.jpg 640w, img/portfolio/fada-stencil.jpg 1200w" sizes="(max-width:760px) 92vw, 430px" alt="Stencil da fada aplicado no antebraço antes da sessão" loading="lazy" decoding="async" width="1200" height="1600">
@@ -267,7 +271,7 @@
       <span class="pair__lbl">01 — Stencil</span>
     </div>
     <span class="pair__seta" aria-hidden="true"></span>
-    <div class="pair__item">
+    <div class="pair__item" data-par="0.06">
       <picture>
         <source srcset="img/portfolio/fada-fineline-sm.webp 640w, img/portfolio/fada-fineline.webp 1200w" sizes="(max-width:760px) 92vw, 430px" type="image/webp">
         <img src="img/portfolio/fada-fineline-sm.jpg" srcset="img/portfolio/fada-fineline-sm.jpg 640w, img/portfolio/fada-fineline.jpg 1200w" sizes="(max-width:760px) 92vw, 430px" alt="A mesma fada tatuada e finalizada em fine line com pontilhismo" loading="lazy" decoding="async" width="1200" height="1600">
@@ -280,7 +284,7 @@
   <div class="bast__row">
     <div class="bast__grid" id="bastGrid"><!-- preenchido por js --></div>
     <figure class="bast__video reveal-scale">
-      <video id="obraVideo" muted loop playsinline preload="none" aria-label="Detalhe de um lírio em fine line recém-finalizado"><source src="video/obra-lirio.webm" type="video/webm"><source src="video/obra-lirio.mp4" type="video/mp4"></video>
+      <video id="obraVideo" poster="video/obra-poster.jpg" muted loop playsinline preload="none" aria-label="Detalhe de um lírio em fine line recém-finalizado"><source src="video/obra-lirio.webm" type="video/webm"><source src="video/obra-lirio.mp4" type="video/mp4"></video>
       <figcaption>Peça recém-finalizada — fine line com sombreado em pontilhismo</figcaption>
     </figure>
   </div>
@@ -288,7 +292,7 @@
 
 <!-- ============ 6b. MANIFESTO ============ -->
 <section class="band" aria-label="Manifesto">
-  <picture class="band__bg">
+  <picture class="band__bg" data-par="0.14">
     <source srcset="img/portfolio/nossa-senhora.webp" type="image/webp">
     <img src="img/portfolio/nossa-senhora.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
   </picture>
@@ -301,7 +305,7 @@
 <!-- ============ 7. O ARTISTA ============ -->
 <section class="sec artista" id="artista">
   <div class="artista__grid">
-    <figure class="artista__foto reveal-scale">
+    <figure class="artista__foto reveal-scale" data-par="0.07">
       <picture>
         <source srcset="img/estudio/andre-retrato.webp" type="image/webp">
         <img src="img/estudio/andre-retrato.jpg" alt="André, tatuador, retrato em preto e branco" loading="lazy" decoding="async" width="1200" height="1600">
@@ -525,7 +529,7 @@
         <a class="btn btn--ghost magnetic" href="#" data-ig><span>Instagram</span></a>
       </div>
     </div>
-    <figure class="studio__foto reveal-scale">
+    <figure class="studio__foto reveal-scale" data-par="0.07">
       <picture>
         <source srcset="img/estudio/andre-tatuando.webp" type="image/webp">
         <img src="img/estudio/andre-tatuando.jpg" alt="André tatuando no estúdio, com luva e máquina na mão" loading="lazy" decoding="async" width="1200" height="1600">

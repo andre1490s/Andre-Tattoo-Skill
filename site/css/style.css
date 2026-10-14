@@ -971,3 +971,38 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
   color:var(--muted);transition:background .3s,color .3s}
 .tema button[aria-pressed="true"]{background:var(--gold);color:var(--ink);font-weight:600}
 @media (max-width:860px){.tema{left:auto;right:10px;top:auto;bottom:80px;transform:none;flex-direction:row}}
+
+/* =====================================================================
+   ANIMAÇÃO LIGADA À ROLAGEM
+   ===================================================================== */
+
+/* imagens com parallax: um pouco maiores para a folga do deslocamento */
+[data-par] img,[data-par] picture img{transform:translate3d(0,0,0) scale(1.1);will-change:transform}
+[data-par]{overflow:hidden}
+
+/* saída do topo */
+.hero__inner,.hero__scroll{will-change:transform,opacity}
+
+/* espinha: a linha que cresce com a rolagem */
+.spine{position:fixed;left:26px;top:50%;transform:translateY(-50%);z-index:906;
+  display:none;align-items:center;gap:16px;pointer-events:none}
+.spine__rail{position:relative;width:1px;height:min(42vh,340px);background:var(--line);overflow:hidden}
+.spine__rail i{position:absolute;inset:0;display:block;background:var(--gold);
+  transform:scaleY(0);transform-origin:top;transition:transform .12s linear}
+.spine ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+  justify-content:space-between;height:min(42vh,340px)}
+.spine li{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+  opacity:.38;transform:translateX(-4px);line-height:1;
+  transition:opacity .45s var(--ease),color .45s var(--ease),transform .45s var(--ease)}
+.spine li.is-on{opacity:1;color:var(--cream);transform:translateX(0)}
+.spine li.is-on::before{content:"";display:inline-block;width:12px;height:1px;
+  background:var(--gold);vertical-align:middle;margin-right:7px}
+@media (min-width:1280px){.spine{display:flex}}
+
+/* o topo não precisa competir com a espinha */
+.hero .spine{display:none}
+
+@media (prefers-reduced-motion:reduce){
+  [data-par] img,[data-par] picture img{transform:none;scale:1}
+  .spine{display:none!important}
+}
