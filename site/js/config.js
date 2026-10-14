@@ -5,6 +5,10 @@
 
 window.SITE = {
 
+  /* ---------- 0. VISUAL ----------
+     "escuro" = fundo preto (atual) | "claro" = fundo osso, estilo galeria  */
+  tema: "escuro",
+
   /* ---------- 1. CONTATO ---------- */
   whatsapp: "5511982713543",          // DDI + DDD + número, só dígitos
   instagram: "andretatuadoor",

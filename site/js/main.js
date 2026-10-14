@@ -46,6 +46,30 @@
   });
 
   /* ---------------------------------------------------------------
+     1b. TEMA (escuro | claro) — definido em config.js
+  --------------------------------------------------------------- */
+  (function tema() {
+    var guardado = null;
+    try { guardado = localStorage.getItem("andre-tema"); } catch (e) {}
+    var atual = guardado || CFG.tema || "escuro";
+    function poe(t) {
+      atual = t;
+      document.documentElement.setAttribute("data-tema", t);
+      $$("#tema button").forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.getAttribute("data-t") === t));
+      });
+      try { localStorage.setItem("andre-tema", t); } catch (e) {}
+    }
+    poe(atual);
+    var box = $("#tema");
+    if (!box) return;                       /* site publicado: sem seletor */
+    box.addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-t]");
+      if (b) { poe(b.getAttribute("data-t")); track("tema", { escolha: atual }); }
+    });
+  })();
+
+  /* ---------------------------------------------------------------
      2. CONTATO
   --------------------------------------------------------------- */
   var IG  = "https://www.instagram.com/" + (CFG.instagram || "andretatuadoor") + "/";

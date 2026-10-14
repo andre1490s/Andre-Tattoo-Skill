@@ -892,3 +892,82 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 /* ---------- respiro entre seções ---------- */
 .sec{padding-block:clamp(64px,8.5vw,128px)}
 .band + .sec{padding-top:clamp(64px,9vw,132px)}
+
+/* =====================================================================
+   TEMA CLARO — "galeria": fundo osso, tinta escura, acento bronze.
+   Ligado por  <html data-tema="claro">  (config.js -> tema).
+   Os tokens são redefinidos; os componentes não mudam.
+   ===================================================================== */
+:root[data-tema="claro"]{
+  --ink:#FAF9F7;        /* fundo */
+  --ink-2:#F2F0EB;      /* superfície */
+  --smoke:#EDEAE4;
+  --smoke-2:#E6E2DA;
+  --line:rgba(28,25,21,.13);
+  --line-2:rgba(28,25,21,.26);
+  --cream:#17181B;      /* texto forte */
+  --cream-dim:#45474C;
+  --silver:#6B6E74;
+  --muted:#75787E;
+  --gold:#96702F;       /* bronze: dourado puro some no claro */
+  --gold-soft:#AC8540;
+  color-scheme:light;
+}
+
+/* blocos que ficam por cima de foto continuam claros por dentro */
+:root[data-tema="claro"] .hero,
+:root[data-tema="claro"] .band,
+:root[data-tema="claro"] .lb,
+:root[data-tema="claro"] .bar,
+:root[data-tema="claro"] .tile,
+:root[data-tema="claro"] .slide,
+:root[data-tema="claro"] .pair__item,
+:root[data-tema="claro"] .scard__img{
+  --cream:#F4F1EB; --cream-dim:#DBD7CF; --muted:#AFAAA1;
+  --line:rgba(244,241,235,.2); --line-2:rgba(244,241,235,.34);
+  --gold:#C9A24A; --gold-soft:#E0C07A;
+}
+
+:root[data-tema="claro"] .grain{opacity:.16;mix-blend-mode:multiply}
+:root[data-tema="claro"] .loader{background:var(--ink)}
+:root[data-tema="claro"] .nav.is-stuck{background:rgba(250,249,247,.86)}
+/* por cima do vídeo do topo o menu continua claro */
+:root[data-tema="claro"] .nav:not(.is-stuck) .nav__name,
+:root[data-tema="claro"] .nav:not(.is-stuck) .nav__links a{color:#EFEBE4}
+:root[data-tema="claro"] .nav:not(.is-stuck) .nav__name em{color:#B3ADA3}
+:root[data-tema="claro"] .nav:not(.is-stuck) .nav__mark{stroke:#EFEBE4}
+:root[data-tema="claro"] .nav:not(.is-stuck) .burger span{background:#EFEBE4}
+:root[data-tema="claro"] .btn--solid{color:#1A1713}
+:root[data-tema="claro"] .btn--solid::before{background:#17181B}
+:root[data-tema="claro"] .btn--solid:hover{color:#FAF9F7;border-color:#17181B}
+:root[data-tema="claro"] .btn--ghost{background:rgba(28,25,21,.05)}
+:root[data-tema="claro"] .bar{background:rgba(23,24,27,.94)}
+:root[data-tema="claro"] .bar__cta{color:#1A1713}
+:root[data-tema="claro"] .lb{background:rgba(250,249,247,.97)}
+:root[data-tema="claro"] .lb__fig figcaption{color:#45474C}
+:root[data-tema="claro"] .lb__fig figcaption b{color:#17181B}
+:root[data-tema="claro"] .lb__x,:root[data-tema="claro"] .lb__nav{color:#17181B;border-color:rgba(28,25,21,.26)}
+:root[data-tema="claro"] .toast{background:#17181B;color:#FAF9F7}
+:root[data-tema="claro"] .preview__bubble{background:#FFF;border-color:rgba(28,25,21,.12)}
+:root[data-tema="claro"] .form{background:#FFF}
+:root[data-tema="claro"] .card{background:var(--ink)}
+:root[data-tema="claro"] .card:hover,:root[data-tema="claro"] .card:focus-visible{background:#FFF}
+:root[data-tema="claro"] .hero__media::before{opacity:.6}
+:root[data-tema="claro"] .trust{background:#FFF}
+:root[data-tema="claro"] .foot{background:var(--ink-2)}
+:root[data-tema="claro"] input[type=range]::-webkit-slider-thumb{border-color:#FFF}
+:root[data-tema="claro"] input[type=range]::-moz-range-thumb{border-color:#FFF}
+:root[data-tema="claro"] .filters button[aria-selected="true"]{background:#17181B;color:#FAF9F7;border-color:#17181B}
+:root[data-tema="claro"] .chips button[aria-checked="true"],
+:root[data-tema="claro"] .chips--multi button[aria-pressed="true"]{color:#1A1713}
+:root[data-tema="claro"] .tile__tag,:root[data-tema="claro"] .slide__tag{background:rgba(23,24,27,.55)}
+:root[data-tema="claro"] .pair__lbl{text-shadow:0 1px 10px rgba(0,0,0,.6)}
+
+/* seletor de tema (só aparece na prévia) */
+.tema{position:fixed;left:14px;top:50%;transform:translateY(-50%);z-index:930;
+  display:flex;flex-direction:column;gap:2px;padding:4px;border-radius:999px;
+  border:1px solid var(--line-2);background:var(--ink-2)}
+.tema button{width:34px;height:34px;border-radius:50%;font-size:.58rem;letter-spacing:.06em;
+  color:var(--muted);transition:background .3s,color .3s}
+.tema button[aria-pressed="true"]{background:var(--gold);color:var(--ink);font-weight:600}
+@media (max-width:860px){.tema{left:auto;right:10px;top:auto;bottom:80px;transform:none;flex-direction:row}}

@@ -99,3 +99,13 @@ Nela, o formulário **não grava no servidor** (isso só existe na Netlify) e a 
 WhatsApp pode ser bloqueada pelo ambiente da prévia. Para gerar de novo após mudanças:
 `python3` monta a versão de prévia a partir de `index.html` removendo `<head>`/`<body>`
 (a hospedagem injeta o próprio esqueleto) — peça ao Claude "atualiza a prévia".
+
+## 10. Trocar entre fundo escuro e claro
+`js/config.js` → `tema: "escuro"` ou `tema: "claro"`.
+- **escuro**: preto fuligem, creme serifado, dourado (o original)
+- **claro**: fundo osso estilo galeria, tinta escura, acento bronze; o topo com vídeo
+  continua escuro de propósito, para o impacto do primeiro contato
+
+Os dois usam os mesmos tokens de cor (`:root` e `:root[data-tema="claro"]` no topo do CSS) —
+nenhum componente foi duplicado. Na prévia publicada existe um seletor flutuante para comparar
+os dois no celular; no site publicado ele não aparece.
