@@ -36,6 +36,9 @@ Estudo completo em `site/ESTUDO-MERCADO-UX-CRO.md`. O que falta é só você:
       falta; a seção está pronta e desligada em `config.js`. Impacto alto na conversão.
 - [ ] **Link do seu Perfil da Empresa no Google** (avaliações públicas valem mais que depoimento no site).
 - [ ] **Autorização de imagem** dos clientes das 9 peças publicadas — regra do repositório.
+- [ ] **Perfil da Empresa no Google** (google.com/business) — grátis e é o que traz cliente local
+      antes do site ranquear. Passo a passo em `site/GOOGLE.md`.
+- [ ] **Search Console**: enviar o `sitemap.xml` depois que o site estiver no ar.
 - [ ] Ligar as **notificações por e-mail** do Netlify Forms (Forms → Form notifications) para receber os pedidos.
 - [ ] Criar **GA4 e Meta Pixel** e me passar os IDs (os eventos já estão instrumentados).
 - [ ] 2 a 3 fotos do ambiente do estúdio (bancada, sala) — hoje só há fotos suas.
