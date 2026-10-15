@@ -1,0 +1,161 @@
+/* =====================================================================
+   ANDRÉ TATTOO — direção "Carvão, Prata e Lâmina" (amostra, etapa 1)
+   ===================================================================== */
+:root{
+  --carvao:#0A0B0C; --grafite:#121417; --grafite-2:#191C20;
+  --tinta:#E7E7E4; --tinta-dim:#9FA2A4; --mudo:#6A6E72;
+  --lamina:#4F7A61; --sinal:#8FBFA1;
+  --linha:rgba(231,231,228,.12); --linha-2:rgba(231,231,228,.26);
+  --metal:linear-gradient(100deg,#5E6368 0%,#D6D9DD 38%,#F2F4F5 50%,#8A8F95 64%,#4E5358 100%);
+  --ff-d:"Bodoni Moda",Didot,"Times New Roman",serif;
+  --ff-m:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --ff-c:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --gut:clamp(20px,5vw,84px); --maxw:1320px;
+  --e:cubic-bezier(.16,1,.3,1);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--carvao);color:var(--tinta-dim);
+  font-family:var(--ff-c);font-weight:300;font-size:clamp(15px,.35vw+14px,16.5px);
+  line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img,video,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--lamina);color:var(--tinta)}
+:focus-visible{outline:1px solid var(--sinal);outline-offset:4px}
+
+.dado{font-family:var(--ff-m);font-size:.66rem;font-weight:400;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--mudo);margin:0}
+.h2{font-family:var(--ff-d);font-weight:400;font-size:clamp(2rem,5.4vw,4rem);line-height:1.05;
+  letter-spacing:-.01em;color:var(--tinta);margin:.3em 0 0;text-wrap:balance}
+.h2 em{font-style:italic;color:var(--sinal)}
+.apoio{max-width:52ch;margin:22px 0 0;font-size:.95rem}
+
+.amostra{position:fixed;left:50%;top:0;transform:translateX(-50%);z-index:90;margin:0;
+  padding:7px 16px;border-radius:0 0 3px 3px;background:rgba(10,11,12,.8);
+  backdrop-filter:blur(8px);border:1px solid var(--linha);border-top:0;
+  font-family:var(--ff-m);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mudo);pointer-events:none}
+
+.sec{max-width:var(--maxw);margin:0 auto;padding:clamp(80px,13vw,180px) var(--gut)}
+.cab{max-width:62ch}
+
+/* ---------- ENTRADA ---------- */
+.entrada{position:relative;min-height:100svh;display:grid;place-items:center;overflow:hidden;
+  padding:var(--gut)}
+.entrada__media{position:absolute;inset:0;z-index:0;background:#000}
+.entrada__media video{width:100%;height:100%;object-fit:cover;object-position:58% 52%;
+  opacity:0;transition:opacity 1.6s var(--e)}
+.entrada__media video.on{opacity:.5}
+.entrada__media::before{content:"";position:absolute;inset:0;
+  background:url("../video/hero-poster.jpg") 58% 52%/cover no-repeat;opacity:.42;filter:grayscale(.5)}
+.entrada__veu{position:absolute;inset:0;
+  background:radial-gradient(70% 55% at 50% 45%,rgba(10,11,12,.35),rgba(10,11,12,.93) 78%),
+    linear-gradient(180deg,rgba(10,11,12,.8),transparent 30%,rgba(10,11,12,.97))}
+.entrada__meio{position:relative;z-index:2;text-align:center}
+
+.mono{width:clamp(54px,7vw,78px);margin:0 auto clamp(26px,4vw,40px);fill:none;overflow:visible}
+.mono__anel{stroke:var(--lamina);stroke-width:2;opacity:0;
+  stroke-dasharray:327;stroke-dashoffset:327}
+.mono__a{stroke:url(#metal);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:170;stroke-dashoffset:170}
+
+.nome{margin:0;font-family:var(--ff-d);font-weight:400;
+  font-size:clamp(2.9rem,12vw,8.2rem);line-height:.92;letter-spacing:.02em;
+  text-transform:uppercase;color:var(--tinta)}
+.nome__m{display:block;overflow:hidden;padding:0 .04em}
+.nome__m em{display:block;font-style:normal;transform:translateY(105%)}
+.nome__m:last-child em{font-style:italic;color:var(--tinta-dim);font-size:.44em;
+  letter-spacing:.42em;padding-left:.42em}
+#dadoEntrada{margin-top:clamp(18px,3vw,28px);opacity:0}
+
+.fio{position:absolute;left:50%;bottom:0;width:1px;height:clamp(60px,9vh,110px);z-index:3;
+  background:var(--linha);overflow:hidden}
+.fio i{position:absolute;inset:0;display:block;background:linear-gradient(180deg,var(--lamina),var(--sinal));
+  transform:scaleY(0);transform-origin:top}
+
+/* ---------- A PEÇA ---------- */
+.peca{position:relative;display:grid;grid-template-columns:1fr;align-items:center;
+  padding:clamp(60px,10vw,140px) var(--gut);max-width:var(--maxw);margin:0 auto}
+.peca__quadro{position:relative;overflow:hidden;border:1px solid var(--linha);
+  aspect-ratio:16/10;background:var(--grafite)}
+.peca__quadro img{width:100%;height:118%;object-fit:cover;object-position:50% 42%;
+  filter:grayscale(.18) contrast(1.06);will-change:transform}
+.ficha{margin:-64px 0 0 clamp(0px,4vw,60px);position:relative;z-index:2;
+  background:var(--grafite);border:1px solid var(--linha);padding:clamp(24px,3.4vw,40px);
+  max-width:min(520px,92%)}
+.ficha__n{font-family:var(--ff-m);font-size:.6rem;letter-spacing:.24em;color:var(--lamina)}
+.ficha h2{font-family:var(--ff-d);font-weight:400;font-size:clamp(1.6rem,3vw,2.3rem);
+  color:var(--tinta);margin:14px 0 8px;line-height:1.1}
+.ficha>p{margin:0 0 24px;font-size:.92rem}
+.ficha dl{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px;margin:0;
+  padding-top:22px;border-top:1px solid var(--linha)}
+.ficha dt{font-family:var(--ff-m);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mudo);margin-bottom:5px}
+.ficha dd{margin:0;font-family:var(--ff-m);font-size:.82rem;color:var(--tinta);
+  font-variant-numeric:tabular-nums}
+
+/* ---------- A LENTE ---------- */
+.lente{position:relative;margin:clamp(34px,5vw,60px) 0 0;overflow:hidden;
+  border:1px solid var(--linha);background:var(--grafite);cursor:none;
+  max-width:720px;touch-action:pan-y}
+.lente img{width:100%;height:auto;filter:grayscale(.12) contrast(1.05)}
+.lente__vidro{position:absolute;top:0;left:0;width:210px;height:210px;border-radius:50%;
+  pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.82);
+  border:1px solid rgba(231,231,228,.55);
+  box-shadow:0 0 0 1px rgba(10,11,12,.6),0 24px 60px rgba(0,0,0,.6);
+  background-repeat:no-repeat;transition:opacity .35s var(--e),transform .35s var(--e)}
+.lente__vidro.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.lente__dica{position:absolute;left:14px;bottom:14px;font-family:var(--ff-m);font-size:.56rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--tinta-dim);
+  background:rgba(10,11,12,.6);backdrop-filter:blur(6px);border:1px solid var(--linha);
+  padding:6px 11px;border-radius:999px;transition:opacity .4s}
+.lente.ativa .lente__dica{opacity:0}
+@media (max-width:620px){.lente__vidro{width:150px;height:150px}}
+
+/* ---------- ESPECÍMEN ---------- */
+.paleta{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:1px;background:var(--linha);margin-top:clamp(34px,5vw,56px);border:1px solid var(--linha)}
+.cor{background:var(--carvao);padding:18px}
+.cor span{display:block;height:74px;background:var(--c);border:1px solid var(--linha)}
+.cor--metal span{background:var(--metal)}
+.cor b{display:block;margin-top:14px;font-family:var(--ff-d);font-size:1.05rem;
+  font-weight:400;color:var(--tinta)}
+.cor i{font-family:var(--ff-m);font-size:.6rem;font-style:normal;letter-spacing:.1em;color:var(--mudo)}
+
+.tipos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));
+  gap:clamp(22px,3vw,40px);margin-top:clamp(40px,6vw,70px)}
+.tipo__am{font-family:var(--ff-d);font-size:clamp(2.1rem,4vw,3rem);color:var(--tinta);
+  margin:14px 0 10px;line-height:1}
+.tipo__am--mono{font-family:var(--ff-m);font-size:clamp(.78rem,1.3vw,.92rem);
+  letter-spacing:.14em;color:var(--sinal);line-height:1.6}
+.tipo__am--corpo{font-family:var(--ff-c);font-size:1rem;font-weight:300;
+  color:var(--tinta-dim);line-height:1.6}
+.tipo__nota{margin:0;font-size:.82rem;color:var(--mudo)}
+
+/* ---------- FECHO ---------- */
+.fecho{text-align:center}
+.fecho .h2{max-width:20ch;margin-inline:auto}
+.fecho .apoio{margin-inline:auto}
+.btn{display:inline-flex;align-items:center;gap:12px;margin-top:34px;padding:16px 32px;
+  position:relative;font-family:var(--ff-m);font-size:.68rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--tinta);border:1px solid transparent;
+  background:linear-gradient(var(--carvao),var(--carvao)) padding-box,var(--metal) border-box;
+  transition:color .4s,background-color .4s}
+.btn::after{content:"";width:16px;height:1px;background:var(--sinal);transition:width .4s var(--e)}
+.btn:hover::after{width:30px}
+.btn:hover{color:var(--sinal)}
+.fecho__nota{margin-top:40px}
+
+/* ---------- entrada por rolagem ---------- */
+.up{opacity:0;transform:translateY(22px)}
+
+@media (prefers-reduced-motion:reduce){
+  .up{opacity:1;transform:none}
+  .nome__m em{transform:none}
+  .mono__anel{opacity:1;stroke-dashoffset:0}
+  .mono__a{stroke-dashoffset:0}
+  #dadoEntrada{opacity:1}
+  .fio i{transform:scaleY(1)}
+}
