@@ -8,6 +8,7 @@ Sistema de skills para o estúdio André Tattoo (@andretatuadoor): conteúdo, ve
 - **Memória de aprendizados:** [`aprendizados/`](aprendizados/)
 - **Referências de edição aprovadas:** [`referencias/`](referencias/)
 - **Site do estúdio (andretattoo.netlify.app):** [`site/`](site/) — ver [`site/README.md`](site/README.md)
+- **Canal do YouTube (Shorts, retenção e monetização):** [`youtube/`](youtube/) — ver [`youtube/README.md`](youtube/README.md)
 
 ## Por onde começar
 | Quero... | Use |
@@ -20,6 +21,7 @@ Sistema de skills para o estúdio André Tattoo (@andretatuadoor): conteúdo, ve
 | anúncios | `gestor-de-trafego` |
 | entender números | `analista-metricas` e `gestor-financeiro` |
 | auditar o perfil | `estrategista-instagram` |
+| criar Shorts e monetizar o YouTube | `youtube/README.md` e as skills `cortes-de-sessao`, `roteiro-shorts-youtube`, `publicar-shorts-youtube`, `metricas-shorts-youtube`, `monetizacao-youtube` |
 | saber o que funcionou e por quê | `learning-engine` |
 | ver quanto as skills gastam de tokens | `buscar-consumo-tokens` |
 

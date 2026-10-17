@@ -44,6 +44,17 @@ Status: ✅ no repositório · 🟡 existe no Claude.ai do André, ainda não im
 | `publicar-no-site` | publica tattoo nova no portfólio do site e atualiza informações | ✅ `skills/` |
 | `depoimento-para-o-site` | transforma elogio real de cliente em depoimento publicado no site | ✅ `skills/` |
 
+### 1.1 YouTube (Shorts e sessões completas)
+Projeto iniciado em 17/10/2026, com prazo de monetização em 31/01/2027. Documentos do canal: `youtube/` (ver `youtube/README.md`).
+
+| Skill | Função | Status |
+|---|---|---|
+| `cortes-de-sessao` | uma sessão filmada → lote de 8 a 15 Shorts + 1 vídeo longo | ✅ `skills/` |
+| `roteiro-shorts-youtube` | gancho, primeiro frame, estrutura e loop de um Short | ✅ `skills/` |
+| `publicar-shorts-youtube` | título, descrição, hashtags, capa, comentário fixo e horário | ✅ `skills/` |
+| `metricas-shorts-youtube` | números do YouTube Studio → o que dobrar e o que aposentar | ✅ `skills/` |
+| `monetizacao-youtube` | progresso nas réguas do YPP, escolha de trilha e fontes de receita | ✅ `skills/` |
+
 ### 2. Atendimento e vendas
 | Skill | Função | Status |
 |---|---|---|
@@ -83,6 +94,8 @@ Status: ✅ no repositório · 🟡 existe no Claude.ai do André, ainda não im
 |---|---|---|
 | `buscar-consumo-tokens` | mede e busca onde as skills ocupam tokens do Claude (por skill, rotina ou termo) e propõe cortes seguros | ✅ `skills/` |
 
+> As 5 skills do YouTube (`cortes-de-sessao`, `roteiro-shorts-youtube`, `publicar-shorts-youtube`, `metricas-shorts-youtube`, `monetizacao-youtube`) foram criadas aqui em 17/10/2026, junto com a pasta `youtube/`.
+>
 > As 29 skills importadas estão no repositório; `buscar-consumo-tokens` e `arte-post-gemini` foram criadas aqui. As 17 operacionais (atendimento, conteúdo, agenda, finanças, pós-venda, relatórios) vieram da conta do André no Claude.ai e foram copiadas **sem alteração**. Elas divergem em alguns pontos de `contexto/marca.md`: ver `contexto/conflitos-a-resolver.md`. Até o André decidir, vale o que ele disse diretamente na conversa (registrado em `marca.md`).
 
 ## Aprendizado (Learning Engine)
@@ -103,6 +116,10 @@ O `learning-engine` fica **acima** das outras skills: não executa tarefas, apre
 | Oferta | `arquiteto-ofertas` cria a condição. `closer-vendas` e `diretor-conteudo-copy` só a usam; nenhum dos dois dá desconto por conta própria. |
 | Instagram | `estrategista-instagram` audita o perfil (estrutura). `diretor-conteudo-copy` produz o conteúdo. 🟡 `posts-semana-instagram` é a execução semanal no Metricool. |
 | Orquestração | Em conflito entre skills, vale a prioridade definida pelo `cerebro-estrategico`. |
+| Roteiro de vídeo | `roteiro-reels-tattoo` escreve para o **Instagram** (CTA no link da bio, sem loop costurado). `roteiro-shorts-youtube` escreve para o **YouTube** (primeiro frame vendendo o fim, loop, 15–22 s). Os dois entregam a ideia; a receita de edição é sempre do `editor-videos-tattoo`. |
+| Métricas de vídeo | `metricas-shorts-youtube` lê só o YouTube Studio. `relatorio-instagram` lê o Metricool. Os dois alimentam o `analista-metricas`, que é quem conclui. |
+| Dinheiro do canal | `monetizacao-youtube` cuida das réguas do YPP e das fontes de receita do canal. `gestor-financeiro` cuida do caixa do estúdio e recebe a receita do canal como uma entrada. |
+| Lote de vídeo | `cortes-de-sessao` decide **quantos e quais** vídeos saem de uma sessão. `roteiro-shorts-youtube` escreve cada um. `editor-videos-tattoo` monta. |
 
 ## Rotinas (como a agência roda)
 
@@ -114,6 +131,8 @@ O `learning-engine` fica **acima** das outras skills: não executa tarefas, apre
 | **Por tattoo finalizada (foto)** | `arte-post-gemini` (arte no padrão visual) → `legenda-tattoo` → `posts-semana-instagram` → resultado no registro da skill e em `registrar-no-sistema` |
 | **Por vídeo novo** | `buscar-referencias-tattoo` → `editor-videos-tattoo` → `gestor-de-trafego` (teste como criativo) |
 | **Perfil parado** | `estrategista-instagram` (auditoria) → `cerebro-estrategico` → execução |
+| **Por sessão filmada (YouTube)** | `cortes-de-sessao` → `roteiro-shorts-youtube` → `editor-videos-tattoo` → `publicar-shorts-youtube` → (48 h) `metricas-shorts-youtube` |
+| **Semanal do canal (segunda)** | `metricas-shorts-youtube` → `monetizacao-youtube` → `cerebro-estrategico` → `cortes-de-sessao` (lote da semana) |
 
 ## Handoffs principais (contratos entre skills)
 
@@ -143,6 +162,13 @@ O `learning-engine` fica **acima** das outras skills: não executa tarefas, apre
 | `learning-engine` → `cerebro-estrategico` | aprendizados de nível 3+ que mudam prioridade ou estratégia |
 | `learning-engine` → qualquer skill | recomendação de melhoria (só com OK do André) |
 | `buscar-consumo-tokens` → `learning-engine` | cortes propostos (skill, tokens ganhos, risco), só depois do OK do André |
+| `cortes-de-sessao` → `roteiro-shorts-youtube` | mapa de cortes: formato, planos usados, duração e público de cada Short |
+| `roteiro-shorts-youtube` → `editor-videos-tattoo` | primeiro frame, gancho, estrutura por tempo, loop e áudio |
+| `editor-videos-tattoo` → `publicar-shorts-youtube` | vídeo pronto + tema da peça |
+| `publicar-shorts-youtube` → `metricas-shorts-youtube` | o que foi publicado e quando (leitura em 48 h) |
+| `metricas-shorts-youtube` → `analista-metricas` / `cortes-de-sessao` | formato vencedor, formato aposentado, teste da semana |
+| `metricas-shorts-youtube` → `monetizacao-youtube` | ritmo de views e de horas contra a régua |
+| `monetizacao-youtube` → `cerebro-estrategico` / `gestor-financeiro` | trilha escolhida, viabilidade no prazo e receita do canal |
 
 ## Regras do sistema
 1. **Uma função por skill.** Se a skill faz duas coisas, divida.
@@ -162,6 +188,7 @@ skills/<nome>/SKILL.md  uma pasta por skill (+ scripts/ se houver)
 referencias/            DNAs de edição aprovados
 aprendizados/           memória do Learning Engine (LE-NNNN.md + INDEX.md)
 reels/<projeto>/        projetos de vídeo em andamento
+youtube/                estratégia, formatos, calendário e painel do canal do YouTube
 templates/              modelo para novas skills
 ```
 
