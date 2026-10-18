@@ -7,7 +7,7 @@ Checklist de configuração. Contexto de marca: `contexto/marca.md`.
 **Nome do canal: `André Tatuador`** — decidido pelo André em 18/10/2026. A palavra "tatuador" é termo de busca em português ("tatuador em São Paulo", "tatuador realismo"), o que ajuda no YouTube, onde o nome do canal é texto pesquisável; e é coerente com o @andretatuadoor do Instagram. A marca do estúdio continua **André Tattoo** (`contexto/marca.md`): o canal é um palco dela, não uma marca nova.
 
 - [x] **Nome do canal:** `André Tatuador`
-- [ ] **@ (handle):** `@andretatuadoor` para bater com o Instagram. Se estiver ocupado, em ordem: `@andretatuador`, `@andretatuadorsp`, `@andretattoo.realismo`. `[confirmar]` qual foi obtido. O @ importa mais que o nome: é o endereço, e o nome pode ser trocado depois.
+- [x] **@ (handle):** `@andretatuadoor` — obtido em 18/10/2026, igual ao Instagram. Canal: `youtube.com/@andretatuadoor`.
 - [ ] **Foto:** a mesma do Instagram (reconhecimento cruzado).
 - [ ] **Banner:** 2560 × 1440 px, com o essencial dentro da área segura central de 1546 × 423 px. Conteúdo: uma peça de realismo preto e cinza + "André Tatuador · Realismo preto e cinza · São Paulo". Sem preço, sem telefone grande, sem colagem de 10 fotos.
 - [ ] **País:** Brasil. **Idioma do canal:** português (Brasil).
@@ -29,7 +29,9 @@ Versão curta, se preferir uma linha só: `Realismo preto e cinza, cobertura e f
 
 As palavras de busca estão na frente de propósito (realismo, preto e cinza, cobertura, fine line, São Paulo). Sem preço, sem superlativo, sem clichê — regra de `contexto/marca.md`.
 
-### Palavras-chave do canal (Configurações → Canal → Informações básicas)
+### Palavras-chave do canal
+
+Só existe no computador: `studio.youtube.com` → Configurações → Canal → Informações básicas. O app do celular não tem esse campo. Sinal fraco, 2 minutos de trabalho — fazer quando sentar no computador, junto com banner e links.
 
 ```
 tatuagem, realismo preto e cinza, black and grey, cobertura de tatuagem,
