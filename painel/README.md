@@ -43,7 +43,7 @@ python3 -I painel/registrar.py metrica --categoria financeiro --periodo 2026-10 
   --fonte "app Caixa" entradas_mes=12500 custos_mes=3100 tattoos_mes=9 horas_mes=42
 
 python3 -I painel/registrar.py metrica --categoria funil --periodo 2026-W42 \
-  --fonte "app Caixa" leads=22 orcamentos=14 sinais=6 agendados=5
+  --fonte "app Caixa" contatos=25 leads=22 orcamentos=14 sinais=6 agendados=5
 
 python3 -I painel/registrar.py metrica --categoria instagram --periodo 2026-W42 \
   --fonte Metricool alcance=8200 posts=4 interacoes=310 seguidores=1240 dms=12
@@ -57,8 +57,8 @@ vale sempre o último valor, então dá para corrigir um número só repetindo o
 ### Chaves que o painel entende
 | categoria | chaves | vira o quê no painel |
 |---|---|---|
-| `financeiro` | `entradas_mes`, `custos_mes`, `sinais_mes`, `tattoos_mes`, `horas_mes` | entradas x meta, lucro, ticket médio, receita por hora, gráfico de meses |
-| `funil` | `leads`, `orcamentos`, `sinais`, `agendados`, `perdidos` | funil e conversão lead → agendado |
+| `financeiro` | `entradas_mes`, `custos_mes` (só estúdio), `retiradas_mes` (seu pessoal), `sinais_mes`, `tattoos_mes`, `horas_mes` | entradas x meta, lucro do estúdio e margem, sobra depois do pessoal, ticket médio, receita por hora, gráfico de meses |
+| `funil` | `contatos` (retomadas enviadas), `leads`, `orcamentos`, `sinais`, `agendados`, `perdidos` | contatos x meta da semana, funil e conversão lead → agendado |
 | `instagram` | `alcance`, `seguidores`, `posts`, `interacoes`, `visitas_perfil`, `dms` | card de posts e linha de alcance |
 | `youtube` | `inscritos`, `views_shorts_90d`, `horas_12m`, `shorts_publicados` | régua do YPP e prazo de 31/01/2027 |
 

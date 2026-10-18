@@ -267,7 +267,10 @@ def construir(estado, mapa, execucoes, hoje):
 
     prazo = estado.get("prazo_ypp")
     dias_prazo = (date.fromisoformat(prazo) - hoje).days if prazo else None
-    meta_posts = (estado.get("metas_semana") or {}).get("posts_instagram")
+    metas_semana = estado.get("metas_semana") or {}
+    meta_posts = metas_semana.get("posts_instagram")
+    meta_contatos = metas_semana.get("contatos_crm")
+    contatos = mapa.get(("funil", p_funil, "contatos"), (None,))[0] if p_funil else None
 
     cards = [
         card("entradas do mês" + (f" ({rotulo_periodo(p_ent)})" if p_ent else ""), brl(entradas),
@@ -281,6 +284,9 @@ def construir(estado, mapa, execucoes, hoje):
               else "lance retiradas_mes para separar estúdio e pessoal")),
         card("ticket médio", brl(ticket), f"{num(tattoos)} tattoos no mês" if tattoos else "falta tattoos_mes"),
         card("receita por hora", brl(por_hora), f"{num(horas)} h tatuando" if horas else "falta horas_mes"),
+        card("contatos de CRM na semana", num(contatos),
+             (f"meta {num(meta_contatos)}/semana" if meta_contatos else "retomadas e follow-ups enviados"),
+             medidor=(100 * contatos / meta_contatos) if (meta_contatos and contatos is not None) else None),
         card("conversão do funil", pct(conv),
              f"lead → agendado ({e(rotulo_periodo(p_funil))})" if p_funil else "sem funil registrado"),
         card("posts no Instagram", num(posts),
