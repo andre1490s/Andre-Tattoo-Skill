@@ -13,6 +13,7 @@ Mudanças no modelo do prompt. Só entram como "Aprovado" com OK do André; a pa
 | 2026-10-09 | Modo INTENSO para peças agressivas (preto-carvão, fumaça, luz dura de claro-escuro, ar masculino), mesma tipografia do modo delicado | pedido do André | Aprovado |
 | 2026-10-09 | Legenda foca no que o elemento representa em tatuagem, não nos detalhes da foto | pedido do André na legenda do lírio | Aprovado |
 | 2026-10-09 | API do Gemini sem cota grátis para imagem (429, limit 0 em 2.5-flash-image, 3.1-flash-image, 3.1-flash-lite-image); a chave via segredo de rede funcionou | teste direto (1x) | Fato registrado |
+| 2026-10-18 | Cota grátis da API continua zero (429, limit 0 em gemini-2.5-flash-image e gemini-3-pro-image-preview; gemini-2.0-flash-preview-image-generation nem existe mais). Caminho padrão: colar o prompt no app do Gemini | novo teste com o segredo de rede ativo (2x) | Fato registrado |
 
 ## Significados
 Elemento → significado usado na arte. Reutilizar para manter coerência entre posts.
