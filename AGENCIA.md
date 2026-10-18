@@ -6,6 +6,20 @@ Cada skill é um "agente" com função única. Elas passam resultado umas para a
 ## Camada de comando
 O `cerebro-estrategico` é o orquestrador: recebe dados (marketing, vendas, agenda, conteúdo, financeiro), diagnostica, define prioridades P1/P2/P3 e indica **qual skill executa cada ação**, com indicador e prazo de revisão. As demais skills executam; o Cérebro decide a ordem.
 
+## Camada de agentes
+Cinco agentes (`.claude/agents/`) são a porta de entrada do dia a dia: **carrossel**, **editor-video**, **financeiro**, **marketing** e **vendas**. Cada um lê o `contexto/marca.md` e as skills da sua área, executa e registra o resultado no painel. Skill é o manual; agente é quem atende. Mapa, regras e como criar o próximo: [`AGENTES.md`](AGENTES.md).
+
+| Agente | Área | Skills que lê |
+|---|---|---|
+| **carrossel** | post em carrossel no Instagram | carrossel-instagram, arte-post-gemini, diretor-conteudo-copy, posts-semana-instagram |
+| **editor-video** | Reels, Shorts e cortes de sessão | editor-videos-tattoo, buscar-referencias-tattoo, roteiro-reels-tattoo, roteiro-shorts-youtube, cortes-de-sessao, publicar-shorts-youtube |
+| **financeiro** | caixa, meta, ticket e margem | gestor-financeiro, fechamento-mensal-estudio, monetizacao-youtube |
+| **marketing** | pauta, perfil, anúncios e métricas | diretor-conteudo-copy, estrategista-instagram, posts-semana-instagram, gestor-de-trafego, relatorio-instagram, arquiteto-ofertas |
+| **vendas** | lead, orçamento, sinal e follow-up | closer-vendas, orcamento-tattoo, briefing-projeto-tattoo, crm-followup, followup-orcamento, reativar-clientes-antigos, responder-instagram, lembrete-sessao |
+
+## Painel
+`painel/index.html` mostra em uma tela: entradas contra a meta do mês, lucro, ticket, funil, Instagram, régua do YouTube, o que cada agente fez e o que está parado esperando o André. É gerado dos arquivos de `painel/dados/` por `painel/gerar.py`; os agentes alimentam com `painel/registrar.py`. Instruções: [`painel/README.md`](painel/README.md).
+
 ## Pipeline
 
 ```
@@ -40,6 +54,7 @@ Status: ✅ no repositório · 🟡 existe no Claude.ai do André, ainda não im
 | `roteiro-reels-tattoo` | roteiro, ideia e texto de tela para Reels | ✅ `skills/` |
 | `legenda-tattoo` | legenda para o Instagram a partir da foto/detalhes da tattoo | ✅ `skills/` |
 | `arte-post-gemini` | prompt do Gemini para a arte do post (foto tratada + textos + significado), aprendendo a cada foto | ✅ `skills/` |
+| `carrossel-instagram` | roteiro de carrossel: formato, texto card a card, nota de arte, legenda e hashtags | ✅ `skills/` |
 | `posts-semana-instagram` | planejamento semanal e agendamento no Metricool | ✅ `skills/` |
 | `publicar-no-site` | publica tattoo nova no portfólio do site e atualiza informações | ✅ `skills/` |
 | `depoimento-para-o-site` | transforma elogio real de cliente em depoimento publicado no site | ✅ `skills/` |
@@ -87,6 +102,7 @@ Projeto iniciado em 17/10/2026, com prazo de monetização em 31/01/2027. Docume
 | `relatorio-instagram` | desempenho do perfil via Metricool | ✅ `skills/` |
 | `revisao-semanal-estudio` | leads, agenda, caixa, Instagram e 3 ajustes | ✅ `skills/` |
 | `revisao-conversas-sofia` | revisão das conversas do agente de WhatsApp | ✅ `skills/` |
+| `painel-agencia` | mantém e lê o painel: gera, lança números e aponta o agente certo para cada ponto fraco | ✅ `skills/` |
 | `registrar-no-sistema` | grava o que foi aprendido (ciclo entre agentes) | ✅ `skills/` |
 
 ### 6. Manutenção do sistema
@@ -116,6 +132,8 @@ O `learning-engine` fica **acima** das outras skills: não executa tarefas, apre
 | Oferta | `arquiteto-ofertas` cria a condição. `closer-vendas` e `diretor-conteudo-copy` só a usam; nenhum dos dois dá desconto por conta própria. |
 | Instagram | `estrategista-instagram` audita o perfil (estrutura). `diretor-conteudo-copy` produz o conteúdo. 🟡 `posts-semana-instagram` é a execução semanal no Metricool. |
 | Orquestração | Em conflito entre skills, vale a prioridade definida pelo `cerebro-estrategico`. |
+| Carrossel x legenda | `carrossel-instagram` escreve o post de vários cards (texto de cada card + legenda do carrossel). `legenda-tattoo` escreve a legenda do post de **uma** peça. |
+| Painel x análise | `painel-agencia` mostra o número e diz quem resolve. `analista-metricas` interpreta e decide o teste; `gestor-financeiro` analisa a margem; `cerebro-estrategico` define a ordem. |
 | Roteiro de vídeo | `roteiro-reels-tattoo` escreve para o **Instagram** (CTA no link da bio, sem loop costurado). `roteiro-shorts-youtube` escreve para o **YouTube** (primeiro frame vendendo o fim, loop, 15–22 s). Os dois entregam a ideia; a receita de edição é sempre do `editor-videos-tattoo`. |
 | Métricas de vídeo | `metricas-shorts-youtube` lê só o YouTube Studio. `relatorio-instagram` lê o Metricool. Os dois alimentam o `analista-metricas`, que é quem conclui. |
 | Dinheiro do canal | `monetizacao-youtube` cuida das réguas do YPP e das fontes de receita do canal. `gestor-financeiro` cuida do caixa do estúdio e recebe a receita do canal como uma entrada. |
@@ -125,6 +143,7 @@ O `learning-engine` fica **acima** das outras skills: não executa tarefas, apre
 
 | Rotina | Sequência |
 |---|---|
+| **Segunda, 5 min** | `painel-agencia` (rodar o painel, lançar funil e Instagram da semana, ver o que está aguardando o André) |
 | **Semanal** | `analista-metricas` (semana passada) → `cerebro-estrategico` (3 prioridades) → `diretor-conteudo-copy` (pauta) → `editor-videos-tattoo` (vídeos) → `crm-followup` (lista de contatos da semana) |
 | **Mensal** | `gestor-financeiro` + `analista-metricas` → `cerebro-estrategico` (metas do mês) → `arquiteto-ofertas` (se agenda com buraco) → `gestor-de-trafego` (testes do mês) |
 | **Por lead novo** | `closer-vendas` → `crm-followup` (entra no funil) → resultado volta ao `cerebro-estrategico` |
@@ -157,6 +176,9 @@ O `learning-engine` fica **acima** das outras skills: não executa tarefas, apre
 | `briefing-projeto-tattoo` → `resumo-agenda-semanal` | projeto fechado e data |
 | `pos-tattoo-avaliacao` → `responder-avaliacoes-google` | avaliações recebidas |
 | `relatorio-instagram` → `buscar-referencias-tattoo` / `roteiro-reels-tattoo` | o que performou, para repetir |
+| qualquer agente / skill → `painel-agencia` | execução registrada (agente, ação, status, próximo passo) e números do período |
+| `painel-agencia` → `cerebro-estrategico` / `analista-metricas` | quadro do mês e séries para prioridade e diagnóstico |
+| `carrossel-instagram` → `arte-post-gemini` / `posts-semana-instagram` | roteiro aprovado: arte de cada card e agendamento |
 | qualquer skill → `registrar-no-sistema` | cliente, decisão e aprendizado ao fim do atendimento |
 | `analista-metricas` / feedback do André → `learning-engine` | resultado com número e fonte, ou feedback direto |
 | `learning-engine` → `cerebro-estrategico` | aprendizados de nível 3+ que mudam prioridade ou estratégia |
@@ -183,6 +205,9 @@ O `learning-engine` fica **acima** das outras skills: não executa tarefas, apre
 
 ```
 AGENCIA.md              este mapa
+AGENTES.md              os 5 agentes: o que cada um faz, limites e como criar outro
+.claude/agents/         um arquivo por agente
+painel/                 painel da agência (index.html gerado, dados/ e scripts)
 contexto/marca.md       identidade, tom, serviços, estúdio
 skills/<nome>/SKILL.md  uma pasta por skill (+ scripts/ se houver)
 referencias/            DNAs de edição aprovados

@@ -8,6 +8,12 @@ Atualizado em 2026-10-07. Sem dados de clientes neste arquivo.
 - Regras do `contexto/marca.md` valem nos anúncios: sem preço em peça pública, sem escassez falsa, sem prometer resultado, só o André passa o valor final.
 - Antes de qualquer gasto ou publicação: o Claude propõe a campanha e o André aprova cada passo. Nada vai ao ar sem confirmação.
 
+## Agentes e painel (criados em 18/10/2026)
+- [ ] Abrir `painel/index.html` e lançar os primeiros números: entradas do mês e funil da semana (comandos em `painel/README.md`).
+- [ ] Testar um agente de cada: pedir um carrossel, um fechamento e uma retomada de lead; dizer o que ficou fora do seu jeito.
+- [ ] Confirmar os status das conexões em `painel/dados/estado.json` (n8n está fora do ar nesta sessão; Figma instável).
+- [ ] Decidir se as metas da semana do painel (4 posts, 1 carrossel, 5 Shorts, 10 contatos) são as suas de verdade.
+
 ## URGENTE: privacidade do repositório
 - [ ] O repositório `andre1490s/Andre-Tattoo-Skill` está **PÚBLICO**. Tornar privado: GitHub > Settings > Danger Zone > Change repository visibility. Hoje ele expõe: valores de referência e políticas (marca.md, skills), o e-mail do Google (skill registrar-no-sistema) e o id do projeto Supabase (backup do app). Não há senhas, chaves nem dados de clientes.
 - Regra daqui para frente: não commitar fotos de tattoos, dados de clientes nem builds com imagens embutidas.

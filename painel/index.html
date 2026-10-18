@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Painel da Agência — André Tattoo</title>
+<style>
+:root{color-scheme:dark;
+ --bg:#060607;--surface:#101012;--surface2:#17171a;--line:#232326;
+ --ink:#ECEAE5;--muted:#8D8A85;--prata:#C9C6BF;--serif:"Cormorant Garamond",Cormorant,Georgia,serif;
+ --sans:Manrope,ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;padding:28px 16px 80px}
+header{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:24px}
+h1{font-family:var(--serif);font-weight:600;font-size:30px;letter-spacing:.02em;margin:0 0 4px}
+h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:34px 0 10px;letter-spacing:.02em}
+.sub,.apoio,.extra,.tick,.vazio{color:var(--muted)}
+.sub{font-size:13px}
+.num{font-variant-numeric:lining-nums tabular-nums}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:10px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:14px 14px 12px;display:flex;flex-direction:column;gap:4px}
+.card .rot{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.card strong{font-family:var(--serif);font-size:30px;font-weight:600;line-height:1.1}
+.card .apoio{font-size:12.5px;min-height:1.2em}
+.medidor{height:4px;background:#232326;border-radius:2px;overflow:hidden;margin:4px 0 2px}
+.medidor i{display:block;height:100%;background:var(--prata)}
+.bloco{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:16px}
+svg{width:100%;height:auto;display:block}
+.grid{stroke:#232326;stroke-width:1}
+.meta{stroke:var(--prata);stroke-width:1;stroke-dasharray:5 4;opacity:.75}
+.tick{font-size:11px;fill:var(--muted);font-family:var(--sans)}
+.meta-txt{fill:var(--prata)}
+.ar{text-anchor:end}.mid{text-anchor:middle}
+.val{font-size:13px;fill:var(--ink);font-family:var(--sans)}
+.conv{fill:var(--muted);font-size:11.5px}
+.mark{transition:opacity .12s}
+svg:hover .mark{opacity:.55}
+svg .mark:hover{opacity:1}
+ul{list-style:none;margin:0;padding:0}
+.lista li{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line)}
+.lista li:last-child{border-bottom:0}
+.quando{font-size:12px;color:var(--muted);min-width:102px}
+.ag{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--prata);min-width:96px}
+.acao{flex:1 1 240px}
+.extra{font-size:12.5px;flex-basis:100%}
+.extra code{font-size:12px}
+.st{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted)}
+.st i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.barrinha{flex:1 1 160px;height:6px;background:#232326;border-radius:3px;overflow:hidden}
+.barrinha i{display:block;height:100%;background:var(--prata)}
+.tagst{font-size:11px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--muted)}
+.t-ligada{color:#0ca30c;border-color:#1d3a1d}.t-instavel,.t-manual{color:#fab219;border-color:#3a3119}
+.t-fora-do-ar{color:#d03b3b;border-color:#3a1d1d}
+.cmd{background:#0b0b0c;border:1px solid var(--line);border-radius:4px;padding:10px 12px;font-size:12px;overflow-x:auto;color:var(--prata);white-space:pre-wrap;word-break:break-word}
+.vazio{font-size:13.5px;margin:0 0 10px}
+.tab{margin-top:12px;font-size:13px}
+.tab summary{cursor:pointer;color:var(--muted);font-size:12.5px}
+table{border-collapse:collapse;margin-top:8px;width:100%}
+th,td{text-align:left;padding:5px 10px 5px 0;border-bottom:1px solid var(--line);font-size:12.5px;font-variant-numeric:tabular-nums}
+th{color:var(--muted);font-weight:500}
+#tip{position:fixed;pointer-events:none;opacity:0;transition:opacity .1s;background:var(--surface2);border:1px solid var(--line);
+ border-radius:4px;padding:6px 9px;font-size:12.5px;color:var(--ink);z-index:9;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+footer{margin-top:42px;border-top:1px solid var(--line);padding-top:14px;font-size:12.5px;color:var(--muted)}
+footer code{color:var(--prata)}
+@media (max-width:620px){h1{font-size:25px}.card strong{font-size:23px}.card .rot{font-size:11px}.card .apoio{font-size:11.5px}.quando{min-width:0}.ag{min-width:0}}
+</style></head><body><div class="wrap">
+<header>
+  <h1>Painel da Agência</h1>
+  <p class="sub">André Tattoo · gerado em 18/10/2026 ·
+  5 agentes, 40 skills · fonte: <code>painel/dados/</code></p>
+</header>
+
+<h2>Onde o mês está</h2>
+<div class="cards"><div class='card'><span class='rot'>entradas do mês</span><strong class='num'>—</strong><span class='apoio'>meta R$ 20.000</span></div><div class='card'><span class='rot'>lucro estimado</span><strong class='num'>—</strong><span class='apoio'>falta lançar custos</span></div><div class='card'><span class='rot'>ticket médio</span><strong class='num'>—</strong><span class='apoio'>falta tattoos_mes</span></div><div class='card'><span class='rot'>receita por hora</span><strong class='num'>—</strong><span class='apoio'>falta horas_mes</span></div><div class='card'><span class='rot'>conversão do funil</span><strong class='num'>—</strong><span class='apoio'>sem funil registrado</span></div><div class='card'><span class='rot'>posts no Instagram</span><strong class='num'>—</strong><span class='apoio'>meta 4/semana</span></div><div class='card'><span class='rot'>Shorts: régua do YPP</span><strong class='num'>—</strong><span class='apoio'>views em 90 dias</span></div><div class='card'><span class='rot'>prazo da régua do YPP</span><strong class='num'>105 dias</strong><span class='apoio'>até 2027-01-31</span></div></div>
+
+<h2>Entradas por mês</h2>
+<div class="bloco"><p class='vazio'>Nenhuma entrada registrada ainda.</p><pre class='cmd'>python3 -I painel/registrar.py metrica --categoria financeiro --periodo 2026-10 --fonte &quot;app Caixa&quot; entradas_mes=12500 custos_mes=3100 tattoos_mes=9 horas_mes=42</pre></div>
+
+<h2>Funil de vendas</h2>
+<div class="bloco"><p class='vazio'>Funil sem dados. Uma leitura por semana já mostra onde o lead para.</p><pre class='cmd'>python3 -I painel/registrar.py metrica --categoria funil --periodo 2026-W42 --fonte &quot;app Caixa&quot; leads=14 orcamentos=9 sinais=3 agendados=3</pre></div>
+
+<h2>Alcance no Instagram</h2>
+<div class="bloco"><p class='vazio'>Alcance do Instagram sem série ainda (precisa de 2 semanas para virar linha).</p><pre class='cmd'>python3 -I painel/registrar.py metrica --categoria instagram --periodo 2026-W42 --fonte Metricool alcance=8200 posts=4 interacoes=310 seguidores=1240 dms=12</pre></div>
+
+<h2>Aguardando você</h2>
+<div class="bloco"><ul class="lista"><li><span class='st'><i style='background:#fab219'></i>aguardando André</span><span class='acao'>Abrir painel/index.html e lancar os primeiros numeros (entradas do mes e funil da semana)</span><span class='ag'>claude</span></li></ul></div>
+
+<h2>O que os agentes fizeram</h2>
+<div class="bloco"><ul class="lista"><li><span class='ag'>carrossel</span><span class='barrinha'><i style='width:0%'></i></span><span class='num'>0</span></li><li><span class='ag'>editor-video</span><span class='barrinha'><i style='width:0%'></i></span><span class='num'>0</span></li><li><span class='ag'>financeiro</span><span class='barrinha'><i style='width:0%'></i></span><span class='num'>0</span></li><li><span class='ag'>marketing</span><span class='barrinha'><i style='width:0%'></i></span><span class='num'>0</span></li><li><span class='ag'>vendas</span><span class='barrinha'><i style='width:0%'></i></span><span class='num'>0</span></li></ul></div>
+<div class="bloco" style="margin-top:10px"><ul class="lista"><li><span class='quando num'>2026-10-18 23:30</span><span class='ag'>claude</span><span class='acao'>5 agentes + painel criados</span><span class='st'><i style='background:#fab219'></i>aguardando André</span><span class='extra'>próximo: Abrir painel/index.html e lancar os primeiros numeros (entradas do mes e funil da semana)</span></li></ul></div>
+
+<h2>Conexões e capacidades</h2>
+<div class="bloco"><ul class="lista"><li><span class='ag'>Metricool</span><span class='acao'>ler desempenho e agendar posts do Instagram</span><span class='tagst t-ligada'>ligada</span></li><li><span class='ag'>Canva</span><span class='acao'>montar e exportar o carrossel</span><span class='tagst t-ligada'>ligada</span></li><li><span class='ag'>Gmail</span><span class='acao'>ler pedidos do site (Netlify Forms) e avisos</span><span class='tagst t-ligada'>ligada</span></li><li><span class='ag'>Google Calendar</span><span class='acao'>sessoes e bloqueios da agenda</span><span class='tagst t-ligada'>ligada</span></li><li><span class='ag'>Google Drive</span><span class='acao'>fotos e videos brutos das sessoes</span><span class='tagst t-ligada'>ligada</span></li><li><span class='ag'>Supabase</span><span class='acao'>banco do app Caixa Andre Tattoo</span><span class='tagst t-ligada'>ligada</span></li><li><span class='ag'>Netlify</span><span class='acao'>site andretattoo.netlify.app</span><span class='tagst t-ligada'>ligada</span></li><li><span class='ag'>Windsor.ai</span><span class='acao'>dados de Meta Ads, Instagram e Google Meu Negocio</span><span class='tagst t-ligada'>ligada</span></li><li><span class='ag'>Gemini (API)</span><span class='acao'>arte dos posts (arte-post-gemini)</span><span class='tagst t-ligada'>ligada</span></li><li><span class='ag'>Figma</span><span class='acao'>template do carrossel</span><span class='tagst t-instavel'>instavel</span></li><li><span class='ag'>n8n</span><span class='acao'>automacoes e agente Sofia (WhatsApp)</span><span class='tagst t-fora-do-ar'>fora do ar</span></li><li><span class='ag'>YouTube Studio</span><span class='acao'>metricas de Shorts e regua do YPP</span><span class='tagst t-manual'>manual</span></li><li><span class='ag'>WhatsApp</span><span class='acao'>atendimento e sinal</span><span class='tagst t-manual'>manual</span></li></ul></div>
+
+<footer>
+  <p>Para atualizar: <code>python3 -I painel/gerar.py</code>. Para alimentar:
+  <code>python3 -I painel/registrar.py</code> (ver <code>painel/README.md</code>).</p>
+  <p>Sem dado de cliente neste painel — só números e padrões (regra 6 do <code>AGENCIA.md</code>).</p>
+</footer>
+</div><div id="tip"></div><script>
+(function(){const t=document.getElementById('tip');
+document.addEventListener('mouseover',e=>{const m=e.target.closest('[data-tip]');
+ if(!m)return;t.textContent=m.getAttribute('data-tip');t.style.opacity='1';});
+document.addEventListener('mousemove',e=>{if(t.style.opacity==='1'){
+ const x=Math.min(e.clientX+14,window.innerWidth-t.offsetWidth-10);
+ t.style.left=x+'px';t.style.top=(e.clientY+16)+'px';}});
+document.addEventListener('mouseout',e=>{if(e.target.closest('[data-tip]'))t.style.opacity='0';});})();
+</script></body></html>

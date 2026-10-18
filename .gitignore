@@ -6,3 +6,7 @@ app/docs/descoberta/
 artes-geradas/
 research_notes/
 reports/
+
+# Saidas dos agentes: podem conter dado de cliente (regra 6 do AGENCIA.md)
+painel/saidas/*
+!painel/saidas/LEIA.md

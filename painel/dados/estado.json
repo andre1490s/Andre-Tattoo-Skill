@@ -1,0 +1,28 @@
+{
+  "atualizado": "2026-10-18",
+  "meta_mes_brl": 20000,
+  "minimo_tattoo_brl": 250,
+  "custo_fixo_mes_brl": null,
+  "prazo_ypp": "2027-01-31",
+  "metas_semana": {
+    "posts_instagram": 4,
+    "carrosseis": 1,
+    "shorts_youtube": 5,
+    "contatos_crm": 10
+  },
+  "conexoes": [
+    {"nome": "Metricool", "uso": "ler desempenho e agendar posts do Instagram", "status": "ligada"},
+    {"nome": "Canva", "uso": "montar e exportar o carrossel", "status": "ligada"},
+    {"nome": "Gmail", "uso": "ler pedidos do site (Netlify Forms) e avisos", "status": "ligada"},
+    {"nome": "Google Calendar", "uso": "sessoes e bloqueios da agenda", "status": "ligada"},
+    {"nome": "Google Drive", "uso": "fotos e videos brutos das sessoes", "status": "ligada"},
+    {"nome": "Supabase", "uso": "banco do app Caixa Andre Tattoo", "status": "ligada"},
+    {"nome": "Netlify", "uso": "site andretattoo.netlify.app", "status": "ligada"},
+    {"nome": "Windsor.ai", "uso": "dados de Meta Ads, Instagram e Google Meu Negocio", "status": "ligada"},
+    {"nome": "Gemini (API)", "uso": "arte dos posts (arte-post-gemini)", "status": "ligada"},
+    {"nome": "Figma", "uso": "template do carrossel", "status": "instavel"},
+    {"nome": "n8n", "uso": "automacoes e agente Sofia (WhatsApp)", "status": "fora do ar"},
+    {"nome": "YouTube Studio", "uso": "metricas de Shorts e regua do YPP", "status": "manual"},
+    {"nome": "WhatsApp", "uso": "atendimento e sinal", "status": "manual"}
+  ]
+}
