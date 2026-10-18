@@ -2,14 +2,44 @@
 
 Checklist de configuração. Contexto de marca: `contexto/marca.md`.
 
-## 1. Identidade (mesma marca do Instagram)
-- [ ] **Nome do canal:** `André Tattoo`
-- [ ] **@ (handle):** `@andretatuadoor` para bater com o Instagram. Se estiver ocupado: `@andretattoo.sp` ou `@andretattooo`. Não inventar um nome diferente da marca.
+## 1. Identidade
+
+**Nome do canal: `André Tatuador`** — decidido pelo André em 18/10/2026. A palavra "tatuador" é termo de busca em português ("tatuador em São Paulo", "tatuador realismo"), o que ajuda no YouTube, onde o nome do canal é texto pesquisável; e é coerente com o @andretatuadoor do Instagram. A marca do estúdio continua **André Tattoo** (`contexto/marca.md`): o canal é um palco dela, não uma marca nova.
+
+- [x] **Nome do canal:** `André Tatuador`
+- [ ] **@ (handle):** `@andretatuadoor` para bater com o Instagram. Se estiver ocupado, em ordem: `@andretatuador`, `@andretatuadorsp`, `@andretattoo.realismo`. `[confirmar]` qual foi obtido. O @ importa mais que o nome: é o endereço, e o nome pode ser trocado depois.
 - [ ] **Foto:** a mesma do Instagram (reconhecimento cruzado).
-- [ ] **Banner:** 2560 × 1440 px, com o essencial dentro da área segura central de 1546 × 423 px. Conteúdo: uma peça de realismo preto e cinza + "André Tattoo · Realismo preto e cinza · São Paulo". Sem preço, sem telefone grande, sem colagem de 10 fotos.
-- [ ] **Sobre:** 2 a 3 linhas com as palavras que as pessoas de fato buscam: realismo preto e cinza, cobertura (cover-up), fine line, tatuagem em São Paulo, Vila Matilde. Tom de `contexto/marca.md`: direto, técnico, sem clichê.
-- [ ] **Links:** site (`andretattoo.netlify.app`), Instagram e o link de agendamento (WhatsApp com formulário). `[confirmar]` se o link fica clicável no player de Shorts — se não ficar, o caminho é Short → perfil do canal → link.
+- [ ] **Banner:** 2560 × 1440 px, com o essencial dentro da área segura central de 1546 × 423 px. Conteúdo: uma peça de realismo preto e cinza + "André Tatuador · Realismo preto e cinza · São Paulo". Sem preço, sem telefone grande, sem colagem de 10 fotos.
 - [ ] **País:** Brasil. **Idioma do canal:** português (Brasil).
+- [ ] **Links:** site (`andretattoo.netlify.app`), Instagram e o link de agendamento (WhatsApp com formulário). `[confirmar]` se o link fica clicável no player de Shorts — se não ficar, o caminho é Short → perfil do canal → link.
+
+### Texto do "Sobre" (pronto para colar)
+
+```
+Realismo preto e cinza, cobertura de tatuagem antiga e fine line.
+Estúdio em São Paulo, na Vila Matilde.
+
+Aqui a sessão aparece de perto: do estêncil ao traço, do sombreado
+à pele cicatrizada. Som real da máquina, sem filtro na tatuagem.
+
+Orçamento pelo link.
+```
+
+Versão curta, se preferir uma linha só: `Realismo preto e cinza, cobertura e fine line. Estúdio em São Paulo, na Vila Matilde. A sessão vista de perto.`
+
+As palavras de busca estão na frente de propósito (realismo, preto e cinza, cobertura, fine line, São Paulo). Sem preço, sem superlativo, sem clichê — regra de `contexto/marca.md`.
+
+### Palavras-chave do canal (Configurações → Canal → Informações básicas)
+
+```
+tatuagem, realismo preto e cinza, black and grey, cobertura de tatuagem,
+cover up, fine line, tatuador São Paulo, Vila Matilde, estúdio de tatuagem,
+realismo tattoo, tatuagem realista
+```
+
+### Nome da série principal
+
+As sessões completas vão na playlist **Carvão e Prata**, nome tirado da direção artística já aprovada no repositório ("Carvão, Prata e Lâmina"). Dá à série um nome memorável sem dividir a marca: o canal é o André, a série tem nome próprio.
 
 ## 2. Configurações que afetam alcance e monetização
 - [ ] **Verificação de 2 etapas** na conta Google. É pré-requisito para o programa de parcerias — resolver agora, não em janeiro.

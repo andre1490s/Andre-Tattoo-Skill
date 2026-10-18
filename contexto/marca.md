@@ -5,6 +5,7 @@ Itens marcados **[confirmar]** ainda não foram informados pelo André e não de
 
 ## Identidade
 - Marca: André Tattoo. Instagram: @andretatuadoor.
+- **YouTube:** canal **André Tatuador** (nome definido pelo André em 18/10/2026; @ a confirmar). A marca do estúdio continua André Tattoo — o canal é um palco dela. Projeto, régua de monetização e prazo de 31/01/2027 em `youtube/`.
 - Posicionamento principal: tatuagem de alto padrão, com forte ênfase em **realismo preto e cinza**.
 - Outros trabalhos: fine line, aquarela, realismo colorido e trabalhos delicados/femininos.
 - A marca deve transmitir qualidade, precisão, experiência, estética e confiança.
