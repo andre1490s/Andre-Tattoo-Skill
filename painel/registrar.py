@@ -25,7 +25,7 @@ DADOS = RAIZ / "painel" / "dados"
 AGENTES = ["carrossel", "editor-video", "financeiro", "marketing", "vendas", "andre", "claude"]
 STATUS = ["entregue", "aguardando-andre", "travado"]
 CHAVES = {
-    "financeiro": ["entradas_mes", "custos_mes", "sinais_mes", "tattoos_mes", "horas_mes"],
+    "financeiro": ["entradas_mes", "custos_mes", "retiradas_mes", "sinais_mes", "tattoos_mes", "horas_mes"],
     "funil": ["leads", "orcamentos", "sinais", "agendados", "perdidos"],
     "instagram": ["alcance", "seguidores", "posts", "interacoes", "visitas_perfil", "dms"],
     "youtube": ["inscritos", "views_shorts_90d", "horas_12m", "shorts_publicados"],

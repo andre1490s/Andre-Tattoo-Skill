@@ -238,7 +238,10 @@ def construir(estado, mapa, execucoes, hoje):
     custos = mapa.get(("financeiro", p_ent, "custos_mes"), (None,))[0] if p_ent else None
     tattoos = mapa.get(("financeiro", p_ent, "tattoos_mes"), (None,))[0] if p_ent else None
     horas = mapa.get(("financeiro", p_ent, "horas_mes"), (None,))[0] if p_ent else None
+    retiradas = mapa.get(("financeiro", p_ent, "retiradas_mes"), (None,))[0] if p_ent else None
     lucro = entradas - custos if (entradas is not None and custos is not None) else None
+    sobra = lucro - retiradas if (lucro is not None and retiradas is not None) else None
+    margem = 100 * lucro / entradas if (lucro is not None and entradas) else None
     ticket = entradas / tattoos if (entradas and tattoos) else None
     por_hora = entradas / horas if (entradas and horas) else None
 
@@ -271,7 +274,11 @@ def construir(estado, mapa, execucoes, hoje):
              (f"meta {brl(meta)} · falta {brl(max(0, meta - entradas))}" if (meta and entradas is not None)
               else f"meta {brl(meta)}" if meta else ""),
              medidor=(100 * entradas / meta) if (meta and entradas is not None) else None),
-        card("lucro estimado", brl(lucro), "entradas − custos lançados" if lucro is not None else "falta lançar custos"),
+        card("lucro do estúdio", brl(lucro),
+             (f"margem {pct(margem)} · custo {brl(custos)}" if lucro is not None else "falta lançar custos_mes")),
+        card("sobra depois do pessoal", brl(sobra),
+             (f"retiradas {brl(retiradas)}" if sobra is not None
+              else "lance retiradas_mes para separar estúdio e pessoal")),
         card("ticket médio", brl(ticket), f"{num(tattoos)} tattoos no mês" if tattoos else "falta tattoos_mes"),
         card("receita por hora", brl(por_hora), f"{num(horas)} h tatuando" if horas else "falta horas_mes"),
         card("conversão do funil", pct(conv),
@@ -347,17 +354,18 @@ def construir(estado, mapa, execucoes, hoje):
         "atividade": "".join(linhas_ativ) or "<li class='vazio'>Nenhuma execução registrada. Cada agente grava a dele ao terminar.</li>",
         "pendencias": linhas_pend,
         "conexoes": conexoes,
-        "resumo_txt": resumo_texto(entradas, p_ent, meta, lucro, ticket, conv, p_funil, etapas,
+        "resumo_txt": resumo_texto(entradas, p_ent, meta, lucro, sobra, margem, ticket, conv, p_funil, etapas,
                                    posts, inscritos, views_90, dias_prazo, por_agente, pendentes),
     }
 
 
-def resumo_texto(entradas, p_ent, meta, lucro, ticket, conv, p_funil, etapas,
+def resumo_texto(entradas, p_ent, meta, lucro, sobra, margem, ticket, conv, p_funil, etapas,
                  posts, inscritos, views_90, dias_prazo, por_agente, pendentes):
     L = []
     L.append(f"entradas{f' ({rotulo_periodo(p_ent)})' if p_ent else ''}: {brl(entradas)}"
              + (f" de {brl(meta)} ({pct(100 * entradas / meta)})" if (meta and entradas is not None) else ""))
-    L.append(f"lucro estimado: {brl(lucro)} | ticket medio: {brl(ticket)}")
+    L.append(f"lucro do estudio: {brl(lucro)} (margem {pct(margem)}) | sobra depois do pessoal: {brl(sobra)}"
+             f" | ticket medio: {brl(ticket)}")
     if etapas:
         L.append(f"funil {p_funil}: " + " -> ".join(f"{n} {num(v)}" for n, v in etapas) + f" | conversao {pct(conv)}")
     else:
