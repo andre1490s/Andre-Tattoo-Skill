@@ -51,3 +51,24 @@ do Google. Preencha também `google.url` (link do Perfil da Empresa) para ligar 
 ## Versão anterior
 A primeira versão do site (tema escuro, formulário de 3 passos, FAQ e vídeo no topo)
 está inteira em `../site-v1/`, com a documentação de mercado e de SEO dela.
+
+## Trocar para o domínio próprio
+
+Enquanto o domínio novo não estiver respondendo, o site segue apontando para
+`andretattoo.netlify.app`. Trocar antes da hora faz o Google desindexar a página,
+porque o endereço canônico passa a apontar para um lugar que não existe.
+
+Ordem certa: publicar na Netlify → registrar o domínio → ligar o domínio na
+Netlify → esperar o HTTPS → só então trocar as **6 linhas** abaixo.
+
+| Arquivo | Linha | O que é |
+|---|---|---|
+| `index.html` | `<link rel="canonical">` | o endereço oficial da página para o Google |
+| `index.html` | `og:url` | endereço no card de compartilhamento |
+| `index.html` | `og:image` | imagem do card de compartilhamento |
+| `index.html` | `"url"` e `"image"` no JSON-LD | ficha do estúdio para o Google |
+| `sitemap.xml` | `<loc>` | o mapa do site |
+| `robots.txt` | `Sitemap:` | onde o mapa está |
+
+Depois da troca: reenviar o `sitemap.xml` no Search Console e atualizar o link
+do site no Perfil da Empresa no Google, no Instagram e no TikTok.
