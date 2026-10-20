@@ -67,8 +67,12 @@ window.DADOS = {
      A PRIMEIRA da lista é a peça grande da galeria — coloque ali o trabalho mais forte.
   ------------------------------------- */
   trabalhos: [
+    { img:"justica",  cap:"Realismo · Dama da Justiça", alt:"Dama da Justiça com balança e espada, em realismo preto e cinza no antebraço" },
+    { img:"retrato-oculos", cap:"Realismo · Retrato",   alt:"Retrato masculino de óculos em realismo preto e cinza, com respingos de tinta, na panturrilha" },
     { img:"samurai",  cap:"Braço fechado · Samurai",   alt:"Braço fechado em realismo preto e cinza com samurai, dragão e portal" },
+    { img:"poseidon", cap:"Realismo · Poseidon",       alt:"Rosto de Poseidon com tridente e grega, em realismo preto e cinza no antebraço" },
     { img:"leao",     cap:"Realismo · Leão",           alt:"Leão em realismo preto e cinza no antebraço, com cruz e figura em oração entre as nuvens" },
+    { img:"fera",     cap:"Blackwork · Pontilhismo",   alt:"Peça em blackwork com sombreado em pontilhismo no antebraço" },
     { img:"arcanjo",  cap:"Realismo · Arcanjo",        alt:"Arcanjo em realismo preto e cinza no antebraço" },
     { img:"rostos",   cap:"Realismo · Rostos",         alt:"Composição de rostos em realismo no antebraço" },
     { img:"retrato",  cap:"Realismo · Retrato",        alt:"Retrato realista no braço" },
