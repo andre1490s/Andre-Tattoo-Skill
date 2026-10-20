@@ -33,55 +33,76 @@ Sem promessa de resultado: o controlável é retenção e conversão. Viral não
 
 ## 2. Melhorias rápidas — Semana 1 (a primeira tela)
 
-Esta é a prioridade que o André definiu: impacto no instante em que a pessoa entra. É também a correção de maior retorno, porque multiplica todo o alcance que já existe.
+Auditoria feita em 2026-10-20 sobre print do perfil. **Correção de duas suposições do plano original:** o campo nome e a bio já estão bem construídos, e o perfil tem Story ativo (o vazio no Metricool é falha de coleta, não ausência). O vazamento de conversão está em outro lugar.
 
-### 2.1 Nome do perfil (campo buscável, não o @)
-```
-André · Realismo P&B · SP
-```
-O campo nome é indexado na busca do Instagram. Hoje ele não captura ninguém procurando "realismo" ou "tatuagem SP".
+### 2.1 Estado atual (o que já está certo — não mexer)
+- **Nome:** `André | Tatuagem Realista | Zona Leste SP` — já indexa "tatuagem realista" e localização. Funcionando.
+- **Bio:** promessa, prova social (+ de 1000 clientes), endereço e CTA, nessa ordem. Estrutura correta.
+- **Link:** andretattoo.netlify.app, com botão de WhatsApp nativo ao lado. Caminho curto.
+- **Capas dos destaques:** fundo escuro e tipografia serifada, coerentes com o padrão editorial.
+- **Canal de transmissão** "Só os de verdade no VIP" já existe como ativo.
 
-### 2.2 Bio — quatro linhas, nesta ordem: promessa, especialidade, lugar, caminho
+### 2.2 O vazamento número 1: os três posts fixados
 
-Opção A (puxa ticket alto):
-```
-Realismo preto e cinza em São Paulo
-Coberturas, braço fechado e costas
-Estúdio na Vila Matilde · seg a sáb
-Seu projeto começa no link
-```
+Os três fixados são **fotos estáticas de peças prontas** (arcanjo, leão, retrato). São excelentes como portfólio e inúteis como recrutamento.
 
-Opção B (puxa volume e busca):
-```
-Transformo pele em realismo preto e cinza
-Cobertura de tatuagem mal feita · fine line · aquarela
-Vila Matilde, São Paulo
-Agenda e projetos no link
-```
+Quem chega de um Reels de 827 mil views aterrissa em três imagens paradas. Um portfólio diz *"eu sou bom"*. Seguir exige *"vem mais aí"*. São coisas diferentes, e só a segunda converte.
 
-Regras de marca aplicadas: sem preço, sem "a partir de", sem garantia de resultado, quase nenhum emoji, nada de "exclusivo" ou "único".
-
-### 2.3 Foto de perfil
-Precisa ser reconhecível a 40 pixels. Rosto do André vence logo para tatuador, porque o que se contrata é a mão de uma pessoa. Fundo escuro e luz lateral quente, a mesma do padrão editorial de `contexto/marca.md`, para a foto conversar com o grid.
-
-### 2.4 Três reels fixados — o argumento de seguir
-Quem chega de um viral cai aqui. Os três juntos têm que responder "por que eu sigo esse cara".
+**Trocar por três Reels de transformação:**
 
 | Posição | O que é | O que prova |
 |---|---|---|
-| Fixado 1 | A transformação mais forte do acervo: pele em branco até a peça pronta | capacidade técnica |
-| Fixado 2 | Processo em close extremo, agulha e textura de pele | método e cuidado |
-| Fixado 3 | Uma cobertura: tatuagem ruim virando realismo | resolve um problema que a pessoa já tem |
+| Fixado 1 | pele em branco até a peça pronta, formato de 4 atos | capacidade em movimento |
+| Fixado 2 | processo em close extremo, agulha e textura | método e cuidado |
+| Fixado 3 | uma reforma: tatuagem ruim virando realismo | resolve um problema que a pessoa já tem |
 
-O Fixado 3 é o de maior valor comercial: quem tem tatuagem ruim procura ativamente, decide rápido e aceita ticket alto. Observação de marca: antes/depois é liberado no orgânico, mas **proibido na peça de anúncio pago** (`contexto/marca.md`).
+O Fixado 3 é o de maior valor comercial: quem tem tatuagem ruim procura ativamente, decide rápido e aceita ticket alto. Antes/depois é liberado no orgânico; **proibido na peça de anúncio pago** (`contexto/marca.md`).
 
-### 2.5 Destaques — cinco, com capa no padrão editorial
-`REALISMO` · `COBERTURAS` · `PROCESSO` · `CUIDADOS` · `ESTÚDIO`
+### 2.3 O vazamento número 2: destaques 100% transacionais
 
-Capas no padrão aprovado: fundo escuro, tipografia serifada creme, mesma luz. O destaque `CUIDADOS` segura quem ainda não decidiu e dá motivo de salvar o perfil.
+Ordem atual: `Reformas` · `Indique e Ganhe` · `Disponíveis` · `Trabalhos`.
 
-### 2.6 Stories — o conserto mais barato que existe
-Os dados não registram Stories no período (confirmar no app). Se for ausência de publicação, é a correção de melhor custo-benefício do plano: **3 a 5 stories por dia, com uma enquete ou caixa de pergunta**. Story é o que avisa o Instagram que a base está viva, e é a base viva que decide se o reel escapa. Sem isso, o item 1 dos problemas críticos não se resolve.
+Os quatro **pedem** algo do visitante (contrate, indique, escolha, compre). Nenhum **dá** algo. Não existe nenhum destaque que responda "por que eu sigo esse cara".
+
+Ordem proposta — dar antes de pedir:
+
+| 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|
+| `PROCESSO` | `REFORMAS` | `CUIDADOS` | `DISPONÍVEIS` | `ESTÚDIO` |
+
+- `PROCESSO` e `CUIDADOS` são os que criam motivo de seguir e de salvar o perfil.
+- `REFORMAS` sobe de posição por ser o de maior ticket.
+- **`Indique e Ganhe` sai do ar até as regras existirem.** Por `contexto/marca.md`, o programa está declarado como "regras ainda não definidas". Um destaque fixo oferecendo um programa sem regra é risco operacional: gera cobrança de cliente sem ter o que entregar.
+
+### 2.4 Foto de perfil
+Composição boa (luva, máquina, luz vermelha, fundo escuro), mas o rosto ocupa pouco quadro. A 40 pixels, num comentário ou na barra de Stories, vira mancha escura. **Testar um corte mais fechado no rosto**, mantendo a mesma luz. Teste de 7 dias, mede por visitas ao perfil.
+
+### 2.5 Bio — uma linha desperdiçada
+
+Atual:
+```
+Realismo Preto e Cinza | Retratos
++ de 1000 clientes atendidos
+📍 Vila Matilde - Zona leste-SP
+Orçamento pelo link 👇
+```
+
+A linha 1 repete o que o campo nome já diz ("Tatuagem Realista"). É o espaço mais visível do perfil gastando-se em redundância. Trocar por uma **promessa de conteúdo**, que é o que gera o seguir:
+
+```
+Toda semana, uma pele virando retrato
++ de 1000 clientes · Coberturas e fechamentos
+📍 Vila Matilde - Zona Leste SP
+Orçamento pelo link 👇
+```
+
+Mantém prova social, ganha a promessa de recorrência e acrescenta "coberturas e fechamentos", que são os serviços de ticket alto. Regras de marca mantidas: sem preço, sem garantia de resultado.
+
+### 2.6 O que 1.247 posts para 11 mil seguidores significam
+São **8,8 seguidores por publicação** acumulados. É a confirmação histórica do que a janela de 33 dias mostrou: o perfil produz muito e recruta pouco. Nenhuma ação nova aqui — é o argumento para o item 3.3 (baixar volume) não ser negociado.
+
+### 2.7 Stories
+O perfil tem Story ativo no print, então o vazio no Metricool é falha de coleta. Mantém-se a meta de **3 a 5 por dia com uma enquete ou caixa de pergunta**, e passa-se a conferir a frequência real pelo app, não pelo Metricool.
 
 ## 3. Melhorias estruturais — Semanas 1 a 4
 
