@@ -13,4 +13,6 @@ Antes de criar um novo, procure aqui. Se já existir, some evidência ao existen
 | LE-0006 | arte-post-gemini | Padrão visual editorial dos posts (modos Delicado e Intenso) aprovado pelo André; falta métrica | 2 | Indício | arte-post-gemini, legenda-tattoo, posts-semana-instagram, diretor-conteudo-copy, estrategista-instagram, agente de Mídias |
 | LE-0007 | arte-post-gemini | API do Gemini sem cota grátis para imagem; o grátis é o app do Gemini | 4 | Validado | arte-post-gemini, buscar-skills |
 
+| LE-0008 | estrategista-instagram, analista-metricas | Trava do Instagram e conversao (0,023%) e base inerte, nao alcance; retencao acima de 7s compra alcance | 4 | Validado | estrategista-instagram, diretor-conteudo-copy, editor-videos-tattoo, roteiro-reels-tattoo, posts-semana-instagram, analista-metricas, cerebro-estrategico, gestor-de-trafego |
+
 Status: Hipótese (1) · Indício (2) · Padrão (3) · Validado (4) · Regra (5)

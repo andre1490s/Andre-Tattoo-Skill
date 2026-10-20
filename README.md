@@ -20,7 +20,7 @@ Sistema de skills para o estúdio André Tattoo (@andretatuadoor): conteúdo, ve
 | criar uma oferta | `arquiteto-ofertas` |
 | anúncios | `gestor-de-trafego` |
 | entender números | `analista-metricas` e `gestor-financeiro` |
-| auditar o perfil | `estrategista-instagram` |
+| auditar o perfil | `estrategista-instagram` (plano ativo: [`PLANO-30-DIAS-INSTAGRAM.md`](PLANO-30-DIAS-INSTAGRAM.md)) |
 | criar Shorts e monetizar o YouTube | `youtube/README.md` e as skills `cortes-de-sessao`, `roteiro-shorts-youtube`, `publicar-shorts-youtube`, `metricas-shorts-youtube`, `monetizacao-youtube` |
 | saber o que funcionou e por quê | `learning-engine` |
 | ver quanto as skills gastam de tokens | `buscar-consumo-tokens` |
