@@ -31,7 +31,30 @@ window.DADOS = {
      Vazio = o site só abre o WhatsApp, sem gravar nada. */
   webhook: "https://unsaddle-arrange-track.ngrok-free.dev/webhook/lead-andre-tattoo",
 
-  /* ---------- 3. GOOGLE ----------
+  /* ---------- 3. DÚVIDAS ----------
+     Respondem antes do formulário: quem chega no WhatsApp já chega decidido.
+     REGRA: nenhum valor, nenhuma faixa de preço, nenhum "a partir de".
+     Preço é conversa sua com o cliente, não conteúdo de site. */
+  duvidas: [
+    { p:"Como funciona o sinal?",
+      r:"O sinal reserva a sua data na agenda e é abatido na sessão. Ele <strong>não é devolvido em cancelamento ou reagendamento</strong>: aquele dia sai da agenda e não volta a ser vendido. Combino tudo com você antes." },
+    { p:"E o retoque?",
+      r:"A partir de 40 dias da sessão, se for necessário, depois de eu avaliar por foto ou pessoalmente. Falha minha na aplicação, eu refaço. Área inflamada ou desgastada por cuidado inadequado precisa ser refeita do zero — explico isso antes, para não ter susto depois." },
+    { p:"Dá para cobrir uma tatuagem antiga?",
+      r:"Na maioria dos casos, sim. Mande uma foto da peça atual com boa luz: eu digo o que é possível esconder, se vale clarear antes e quais desenhos funcionam naquele formato. Cobertura exige honestidade — se não for dar bom resultado, eu falo." },
+    { p:"Quanto tempo leva para ter o desenho?",
+      r:"O desenho é feito depois da data marcada, e você vê antes da sessão. Ajuste faz parte: mexemos no que for preciso antes de aplicar o stencil. O que não dá é redesenhar o projeto inteiro na cadeira." },
+    { p:"Como é a higiene no estúdio?",
+      r:"Agulhas e insumos descartáveis, abertos na sua frente a cada sessão. Atendimento com hora marcada, em ambiente reservado." },
+    { p:"Você faz maori?",
+      r:"Não. É um estilo de alta dificuldade, com repertório próprio, e prefiro não entregar o aproximado. Se é isso que você quer, posso tentar indicar alguém." },
+    { p:"Menor de idade pode tatuar?",
+      r:"Não atendo menores de 18 anos, com ou sem autorização dos pais. Traga documento com foto no dia da sessão." },
+    { p:"Como me preparo para a sessão?",
+      r:"Durma bem, coma antes de vir e evite álcool nas 24 horas anteriores. Roupa confortável que dê acesso à região. Sessão longa tem pausa — é só pedir. Pode trazer um acompanhante." }
+  ],
+
+  /* ---------- 4. GOOGLE ----------
      nota e total aparecem no bloco de avaliações.
      url: link do Perfil da Empresa (botão "Ver no Google"); vazio esconde o botão.
      avaliacoes: SÓ texto real de cliente. Lista vazia = nenhum card aparece.

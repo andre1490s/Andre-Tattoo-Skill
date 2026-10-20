@@ -209,6 +209,27 @@ section{padding-block:110px}
 .note{margin-top:44px;font-size:15px;color:var(--ink-soft);display:flex;align-items:center;gap:12px}
 .note::before{content:"";width:28px;height:1px;background:var(--gold)}
 
+/* duvidas: sanfona, abre uma por vez */
+.acc{border-top:1px solid var(--rule)}
+.acc__item{border-bottom:1px solid var(--rule)}
+.acc__item summary{display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:clamp(18px,2.4vw,24px) 0;cursor:pointer;list-style:none;
+  font-family:var(--display);font-size:clamp(19px,2.2vw,27px);color:var(--ink);line-height:1.25;
+  transition:color .3s}
+.acc__item summary::-webkit-details-marker{display:none}
+.acc__item summary:hover{color:var(--gold)}
+.acc__item summary i{position:relative;flex:0 0 15px;height:15px}
+.acc__item summary i::before,.acc__item summary i::after{content:"";position:absolute;background:var(--gold);
+  transition:transform .4s cubic-bezier(.2,.7,.2,1),opacity .3s}
+.acc__item summary i::before{left:0;top:7px;width:15px;height:1px}
+.acc__item summary i::after{left:7px;top:0;width:1px;height:15px}
+.acc__item[open] summary i::after{transform:scaleY(0);opacity:0}
+.acc__item[open] summary{color:var(--gold)}
+.acc__corpo{overflow:hidden;animation:accAbre .45s cubic-bezier(.2,.7,.2,1)}
+.acc__corpo p{margin:0 0 24px;max-width:68ch;color:var(--ink-soft);font-size:16px;line-height:1.7}
+.acc__corpo strong{color:var(--ink);font-weight:600}
+@keyframes accAbre{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
 /* formulario do agendamento */
 .form{margin-top:clamp(36px,5vw,56px);border:1px solid var(--rule);background:var(--paper);
   padding:clamp(24px,3.4vw,40px)}

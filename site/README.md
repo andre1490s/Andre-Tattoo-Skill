@@ -10,7 +10,7 @@ linha de agulha dourada que costura a página conforme você rola.
 |---|---|
 | `index.html` | a página inteira: topo, trabalhos, sobre, como agendar, estúdio |
 | `css/style.css` | todo o visual (cores e fontes ficam nas variáveis do topo do arquivo) |
-| `js/dados.js` | **o arquivo do dia a dia**: WhatsApp, Instagram, nota e avaliações do Google, lista de trabalhos |
+| `js/dados.js` | **o arquivo do dia a dia**: WhatsApp, Instagram, TikTok, endereço do formulário, nota e avaliações do Google, dúvidas e lista de trabalhos |
 | `js/main.js` | monta a galeria e as avaliações, linha da agulha, entrada suave, foto ampliada |
 | `img/` | 10 fotos de trabalhos + 6 fotos do Andre e do estúdio |
 | `404.html` | página de erro |
@@ -34,6 +34,13 @@ Link repository*, com **Base directory: `site`**, **Build command:** vazio, **Pu
 
 A galeria se monta sozinha: **a primeira peça da lista é a grande**, as outras entram
 em fileiras de três. Pode ter 9, 15 ou 30 peças — a grade se ajusta.
+
+## Dúvidas
+As perguntas ficam em `duvidas`, no `js/dados.js`. A sanfona do site e os dados
+estruturados que o Google lê saem da mesma lista — mexeu numa, mudou nas duas.
+
+> **Regra da casa:** nenhum valor, faixa de preço ou "a partir de" entra no site.
+> Preço é conversa do André com o cliente.
 
 ## Avaliações do Google
 A nota (`5,0`) aparece sempre. Os cards só aparecem quando houver texto real em

@@ -112,6 +112,40 @@
   })();
 
   /* ---------------------------------------------------------------
+     3b. DÚVIDAS — a sanfona e os dados estruturados saem da mesma lista,
+     para a resposta do site e a que o Google lê nunca divergirem.
+  --------------------------------------------------------------- */
+  (function duvidas(){
+    var caixa = $('#acc'), lista = D.duvidas || [];
+    if(!caixa || !lista.length) return;
+
+    caixa.innerHTML = lista.map(function(d){
+      return '<details class="acc__item reveal"><summary><span>' + esc(d.p) + '</span>' +
+        '<i aria-hidden="true"></i></summary><div class="acc__corpo"><p>' + d.r + '</p></div></details>';
+    }).join('');
+
+    /* abre uma, fecha as outras */
+    var itens = [].slice.call(caixa.querySelectorAll('details'));
+    itens.forEach(function(d){
+      d.addEventListener('toggle', function(){
+        if(d.open) itens.forEach(function(o){ if(o !== d) o.open = false; });
+      });
+    });
+
+    var marcacao = {
+      '@context':'https://schema.org', '@type':'FAQPage',
+      mainEntity: lista.map(function(d){
+        return { '@type':'Question', name: d.p,
+                 acceptedAnswer: { '@type':'Answer', text: String(d.r).replace(/<[^>]+>/g, '') } };
+      })
+    };
+    var s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.textContent = JSON.stringify(marcacao);
+    document.head.appendChild(s);
+  })();
+
+  /* ---------------------------------------------------------------
      4. ENTRADA SUAVE — só marca o que ainda está abaixo da tela
   --------------------------------------------------------------- */
   var els = [].slice.call(document.querySelectorAll('.reveal'));
@@ -135,7 +169,7 @@
     var W = document.documentElement.clientWidth, H = document.documentElement.scrollHeight;
     svg.setAttribute('width', W); svg.setAttribute('height', H); svg.setAttribute('viewBox','0 0 '+W+' '+H);
     var mobile = W < 900, edgeL = mobile ? 8 : Math.max(18, (W-1180)/2 - 26), edgeR = W - edgeL;
-    var ids = ['trabalhos','sobre','avaliacoes','agendar','estudio','fim'];
+    var ids = ['trabalhos','sobre','avaliacoes','duvidas','agendar','estudio','fim'];
     var y0 = document.querySelector('.hero').offsetTop + 40;
     var d = 'M ' + edgeR + ' ' + y0;
     var side = 1, prevY = y0;
