@@ -119,7 +119,9 @@
      5. LINHA DA AGULHA
   --------------------------------------------------------------- */
   var svg = document.getElementById('needle'), track = svg.querySelector('.track'), ink = svg.querySelector('.ink'),
-      tip = svg.querySelector('.tip'), ring = svg.querySelector('.tip-ring'), len = 0;
+      rastro = svg.querySelector('.rastro'), tip = svg.querySelector('.tip'), ring = svg.querySelector('.tip-ring'), len = 0;
+  /* com mouse o fio segue a mão; no toque continua a costura ligada à rolagem */
+  var FIO = matchMedia('(hover:hover) and (pointer:fine)').matches && !reduce;
   function build(){
     var W = document.documentElement.clientWidth, H = document.documentElement.scrollHeight;
     svg.setAttribute('width', W); svg.setAttribute('height', H); svg.setAttribute('viewBox','0 0 '+W+' '+H);
@@ -144,7 +146,7 @@
     ink.style.strokeDasharray = len; draw();
   }
   function draw(){
-    if(!len) return;
+    if(FIO || !len) return;
     var max = document.documentElement.scrollHeight - innerHeight;
     var p = reduce ? 1 : Math.min(1, Math.max(0, (scrollY + innerHeight*0.15) / Math.max(1,max)));
     var l = len * (0.04 + 0.96*p);
@@ -167,6 +169,54 @@
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(build);
   [].forEach.call(document.images, function(im){ if(!im.complete) im.addEventListener('load', function(){ clearTimeout(rt); rt = setTimeout(build, 120); }); });
   build();
+
+  /* ---------------------------------------------------------------
+     5b. O FIO QUE SEGUE O MOUSE (só no PC)
+     Guarda os últimos pontos do cursor em coordenadas da página — assim o
+     fio fica preso ao conteúdo e rola junto — e liga tudo com curvas.
+     A cauda se desfaz sozinha quando a mão para.
+  --------------------------------------------------------------- */
+  if(FIO){
+    svg.classList.add('is-mouse');
+    document.body.appendChild(svg);      /* vai para o fim: passa acima dos fundos */
+    svg.style.opacity = 0;
+
+    var pontos = [], mexeu = 0, rodando = false;
+
+    function curva(ps){
+      if(ps.length < 2) return '';
+      var d = 'M ' + ps[0][0].toFixed(1) + ' ' + ps[0][1].toFixed(1), i;
+      for(i = 1; i < ps.length - 1; i++){
+        var mx = (ps[i][0] + ps[i+1][0]) / 2, my = (ps[i][1] + ps[i+1][1]) / 2;
+        d += ' Q ' + ps[i][0].toFixed(1) + ' ' + ps[i][1].toFixed(1) + ' ' + mx.toFixed(1) + ' ' + my.toFixed(1);
+      }
+      var f = ps[ps.length - 1];
+      return d + ' L ' + f[0].toFixed(1) + ' ' + f[1].toFixed(1);
+    }
+
+    function quadro(agora){
+      if(agora - mexeu > 55 && pontos.length) pontos.shift();   /* a cauda encurta */
+      rastro.setAttribute('d', curva(pontos));
+      var f = pontos[pontos.length - 1];
+      if(f){
+        tip.setAttribute('cx', f[0]); tip.setAttribute('cy', f[1]);
+        ring.setAttribute('cx', f[0]); ring.setAttribute('cy', f[1]);
+      }
+      svg.style.opacity = pontos.length > 1 ? 1 : 0;
+      if(pontos.length) requestAnimationFrame(quadro);
+      else { rodando = false; rastro.setAttribute('d', ''); }
+    }
+
+    addEventListener('mousemove', function(e){
+      var x = e.clientX + pageXOffset, y = e.clientY + pageYOffset;
+      var u = pontos[pontos.length - 1];
+      if(u && Math.abs(u[0] - x) + Math.abs(u[1] - y) < 7) return;
+      pontos.push([x, y]);
+      if(pontos.length > 28) pontos.shift();
+      mexeu = performance.now();
+      if(!rodando){ rodando = true; requestAnimationFrame(quadro); }
+    }, {passive:true});
+  }
 
   /* ---------------------------------------------------------------
      6. GALERIA AMPLIADA

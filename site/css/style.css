@@ -37,13 +37,24 @@ h2{font-size:clamp(38px,6vw,72px)}
 h2 em,h1 em{font-style:italic;color:var(--gold)}
 p{margin:0}
 
-/* linha da agulha */
-#needle{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:1;overflow:visible}
+/* ---------- LINHA DA AGULHA ----------
+   No celular (sem mouse) ela é a costura ligada à rolagem, e fica atrás das
+   seções: z-index negativo pinta antes dos fundos.
+   No PC vira um fio que segue o mouse: aí sobe para z-index 2, acima dos
+   fundos, e as fotos sobem para 3 — o fio passa por baixo delas.
+   Para isso main/header/footer não podem ter z-index: com ele viram um bloco
+   só de empilhamento e nada de dentro conseguiria ficar acima do fio. */
+#needle{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:-1;overflow:visible}
 #needle .track{fill:none;stroke:var(--rule);stroke-width:1;stroke-dasharray:2 7}
 #needle .ink{fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round}
+#needle .rastro{fill:none;stroke:var(--gold);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 #needle .tip{fill:var(--ink)}
 #needle .tip-ring{fill:none;stroke:var(--gold);stroke-width:1}
-main,header,footer{position:relative;z-index:2}
+#needle.is-mouse{z-index:2;transition:opacity .4s ease}
+#needle.is-mouse .track,#needle.is-mouse .ink{display:none}
+main,header,footer{position:relative}
+/* o que o fio não atravessa */
+.hero figure,.work,.about figure,.strip img,.studio figure,.rev__card,.btn,.ribbon,.nav{position:relative;z-index:3}
 
 /* ---------- ABERTURA ----------
    A agulha desce, o A é revelado de cima para baixo como se estivesse sendo
