@@ -93,7 +93,6 @@ window.DADOS = {
     { img:"retrato",  cap:"Realismo · Retrato",        alt:"Retrato realista no braço" },
     { img:"urso",     cap:"Realismo · Urso",           alt:"Urso com lua e montanhas em realismo no braço" },
     { img:"cigana",   cap:"Realismo · Cigana",         alt:"Cigana de capuz com lua na testa, segurando uma galáxia, em realismo preto e cinza no braço" },
-    { img:"peitoral", cap:"Blackwork · Peitoral",      alt:"Fera em blackwork no peitoral" },
     { img:"raposa",   cap:"Blackwork · Raposa",        alt:"Raposa em blackwork pela perna" },
     { img:"pet",      cap:"Realismo colorido · Pet",   alt:"Cachorrinho em realismo colorido com flores no antebraço" }
   ]

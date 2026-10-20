@@ -136,6 +136,12 @@
     document.head.appendChild(s);
   })();
 
+  /* mais blocos entram ao rolar: títulos, nota, formulário, rodapé */
+  ['.head', '.score', '.form', '.studio figure', '.final .wrap', '.foot__id', '.redes']
+    .forEach(function(sel){
+      [].forEach.call(document.querySelectorAll(sel), function(el){ el.classList.add('reveal'); });
+    });
+
   /* ---------------------------------------------------------------
      4. ENTRADA SUAVE — só marca o que ainda está abaixo da tela
   --------------------------------------------------------------- */
