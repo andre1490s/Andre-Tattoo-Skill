@@ -49,6 +49,7 @@
     <ul>
       <li><a href="#trabalhos">Trabalhos</a></li>
       <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#avaliacoes">Avaliações</a></li>
       <li><a href="#agendar">Como agendar</a></li>
       <li><a href="#estudio">Estúdio</a></li>
     </ul>
@@ -92,17 +93,9 @@
         </div>
         <p>Cada peça foi desenhada pensando no corpo de quem leva. Toque numa foto para ver maior.</p>
       </div>
-      <div class="gallery" id="gallery">
-        <button class="work w1 reveal" data-cap="Braço fechado · Samurai"><img src="img/samurai.webp" alt="Braço fechado em realismo preto e cinza com samurai, dragão e portal" loading="lazy"><span class="cap">Braço fechado</span></button>
-        <button class="work w2 reveal" data-cap="Realismo · Arcanjo"><img src="img/arcanjo.webp" alt="Arcanjo em realismo preto e cinza no antebraço" loading="lazy"><span class="cap">Arcanjo</span></button>
-        <button class="work w3 reveal" data-cap="Realismo · Rostos"><img src="img/rostos.webp" alt="Composição de rostos em realismo no antebraço" loading="lazy"><span class="cap">Rostos</span></button>
-        <button class="work w4 reveal" data-cap="Realismo · Retrato"><img src="img/retrato.webp" alt="Retrato realista no braço" loading="lazy"><span class="cap">Retrato</span></button>
-        <button class="work w5 reveal" data-cap="Realismo · Urso"><img src="img/urso.webp" alt="Urso com lua e montanhas em realismo no braço" loading="lazy"><span class="cap">Urso</span></button>
-        <button class="work w6 reveal" data-cap="Realismo · Cigana"><img src="img/cigana.webp" alt="Mulher com capuz e galáxia em realismo no braço" loading="lazy"><span class="cap">Cigana</span></button>
-        <button class="work w7 reveal" data-cap="Blackwork · Peitoral"><img src="img/peitoral.webp" alt="Fera em blackwork no peitoral" loading="lazy"><span class="cap">Peitoral</span></button>
-        <button class="work w8 reveal" data-cap="Blackwork · Raposa"><img src="img/raposa.webp" alt="Raposa em blackwork pela perna" loading="lazy"><span class="cap">Raposa</span></button>
-        <button class="work w9 reveal" data-cap="Realismo colorido · Pet"><img src="img/pet.webp" alt="Cachorrinho em realismo colorido com flores no antebraço" loading="lazy"><span class="cap">Pet</span></button>
-      </div>
+      <div class="gallery" id="gallery"></div>
+      <noscript><p>Para ver a galeria, ative o JavaScript — ou veja os trabalhos no
+        <a href="https://www.instagram.com/andretatuadoor/" target="_blank" rel="noopener">@andretatuadoor</a>.</p></noscript>
       <div class="gallery-foot">
         <span>Tem muito mais no Instagram.</span>
         <a class="btn ghost sm" href="https://www.instagram.com/andretatuadoor/" target="_blank" rel="noopener">@andretatuadoor</a>
@@ -127,6 +120,27 @@
         <img class="reveal" src="img/andre-costas.webp" alt="Andre começando um projeto nas costas" loading="lazy">
         <img class="reveal" src="img/andre-evento.webp" alt="Andre tatuando durante um evento" loading="lazy">
       </div>
+    </div>
+  </section>
+
+  <section class="rev" id="avaliacoes">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="eyebrow">Avaliações</span>
+          <h2 style="margin-top:14px">Nota cheia, <em>no Google</em>.</h2>
+        </div>
+        <p>Avaliações públicas de quem já sentou na cadeira. Nenhuma delas é escrita por mim.</p>
+      </div>
+      <div class="score">
+        <div class="score__n" id="revNota">5,0</div>
+        <div>
+          <div class="stars" role="img" aria-label="Cinco estrelas de cinco">★★★★★</div>
+          <p class="score__t">de 5 no Google<span id="revTotal"></span></p>
+        </div>
+        <a class="btn ghost sm" id="revLink" href="#" target="_blank" rel="noopener" hidden>Ver no Google</a>
+      </div>
+      <div class="rev__list" id="revList"></div>
     </div>
   </section>
 
@@ -197,6 +211,7 @@
   <span class="lbcap"></span>
 </div>
 
+<script src="js/dados.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
