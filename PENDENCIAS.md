@@ -1,6 +1,6 @@
 # Pendências (retomar daqui)
 
-Atualizado em 2026-10-07. Sem dados de clientes neste arquivo.
+Atualizado em 2026-10-20. Sem dados de clientes neste arquivo.
 
 ## AMANHÃ: iniciar o Ads (decisão do André em 2026-10-07)
 - [x] (feito nas skills e marca.md; falta só o agente de Mídias do app) Mudança de regra: "foco orgânico". Atualizar `contexto/marca.md`, o agente de Mídias do app e as skills `roteiro-reels-tattoo`, `posts-semana-instagram` e `relatorio-instagram`. A skill `gestor-de-trafego` passa a ser usada de verdade.
@@ -46,6 +46,32 @@ Estudo completo em `site/ESTUDO-MERCADO-UX-CRO.md`. O que falta é só você:
 - [ ] Opcional, alto impacto: vídeo de 10 s de uma peça **cicatrizada** (30+ dias).
 - [ ] Liberar na rede do ambiente os domínios dos sites de referência (fernandosouzatattoo.com.br,
       robertocarlosart.com, dobskennel.com.br, camilotuero.art) para eu completar a análise de concorrência.
+
+## Automação de comentários no Instagram (ManyChat) — pesquisado em 2026-10-20
+Pergunta do André: dá para fazer comentário → DM de graça? Resposta: **sim, o plano Free faz**, mas com limites.
+Números vêm de análises de terceiros (o site da ManyChat está bloqueado na rede deste ambiente), então conferir na tela da conta.
+
+- **Free ($0)**, após a mudança de preços de 02/03/2026: gatilho de comentário em **um post ou Reel específico**,
+  ~25 contatos ativos/mês, **máx. ~4 automações ativas**, 2 canais (Instagram + Messenger), 1 usuário,
+  marca d'água "Powered by Manychat".
+- **Essential (~$14/mês no anual, $17 no mensal)**: 250 contatos, automações ilimitadas, sem marca d'água.
+- **Pro (~$29/mês no anual, $39 no mensal)**: escopo **"todos os posts e Reels"** no gatilho de comentário,
+  IA (resposta automática em DM e comentários), broadcasts, WhatsApp/SMS/e-mail.
+
+- [ ] André: conferir por que aparece "só Pro". Três suspeitas, nesta ordem:
+      (1) o escopo marcado é "todos os posts/Reels" → escolher um post específico;
+      (2) já existem 4 automações ligadas → desligar uma;
+      (3) estourou os 25 contatos do mês → as automações pausam até o ciclo virar.
+- [ ] Decidir: ficar no Free com 1 post por vez, ou subir para o **Essential** (o degrau que resolve o volume
+      do estúdio — o Pro só vale se quiser IA ou "todos os posts").
+
+### Caminho grátis (n8n) e o pedágio da Meta
+- [ ] O servidor MCP do **n8n falhou a conexão** nesta sessão (erro 404). Sem ele não consigo montar o fluxo daqui.
+      Reconectar antes de tentar.
+- Pedágio honesto: qualquer caminho fora da ManyChat exige um app no Meta com a permissão
+  `instagram_manage_messages`, e isso passa por **App Review**. Em modo de desenvolvimento só dá para mandar DM
+  para quem tem papel no app — não serve para cliente real. É por isso que a ManyChat cobra: ela já tem a aprovação.
+- Recomendação registrada: o Essential custa menos que o tempo de montar e aprovar o app do zero.
 
 ## Aguardando o André
 - [ ] Foto da tattoo do leão pronta (e autorização do cliente) → `legenda-tattoo`, `pos-tattoo-avaliacao`, portfólio e possível Reels.
