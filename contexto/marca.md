@@ -20,6 +20,19 @@ Itens marcados **[confirmar]** ainda não foram informados pelo André e não de
 - **Como produzir:** skill `arte-post-gemini` (prompt pronto) e o app do Gemini (grátis). A API do Gemini não tem cota grátis para imagem.
 - Referência aprovada: arte do lírio "PUREZA E RECOMEÇO".
 
+## Primeira tela do perfil (aplicado pelo André em 2026-10-20)
+
+Decisões já em produção no @andretatuadoor. Diagnóstico que as motivou: `aprendizados/LE-0008.md`. Plano: `PLANO-30-DIAS-INSTAGRAM.md`.
+
+- **Foto de perfil: o rosto do André**, corte fechado, fundo escuro e luz lateral — o modo Intenso do padrão editorial. Nunca o logo: a marca é o nome dele e o que se contrata é a mão de uma pessoa. O logo completo perde as linhas finas no corte circular do Instagram.
+- **O "A" do logo (sem o texto) é selo, não retrato.** Usar em: capas de destaque, último frame dos Reels, favicon do site, marca d'água discreta. O logo completo fica para site, cartão e impresso.
+- **Versões do logo [pendência de design]:** falta a versão "marca" — só o A, traço engrossado, sem o círculo fino e sem texto — para qualquer uso abaixo de 60px. A versão atual só funciona em tamanho grande.
+- **Bio:** linha 1 carrega a promessa de recorrência ("Toda semana uma pele sendo transformada"), que é o motivo de seguir; linha 2 junta prova social e os serviços de ticket alto (coberturas e fechamentos); depois endereço e CTA. Sem preço, sem garantia de resultado.
+- **Campo nome:** `André | Tatuagem Realista | Zona Leste SP` — indexado na busca, não mexer.
+- **Destaques:** `PROCESSO` e `CUIDADOS` vêm antes dos transacionais, porque são os únicos que dão motivo para seguir em vez de pedir algo. Capas idênticas com o A funcionam até cinco destaques; acima disso, diferenciar.
+- **`Indique e Ganhe` fica fora do ar** enquanto as regras do programa não existirem (ver "Indique e Ganhe" abaixo).
+- **Os três posts fixados são Reels de transformação**, não fotos de peça pronta: portfólio confirma quem já decidiu, transformação recruta quem acabou de chegar.
+
 ## Objetivo comercial
 Aumentar autoridade, atrair clientes com maior poder aquisitivo, elevar ticket e preencher a agenda com projetos de maior valor.
 
