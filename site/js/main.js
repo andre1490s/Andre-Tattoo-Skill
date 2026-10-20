@@ -28,9 +28,9 @@
         raiz.classList.remove('abertura');
         if(el.parentNode) el.parentNode.removeChild(el);
         build();                       /* a barra de rolagem volta: refaz a linha */
-      }, 560);
+      }, 820);
     }
-    setTimeout(sai, 1150);   /* a logo aparece em 0,75s e fica um tempo na tela */
+    setTimeout(sai, 2150);   /* agulha, revelação do A, risco e brilho terminam em ~2,1s */
     addEventListener('pointerdown', sai);   /* quem tem pressa, pula */
     addEventListener('keydown', sai);
   })();

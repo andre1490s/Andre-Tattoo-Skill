@@ -12,7 +12,7 @@
   --rule:#D6D1C7;
   --gold:#A47D35;
   --gold-soft:#C9A862;
-  --bloco:#C6CBA0;      /* verde-oliva dos blocos: quebra o branco da página */
+  --bloco:#DADCC2;      /* areia esverdeada dos blocos: quebra o branco sem dominar */
   --display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
   --body:"Archivo","Helvetica Neue",Arial,sans-serif;
   --mono:"DM Mono",ui-monospace,Menlo,monospace;
@@ -45,34 +45,60 @@ p{margin:0}
 #needle .tip-ring{fill:none;stroke:var(--gold);stroke-width:1}
 main,header,footer{position:relative;z-index:2}
 
-/* abertura com a logo */
+/* ---------- ABERTURA ----------
+   A agulha desce, o A é revelado de cima para baixo como se estivesse sendo
+   tatuado, o risco abre na linha do círculo e um brilho corre por dentro do
+   metal. No fim a cortina sobe e entrega a página.
+   Só transform, opacity e clip-path: nada disso repinta o layout. */
 .intro{display:none}
 html.abertura{overflow:hidden}
 html.abertura .intro{display:grid;place-items:center;position:fixed;inset:0;z-index:200;
-  background:var(--ink);transition:opacity .55s ease}
-.intro.is-out{opacity:0;pointer-events:none}
-.intro__box{display:grid;justify-items:center;gap:20px}
-.intro__a{width:min(220px,38vw);aspect-ratio:480/618;
-  background:url("../img/logo-a.webp") center/contain no-repeat;
-  opacity:0;transform:scale(.94);animation:introA .7s cubic-bezier(.2,.7,.2,1) .05s forwards}
-.intro__linha{width:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-soft),transparent);
-  animation:introLinha .6s cubic-bezier(.2,.7,.2,1) .25s forwards}
-@keyframes introA{to{opacity:1;transform:none}}
-@keyframes introLinha{to{width:min(190px,33vw)}}
+  background:var(--ink);transition:transform .8s cubic-bezier(.76,0,.24,1)}
+.intro.is-out{transform:translateY(-101%)}
+.intro__palco{position:relative;width:min(230px,42vw);aspect-ratio:480/618;
+  transition:transform .6s cubic-bezier(.2,.7,.2,1),opacity .45s}
+.intro.is-out .intro__palco{transform:scale(1.07);opacity:0}
+
+.intro__agulha{position:absolute;left:50%;top:-14%;height:128%;width:1px;
+  background:linear-gradient(180deg,transparent,var(--gold-soft) 16%,var(--gold) 50%,var(--gold-soft) 84%,transparent);
+  transform:translateX(-50%) scaleY(0);transform-origin:top;
+  animation:introAgulha .6s cubic-bezier(.45,0,.25,1) .08s forwards}
+
+/* inset(0 0 100% 0) = só a faixa de cima visível; a faixa cresce para baixo,
+   acompanhando a agulha. Com inset(100% 0 0 0) a revelação subiria ao contrário. */
+.intro__a{position:absolute;inset:0;background:url("../img/logo-a.webp") center/contain no-repeat;
+  clip-path:inset(0 0 100% 0);animation:introRevela .9s cubic-bezier(.3,.6,.2,1) .4s forwards}
+
+.intro__brilho{position:absolute;inset:0;opacity:0;
+  background:linear-gradient(104deg,transparent 40%,rgba(255,255,255,.55) 50%,transparent 60%);
+  -webkit-mask:url("../img/logo-a.webp") center/contain no-repeat;
+          mask:url("../img/logo-a.webp") center/contain no-repeat;
+  animation:introBrilho 1.05s cubic-bezier(.35,0,.3,1) 1.15s forwards}
+
+.intro__risco{position:absolute;left:50%;top:46%;width:min(320px,58vw);height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-soft) 28%,var(--gold-soft) 72%,transparent);
+  transform:translateX(-50%) scaleX(0);
+  animation:introRisco .85s cubic-bezier(.2,.7,.2,1) .9s forwards}
+
+@keyframes introAgulha{to{transform:translateX(-50%) scaleY(1)}}
+@keyframes introRevela{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes introBrilho{0%{opacity:0;transform:translateX(-45%)}25%{opacity:1}100%{opacity:0;transform:translateX(45%)}}
+@keyframes introRisco{to{transform:translateX(-50%) scaleX(1)}}
 
 /* nav */
 .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
 .nav.scrolled{border-bottom-color:var(--rule)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:16px}
-.logo{display:inline-flex;align-items:center;gap:12px;font-family:var(--display);font-size:22px;
+.logo{display:inline-flex;align-items:center;gap:13px;font-family:var(--display);font-size:22px;
   text-decoration:none;letter-spacing:.01em}
-.logo i{color:var(--gold)}
-/* a marca fica no bloco escuro: no preto ela mantém o relevo do A, que no claro se perde */
-.logo__marca{flex:0 0 auto;width:42px;height:42px;border-radius:2px;
-  background:var(--ink) url("../img/logo-marca-prata.webp") center/auto 74% no-repeat;
+/* o nome vai num span só: solto, o gap do flex abria vão entre "Andre" e "Tattoo" */
+.logo__nome{white-space:nowrap}
+.logo i{color:var(--gold);font-style:italic}
+.logo__marca{flex:0 0 auto;width:42px;height:48px;
+  background:url("../img/logo-marca-tinta.webp") center/contain no-repeat;
   transition:transform .4s cubic-bezier(.2,.7,.2,1)}
 .logo:hover .logo__marca{transform:translateY(-2px)}
-@media (max-width:420px){.logo{font-size:19px;gap:9px}.logo__marca{width:36px;height:36px}}
+@media (max-width:420px){.logo{font-size:19px;gap:10px}.logo__marca{width:34px;height:39px}}
 .nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:14px}
 .nav ul a{text-decoration:none;color:var(--ink-soft);transition:color .2s}
 .nav ul a:hover{color:var(--ink)}
@@ -175,7 +201,13 @@ section{padding-block:110px}
 .info .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
 
 /* final */
-.final{text-align:center;padding-block:140px}
+.final{position:relative;isolation:isolate;text-align:center;padding-block:140px}
+/* a marca por trás da chamada final: presença sem roubar a leitura */
+.final::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:url("../img/logo-a-tinta.webp") center 44%/min(440px,64vw) no-repeat;opacity:.09}
+.foot__id{display:inline-flex;align-items:center;gap:14px}
+.foot__marca{flex:0 0 auto;width:40px;height:45px;
+  background:url("../img/logo-marca-tinta.webp") center/contain no-repeat}
 .final h2{font-size:clamp(46px,8vw,104px);max-width:12ch;margin:22px auto 34px}
 .final p{color:var(--ink-soft);margin:0 auto 36px;max-width:38ch}
 footer{border-top:1px solid var(--rule)}
