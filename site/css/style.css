@@ -47,10 +47,13 @@ p{margin:0}
 #needle{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:-1;overflow:visible}
 #needle .track{fill:none;stroke:var(--rule);stroke-width:1;stroke-dasharray:2 7}
 #needle .ink{fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round}
-#needle .rastro{fill:none;stroke:var(--gold);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+/* o fio do mouse é um detalhe, não o assunto: fino e com transparência */
+#needle .rastro{fill:none;stroke:rgba(164,125,53,.34);stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
 #needle .tip{fill:var(--ink)}
 #needle .tip-ring{fill:none;stroke:var(--gold);stroke-width:1}
 #needle.is-mouse{z-index:2;transition:opacity .4s ease}
+#needle.is-mouse .tip{fill:rgba(21,19,17,.5)}
+#needle.is-mouse .tip-ring{stroke:rgba(164,125,53,.4)}
 #needle.is-mouse .track,#needle.is-mouse .ink{display:none}
 main,header,footer{position:relative}
 /* o que o fio não atravessa */
