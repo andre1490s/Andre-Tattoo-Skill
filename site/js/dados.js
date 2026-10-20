@@ -8,7 +8,9 @@ window.DADOS = {
 
   /* ---------- 1. CONTATO ---------- */
   whatsapp: "5511982713543",            // DDI + DDD + número, só dígitos
+  telefone: "(11) 98271-3543",          // como aparece escrito no rodapé
   instagram: "andretatuadoor",
+  tiktok: "andretattoo.ink",
   mensagem: "Oi Andre! Vim pelo site e quero fazer uma tattoo.",
 
   /* ---------- 2. GOOGLE ----------
@@ -19,9 +21,24 @@ window.DADOS = {
   google: {
     nota: "5,0",
     total: "",                          // ex.: "23" — vazio não mostra a contagem
-    url: "",                            // ex.: "https://g.page/r/..."
+    url: "https://share.google/JyrQZJZmjx97Fmlcr",
+
+    /* Avaliações REAIS, copiadas do Perfil da Empresa no Google.
+       Limpeza permitida: tirar emoji e saudação, corrigir ortografia.
+       Proibido: reescrever, resumir com palavras novas ou citar preço. */
     avaliacoes: [
-      // { nome:"Marina", peca:"Lírio nas costas", texto:"..." },
+      { nome:"Estéphane P.", quando:"há 3 anos",
+        texto:"Melhor tatuador. Não troco por nada, mesmo morando do outro lado da cidade. 17 tatuagens feitas com ele foram poucas, tenho uma lista ainda pra fazer. E sempre com muita paciência e força de vontade." },
+      { nome:"Roger R.", quando:"há 2 anos",
+        texto:"O André é super atencioso, me ajudou a escolher o desenho pra minha tatuagem com toda a paciência do mundo. Muito talentoso, desenha bem pra caramba e tem a mão bem leve. Super recomendo." },
+      { nome:"Kauê", quando:"há 3 anos",
+        texto:"Local muito bom, a preparação e a higienização de tudo. O André é sensacional no que faz. Mesmo eu com um pouco de medo, me fez sentir confortável — e quando pensei que não, já tinha acabado. Com certeza irei mais vezes." },
+      { nome:"Luis A.", quando:"há 2 anos",
+        texto:"Excelente profissional. Fiquei totalmente satisfeito com minha tatuagem e já vamos agendar mais. Pra quem procura um profissional, pode confiar." },
+      { nome:"Dayanne L.", quando:"há 3 anos",
+        texto:"Melhor tatuador da região, super cuidadoso e educado, os traços são perfeitos. Obrigado André pelo trabalho, aguardo ansiosamente para fazer outro." },
+      { nome:"Renê S.", quando:"há 3 anos",
+        texto:"Excelente profissional, muito criativo, várias ideias e projetos, cara humilde. Fiz algumas tatuagens e com certeza vou fazer mais." }
     ]
   },
 

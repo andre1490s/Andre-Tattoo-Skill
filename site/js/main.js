@@ -48,7 +48,13 @@
       var ig = 'https://www.instagram.com/' + D.instagram + '/';
       [].forEach.call(document.querySelectorAll('a[href*="instagram.com"]'), function(a){
         a.href = ig;
-        if(/^@/.test(a.textContent.trim())) a.textContent = '@' + D.instagram;
+        /* só troca o texto em link simples: com ícone dentro, trocar apagaria o SVG */
+        if(!a.firstElementChild && /^@/.test(a.textContent.trim())) a.textContent = '@' + D.instagram;
+      });
+    }
+    if(D.tiktok){
+      [].forEach.call(document.querySelectorAll('a[href*="tiktok.com"]'), function(a){
+        a.href = 'https://www.tiktok.com/@' + D.tiktok;
       });
     }
   })();
@@ -96,7 +102,7 @@
         return '<blockquote class="rev__card reveal">' +
           '<div class="stars" aria-hidden="true">★★★★★</div>' +
           '<p>' + esc(a.texto) + '</p>' +
-          '<cite>' + esc(a.nome) + (a.peca ? '<span>' + esc(a.peca) + '</span>' : '') + '</cite>' +
+          '<cite>' + esc(a.nome) + (a.quando || a.peca ? '<span>' + esc(a.quando || a.peca) + '</span>' : '') + '</cite>' +
           '</blockquote>';
       }).join('');
     }
