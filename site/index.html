@@ -18,7 +18,7 @@
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,14 +38,33 @@
 "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
 "opens":"09:00","closes":"22:00"}]}
 </script>
+<script>
+/* abertura com a logo: uma vez por visita, e nunca para quem pediu menos movimento.
+   Roda antes da primeira pintura — sem isso o site aparece antes da logo. */
+(function(){
+  try{
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if(sessionStorage.getItem('andre-abertura')) return;
+    sessionStorage.setItem('andre-abertura','1');
+  }catch(e){ return; }
+  document.documentElement.className += ' abertura';
+})();
+</script>
 </head>
 <body>
+
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro__box">
+    <span class="intro__a"></span>
+    <i class="intro__linha"></i>
+  </div>
+</div>
 
 <svg id="needle" aria-hidden="true"><path class="track"/><path class="ink"/><circle class="tip-ring" r="9"/><circle class="tip" r="3.2"/></svg>
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="logo" href="#topo">Andre <i>Tattoo</i></a>
+    <a class="logo" href="#topo"><span class="logo__marca" aria-hidden="true"></span>Andre <i>Tattoo</i></a>
     <ul>
       <li><a href="#trabalhos">Trabalhos</a></li>
       <li><a href="#sobre">Sobre</a></li>
@@ -103,7 +122,7 @@
     </div>
   </section>
 
-  <section class="about" id="sobre">
+  <section class="about bloco" id="sobre">
     <div class="wrap">
       <div class="grid">
         <figure class="reveal"><img src="img/andre-sentado.webp" alt="Andre sentado no estúdio, em foto preto e branco" loading="lazy"></figure>
@@ -144,7 +163,7 @@
     </div>
   </section>
 
-  <section id="agendar">
+  <section class="bloco" id="agendar">
     <div class="wrap">
       <div class="head">
         <div>
@@ -162,7 +181,7 @@
     </div>
   </section>
 
-  <section class="studio" id="estudio" style="padding-top:0">
+  <section class="studio bloco" id="estudio" style="padding-top:0">
     <div class="wrap">
       <div class="grid">
         <figure class="reveal"><img src="img/andre-estudio.webp" alt="Andre tatuando no estúdio" loading="lazy" style="object-position:60% 40%"></figure>

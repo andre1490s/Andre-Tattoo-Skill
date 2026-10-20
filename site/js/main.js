@@ -14,6 +14,28 @@
   }
 
   /* ---------------------------------------------------------------
+     0. ABERTURA — a logo sai e o site entra. Nunca prende a página:
+     se qualquer coisa falhar, o tempo máximo derruba a cortina.
+  --------------------------------------------------------------- */
+  (function abertura(){
+    var raiz = document.documentElement, el = document.getElementById('intro');
+    if(!el || !raiz.classList.contains('abertura')) return;
+    var saiu = false;
+    function sai(){
+      if(saiu) return; saiu = true;
+      el.classList.add('is-out');
+      setTimeout(function(){
+        raiz.classList.remove('abertura');
+        if(el.parentNode) el.parentNode.removeChild(el);
+        build();                       /* a barra de rolagem volta: refaz a linha */
+      }, 560);
+    }
+    setTimeout(sai, 1150);   /* a logo aparece em 0,75s e fica um tempo na tela */
+    addEventListener('pointerdown', sai);   /* quem tem pressa, pula */
+    addEventListener('keydown', sai);
+  })();
+
+  /* ---------------------------------------------------------------
      1. CONTATO — um número só, vindo do dados.js
   --------------------------------------------------------------- */
   (function contato(){

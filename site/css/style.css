@@ -12,6 +12,7 @@
   --rule:#D6D1C7;
   --gold:#A47D35;
   --gold-soft:#C9A862;
+  --bloco:#C6CBA0;      /* verde-oliva dos blocos: quebra o branco da página */
   --display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
   --body:"Archivo","Helvetica Neue",Arial,sans-serif;
   --mono:"DM Mono",ui-monospace,Menlo,monospace;
@@ -44,12 +45,34 @@ p{margin:0}
 #needle .tip-ring{fill:none;stroke:var(--gold);stroke-width:1}
 main,header,footer{position:relative;z-index:2}
 
+/* abertura com a logo */
+.intro{display:none}
+html.abertura{overflow:hidden}
+html.abertura .intro{display:grid;place-items:center;position:fixed;inset:0;z-index:200;
+  background:var(--ink);transition:opacity .55s ease}
+.intro.is-out{opacity:0;pointer-events:none}
+.intro__box{display:grid;justify-items:center;gap:20px}
+.intro__a{width:min(220px,38vw);aspect-ratio:480/618;
+  background:url("../img/logo-a.webp") center/contain no-repeat;
+  opacity:0;transform:scale(.94);animation:introA .7s cubic-bezier(.2,.7,.2,1) .05s forwards}
+.intro__linha{width:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-soft),transparent);
+  animation:introLinha .6s cubic-bezier(.2,.7,.2,1) .25s forwards}
+@keyframes introA{to{opacity:1;transform:none}}
+@keyframes introLinha{to{width:min(190px,33vw)}}
+
 /* nav */
 .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
 .nav.scrolled{border-bottom-color:var(--rule)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:16px}
-.logo{font-family:var(--display);font-size:22px;text-decoration:none;letter-spacing:.01em}
+.logo{display:inline-flex;align-items:center;gap:12px;font-family:var(--display);font-size:22px;
+  text-decoration:none;letter-spacing:.01em}
 .logo i{color:var(--gold)}
+/* a marca fica no bloco escuro: no preto ela mantém o relevo do A, que no claro se perde */
+.logo__marca{flex:0 0 auto;width:42px;height:42px;border-radius:2px;
+  background:var(--ink) url("../img/logo-marca-prata.webp") center/auto 74% no-repeat;
+  transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.logo:hover .logo__marca{transform:translateY(-2px)}
+@media (max-width:420px){.logo{font-size:19px;gap:9px}.logo__marca{width:36px;height:36px}}
 .nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:14px}
 .nav ul a{text-decoration:none;color:var(--ink-soft);transition:color .2s}
 .nav ul a:hover{color:var(--ink)}
@@ -96,8 +119,16 @@ section{padding-block:110px}
 .work.meio{grid-column:span 3;aspect-ratio:4/5}
 .gallery-foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:36px;font-size:15px;color:var(--ink-soft)}
 
+/* blocos de cor: seções inteiras no verde-oliva, para a página não ficar toda branca.
+   Dentro do bloco os tokens escurecem — o dourado claro não tem contraste sobre o oliva. */
+.bloco{background:var(--bloco);
+  --rule:rgba(21,19,17,.22);
+  --ink-soft:#413D35;
+  --gold:#5F4A1C;
+  --gold-soft:#6E5520;
+  --paper-2:#BDC396}
+
 /* sobre */
-.about{background:var(--paper-2)}
 .about .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:center}
 .about figure{margin:0}
 .about figure img{width:100%;aspect-ratio:3/4;max-height:520px;object-fit:cover;object-position:50% 20%}
