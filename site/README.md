@@ -12,7 +12,7 @@ linha de agulha dourada que costura a página conforme você rola.
 | `css/style.css` | todo o visual (cores e fontes ficam nas variáveis do topo do arquivo) |
 | `js/dados.js` | **o arquivo do dia a dia**: WhatsApp, Instagram, nota e avaliações do Google, lista de trabalhos |
 | `js/main.js` | monta a galeria e as avaliações, linha da agulha, entrada suave, foto ampliada |
-| `img/` | 9 fotos de trabalhos + 6 fotos do Andre e do estúdio |
+| `img/` | 10 fotos de trabalhos + 6 fotos do Andre e do estúdio |
 | `404.html` | página de erro |
 | `netlify.toml`, `robots.txt`, `sitemap.xml` | configuração de publicação e Google |
 

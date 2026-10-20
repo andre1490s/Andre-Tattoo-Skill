@@ -33,11 +33,12 @@ window.DADOS = {
   ------------------------------------- */
   trabalhos: [
     { img:"samurai",  cap:"Braço fechado · Samurai",   alt:"Braço fechado em realismo preto e cinza com samurai, dragão e portal" },
+    { img:"leao",     cap:"Realismo · Leão",           alt:"Leão em realismo preto e cinza no antebraço, com cruz e figura em oração entre as nuvens" },
     { img:"arcanjo",  cap:"Realismo · Arcanjo",        alt:"Arcanjo em realismo preto e cinza no antebraço" },
     { img:"rostos",   cap:"Realismo · Rostos",         alt:"Composição de rostos em realismo no antebraço" },
     { img:"retrato",  cap:"Realismo · Retrato",        alt:"Retrato realista no braço" },
     { img:"urso",     cap:"Realismo · Urso",           alt:"Urso com lua e montanhas em realismo no braço" },
-    { img:"cigana",   cap:"Realismo · Cigana",         alt:"Mulher com capuz e galáxia em realismo no braço" },
+    { img:"cigana",   cap:"Realismo · Cigana",         alt:"Cigana de capuz com lua na testa, segurando uma galáxia, em realismo preto e cinza no braço" },
     { img:"peitoral", cap:"Blackwork · Peitoral",      alt:"Fera em blackwork no peitoral" },
     { img:"raposa",   cap:"Blackwork · Raposa",        alt:"Raposa em blackwork pela perna" },
     { img:"pet",      cap:"Realismo colorido · Pet",   alt:"Cachorrinho em realismo colorido com flores no antebraço" }

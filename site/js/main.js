@@ -45,6 +45,16 @@
         (i ? ' loading="lazy"' : '') + ' decoding="async">' +
         '<span class="cap">' + esc((o.cap || '').split('·').pop().trim()) + '</span></button>';
     }).join('');
+
+    /* a grade é de 3 por fileira (fora a peça grande e as 2 ao lado dela).
+       Se sobrar peça solta na última fileira, as últimas viram meia-largura
+       e a fileira fecha — funciona com qualquer quantidade de fotos. */
+    var pecas = [].slice.call(box.children);
+    if(pecas.length >= 6){
+      var resto = (pecas.length - 3) % 3;
+      var quantas = resto === 1 ? 4 : (resto === 2 ? 2 : 0);
+      if(quantas) pecas.slice(-quantas).forEach(function(el){ el.classList.add('meio'); });
+    }
   })();
 
   /* ---------------------------------------------------------------
