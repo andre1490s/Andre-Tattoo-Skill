@@ -11,7 +11,17 @@ window.DADOS = {
   telefone: "(11) 98271-3543",          // como aparece escrito no rodapé
   instagram: "andretatuadoor",
   tiktok: "andretattoo.ink",
-  mensagem: "Oi Andre! Vim pelo site e quero fazer uma tattoo.",
+  /* Mensagem que já vem escrita quando a pessoa abre o WhatsApp pelo site.
+     Cada botão manda uma versão diferente: assim, pela frase, você sabe de
+     onde ela saiu — quem escreve "vi os trabalhos" já desceu a página
+     inteira e chega mais quente que quem clicou no topo. */
+  mensagem: "Oi, André! Vim pelo site e quero fazer uma tattoo.",
+  mensagens: {
+    topo:    "Oi, André! Vim pelo site e quero fazer uma tattoo.",
+    obras:   "Oi, André! Vi os trabalhos no site e quero fazer uma tattoo.",
+    estudio: "Oi, André! Vim pelo site e queria saber como agendar.",
+    barra:   "Oi, André! Vim pelo site e quero fazer uma tattoo."
+  },
 
   /* ---------- 2. GOOGLE ----------
      nota e total aparecem no bloco de avaliações.

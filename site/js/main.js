@@ -41,8 +41,11 @@
   (function contato(){
     var num = String(D.whatsapp || '').replace(/\D/g,'');
     if(num){
-      var wa = 'https://wa.me/' + num + '?text=' + encodeURIComponent(D.mensagem || '');
-      [].forEach.call(document.querySelectorAll('a[href*="wa.me"]'), function(a){ a.href = wa; });
+      var msgs = D.mensagens || {};
+      [].forEach.call(document.querySelectorAll('a[href*="wa.me"]'), function(a){
+        var texto = msgs[a.getAttribute('data-wa')] || D.mensagem || '';
+        a.href = 'https://wa.me/' + num + (texto ? '?text=' + encodeURIComponent(texto) : '');
+      });
     }
     if(D.instagram){
       var ig = 'https://www.instagram.com/' + D.instagram + '/';
