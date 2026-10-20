@@ -28,20 +28,25 @@ Atualizado em 2026-10-07. Sem dados de clientes neste arquivo.
 - [ ] Revisar em Ajustes do app: dias e horário de atendimento (padrão do app é todos os dias, 09:00 às 18:00; o André atende seg a sáb, 9h às 22h).
 - [ ] Mensagem de lembrete do app diz "remarcação perde o sinal"; a política inclui cancelamento. Alinhar quando o André quiser.
 
-## Site do estúdio (`site/`) — v2 no ar
-Estudo completo em `site/ESTUDO-MERCADO-UX-CRO.md`. O que falta é só você:
-- [ ] **MAIS FOTOS (prioridade 1).** O site está visualmente pobre porque tem 8 peças. Alvo: **25 a 30**.
-      Lista do que mandar em `site/ESTUDO-MERCADO-UX-CRO.md`, seção 6.1.
-- [ ] **3 a 5 depoimentos reais** de clientes (texto + primeiro nome + peça). É o único bloco de prova que
-      falta; a seção está pronta e desligada em `config.js`. Impacto alto na conversão.
-- [ ] **Link do seu Perfil da Empresa no Google** (avaliações públicas valem mais que depoimento no site).
+## Site do estúdio (`site/`) — v3, direção papel claro
+Versão nova no repositório desde 20/10: papel claro, Bodoni, fotos P&B e a linha de agulha dourada.
+A v1 (tema escuro, formulário de 3 passos, FAQ, vídeo no topo) está inteira em `site-v1/`, junto com
+o estudo de mercado (`site-v1/ESTUDO-MERCADO-UX-CRO.md`) e o passo a passo do Google (`site-v1/GOOGLE.md`).
+
+Decisões que ficaram em aberto na troca de versão:
+- [ ] **Publicar a v3 na Netlify** (hoje o ar ainda é a v2). Depois disso, reenviar o `sitemap.xml` no Search Console.
+- [ ] **O site perdeu o formulário de orçamento** — a v3 manda todo mundo para o WhatsApp. Isso significa
+      **nenhum lead gravado** se a pessoa não apertar enviar no WhatsApp. Decidir: fica assim ou volta o formulário?
+- [ ] **O site perdeu FAQ e dados estruturados de perguntas** (valiam busca no Google). Decidir se voltam.
+- [ ] **Não há medição nenhuma** na v3 (a v1 tinha os eventos prontos). Criar GA4 e Meta Pixel e me passar os IDs.
+- [ ] **Depoimentos:** a v3 não tem a seção. Com 3 depoimentos reais guardados, ela volta — ver skill `depoimento-para-o-site`.
+
+O que continua dependendo de você:
+- [ ] **MAIS FOTOS.** A galeria tem 9 peças e as posições são fixas. Alvo: 25 a 30 peças para valer uma galeria maior.
 - [ ] **Autorização de imagem** dos clientes das 9 peças publicadas — regra do repositório.
-- [ ] **Perfil da Empresa no Google** (google.com/business) — grátis e é o que traz cliente local
-      antes do site ranquear. Passo a passo em `site/GOOGLE.md`.
-- [ ] **Search Console**: enviar o `sitemap.xml` depois que o site estiver no ar.
-- [ ] Ligar as **notificações por e-mail** do Netlify Forms (Forms → Form notifications) para receber os pedidos.
-- [ ] Criar **GA4 e Meta Pixel** e me passar os IDs (os eventos já estão instrumentados).
-- [ ] 2 a 3 fotos do ambiente do estúdio (bancada, sala) — hoje só há fotos suas.
+- [ ] **Perfil da Empresa no Google** (google.com/business) — grátis e é o que traz cliente local antes do site ranquear.
+- [ ] **Link do seu Perfil da Empresa no Google** (avaliações públicas valem mais que depoimento no site).
+- [ ] 2 a 3 fotos do ambiente do estúdio (bancada, sala) — hoje as fotos são quase todas de você tatuando.
 - [ ] Confirmar: atende só com hora marcada? domingo e feriado?
 - [ ] Opcional, alto impacto: vídeo de 10 s de uma peça **cicatrizada** (30+ dias).
 - [ ] Liberar na rede do ambiente os domínios dos sites de referência (fernandosouzatattoo.com.br,

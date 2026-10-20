@@ -21,14 +21,16 @@ sem o cliente saber.
    Alvo: 1 a 3 linhas. Se o original for longo, cortar — nunca resumir com palavras novas.
 3. **Verificar as regras da marca:** o depoimento não pode citar valor, prometer resultado nem usar
    superlativo que o estúdio não sustenta ("melhor do Brasil"). Se o cliente disse isso, cortar o trecho.
-4. **Acrescentar** em `window.SITE.depoimentos.lista` (`site/js/config.js`), com `nome`, `peca` e `texto`,
-   e deixar `ativo: true` quando houver pelo menos 3.
-5. Se houver avaliação pública no Google, preencher também `googleUrl` — prova verificável vale mais
+4. **Guardar o depoimento pronto** em `contexto/depoimentos.md` (criar o arquivo se não existir),
+   com `nome`, `peça`, `texto` e a data da autorização.
+5. **Atenção:** o site atual (`site/`) **ainda não tem seção de depoimentos** — ela existia na v1
+   (`site-v1/`) e não foi reconstruída. Com **3 ou mais** depoimentos guardados, avisar o André que vale
+   criar a seção e combinar onde ela entra (o lugar natural é entre "Sobre" e "Como agendar").
+6. Se houver avaliação pública no Google, guardar o link junto — prova verificável vale mais
    que texto no site.
-6. Conferir no navegador e commitar.
 
 ## 4. Saída
-- Linha(s) nova(s) em `site/js/config.js`
+- Depoimento guardado em `contexto/depoimentos.md`
 - Se faltar autorização: mensagem pronta para o André mandar ao cliente, no tom de `contexto/marca.md`
   (formal, próximo, sem emoji, tratando pelo nome)
 
@@ -48,5 +50,5 @@ Depoimento forte também vira post: passar para `diretor-conteudo-copy`.
 - [ ] Autorização confirmada
 - [ ] Palavras do cliente preservadas
 - [ ] Sem valor, sem promessa de resultado, sem superlativo vazio
-- [ ] `ativo: true` só com 3 ou mais depoimentos
-- [ ] Testado no navegador e commitado
+- [ ] Guardado em `contexto/depoimentos.md` com a data da autorização
+- [ ] Com 3 ou mais, André avisado de que dá para criar a seção no site
