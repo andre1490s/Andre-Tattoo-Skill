@@ -23,7 +23,15 @@ window.DADOS = {
     barra:   "Oi, André! Vim pelo site e quero fazer uma tattoo."
   },
 
-  /* ---------- 2. GOOGLE ----------
+  /* ---------- 2. FORMULÁRIO ----------
+     Para onde o pedido é enviado antes de abrir o WhatsApp.
+     É o endereço do fluxo "Leads do site" no n8n.
+     ATENÇÃO: endereço de ngrok gratuito muda quando o n8n reinicia.
+     Se o formulário parar de gravar, é só trocar esta linha.
+     Vazio = o site só abre o WhatsApp, sem gravar nada. */
+  webhook: "https://unsaddle-arrange-track.ngrok-free.dev/webhook/lead-andre-tattoo",
+
+  /* ---------- 3. GOOGLE ----------
      nota e total aparecem no bloco de avaliações.
      url: link do Perfil da Empresa (botão "Ver no Google"); vazio esconde o botão.
      avaliacoes: SÓ texto real de cliente. Lista vazia = nenhum card aparece.

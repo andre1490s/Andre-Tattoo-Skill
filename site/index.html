@@ -179,6 +179,27 @@
         <div class="step reveal"><div class="n">3</div><h3>Reserva da data</h3><p>Escolhemos o melhor dia e a sua data fica guardada com o sinal.</p></div>
       </div>
       <p class="note">Todos os agendamentos são mediante sinal de reserva.</p>
+
+      <form class="form" id="form" novalidate>
+        <p class="form__topo">Me conta aqui e eu te chamo no WhatsApp. Leva um minuto.</p>
+        <div class="form__grid">
+          <label class="campo"><span>Seu nome</span>
+            <input type="text" name="nome" autocomplete="name" placeholder="Como posso te chamar?" required></label>
+          <label class="campo"><span>Seu WhatsApp</span>
+            <input type="tel" name="whatsapp" inputmode="numeric" autocomplete="tel" placeholder="(11) 90000-0000" required></label>
+          <label class="campo campo--largo"><span>O que você quer tatuar</span>
+            <textarea name="ideia" rows="3" placeholder="Ex.: um leão em realismo no antebraço, uns 15 cm" required></textarea></label>
+          <label class="campo"><span>Região do corpo <i>(opcional)</i></span>
+            <input type="text" name="local" placeholder="Braço, costas, perna..."></label>
+          <label class="campo"><span>Quando você pode <i>(opcional)</i></span>
+            <input type="text" name="quando" placeholder="Fim de semana, à noite..."></label>
+        </div>
+        <label class="idade"><input type="checkbox" name="idade" required><span>Tenho 18 anos ou mais.</span></label>
+        <div class="form__pe">
+          <button class="btn" type="submit" id="formEnviar"><span class="dot"></span>Enviar e abrir o WhatsApp</button>
+          <p class="form__erro" id="formErro" role="alert" aria-live="polite"></p>
+        </div>
+      </form>
     </div>
   </section>
 

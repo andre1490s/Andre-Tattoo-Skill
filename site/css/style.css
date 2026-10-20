@@ -201,6 +201,36 @@ section{padding-block:110px}
 .note{margin-top:44px;font-size:15px;color:var(--ink-soft);display:flex;align-items:center;gap:12px}
 .note::before{content:"";width:28px;height:1px;background:var(--gold)}
 
+/* formulario do agendamento */
+.form{margin-top:clamp(36px,5vw,56px);border:1px solid var(--rule);background:var(--paper);
+  padding:clamp(24px,3.4vw,40px)}
+.form__topo{font-family:var(--display);font-size:clamp(20px,2.4vw,26px);color:var(--ink);
+  margin-bottom:28px;max-width:34ch;line-height:1.25}
+.form__grid{display:grid;grid-template-columns:1fr 1fr;gap:22px 26px}
+.campo{display:block}
+.campo--largo{grid-column:1 / -1}
+.campo>span{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-soft);margin-bottom:9px}
+.campo>span i{font-style:normal;text-transform:none;letter-spacing:.02em;opacity:.75}
+.campo input,.campo textarea{width:100%;background:transparent;color:var(--ink);border:0;
+  border-bottom:1px solid var(--rule);padding:9px 2px;font-family:var(--body);font-size:16px;
+  transition:border-color .3s}
+.campo textarea{resize:vertical;line-height:1.55}
+.campo input::placeholder,.campo textarea::placeholder{color:color-mix(in srgb,var(--ink-soft) 55%,transparent)}
+.campo input:focus,.campo textarea:focus{outline:0;border-bottom-color:var(--gold)}
+.idade{display:flex;align-items:flex-start;gap:10px;margin-top:26px;cursor:pointer;
+  font-size:14px;color:var(--ink-soft)}
+.idade input{appearance:none;-webkit-appearance:none;flex:0 0 17px;width:17px;height:17px;margin:2px 0 0;
+  border:1px solid var(--rule);background:transparent;position:relative;cursor:pointer;transition:.25s}
+.idade input:checked{background:var(--ink);border-color:var(--ink)}
+.idade input:checked::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;
+  border:solid var(--paper);border-width:0 1.5px 1.5px 0;transform:rotate(42deg)}
+.form__pe{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:28px;
+  padding-top:24px;border-top:1px solid var(--rule)}
+.form__erro{font-size:13.5px;color:#9B3A2A;margin:0}
+.form.is-enviado{opacity:.65}
+@media (max-width:720px){.form__grid{grid-template-columns:1fr}.form__pe .btn{width:100%;justify-content:center}}
+
 /* estudio */
 .studio .grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:stretch}
 .studio figure{margin:0}

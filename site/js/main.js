@@ -252,4 +252,75 @@
   var sx = null;
   lb.addEventListener('touchstart', function(e){ sx = e.touches[0].clientX; }, {passive:true});
   lb.addEventListener('touchend', function(e){ if(sx === null) return; var dx = e.changedTouches[0].clientX - sx; if(Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); sx = null; });
+
+  /* ---------------------------------------------------------------
+     7. FORMULÁRIO — grava o pedido e abre o WhatsApp
+     A janela do WhatsApp é aberta DENTRO do clique, senão o navegador
+     bloqueia. O envio ao n8n corre em paralelo e em silêncio: se ele
+     estiver fora do ar, a pessoa ainda fala com o André do mesmo jeito.
+  --------------------------------------------------------------- */
+  (function formulario(){
+    var f = document.getElementById('form'); if(!f) return;
+    var erro = document.getElementById('formErro');
+    var botao = document.getElementById('formEnviar');
+    var num = String(D.whatsapp || '').replace(/\D/g, '');
+
+    /* máscara do telefone, enquanto digita */
+    var fone = f.elements.whatsapp;
+    fone.addEventListener('input', function(){
+      var v = fone.value.replace(/\D/g, '').slice(0, 11);
+      if(v.length > 7) v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+      else if(v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+      else if(v.length) v = '(' + v;
+      fone.value = v;
+    });
+
+    function recado(d){
+      var L = [(D.mensagens && D.mensagens.topo) || D.mensagem || 'Oi, André! Vim pelo site.', ''];
+      if(d.nome)   L.push('Nome: ' + d.nome);
+      if(d.ideia)  L.push('Ideia: ' + d.ideia);
+      if(d.local)  L.push('Região: ' + d.local);
+      if(d.quando) L.push('Quando posso: ' + d.quando);
+      return L.join('\n');
+    }
+
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(botao.disabled) return;
+
+      var d = {
+        nome:     f.elements.nome.value.trim(),
+        whatsapp: f.elements.whatsapp.value.trim(),
+        ideia:    f.elements.ideia.value.trim(),
+        local:    f.elements.local.value.trim(),
+        quando:   f.elements.quando.value.trim(),
+        origem:   'formulario'
+      };
+
+      if(!d.nome || !d.ideia){ erro.textContent = 'Preencha seu nome e o que você quer tatuar.'; return; }
+      if(d.whatsapp.replace(/\D/g, '').length < 10){ erro.textContent = 'Confira o seu WhatsApp com DDD.'; return; }
+      if(!f.elements.idade.checked){ erro.textContent = 'Confirme que você tem 18 anos ou mais.'; return; }
+      erro.textContent = '';
+
+      var url = 'https://wa.me/' + num + '?text=' + encodeURIComponent(recado(d));
+      var janela = num ? window.open(url, '_blank') : null;
+      if(janela){ try { janela.opener = null; } catch(err){} }
+
+      if(D.webhook){
+        try {
+          fetch(D.webhook, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(d),
+            keepalive: true
+          }).catch(function(){});
+        } catch(err){}
+      }
+
+      botao.innerHTML = '<span class="dot"></span>Pedido enviado';
+      botao.disabled = true;
+      f.classList.add('is-enviado');
+      if(num && !janela) location.href = url;   /* bloqueou a janela: vai direto */
+    });
+  })();
 })();
