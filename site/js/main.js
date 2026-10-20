@@ -28,9 +28,9 @@
         raiz.classList.remove('abertura');
         if(el.parentNode) el.parentNode.removeChild(el);
         build();                       /* a barra de rolagem volta: refaz a linha */
-      }, 820);
+      }, 760);
     }
-    setTimeout(sai, 2150);   /* agulha, revelação do A, risco e brilho terminam em ~2,1s */
+    setTimeout(sai, 2050);  /* o esboço fecha em ~1,4s e a arte final entra até 1,9s */
     addEventListener('pointerdown', sai);   /* quem tem pressa, pula */
     addEventListener('keydown', sai);
   })();

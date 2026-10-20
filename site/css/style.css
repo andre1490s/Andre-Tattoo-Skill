@@ -60,43 +60,37 @@ main,header,footer{position:relative}
 .hero figure,.work,.about figure,.strip img,.studio figure,.rev__card,.btn,.ribbon,.nav{position:relative;z-index:3}
 
 /* ---------- ABERTURA ----------
-   A agulha desce, o A é revelado de cima para baixo como se estivesse sendo
-   tatuado, o risco abre na linha do círculo e um brilho corre por dentro do
-   metal. No fim a cortina sobe e entrega a página.
-   Só transform, opacity e clip-path: nada disso repinta o layout. */
+   O stencil vira a tattoo: os 19 traços do A são riscados um a um, como um
+   desenho a lápis no papel, e a arte final aparece por cima do esboço.
+   pathLength="1" no SVG normaliza os traços: todos riscam no mesmo tempo.
+   Só stroke-dashoffset, opacity e transform — nada repinta layout. */
 .intro{display:none}
 html.abertura{overflow:hidden}
 html.abertura .intro{display:grid;place-items:center;position:fixed;inset:0;z-index:200;
-  background:var(--ink);transition:transform .8s cubic-bezier(.76,0,.24,1)}
-.intro.is-out{transform:translateY(-101%)}
-.intro__palco{position:relative;width:min(230px,42vw);aspect-ratio:480/618;
-  transition:transform .6s cubic-bezier(.2,.7,.2,1),opacity .45s}
-.intro.is-out .intro__palco{transform:scale(1.07);opacity:0}
+  background:var(--paper);transition:opacity .7s ease}
+.intro.is-out{opacity:0}
+.intro__palco{position:relative;width:min(255px,46vw);aspect-ratio:422/468;
+  transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.intro.is-out .intro__palco{transform:scale(1.05)}
 
-.intro__agulha{position:absolute;left:50%;top:-14%;height:128%;width:1px;
-  background:linear-gradient(180deg,transparent,var(--gold-soft) 16%,var(--gold) 50%,var(--gold-soft) 84%,transparent);
-  transform:translateX(-50%) scaleY(0);transform-origin:top;
-  animation:introAgulha .6s cubic-bezier(.45,0,.25,1) .08s forwards}
+.intro__esboco,.intro__esboco svg{position:absolute;inset:0;width:100%;height:100%}
+.intro__esboco{color:#6B645B;animation:esbocoSai .55s ease 1.3s forwards}
+.intro__esboco path{stroke-dasharray:1;stroke-dashoffset:1;
+  animation:risca .7s cubic-bezier(.35,0,.25,1) forwards;
+  animation-delay:calc(.12s + var(--i) * .032s)}
 
-/* inset(0 0 100% 0) = só a faixa de cima visível; a faixa cresce para baixo,
-   acompanhando a agulha. Com inset(100% 0 0 0) a revelação subiria ao contrário. */
-.intro__a{position:absolute;inset:0;background:url("../img/logo-a.webp") center/contain no-repeat;
-  clip-path:inset(0 0 100% 0);animation:introRevela .9s cubic-bezier(.3,.6,.2,1) .4s forwards}
+.intro__arte{position:absolute;inset:0;opacity:0;
+  background:url("../img/logo-a-tinta.webp") center/contain no-repeat;
+  animation:arteEntra .7s ease 1.2s forwards}
 
-.intro__brilho{position:absolute;inset:0;opacity:0;
-  background:linear-gradient(104deg,transparent 40%,rgba(255,255,255,.55) 50%,transparent 60%);
-  -webkit-mask:url("../img/logo-a.webp") center/contain no-repeat;
-          mask:url("../img/logo-a.webp") center/contain no-repeat;
-  animation:introBrilho 1.05s cubic-bezier(.35,0,.3,1) 1.15s forwards}
-
-.intro__risco{position:absolute;left:50%;top:46%;width:min(320px,58vw);height:1px;
-  background:linear-gradient(90deg,transparent,var(--gold-soft) 28%,var(--gold-soft) 72%,transparent);
+.intro__risco{position:absolute;left:50%;bottom:-10%;width:min(210px,38vw);height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
   transform:translateX(-50%) scaleX(0);
-  animation:introRisco .85s cubic-bezier(.2,.7,.2,1) .9s forwards}
+  animation:introRisco .8s cubic-bezier(.2,.7,.2,1) 1.05s forwards}
 
-@keyframes introAgulha{to{transform:translateX(-50%) scaleY(1)}}
-@keyframes introRevela{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
-@keyframes introBrilho{0%{opacity:0;transform:translateX(-45%)}25%{opacity:1}100%{opacity:0;transform:translateX(45%)}}
+@keyframes risca{to{stroke-dashoffset:0}}
+@keyframes esbocoSai{to{opacity:0}}
+@keyframes arteEntra{to{opacity:1}}
 @keyframes introRisco{to{transform:translateX(-50%) scaleX(1)}}
 
 /* nav */
