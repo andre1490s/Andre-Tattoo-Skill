@@ -20,7 +20,7 @@ window.DADOS = {
   ------------------------------------- */
   google: {
     nota: "5,0",
-    total: "",                          // ex.: "23" — vazio não mostra a contagem
+    total: "228",                       // vazio não mostra a contagem
     url: "https://share.google/JyrQZJZmjx97Fmlcr",
 
     /* Avaliações REAIS, copiadas do Perfil da Empresa no Google.
