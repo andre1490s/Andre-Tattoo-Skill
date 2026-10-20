@@ -71,21 +71,12 @@
     var lista = D.trabalhos || [];
     if(!lista.length) return;
     box.innerHTML = lista.map(function(o, i){
-      return '<button class="work reveal' + (i ? '' : ' big') + '" data-cap="' + esc(o.cap) + '">' +
+      return '<button class="work reveal" data-cap="' + esc(o.cap) + '">' +
         '<img src="img/' + esc(o.img) + '.webp" alt="' + esc(o.alt) + '"' +
         (i ? ' loading="lazy"' : '') + ' decoding="async">' +
         '<span class="cap">' + esc((o.cap || '').split('·').pop().trim()) + '</span></button>';
     }).join('');
 
-    /* a grade é de 3 por fileira (fora a peça grande e as 2 ao lado dela).
-       Se sobrar peça solta na última fileira, as últimas viram meia-largura
-       e a fileira fecha — funciona com qualquer quantidade de fotos. */
-    var pecas = [].slice.call(box.children);
-    if(pecas.length >= 6){
-      var resto = (pecas.length - 3) % 3;
-      var quantas = resto === 1 ? 4 : (resto === 2 ? 2 : 0);
-      if(quantas) pecas.slice(-quantas).forEach(function(el){ el.classList.add('meio'); });
-    }
   })();
 
   /* ---------------------------------------------------------------
@@ -105,7 +96,7 @@
         return '<blockquote class="rev__card reveal">' +
           '<div class="stars" aria-hidden="true">★★★★★</div>' +
           '<p>' + esc(a.texto) + '</p>' +
-          '<cite>' + esc(a.nome) + (a.quando || a.peca ? '<span>' + esc(a.quando || a.peca) + '</span>' : '') + '</cite>' +
+          '<cite>' + esc(a.nome) + '</cite>' +
           '</blockquote>';
       }).join('');
     }
