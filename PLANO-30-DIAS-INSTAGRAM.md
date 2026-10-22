@@ -154,6 +154,43 @@ Média atual de 0,5 comentário por reel, com 48 de 61 em zero. Sem comentário 
 ### 3.5 Site e identidade visual
 O site (`site/`) é o destino do link da bio e hoje é o único lugar onde o impacto pode ser construído sem o limite de layout do Instagram. Para servir ao plano ele precisa: abrir com a melhor transformação em tela cheia, carregar rápido no celular, repetir a mesma luz e tipografia do padrão editorial, e levar ao WhatsApp com formulário em um toque. A identidade visual já está definida e aprovada em `contexto/marca.md` — o trabalho aqui é aplicar, não redesenhar.
 
+### 3.6 Comment-gate: fabricar comentário e puxar para o direct
+
+Mecânica observada no @doobskennel (ver `aprendizados/LE-0009.md`): o post faz uma pergunta que o público-alvo já tem na cabeça e pede uma palavra no comentário em troca do conteúdo completo no direct.
+
+```
+Comente REFORMA e receba o guia no direct
+```
+
+Resolve três coisas de uma vez: fabrica comentário (a métrica mais fraca do perfil, 0,5 por reel, 48 de 61 em zero), move a pessoa para o direct onde a venda acontece, e dá motivo de seguir porque existe mais conteúdo atrás.
+
+**Três peças prontas, por ordem de valor comercial:**
+
+| Pergunta na arte | CTA | Por que |
+|---|---|---|
+| "Dá pra cobrir qualquer tatuagem?" | `Comente REFORMA e receba o guia no direct` | filtra quem já tem tatuagem ruim: maior ticket, decide rápido |
+| "Quanto tempo leva um fechamento de braço?" | `Comente FECHAMENTO e receba o passo a passo` | puxa projeto grande |
+| "Preto e cinza desbota com o tempo?" | `Comente TINTA e receba o artigo` | objeção clássica antes de fechar realismo |
+
+**Regras:** a arte segue o padrão editorial (fundo escuro, serifada creme, até 3 palavras no título); o material entregue no direct é real e útil, nunca isca vazia; nada de preço no conteúdo entregue; responder o direct no mesmo dia. Um comment-gate por semana, não mais — vira ruído.
+
+### 3.7 Serializar um projeto grande: promessa vira evento
+
+O @doobskennel anuncia ninhada com data ("RAVENA X TRITON, segunda quinzena de novembro"): elenco, cronograma e desfecho. Isso é mais forte que promessa porque tem hora marcada para acontecer.
+
+A matéria-prima equivalente já existe no estúdio: **projeto grande leva várias sessões.**
+
+```
+Fechamento de costas — sessão 2 de 5
+```
+
+- Anunciar o projeto no início, com quantas sessões são previstas.
+- Um post ou Reels por sessão, sempre com o número ("sessão 3 de 5"), sempre no mesmo padrão visual.
+- Fechar com a peça pronta e o arco inteiro.
+- Pedir autorização do cliente antes de serializar; sem autorização, serializar sem identificar a pessoa (só a pele e a peça).
+
+Por que converte: a pessoa segue para **ver terminar**. É o motivo de seguir mais concreto que existe, e ainda demonstra ticket alto sem citar preço.
+
 ## 4. Testes (um por semana, nunca dois ao mesmo tempo)
 
 | Semana | Teste | Como decidir |

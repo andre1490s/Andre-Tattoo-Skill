@@ -15,4 +15,6 @@ Antes de criar um novo, procure aqui. Se já existir, some evidência ao existen
 
 | LE-0008 | estrategista-instagram, analista-metricas | Trava do Instagram e conversao (0,023%) e base inerte, nao alcance; retencao acima de 7s compra alcance | 4 | Validado | estrategista-instagram, diretor-conteudo-copy, editor-videos-tattoo, roteiro-reels-tattoo, posts-semana-instagram, analista-metricas, cerebro-estrategico, gestor-de-trafego |
 
+| LE-0009 | estrategista-instagram | Benchmark @doobskennel: densidade por post (96 x 8,8), comment-gate e evento com data vencem promessa | 3 | Padrao | estrategista-instagram, diretor-conteudo-copy, posts-semana-instagram, arte-post-gemini, cerebro-estrategico, arquiteto-ofertas |
+
 Status: Hipótese (1) · Indício (2) · Padrão (3) · Validado (4) · Regra (5)
