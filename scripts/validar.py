@@ -35,6 +35,25 @@ for p in re.findall(r"`((?:contexto|aprendizados|referencias|templates|skills)/[
     alvo = p.split("<")[0].rstrip("/")
     if alvo and not (raiz/alvo).exists() and "NNNN" not in p and "nome" not in p: avisos.append(f"AGENCIA.md cita caminho inexistente: {p}")
 if sem_marca: avisos.append(f"{len(sem_marca)} skills não apontam para contexto/marca.md (importadas sem alteração; ver contexto/conflitos-a-resolver.md)")
+# travessão e meia-risca são proibidos em texto da marca (contexto/marca.md, Tom de voz).
+# Erro no que sai para o público; aviso no material interno antigo, que o André limpa quando quiser.
+PUBLICO = ("carrosseis", "templates")
+INTERNO = ("skills", "contexto", "referencias", "reels", "aprendizados")
+legado = 0
+for pasta in PUBLICO + INTERNO:
+    d = raiz/pasta
+    if not d.exists(): continue
+    for f in sorted(d.rglob("*.md")):
+        for i, ln in enumerate(f.read_text(encoding="utf-8").splitlines(), 1):
+            if ln.strip() == "---" or ("\u2014" not in ln and "\u2013" not in ln):
+                continue
+            if pasta in PUBLICO:
+                erros.append(f"{f.relative_to(raiz)}:{i}: travessão proibido em material público (Tom de voz, contexto/marca.md)")
+            else:
+                legado += 1
+if legado:
+    avisos.append(f"{legado} linhas de material interno ainda usam travessão (regra nova; limpar quando convier)")
+
 pend = len(re.findall(r"\[confirmar\]", (raiz/"contexto/marca.md").read_text(encoding="utf-8")))
 print(f"skills: {len(skills)} | no mapa: {len(no_mapa)} | pendências [confirmar] em marca.md: {pend}")
 for a in avisos: print("AVISO:", a)

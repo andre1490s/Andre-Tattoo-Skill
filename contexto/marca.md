@@ -5,7 +5,7 @@ Itens marcados **[confirmar]** ainda não foram informados pelo André e não de
 
 ## Identidade
 - Marca: André Tattoo. Instagram: @andretatuadoor.
-- **YouTube:** canal **André Tatuador**, `youtube.com/@andretatuadoor` (criado pelo André em 18/10/2026). A marca do estúdio continua André Tattoo — o canal é um palco dela. Projeto, régua de monetização e prazo de 31/01/2027 em `youtube/`.
+- **YouTube:** canal **André Tatuador**, `youtube.com/@andretatuadoor` (criado pelo André em 18/10/2026). A marca do estúdio continua André Tattoo: o canal é um palco dela. Projeto, régua de monetização e prazo de 31/01/2027 em `youtube/`.
 - Posicionamento principal: tatuagem de alto padrão, com forte ênfase em **realismo preto e cinza**.
 - Outros trabalhos: fine line, aquarela, realismo colorido e trabalhos delicados/femininos.
 - A marca deve transmitir qualidade, precisão, experiência, estética e confiança.
@@ -24,11 +24,11 @@ Itens marcados **[confirmar]** ainda não foram informados pelo André e não de
 
 Decisões já em produção no @andretatuadoor. Diagnóstico que as motivou: `aprendizados/LE-0008.md`. Plano: `PLANO-30-DIAS-INSTAGRAM.md`.
 
-- **Foto de perfil: o rosto do André**, corte fechado, fundo escuro e luz lateral — o modo Intenso do padrão editorial. Nunca o logo: a marca é o nome dele e o que se contrata é a mão de uma pessoa. O logo completo perde as linhas finas no corte circular do Instagram.
+- **Foto de perfil: o rosto do André**, corte fechado, fundo escuro e luz lateral: o modo Intenso do padrão editorial. Nunca o logo: a marca é o nome dele e o que se contrata é a mão de uma pessoa. O logo completo perde as linhas finas no corte circular do Instagram.
 - **O "A" do logo (sem o texto) é selo, não retrato.** Usar em: capas de destaque, último frame dos Reels, favicon do site, marca d'água discreta. O logo completo fica para site, cartão e impresso.
-- **Versões do logo [pendência de design]:** falta a versão "marca" — só o A, traço engrossado, sem o círculo fino e sem texto — para qualquer uso abaixo de 60px. A versão atual só funciona em tamanho grande.
+- **Versões do logo [pendência de design]:** falta a versão "marca": só o A, traço engrossado, sem o círculo fino e sem texto, para qualquer uso abaixo de 60px. A versão atual só funciona em tamanho grande.
 - **Bio:** linha 1 carrega a promessa de recorrência ("Toda semana uma pele sendo transformada"), que é o motivo de seguir; linha 2 junta prova social e os serviços de ticket alto (coberturas e fechamentos); depois endereço e CTA. Sem preço, sem garantia de resultado.
-- **Campo nome:** `André | Tatuagem Realista | Zona Leste SP` — indexado na busca, não mexer.
+- **Campo nome:** `André | Tatuagem Realista | Zona Leste SP`: indexado na busca, não mexer.
 - **Destaques:** `PROCESSO` e `CUIDADOS` vêm antes dos transacionais, porque são os únicos que dão motivo para seguir em vez de pedir algo. Capas idênticas com o A funcionam até cinco destaques; acima disso, diferenciar.
 - **`Indique e Ganhe` fica fora do ar** enquanto as regras do programa não existirem (ver "Indique e Ganhe" abaixo).
 - **Os três posts fixados são Reels de transformação**, não fotos de peça pronta: portfólio confirma quem já decidiu, transformação recruta quem acabou de chegar.
@@ -44,6 +44,7 @@ Instagram como canal principal, salvo instrução diferente.
 - Quase nenhuma gíria.
 - Emojis: quase nenhum (no máximo o mínimo necessário), para não parecer robô.
 - Direto, brasileiro, natural, profissional, sem linguagem robótica ou corporativa excessiva.
+- **Travessão e meia-risca: proibidos.** Nenhum texto que sai da marca usa o traço longo (em dash) nem o traço médio (en dash). Quebrar em duas frases, ou usar vírgula, dois-pontos ou parênteses. Motivo (dado pelo André em 2026-10-27): esse traço virou assinatura de texto gerado por IA e o perfil não pode passar essa impressão. Vale para legenda, carrossel, artigo, roteiro, mensagem de cliente, post, anúncio e qualquer outro material, sem exceção. Hífen de palavra composta (meio-tom, cover-up) continua normal. O `scripts/validar.py` cobra a regra: erro em material público, aviso no interno antigo.
 - **Tratamento:** íntimo, pelo nome do cliente ou "você" (nunca "senhor/senhora").
 - **Evolução do vínculo:** começa formal no primeiro contato e ganha intimidade ao longo da sessão, criando vínculo. Mensagens iniciais e de orçamento ficam no registro formal; pós-sessão e recorrência podem ser mais próximas.
 

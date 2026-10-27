@@ -1,4 +1,4 @@
-# Carrosséis editoriais — série "No estúdio"
+# Carrosséis editoriais: série "No estúdio"
 
 Série de artigos em carrossel, no padrão visual de `contexto/marca.md`, com as tattoos do André como fundo. Mecânica de comment-gate definida em `PLANO-30-DIAS-INSTAGRAM.md` 3.6. Origem da tática: `aprendizados/LE-0009.md`.
 
@@ -13,7 +13,7 @@ O gerador (`_template/gerar.py`) monta 6 slides 1080x1350 a partir do `config.js
 
 ## Regras do template
 
-- Fundo: foto real da tattoo, neutralizada para preto e cinza, escurecida, com painel suave atrás da coluna de texto. **A tattoo nunca é redesenhada** — só tratamento de luz e cor, como manda `contexto/marca.md`.
+- Fundo: foto real da tattoo, neutralizada para preto e cinza, escurecida, com painel suave atrás da coluna de texto. **A tattoo nunca é redesenhada**: só tratamento de luz e cor, como manda `contexto/marca.md`.
 - A neutralização de cor corrige de quebra dominantes de LED colorido no estúdio (o azul da foto da Têmis, por exemplo).
 - Texto no canto superior esquerdo. Título em Playfair creme; a palavra entre `*asteriscos*` sai em cursiva dourada.
 - Moldura dourada fina com cantos, selo `N/6`, rodapé centralizado `ANDRE TATTOO`.

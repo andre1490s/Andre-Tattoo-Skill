@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Gerador de carrosséis editoriais — André Tattoo.
+Gerador de carrosséis editoriais do André Tattoo.
 Padrão visual de contexto/marca.md: fundo escuro, serifada creme, acento dourado,
 texto no canto superior esquerdo, rodapé "ANDRE TATTOO". Formato 4:5 (1080x1350).
 
@@ -89,15 +89,7 @@ def slide(cfg, n, total, out):
     moldura(d)
     X, larg = 86, 560
 
-    # selo N/total
-    f_num = F('inter.ttf', 26)
-    cx = f"{n}/{total}"
-    tw = d.textlength(cx, font=f_num)
-    d.rectangle([X, 92, X + tw + 36, 92 + 52], outline=(150,122,64), width=2)
-    d.text((X + 18, 92 + 12), cx, font=f_num, fill=CREME)
-    espacado(d, (X, 92 + 68), 'ANDRÉ TATTOO', F('inter.ttf', 17), (150,142,130), 2.4)
-
-    y = 236
+    y = 168
     if cfg.get('etiqueta'):
         espacado(d, (X, y), cfg['etiqueta'].upper(), F('inter.ttf', 21), DOURADO, 5.5)
         y += 62
@@ -146,10 +138,6 @@ def slide(cfg, n, total, out):
         d.rounded_rectangle([bx, by, bx + tw + 58, by + bh], radius=34,
                             outline=DOURADO, width=2, fill=(16,16,14))
         d.text((bx + 29, by + 19), cfg['cta'], font=f_c, fill=CREME)
-
-    f_rod = F('inter.ttf', 20)
-    lrg = sum(d.textlength(c, font=f_rod) + 7 for c in 'ANDRE TATTOO') - 7
-    espacado(d, ((W - lrg)/2, H - 92), 'ANDRE TATTOO', f_rod, (168,158,144), 7)
 
     im.save(out, quality=95)
     return out

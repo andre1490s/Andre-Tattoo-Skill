@@ -1,4 +1,4 @@
-# Plano de 30 dias — Instagram @andretatuadoor
+# Plano de 30 dias: Instagram @andretatuadoor
 
 Criado em 2026-10-20. Diagnóstico completo em [`aprendizados/LE-0008.md`](aprendizados/LE-0008.md).
 Contexto de marca obrigatório: [`contexto/marca.md`](contexto/marca.md).
@@ -31,12 +31,12 @@ Sem promessa de resultado: o controlável é retenção e conversão. Viral não
 3. **Variedade de formato impede o motivo de seguir.** Educativo, comédia e curiosidade são formatos, não promessas. Ninguém segue variedade: segue o que consegue prever. E cada formato atrai um público diferente, o que explica a evasão de 53,7%.
 4. **Volume alto derruba o alcance individual.** Dez reels em 11/10 dividiram a mesma amostra de lançamento em dez pedaços.
 
-## 2. Melhorias rápidas — Semana 1 (a primeira tela)
+## 2. Melhorias rápidas: Semana 1 (a primeira tela)
 
 Auditoria feita em 2026-10-20 sobre print do perfil. **Correção de duas suposições do plano original:** o campo nome e a bio já estão bem construídos, e o perfil tem Story ativo (o vazio no Metricool é falha de coleta, não ausência). O vazamento de conversão está em outro lugar.
 
-### 2.1 Estado atual (o que já está certo — não mexer)
-- **Nome:** `André | Tatuagem Realista | Zona Leste SP` — já indexa "tatuagem realista" e localização. Funcionando.
+### 2.1 Estado atual (o que já está certo: não mexer)
+- **Nome:** `André | Tatuagem Realista | Zona Leste SP`: já indexa "tatuagem realista" e localização. Funcionando.
 - **Bio:** promessa, prova social (+ de 1000 clientes), endereço e CTA, nessa ordem. Estrutura correta.
 - **Link:** andretattoo.netlify.app, com botão de WhatsApp nativo ao lado. Caminho curto.
 - **Capas dos destaques:** fundo escuro e tipografia serifada, coerentes com o padrão editorial.
@@ -64,7 +64,7 @@ Ordem atual: `Reformas` · `Indique e Ganhe` · `Disponíveis` · `Trabalhos`.
 
 Os quatro **pedem** algo do visitante (contrate, indique, escolha, compre). Nenhum **dá** algo. Não existe nenhum destaque que responda "por que eu sigo esse cara".
 
-Ordem proposta — dar antes de pedir:
+Ordem proposta: dar antes de pedir:
 
 | 1 | 2 | 3 | 4 | 5 |
 |---|---|---|---|---|
@@ -77,7 +77,7 @@ Ordem proposta — dar antes de pedir:
 ### 2.4 Foto de perfil
 Composição boa (luva, máquina, luz vermelha, fundo escuro), mas o rosto ocupa pouco quadro. A 40 pixels, num comentário ou na barra de Stories, vira mancha escura. **Testar um corte mais fechado no rosto**, mantendo a mesma luz. Teste de 7 dias, mede por visitas ao perfil.
 
-### 2.5 Bio — uma linha desperdiçada
+### 2.5 Bio: uma linha desperdiçada
 
 Atual:
 ```
@@ -99,12 +99,12 @@ Orçamento pelo link 👇
 Mantém prova social, ganha a promessa de recorrência e acrescenta "coberturas e fechamentos", que são os serviços de ticket alto. Regras de marca mantidas: sem preço, sem garantia de resultado.
 
 ### 2.6 O que 1.247 posts para 11 mil seguidores significam
-São **8,8 seguidores por publicação** acumulados. É a confirmação histórica do que a janela de 33 dias mostrou: o perfil produz muito e recruta pouco. Nenhuma ação nova aqui — é o argumento para o item 3.3 (baixar volume) não ser negociado.
+São **8,8 seguidores por publicação** acumulados. É a confirmação histórica do que a janela de 33 dias mostrou: o perfil produz muito e recruta pouco. Nenhuma ação nova aqui: é o argumento para o item 3.3 (baixar volume) não ser negociado.
 
 ### 2.7 Stories
 O perfil tem Story ativo no print, então o vazio no Metricool é falha de coleta. Mantém-se a meta de **3 a 5 por dia com uma enquete ou caixa de pergunta**, e passa-se a conferir a frequência real pelo app, não pelo Metricool.
 
-## 3. Melhorias estruturais — Semanas 1 a 4
+## 3. Melhorias estruturais: Semanas 1 a 4
 
 ### 3.1 Um formato só, repetido
 Industrializar a receita que já existe em [`reels/exemplo-pele-em-4-atos/RECEITA.md`](reels/exemplo-pele-em-4-atos/RECEITA.md) e não fazer mais nada até os números subirem.
@@ -122,7 +122,7 @@ Métrica mestre do formato: **tempo médio assistido acima de 7s**. É a única 
 
 ### 3.2 Reaproveitamento do acervo (vídeos e fotos antigos)
 
-O acervo é um ativo e repostar é a decisão certa — com uma regra: **nada volta cru**.
+O acervo é um ativo e repostar é a decisão certa: com uma regra: **nada volta cru**.
 
 - Todo arquivo antigo passa pela estrutura de 4 atos acima. Repost cru já foi testado pelo algoritmo e pelo público e deu 291 de alcance mediano.
 - **Uma peça antiga rende 3 reels:** (a) a transformação completa, (b) o close do processo, (c) o detalhe com o significado do elemento.
@@ -145,14 +145,14 @@ Horários pelos dados do próprio perfil:
 - **Secundário: 18h**
 - Sábado e domingo rendem cerca de metade: não queimar conteúdo bom neles
 
-### 3.4 Comentários — a largada que decide tudo
+### 3.4 Comentários: a largada que decide tudo
 Média atual de 0,5 comentário por reel, com 48 de 61 em zero. Sem comentário na primeira hora o vídeo não escapa da base.
 
 - Toda legenda termina com **uma** pergunta que um estranho responde em três palavras. Não "o que achou?". Por exemplo: "qual parte dói mais?", "cobriria a sua?", "preto e cinza ou colorido?".
 - O André responde **todos** os comentários na primeira hora. Resposta com pergunta de volta vale o dobro.
 
 ### 3.5 Site e identidade visual
-O site (`site/`) é o destino do link da bio e hoje é o único lugar onde o impacto pode ser construído sem o limite de layout do Instagram. Para servir ao plano ele precisa: abrir com a melhor transformação em tela cheia, carregar rápido no celular, repetir a mesma luz e tipografia do padrão editorial, e levar ao WhatsApp com formulário em um toque. A identidade visual já está definida e aprovada em `contexto/marca.md` — o trabalho aqui é aplicar, não redesenhar.
+O site (`site/`) é o destino do link da bio e hoje é o único lugar onde o impacto pode ser construído sem o limite de layout do Instagram. Para servir ao plano ele precisa: abrir com a melhor transformação em tela cheia, carregar rápido no celular, repetir a mesma luz e tipografia do padrão editorial, e levar ao WhatsApp com formulário em um toque. A identidade visual já está definida e aprovada em `contexto/marca.md`: o trabalho aqui é aplicar, não redesenhar.
 
 ### 3.6 Comment-gate: fabricar comentário e puxar para o direct
 
@@ -172,7 +172,7 @@ Resolve três coisas de uma vez: fabrica comentário (a métrica mais fraca do p
 | "Quanto tempo leva um fechamento de braço?" | `Comente FECHAMENTO e receba o passo a passo` | puxa projeto grande |
 | "Preto e cinza desbota com o tempo?" | `Comente TINTA e receba o artigo` | objeção clássica antes de fechar realismo |
 
-**Regras:** a arte segue o padrão editorial (fundo escuro, serifada creme, até 3 palavras no título); o material entregue no direct é real e útil, nunca isca vazia; nada de preço no conteúdo entregue; responder o direct no mesmo dia. Um comment-gate por semana, não mais — vira ruído.
+**Regras:** a arte segue o padrão editorial (fundo escuro, serifada creme, até 3 palavras no título); o material entregue no direct é real e útil, nunca isca vazia; nada de preço no conteúdo entregue; responder o direct no mesmo dia. Um comment-gate por semana, não mais: vira ruído.
 
 ### 3.7 Serializar um projeto grande: promessa vira evento
 
@@ -181,7 +181,7 @@ O @doobskennel anuncia ninhada com data ("RAVENA X TRITON, segunda quinzena de n
 A matéria-prima equivalente já existe no estúdio: **projeto grande leva várias sessões.**
 
 ```
-Fechamento de costas — sessão 2 de 5
+Fechamento de costas: sessão 2 de 5
 ```
 
 - Anunciar o projeto no início, com quantas sessões são previstas.

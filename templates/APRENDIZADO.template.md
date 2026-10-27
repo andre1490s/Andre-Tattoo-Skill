@@ -1,4 +1,4 @@
-# LE-0000 — título curto
+# LE-0000: título curto
 
 ID: LE-0000
 ORIGEM: <skill>
