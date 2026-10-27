@@ -41,8 +41,8 @@ body{font-family:"Inter","Inter Display",sans-serif;color:var(--white)}
 .pstat .bat{width:30px;height:15px;border-radius:4px;border:1.6px solid rgba(0,0,0,.55);position:relative}
 .pstat .bat::before{content:'';position:absolute;left:2px;top:2px;bottom:2px;width:18px;border-radius:2px;background:#111}
 .phdr{display:flex;align-items:center;gap:11px;padding:14px 18px 12px}
-.plogo{width:40px;height:40px;flex:0 0 40px;border-radius:50%;background:var(--pred);display:grid;place-items:center;
-  font-family:Georgia,serif;font-weight:700;font-size:26px;color:#fff;line-height:1}
+.plogo{width:42px;height:42px;flex:0 0 42px;border-radius:50%;background:var(--pred);display:grid;place-items:center;overflow:hidden}
+.plogo img{width:34px;height:34px;display:block}
 .pfield{flex:1;height:48px;border-radius:24px;background:#EFEFEF;display:flex;align-items:center;gap:10px;padding:0 18px;font-size:19px;color:#333;overflow:hidden;white-space:nowrap}
 .mag{width:17px;height:17px;flex:0 0 17px;border:2.2px solid #767676;border-radius:50%;position:relative}
 .mag::after{content:'';position:absolute;right:-6px;bottom:-5px;width:2.2px;height:8px;background:#767676;transform:rotate(-45deg);border-radius:2px}
@@ -143,11 +143,8 @@ body{font-family:"Inter","Inter Display",sans-serif;color:var(--white)}
   background:rgba(255,255,255,.07);backdrop-filter:blur(28px) saturate(1.3);-webkit-backdrop-filter:blur(28px) saturate(1.3);
   border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.25),0 34px 80px rgba(0,0,0,.72)}
 .ic{width:84px;height:84px;border-radius:22px;position:relative;box-shadow:0 10px 24px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.22)}
-.ic.pin{background:#fff;display:grid;place-items:center;font-family:Georgia,serif;font-weight:700;font-size:50px;color:var(--pred);line-height:1}
-.ic.ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
-.ic.ig .sq{position:absolute;left:19px;top:19px;width:46px;height:46px;border:4.5px solid #fff;border-radius:15px}
-.ic.ig .ci{position:absolute;left:30px;top:30px;width:24px;height:24px;border:4.5px solid #fff;border-radius:50%}
-.ic.ig .dt{position:absolute;right:23px;top:23px;width:7px;height:7px;border-radius:50%;background:#fff}
+.ic img{width:100%;height:100%;display:block;border-radius:22px}
+
 .ic.g1{background:linear-gradient(160deg,#4A4F55,#23272B)}
 .ic.g2{background:linear-gradient(160deg,#2B3A33,#16211B)}
 .ic.g3{background:linear-gradient(160deg,#3A3A42,#1E1E26)}
@@ -181,9 +178,7 @@ body{font-family:"Inter","Inter Display",sans-serif;color:var(--white)}
 /* ====== impacto ====== */
 #igburst{position:absolute;inset:0;z-index:40;opacity:0;display:grid;place-items:center;
   background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
-#igburst .gl{position:relative;width:300px;height:300px;border:16px solid #fff;border-radius:84px;box-shadow:0 0 80px rgba(255,255,255,.5)}
-#igburst .gl::before{content:'';position:absolute;left:68px;top:68px;width:148px;height:148px;border:16px solid #fff;border-radius:50%}
-#igburst .gl::after{content:'';position:absolute;right:34px;top:34px;width:26px;height:26px;border-radius:50%;background:#fff}
+#igburst .gl{width:470px;height:470px;display:block;filter:drop-shadow(0 0 60px rgba(255,255,255,.55))}
 
 #spot{position:absolute;inset:0;z-index:44;opacity:0;pointer-events:none}
 #ringmark{position:absolute;inset:0;z-index:45;opacity:0;pointer-events:none}
@@ -195,14 +190,11 @@ body{font-family:"Inter","Inter Display",sans-serif;color:var(--white)}
   text-shadow:0 0 24px rgba(47,224,138,.7);white-space:nowrap}
 
 /* ====== marca final ====== */
-#logo{position:absolute;left:50%;top:548px;width:404px;height:404px;margin-left:-202px;opacity:0;z-index:48}
-#logo img{width:100%;height:100%;display:block;border-radius:50%;filter:drop-shadow(0 26px 60px rgba(0,0,0,.8));
-  box-shadow:inset 0 2px 0 rgba(255,255,255,.3),0 0 0 1px rgba(255,255,255,.14),0 0 90px rgba(255,255,255,.09)}
-#logo .sweep{position:absolute;inset:0;border-radius:50%;overflow:hidden;mix-blend-mode:screen;pointer-events:none}
-#logo .sweep i{position:absolute;top:-30%;bottom:-30%;width:150px;transform:rotate(18deg);
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent);filter:blur(10px)}
-#logo .halo{position:absolute;inset:-26px;border-radius:50%;border:1.5px solid rgba(47,224,138,.55);opacity:0;
-  box-shadow:0 0 50px rgba(47,224,138,.30)}
+#logo{position:absolute;left:50%;top:560px;width:372px;height:372px;margin-left:-186px;opacity:0;z-index:48}
+#logo img{width:100%;height:100%;display:block}
+#logo .sweep{display:none}
+#logo .halo{position:absolute;inset:-54px;border-radius:50%;border:1.5px solid rgba(47,224,138,.5);opacity:0;
+  box-shadow:0 0 60px rgba(47,224,138,.28)}
 #wm{position:absolute;left:0;right:0;top:1010px;text-align:center;opacity:0;z-index:48}
 #wm .w{font-family:"Inter Display","Inter",sans-serif;font-size:62px;font-weight:300;letter-spacing:.40em;text-indent:.40em;color:#FAFBF9;text-shadow:0 0 44px rgba(255,255,255,.24)}
 #wm .r{width:0;height:1px;margin:30px auto;background:linear-gradient(90deg,transparent,rgba(47,224,138,.75),transparent)}
@@ -227,7 +219,7 @@ body{font-family:"Inter","Inter Display",sans-serif;color:var(--white)}
 
     <div class="app" id="pin">
       <div class="pstat"><span>9:41</span><span class="bat"></span></div>
-      <div class="phdr"><div class="plogo">P</div><div class="pfield"><span class="mag"></span><span id="pq"></span></div></div>
+      <div class="phdr"><div class="plogo"><img src="../assets/icons/pinterest-marca.png" alt=""></div><div class="pfield"><span class="mag"></span><span id="pq"></span></div></div>
       <div id="pmas"><div id="pmasIn"><div class="col" id="colA"></div><div class="col" id="colB"></div></div></div>
       <div class="pnav"><i class="a"></i><i class="r"></i><i></i><i class="r"></i><i></i></div>
       <div id="psugg"></div>
@@ -282,8 +274,8 @@ body{font-family:"Inter","Inter Display",sans-serif;color:var(--white)}
 </div></div>
 
 <div id="dock">
-  <span class="ic g1"></span><span class="ic pin">P</span>
-  <span class="ic ig"><span class="sq"></span><span class="ci"></span><span class="dt"></span><span id="dockglow"></span></span>
+  <span class="ic g1"></span><span class="ic pin"><img src="../assets/icons/pinterest-icone.png" alt=""></span>
+  <span class="ic ig"><img src="../assets/icons/instagram.png" alt=""><span id="dockglow"></span></span>
   <span class="ic g2"></span><span class="ic g3"></span>
 </div>
 <div id="ripple"></div><div id="tap"></div>
@@ -293,7 +285,7 @@ body{font-family:"Inter","Inter Display",sans-serif;color:var(--white)}
 <div id="cta"><div class="l">Seu próximo projeto<br>começa aqui.</div></div>
 <div id="handle"><span class="dot"></span><span class="h">@andretatuadoor</span></div>
 
-<div id="igburst"><span class="gl"></span></div>
+<div id="igburst"><img class="gl" src="../assets/icons/instagram-glifo.png" alt=""></div>
 <div id="spot"></div>
 <svg id="ringmark" viewBox="0 0 1080 1920"><ellipse cx="296" cy="409" rx="268" ry="64" transform="rotate(-3 296 409)"/></svg>
 <div id="arrow"></div><div id="aqui">o link está aqui</div>
