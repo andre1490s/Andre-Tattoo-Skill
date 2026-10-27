@@ -168,14 +168,45 @@ body{font-family:"Inter","Inter Display",sans-serif;color:var(--white)}
 #sig .w{font-family:"Inter Display","Inter",sans-serif;font-size:70px;font-weight:300;letter-spacing:.40em;text-indent:.40em;color:#FAFBF9;text-shadow:0 0 46px rgba(255,255,255,.22)}
 #sig .r{width:0;height:1px;margin:38px auto;background:linear-gradient(90deg,transparent,rgba(47,224,138,.75),transparent)}
 #sig .s{font-size:24px;letter-spacing:.34em;text-transform:uppercase;color:#949CA1;font-weight:500}
-#cta{position:absolute;left:0;right:0;top:1030px;text-align:center;opacity:0;padding:0 110px}
-#cta .l{font-family:"Inter Display","Inter",sans-serif;font-weight:300;font-size:60px;line-height:1.2;letter-spacing:-.02em}
-#handle{position:absolute;left:50%;top:1300px;transform:translateX(-50%);display:flex;align-items:center;gap:16px;
+#cta{position:absolute;left:0;right:0;top:1300px;z-index:48;text-align:center;opacity:0;padding:0 110px}
+#cta .l{font-family:"Inter Display","Inter",sans-serif;font-weight:300;font-size:52px;line-height:1.2;letter-spacing:-.02em}
+#handle{position:absolute;left:50%;top:1540px;z-index:48;transform:translateX(-50%);display:flex;align-items:center;gap:16px;
   padding:26px 52px;border-radius:58px;opacity:0;
   background:rgba(255,255,255,.055);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
   border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 26px 70px rgba(0,0,0,.6)}
 #handle .dot{width:9px;height:9px;border-radius:50%;background:var(--green)}
 #handle .h{font-size:42px;font-weight:500;letter-spacing:-.01em}
+
+
+/* ====== impacto ====== */
+#igburst{position:absolute;inset:0;z-index:40;opacity:0;display:grid;place-items:center;
+  background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
+#igburst .gl{position:relative;width:300px;height:300px;border:16px solid #fff;border-radius:84px;box-shadow:0 0 80px rgba(255,255,255,.5)}
+#igburst .gl::before{content:'';position:absolute;left:68px;top:68px;width:148px;height:148px;border:16px solid #fff;border-radius:50%}
+#igburst .gl::after{content:'';position:absolute;right:34px;top:34px;width:26px;height:26px;border-radius:50%;background:#fff}
+
+#spot{position:absolute;inset:0;z-index:44;opacity:0;pointer-events:none}
+#ringmark{position:absolute;inset:0;z-index:45;opacity:0;pointer-events:none}
+#ringmark ellipse{fill:none;stroke:var(--green);stroke-width:5;stroke-linecap:round;filter:drop-shadow(0 0 14px rgba(47,224,138,.85))}
+#arrow{position:absolute;z-index:46;opacity:0;width:0;height:0;
+  border-left:26px solid transparent;border-right:26px solid transparent;border-bottom:34px solid var(--green);
+  filter:drop-shadow(0 0 18px rgba(47,224,138,.9))}
+#aqui{position:absolute;z-index:46;opacity:0;font-size:33px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--green);
+  text-shadow:0 0 24px rgba(47,224,138,.7);white-space:nowrap}
+
+/* ====== marca final ====== */
+#logo{position:absolute;left:50%;top:560px;width:380px;height:380px;margin-left:-190px;opacity:0;z-index:48}
+#logo img{width:100%;height:100%;display:block;border-radius:50%;filter:drop-shadow(0 26px 60px rgba(0,0,0,.8));
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.3),0 0 0 1px rgba(255,255,255,.14),0 0 90px rgba(255,255,255,.09)}
+#logo .sweep{position:absolute;inset:0;border-radius:50%;overflow:hidden;mix-blend-mode:screen;pointer-events:none}
+#logo .sweep i{position:absolute;top:-30%;bottom:-30%;width:150px;transform:rotate(18deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent);filter:blur(10px)}
+#logo .halo{position:absolute;inset:-26px;border-radius:50%;border:1.5px solid rgba(47,224,138,.55);opacity:0;
+  box-shadow:0 0 50px rgba(47,224,138,.30)}
+#wm{position:absolute;left:0;right:0;top:1010px;text-align:center;opacity:0;z-index:48}
+#wm .w{font-family:"Inter Display","Inter",sans-serif;font-size:62px;font-weight:300;letter-spacing:.40em;text-indent:.40em;color:#FAFBF9;text-shadow:0 0 44px rgba(255,255,255,.24)}
+#wm .r{width:0;height:1px;margin:30px auto;background:linear-gradient(90deg,transparent,rgba(47,224,138,.75),transparent)}
+#wm .s{font-size:22px;letter-spacing:.32em;text-transform:uppercase;color:#949CA1;font-weight:500}
 
 #vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 92% 76% at 50% 48%,transparent 48%,rgba(0,0,0,.36) 88%,rgba(0,0,0,.6))}
 #grain{position:absolute;inset:-100px;pointer-events:none;opacity:.07;mix-blend-mode:overlay}
@@ -185,6 +216,9 @@ body{font-family:"Inter","Inter Display",sans-serif;color:var(--white)}
 <div id="amb"><div class="glow" id="g3"></div><div class="glow" id="g1"></div><div class="glow" id="g2"></div></div>
 <div id="spill"></div><div id="dust"></div>
 <div id="sigbg"><img src="../assets/cards/retrato-oculos.jpg" alt=""></div>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <filter id="whipx" x="-30%" y="-10%" width="160%" height="120%"><feGaussianBlur id="whipb" in="SourceGraphic" stdDeviation="0 0"/></filter>
+</defs></svg>
 
 <div id="world"><div id="rig">
   <div id="orbit"></div>
@@ -254,9 +288,14 @@ body{font-family:"Inter","Inter Display",sans-serif;color:var(--white)}
 </div>
 <div id="ripple"></div><div id="tap"></div>
 
-<div id="sig"><div class="w">ANDRÉ TATTOO</div><div class="r"></div><div class="s">Realismo preto e cinza · São Paulo</div></div>
+<div id="logo"><img src="../assets/logo.png" alt=""><div class="sweep"><i></i></div><div class="halo"></div></div>
+<div id="wm"><div class="w">ANDRÉ TATTOO</div><div class="r"></div><div class="s">Realismo preto e cinza · São Paulo</div></div>
 <div id="cta"><div class="l">Seu próximo projeto<br>começa aqui.</div></div>
 <div id="handle"><span class="dot"></span><span class="h">@andretatuadoor</span></div>
 
+<div id="igburst"><span class="gl"></span></div>
+<div id="spot"></div>
+<svg id="ringmark" viewBox="0 0 1080 1920"><ellipse cx="296" cy="409" rx="268" ry="64" transform="rotate(-3 296 409)"/></svg>
+<div id="arrow"></div><div id="aqui">o link está aqui</div>
 <div id="vig"></div><div id="grain"></div><div id="flash"></div><div id="fade"></div>
 </div><script src="motor.js"></script></body></html>
