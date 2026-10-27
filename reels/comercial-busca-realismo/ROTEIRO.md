@@ -21,7 +21,7 @@ O aparelho é o personagem: a câmera começa colada na tela, chicoteia para for
 | 09 | 13,70–16,90 | 3,20 | **O perfil** | Entra com **punch** de 7 %: avatar real, nome, números, bio, link azul, destaques com o monograma, grade. Rolagem de 130 px. | Punch | Instagram |
 | 10 | 16,90–19,40 | 2,50 | **O LINK** | **Spotlight**: o perfil inteiro escurece menos o link, que cresce 14 % e acende em azul. Uma **elipse verde é traçada à mão** em volta dele. Seta pulsa e entra `O LINK ESTÁ AQUI`. Então o toque. | Estática | Instagram |
 | 11 | 19,40–20,90 | 1,50 | **A conversa** | Folha sobe: `andretattoo.netlify.app` → **Agende sua sessão** → `Abrir conversa`. | Estática | Instagram |
-| 12 | 20,90–24,00 | 3,10 | **A LOGO** | O aparelho sai desfocado. A **logo do André** entra com punch, flash e rotação. Varredura de luz atravessa o cromado, halo verde se abre. Depois `ANDRÉ TATTOO`, a chamada e o `@`. | Saída 0,42 | — |
+| 12 | 20,90–24,00 | 3,10 | **A LOGO** | O aparelho sai desfocado. A **logo do André em branco** entra com punch, flash e rotação. Halo verde se abre em volta. Depois `ANDRÉ TATTOO`, a chamada e o `@`. | Saída 0,42 | — |
 
 ### Textos em tela
 - Busca Pinterest: `tatuagem realismo preto e cinza sp`
@@ -35,11 +35,13 @@ O aparelho é o personagem: a câmera começa colada na tela, chicoteia para for
 ## Gramática de corte
 Três técnicas, cada uma usada o mínimo necessário — efeito repetido vira filtro.
 
-- **Whip pan (2 usos).** Blur **direcional** de verdade, via filtro SVG `feGaussianBlur stdDeviation="N 0"`, que borra só no eixo X. Blur circular entrega o truque. A direção é coerente: sai pela direita em 8,5 s, volta pela esquerda em 11,0 s.
-- **Zoom punch (4 usos).** Estouro curto de escala, 0,12 s subindo e 0,26 s voltando. **Cada um tem um impacto sonoro no mesmo quadro** — sem isso a mudança parece arbitrária, não causada.
+- **Whip pan (2 usos).** Blur **direcional** de verdade, via filtro SVG `feGaussianBlur stdDeviation="N 0"`, que borra só no eixo X. Blur circular entrega o truque. A direção é coerente: sai pela direita em 8,5 s (720 px), volta pela esquerda em 11,0 s (660 px). Duração de 0,32 s cada — curto e seco.
+- **Zoom punch (4 usos).** Estouro curto de escala, 0,09 s subindo e 0,20 s voltando. **Cada um tem um impacto sonoro no mesmo quadro** — sem isso a mudança parece arbitrária, não causada.
 - **Spotlight (1 uso).** Reservado para o link, que é o único lugar onde o filme pede uma ação.
 
 Corte de pausa, não de conteúdo: a digitação do Pinterest caiu de 2,65 s para 1,75 s e nenhum plano passa de 3,2 s, mas nenhuma cena foi removida. São 12 beats em 24 s.
+
+**Marcas de terceiros.** Os ícones do Pinterest e do Instagram são os oficiais, recortados da imagem de referência do André — não versões desenhadas. Um ícone redesenhado fica torto e o espectador percebe, mesmo sem saber o que incomodou.
 
 ## Decisões de direção
 - **Nenhum número inventado.** Os do perfil (1.248 posts, 11 mil seguidores, 1.025 seguindo) são os reais, do print do André. Eles datam o filme — se preferir uma peça que não envelhece, a linha de números sai de `build/cena.html`.

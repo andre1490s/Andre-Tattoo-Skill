@@ -45,15 +45,29 @@ Nenhum pixel de desenho, anatomia ou traço é gerado ou recomposto por IA. `ass
 Sem seguidores, publicações, avaliação, posição em ranking, "+X clientes" ou preço. O perfil mostra identidade, bio e trabalho. O pin do Pinterest não é atribuído a ninguém. Isso é decisão de direção, não limitação: número inventado em peça publicitária é o jeito mais rápido de perder a confiança que o resto do filme constrói.
 
 ## A logo
-A logo real do André — o badge do "A" cromado com a agulha — foi reconstruída a partir dos destaques do Instagram dele, que é a única fonte disponível e tem só **148 px**. Nesse tamanho, ampliar borra.
+A logo real do André — o monograma do "A" com a agulha — foi reconstruída a partir dos destaques do Instagram dele, única fonte disponível e com só **148 px**.
 
-A solução foi **vetorizar**: `build/vetorizar.py` posteriza a imagem em 14 bandas de luminância, traça o contorno de cada banda (rastreio de Moore sobre a máscara binária, com supersampling de 8×), simplifica com Douglas-Peucker e emite curvas quadráticas. O resultado é `assets/logo.svg` — bordas nítidas em qualquer tamanho, com o degradê cromado preservado em camadas. Dele sai `assets/logo.png` a 1400 px, que é o que o filme usa (aparece a 404 px, ou seja, 3,5× sobreamostrado).
+Vetorizar o badge cromado não resolveu: reproduzir degradê exige detalhe que a fonte nunca teve, então ele continuava borrado por mais nítidas que ficassem as bordas. A solução foi **a marca em branco chapado** — sem degradê, não há o que perder. `build/vetorizar.py` traça a silhueta inteira (A, anel, agulha, fita e mira) como uma forma vetorial sólida, com limiar 24 sobre a média dos três destaques.
+
+Saídas: `assets/logo.svg` (mestre escalável) e `assets/logo.png` a 1400 px, que é o que o filme usa. Aparece a 372 px — 3,7× sobreamostrada.
 
 ```bash
 python3 -I build/vetorizar.py origem.png assets/logo.svg 8
 ```
 
-Se um dia aparecer o arquivo original da marca (vetor, PDF ou PNG grande), é só substituir `assets/logo.png` — o fecho atualiza sozinho.
+Se aparecer o arquivo original da marca, basta substituir `assets/logo.png`.
+
+## Os ícones de Pinterest e Instagram
+`assets/icons/` traz os ícones oficiais recortados da imagem de referência que o André enviou, não versões desenhadas em CSS:
+
+| Arquivo | Onde aparece |
+|---|---|
+| `instagram.png` | ícone do dock, com cantos arredondados em alfa |
+| `instagram-glifo.png` | o traço branco da câmera, no estouro de tela cheia |
+| `pinterest-marca.png` | o P branco, no cabeçalho do app |
+| `pinterest-icone.png` | quadrado branco com o P vermelho, no dock |
+
+O glifo foi extraído por **saturação** (baixa S, alto V), não por brilho — assim a sombra do ícone original fica de fora. Era ela que deixava a transição torta.
 
 ## Onde mexer no @
 O filme usa **`@andretatuadoor`** (confirmado em 27/10/2026, igual a `contexto/marca.md`). Ele aparece em três pontos:
