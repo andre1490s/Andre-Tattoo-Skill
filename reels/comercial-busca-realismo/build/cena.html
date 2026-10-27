@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>André Tattoo — Busca</title>
+<style>
+:root{--green:#2FE08A;--white:#F2F3F1;--mute:#878E92;--dim:#4A5155;--pred:#E60023}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
+body{font-family:"Inter","Inter Display",sans-serif;color:var(--white)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;isolation:isolate;
+  background:radial-gradient(ellipse 125% 72% at 50% 12%,#1C1C1D 0%,#101011 44%,#070707 80%)}
+
+#amb{position:absolute;inset:-25%}
+#amb .glow{position:absolute;border-radius:50%;filter:blur(130px)}
+#g1{width:1250px;height:1250px;background:radial-gradient(circle,rgba(118,118,120,.50),transparent 66%)}
+#g2{width:620px;height:620px;background:radial-gradient(circle,rgba(47,224,138,.22),transparent 62%)}
+#g3{width:1500px;height:1500px;background:radial-gradient(circle,rgba(74,74,78,.34),transparent 68%)}
+#spill{position:absolute;left:50%;top:50%;width:1500px;height:1500px;margin:-750px 0 0 -750px;opacity:0;
+  background:radial-gradient(circle,rgba(255,255,255,.17),transparent 58%);filter:blur(90px)}
+#dust{position:absolute;inset:0}.pt{position:absolute;border-radius:50%;background:#fff}
+
+/* ======== palco 3D ======== */
+#world{position:absolute;inset:0;perspective:2200px;perspective-origin:50% 50%}
+#rig{position:absolute;inset:0;transform-style:preserve-3d}
+#orbit{position:absolute;inset:0;transform-style:preserve-3d}
+.ocard{position:absolute;left:50%;top:50%;width:186px;height:248px;margin:-124px 0 0 -93px;border-radius:12px;overflow:hidden;
+  background:#0a0b0c;box-shadow:0 26px 60px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.08);opacity:0}
+.ocard img{width:100%;height:100%;object-fit:cover;display:block}
+
+#phone{position:absolute;left:50%;top:50%;width:624px;height:1264px;margin:-632px 0 0 -312px;border-radius:74px;
+  transform-style:preserve-3d;background:linear-gradient(152deg,#3a4046,#0c0e10 46%,#1b1f23);padding:10px;
+  box-shadow:0 70px 160px rgba(0,0,0,.88),0 0 0 1px rgba(255,255,255,.09)}
+#screen{position:relative;width:604px;height:1244px;border-radius:64px;overflow:hidden;background:#fff}
+#sheen{position:absolute;inset:0;z-index:60;pointer-events:none;border-radius:64px;
+  background:linear-gradient(118deg,transparent 32%,rgba(255,255,255,.14) 45%,rgba(255,255,255,.03) 53%,transparent 66%);
+  background-size:300% 100%;background-position:var(--psweep,-40%) 0}
+#notch{position:absolute;left:50%;top:12px;transform:translateX(-50%);width:132px;height:33px;border-radius:18px;background:#000;z-index:55}
+.app{position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden}
+
+/* ======== Pinterest (claro) ======== */
+#pin{background:#fff;color:#111}
+.pstat{display:flex;justify-content:space-between;align-items:center;padding:16px 34px 2px;font-size:17px;font-weight:600;color:#111}
+.pstat .bat{width:30px;height:15px;border-radius:4px;border:1.6px solid rgba(0,0,0,.55);position:relative}
+.pstat .bat::before{content:'';position:absolute;left:2px;top:2px;bottom:2px;width:18px;border-radius:2px;background:#111}
+.phdr{display:flex;align-items:center;gap:11px;padding:14px 18px 12px}
+.plogo{width:40px;height:40px;flex:0 0 40px;border-radius:50%;background:var(--pred);display:grid;place-items:center;
+  font-family:Georgia,serif;font-weight:700;font-size:26px;color:#fff;line-height:1}
+.pfield{flex:1;height:48px;border-radius:24px;background:#EFEFEF;display:flex;align-items:center;gap:10px;padding:0 18px;font-size:19px;color:#333;overflow:hidden;white-space:nowrap}
+.mag{width:17px;height:17px;flex:0 0 17px;border:2.2px solid #767676;border-radius:50%;position:relative}
+.mag::after{content:'';position:absolute;right:-6px;bottom:-5px;width:2.2px;height:8px;background:#767676;transform:rotate(-45deg);border-radius:2px}
+#pcaret{display:inline-block;width:2px;height:21px;background:var(--pred);vertical-align:-4px;margin-left:1px}
+#psugg{position:absolute;left:0;right:0;top:112px;background:#fff;z-index:20;opacity:0;padding-bottom:10px;box-shadow:0 16px 34px rgba(0,0,0,.13)}
+#psugg div{display:flex;align-items:center;gap:14px;padding:15px 24px;font-size:19px;color:#333}
+#psugg div .mag{opacity:.7}
+#psugg div b{font-weight:600;color:#111}
+#pload{position:absolute;left:50%;top:300px;transform:translateX(-50%);width:44px;height:44px;border-radius:50%;
+  border:4px solid #EFEFEF;border-top-color:var(--pred);opacity:0;z-index:21}
+#pmas{position:absolute;left:0;right:0;top:112px;bottom:0;overflow:hidden}
+#pmasIn{position:absolute;left:10px;right:10px;top:0;display:flex;gap:12px}
+#pmasIn .col{flex:1;display:flex;flex-direction:column;gap:12px}
+#pmasIn .p{border-radius:16px;overflow:hidden;background:#eee;position:relative}
+#pmasIn .p img{width:100%;height:100%;object-fit:cover;display:block}
+#pmasIn .p .src{position:absolute;left:10px;bottom:9px;font-size:13px;font-weight:600;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.8)}
+.pnav{position:absolute;left:0;right:0;bottom:0;height:78px;background:rgba(255,255,255,.96);border-top:1px solid #EDEDED;
+  display:flex;align-items:center;justify-content:space-around;z-index:22}
+.pnav i{display:block;width:24px;height:24px;border:2.4px solid #767676;border-radius:6px}
+.pnav i.a{border-color:#111;background:#111}
+.pnav i.r{border-radius:50%}
+
+/* ======== detalhe do pin ======== */
+#pdet{position:absolute;inset:0;z-index:30;background:#fff;transform:translateY(100%);opacity:0}
+#pdet .hero{width:100%;height:660px;overflow:hidden;position:relative}
+#pdet .hero img{width:100%;height:100%;object-fit:cover}
+#pdet .bar{position:absolute;left:0;right:0;top:0;height:130px;background:linear-gradient(180deg,rgba(0,0,0,.42),transparent)}
+#pdet .bar .x{position:absolute;left:24px;top:64px;width:22px;height:22px}
+#pdet .bar .x::before,#pdet .bar .x::after{content:'';position:absolute;left:0;top:10px;width:22px;height:2.6px;background:#fff;border-radius:2px}
+#pdet .bar .x::before{transform:rotate(45deg)}#pdet .bar .x::after{transform:rotate(-45deg)}
+#pdet .body{padding:26px 26px 0}
+#pdet .ttl{font-size:30px;font-weight:700;letter-spacing:-.02em;color:#111;line-height:1.18}
+#pdet .src{display:flex;align-items:center;gap:13px;margin-top:22px}
+#pdet .src img{width:48px;height:48px;border-radius:50%;object-fit:cover}
+#pdet .src .n{font-size:19px;font-weight:600;color:#111}
+#pdet .src .s{font-size:16px;color:#767676;margin-top:2px}
+#pdet .src .s2{font-size:19px;color:#767676}
+#pdet .save{margin-left:auto;background:var(--pred);color:#fff;font-size:18px;font-weight:700;padding:13px 26px;border-radius:24px}
+
+/* ======== Instagram (escuro) ======== */
+#ig{background:#000;color:#F5F5F5;opacity:0}
+.istat{display:flex;justify-content:space-between;align-items:center;padding:16px 34px 2px;font-size:17px;font-weight:600;color:#F5F5F5}
+.istat .bat{width:30px;height:15px;border-radius:4px;border:1.6px solid rgba(245,245,245,.6);position:relative}
+.istat .bat::before{content:'';position:absolute;left:2px;top:2px;bottom:2px;width:18px;border-radius:2px;background:#F5F5F5}
+.ihdr{display:flex;align-items:center;gap:13px;padding:14px 18px 12px}
+.ifield{flex:1;height:46px;border-radius:12px;background:#1C1C1E;display:flex;align-items:center;gap:10px;padding:0 15px;font-size:19px;color:#F5F5F5;overflow:hidden;white-space:nowrap}
+.ifield .mag{border-color:#8E8E93}.ifield .mag::after{background:#8E8E93}
+#icaret{display:inline-block;width:2px;height:21px;background:#F5F5F5;vertical-align:-4px;margin-left:1px}
+#ires{opacity:0;padding:6px 20px}
+#ires .row{display:flex;align-items:center;gap:15px;padding:13px 4px;border-radius:12px}
+#ires .row img{width:56px;height:56px;border-radius:50%;object-fit:cover}
+#ires .row .n{font-size:19px;font-weight:600}
+#ires .row .s{font-size:17px;color:#8E8E93;margin-top:2px}
+#iprof{position:absolute;left:0;right:0;top:44px;bottom:0;background:#000;opacity:0;overflow:hidden}
+#iprofIn{position:absolute;left:0;right:0;top:56px}
+.ipt{position:absolute;left:0;right:0;top:0;z-index:3;background:#000;display:flex;align-items:center;gap:14px;padding:13px 22px 15px;font-size:22px;font-weight:600}
+.ipt .bk{width:13px;height:13px;border-left:2.6px solid #F5F5F5;border-bottom:2.6px solid #F5F5F5;transform:rotate(45deg)}
+.ipt .mn{margin-left:auto;display:flex;flex-direction:column;gap:4px}
+.ipt .mn b{display:block;width:5px;height:5px;border-radius:50%;background:#F5F5F5}
+.ipb{padding:6px 22px 0}
+.iprow{display:flex;align-items:center;gap:26px}
+.iav{width:116px;height:116px;border-radius:50%;overflow:hidden;flex:0 0 116px;box-shadow:0 0 0 2.5px #000,0 0 0 5px rgba(47,224,138,.75)}
+.iav img{width:100%;height:100%;object-fit:cover}
+.ist{flex:1;display:flex;justify-content:space-around;text-align:center}
+.ist div b{display:block;font-size:23px;font-weight:700;letter-spacing:-.01em}
+.ist div s{display:block;font-size:16px;color:#C9CDD0;text-decoration:none;margin-top:1px}
+.inm{margin-top:17px;font-size:20px;font-weight:700;line-height:1.3;letter-spacing:-.005em}
+.ibio{margin-top:7px;font-size:18px;line-height:1.48;color:#E4E6E7}
+.ilink{display:inline-flex;align-items:flex-start;gap:9px;margin-top:9px;padding:5px 9px;border-radius:9px;font-size:18px;font-weight:600;color:#84A0F7}
+.ilink .ic{width:17px;height:17px;flex:0 0 17px;margin-top:3px;border:2.3px solid currentColor;border-radius:9px/5px;transform:rotate(-40deg)}
+.ibtns{display:flex;gap:9px;margin-top:17px}
+.ibtns a{flex:1;text-align:center;padding:13px 0;border-radius:11px;font-size:18px;font-weight:600;background:#1C1C1E;color:#F5F5F5}
+.ibtns a.w{flex:0 0 56px}
+.ihl{display:flex;gap:26px;margin-top:22px}
+.ihl i{display:block;text-align:center;font-style:normal}
+.ihl i u{display:block;width:94px;height:94px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2px #000,0 0 0 3.5px #4A4F55;text-decoration:none}
+.ihl i u img{width:100%;height:100%;object-fit:cover}
+.ihl i s{display:block;font-size:15px;color:#E4E6E7;margin-top:9px;text-decoration:none}
+.itabs{display:flex;margin-top:22px;border-top:1px solid #262626}
+.itabs i{flex:1;height:52px;display:block;position:relative}
+.itabs i.a::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:#F5F5F5}
+.itabs i::before{content:'';position:absolute;left:50%;top:16px;transform:translateX(-50%);width:20px;height:20px;border:2px solid #8E8E93;border-radius:3px}
+.itabs i.a::before{border-color:#F5F5F5}
+.igrid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:3px}
+.igrid img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+#isheet{position:absolute;left:0;right:0;bottom:0;z-index:40;background:#141416;border-radius:26px 26px 0 0;padding:26px 26px 40px;
+  transform:translateY(100%);box-shadow:0 -24px 60px rgba(0,0,0,.7)}
+#isheet .grab{width:44px;height:4px;border-radius:2px;background:#3A3A3C;margin:0 auto 22px}
+#isheet .u{font-size:17px;color:#8E8E93;text-align:center}
+#isheet .t{font-size:24px;font-weight:600;text-align:center;margin-top:9px}
+#isheet .go{margin-top:24px;text-align:center;padding:17px 0;border-radius:13px;font-size:19px;font-weight:700;
+  background:rgba(47,224,138,.14);color:var(--green);border:1px solid rgba(47,224,138,.5);box-shadow:0 0 26px rgba(47,224,138,.14)}
+#flood{position:absolute;inset:0;z-index:50;opacity:0;
+  background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
+
+/* ======== dock ======== */
+#dock{position:absolute;left:50%;bottom:170px;transform:translateX(-50%) scale(.9);display:flex;gap:26px;padding:24px 30px;border-radius:38px;opacity:0;z-index:5;
+  background:rgba(255,255,255,.07);backdrop-filter:blur(28px) saturate(1.3);-webkit-backdrop-filter:blur(28px) saturate(1.3);
+  border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.25),0 34px 80px rgba(0,0,0,.72)}
+.ic{width:84px;height:84px;border-radius:22px;position:relative;box-shadow:0 10px 24px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.22)}
+.ic.pin{background:#fff;display:grid;place-items:center;font-family:Georgia,serif;font-weight:700;font-size:50px;color:var(--pred);line-height:1}
+.ic.ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
+.ic.ig .sq{position:absolute;left:19px;top:19px;width:46px;height:46px;border:4.5px solid #fff;border-radius:15px}
+.ic.ig .ci{position:absolute;left:30px;top:30px;width:24px;height:24px;border:4.5px solid #fff;border-radius:50%}
+.ic.ig .dt{position:absolute;right:23px;top:23px;width:7px;height:7px;border-radius:50%;background:#fff}
+.ic.g1{background:linear-gradient(160deg,#4A4F55,#23272B)}
+.ic.g2{background:linear-gradient(160deg,#2B3A33,#16211B)}
+.ic.g3{background:linear-gradient(160deg,#3A3A42,#1E1E26)}
+#dockglow{position:absolute;inset:-14px;border-radius:30px;opacity:0;box-shadow:0 0 0 3px rgba(255,255,255,.55),0 0 50px rgba(255,255,255,.35)}
+
+/* ======== toque ======== */
+#tap{position:absolute;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;opacity:0;z-index:70;
+  background:radial-gradient(circle,rgba(255,255,255,.50),rgba(255,255,255,.10) 60%,transparent 70%);
+  border:2px solid rgba(255,255,255,.72);box-shadow:0 0 0 2px rgba(0,0,0,.30),0 0 26px rgba(0,0,0,.35),inset 0 0 18px rgba(0,0,0,.18)}
+#ripple{position:absolute;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;opacity:0;z-index:69;
+  border:2.5px solid rgba(255,255,255,.85);box-shadow:0 0 0 1.5px rgba(0,0,0,.28)}
+
+/* ======== marca ======== */
+#sigbg{position:absolute;left:50%;top:50%;width:1600px;height:1600px;margin:-800px 0 0 -800px;opacity:0;
+  mask-image:radial-gradient(circle,#000 0%,transparent 60%);-webkit-mask-image:radial-gradient(circle,#000 0%,transparent 60%)}
+#sigbg img{width:100%;height:100%;object-fit:cover;filter:blur(52px) grayscale(1) brightness(.5) contrast(1.35)}
+#sig{position:absolute;left:0;right:0;top:720px;text-align:center;opacity:0}
+#sig .w{font-family:"Inter Display","Inter",sans-serif;font-size:70px;font-weight:300;letter-spacing:.40em;text-indent:.40em;color:#FAFBF9;text-shadow:0 0 46px rgba(255,255,255,.22)}
+#sig .r{width:0;height:1px;margin:38px auto;background:linear-gradient(90deg,transparent,rgba(47,224,138,.75),transparent)}
+#sig .s{font-size:24px;letter-spacing:.34em;text-transform:uppercase;color:#949CA1;font-weight:500}
+#cta{position:absolute;left:0;right:0;top:1030px;text-align:center;opacity:0;padding:0 110px}
+#cta .l{font-family:"Inter Display","Inter",sans-serif;font-weight:300;font-size:60px;line-height:1.2;letter-spacing:-.02em}
+#handle{position:absolute;left:50%;top:1300px;transform:translateX(-50%);display:flex;align-items:center;gap:16px;
+  padding:26px 52px;border-radius:58px;opacity:0;
+  background:rgba(255,255,255,.055);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 26px 70px rgba(0,0,0,.6)}
+#handle .dot{width:9px;height:9px;border-radius:50%;background:var(--green)}
+#handle .h{font-size:42px;font-weight:500;letter-spacing:-.01em}
+
+#vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 92% 76% at 50% 48%,transparent 48%,rgba(0,0,0,.36) 88%,rgba(0,0,0,.6))}
+#grain{position:absolute;inset:-100px;pointer-events:none;opacity:.07;mix-blend-mode:overlay}
+#flash{position:absolute;inset:0;pointer-events:none;background:#fff;opacity:0}
+#fade{position:absolute;inset:0;pointer-events:none;background:#000;opacity:1}
+</style></head><body><div id="stage">
+<div id="amb"><div class="glow" id="g3"></div><div class="glow" id="g1"></div><div class="glow" id="g2"></div></div>
+<div id="spill"></div><div id="dust"></div>
+<div id="sigbg"><img src="../assets/cards/retrato-oculos.jpg" alt=""></div>
+
+<div id="world"><div id="rig">
+  <div id="orbit"></div>
+  <div id="phone"><div id="screen">
+    <div id="notch"></div>
+
+    <div class="app" id="pin">
+      <div class="pstat"><span>9:41</span><span class="bat"></span></div>
+      <div class="phdr"><div class="plogo">P</div><div class="pfield"><span class="mag"></span><span id="pq"></span></div></div>
+      <div id="pmas"><div id="pmasIn"><div class="col" id="colA"></div><div class="col" id="colB"></div></div></div>
+      <div class="pnav"><i class="a"></i><i class="r"></i><i></i><i class="r"></i><i></i></div>
+      <div id="psugg"></div>
+      <div id="pload"></div>
+    </div>
+
+    <div id="pdet">
+      <div class="hero"><img src="../assets/cards/retrato-oculos.jpg" alt=""><div class="bar"><span class="x"></span></div></div>
+      <div class="body">
+        <div class="ttl">Realismo preto e cinza<br>em São Paulo</div>
+        <div class="src"><div><div class="s2">Tatuagem · realismo · braço</div></div><div class="save">Salvar</div></div>
+      </div>
+    </div>
+
+    <div class="app" id="ig">
+      <div class="istat"><span>9:41</span><span class="bat"></span></div>
+      <div class="ihdr"><div class="ifield"><span class="mag"></span><span id="iq"></span></div></div>
+      <div id="ires"><div class="row"><img src="../assets/avatar.jpg" alt=""><div><div class="n">andretatuadoor</div><div class="s">André Tattoo · Tatuador</div></div></div></div>
+      <div id="iprof">
+        <div class="ipt"><span class="bk"></span><span>andretatuadoor</span><span class="mn"><b></b><b></b><b></b></span></div>
+        <div id="iprofIn"><div class="ipb">
+          <div class="iprow">
+            <div class="iav"><img src="../assets/avatar.jpg" alt=""></div>
+            <div class="ist">
+              <div><b>1.248</b><s>posts</s></div><div><b>11 mil</b><s>seguidores</s></div><div><b>1.025</b><s>seguindo</s></div>
+            </div>
+          </div>
+          <div class="inm">André | Tatuagem Realista | Zona Leste SP</div>
+          <div class="ibio">Toda semana uma pele sendo transformada<br>Coberturas e Reformas + de 1000 clientes<br>Vila Matilde &ndash; SP<br>Orçamento pelo link</div>
+          <div class="ilink" id="ilink"><span class="ic"></span>andretattoo.netlify.app</div>
+          <div class="ibtns"><a>Seguir</a><a>Mensagem</a><a class="w">&#8964;</a></div>
+          <div class="ihl">
+            <i><u><img src="../assets/destaque.jpg" alt=""></u><s>Reformas</s></i>
+            <i><u><img src="../assets/destaque.jpg" alt=""></u><s>Disponíveis</s></i>
+            <i><u><img src="../assets/destaque.jpg" alt=""></u><s>Trabalhos</s></i>
+          </div>
+          <div class="itabs"><i class="a"></i><i></i><i></i><i></i></div>
+          <div class="igrid">
+            <img src="../assets/tiles/retrato-oculos.jpg"><img src="../assets/tiles/cigana-braco.jpg"><img src="../assets/tiles/retrato-bone.jpg">
+            <img src="../assets/tiles/nossa-senhora.jpg"><img src="../assets/tiles/raposa-perna.jpg"><img src="../assets/tiles/lirio-costas.jpg">
+            <img src="../assets/tiles/fada-fineline.jpg"><img src="../assets/tiles/lirio-perna.jpg"><img src="../assets/tiles/vaso-stencil.jpg">
+            <img src="../assets/tiles/cigana-braco.jpg"><img src="../assets/tiles/retrato-oculos.jpg"><img src="../assets/tiles/nossa-senhora.jpg">
+          </div>
+        </div></div>
+      </div>
+      <div id="isheet"><div class="grab"></div><div class="u" style="color:#84A0F7">andretattoo.netlify.app</div><div class="t">Agende sua sessão</div><div class="go">Abrir conversa</div></div>
+    </div>
+
+    <div id="flood"></div>
+    <div id="sheen"></div>
+  </div></div>
+</div></div>
+
+<div id="dock">
+  <span class="ic g1"></span><span class="ic pin">P</span>
+  <span class="ic ig"><span class="sq"></span><span class="ci"></span><span class="dt"></span><span id="dockglow"></span></span>
+  <span class="ic g2"></span><span class="ic g3"></span>
+</div>
+<div id="ripple"></div><div id="tap"></div>
+
+<div id="sig"><div class="w">ANDRÉ TATTOO</div><div class="r"></div><div class="s">Realismo preto e cinza · São Paulo</div></div>
+<div id="cta"><div class="l">Seu próximo projeto<br>começa aqui.</div></div>
+<div id="handle"><span class="dot"></span><span class="h">@andretatuadoor</span></div>
+
+<div id="vig"></div><div id="grain"></div><div id="flash"></div><div id="fade"></div>
+</div><script src="motor.js"></script></body></html>
