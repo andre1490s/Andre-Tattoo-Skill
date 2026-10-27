@@ -1,12 +1,29 @@
 # Roteiro — "Busca" | André Tattoo
-**Formato:** 9:16 · 1080×1920 · 30 fps · **24,0 s** · Reels e Stories
-**Premissa:** alguém procura tatuagem de realismo no Pinterest, encontra um trabalho do André, vai até o Instagram dele e toca no link da bio.
+**Formato:** 9:16 · 1080×1920 · 30 fps · **29,2 s** · Reels e Stories
+**Premissa:** o filme abre nomeando a situação de quem assiste — a pasta de referências que nunca virou sessão marcada. Então alguém procura tatuagem de realismo no Pinterest, encontra um trabalho do André, vai até o Instagram dele e toca no link da bio.
 
 **Perfil de destino:** `@andretatuadoor`.
 
 O aparelho é o personagem: a câmera começa colada na tela, chicoteia para fora e revela o celular flutuando no escuro, e volta a entrar. A troca de app é a dobradiça do filme — o mundo claro do Pinterest vira o grafite da marca.
 
-## Decupagem
+## Ato 0 — O gancho (0,00–5,20)
+
+A referência abria nomeando a situação de quem assiste — *"você salvou mil ideias e não executou nada"* — antes de mostrar a solução. É o que dava motivo ao filme. Traduzido para tatuagem:
+
+| In–Out | Frase | Visual |
+|---|---|---|
+| 0,30–2,00 | **Você salvou mil referências.** | Preto. Nove tattoos do portfólio flutuam **desfocadas** num anel largo, girando devagar |
+| 2,00–3,55 | **E não marcou nenhuma.** | O anel se fecha, os cartões ganham brilho |
+| 3,55–5,20 | **Falta escolher _quem faz_.** | `quem faz` em verde. Os cartões aceleram para a lente e borram |
+| 5,20 | — | Flash. Entra a busca no Pinterest |
+
+- **Os cartões ficam desfocados de propósito.** São referências salvas, não o portfólio — este aparece nítido depois, no perfil. A desfocagem também impede que briguem com o texto.
+- **Verde só na virada.** As duas primeiras frases são o problema, em branco. O verde entra em `quem faz`, que é a pergunta que a busca vai responder.
+- **Sem gíria e sem clichê**, conforme o tom de voz em `contexto/marca.md`.
+
+Na implementação, o filme foi embrulhado em `#filme` e o relógio dele passou a ser deslocado pela constante `GANCHO`. Os tempos da decupagem abaixo são **relativos ao início do filme** — some 5,20 s para achar o instante no arquivo.
+
+## Decupagem (a partir de 5,20 s no arquivo)
 
 | # | In–Out | Dur | Cena | O que acontece | Câmera | Tela |
 |---|---|---|---|---|---|---|
