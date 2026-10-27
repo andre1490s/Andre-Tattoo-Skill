@@ -72,3 +72,32 @@ Netlify → esperar o HTTPS → só então trocar as **6 linhas** abaixo.
 
 Depois da troca: reenviar o `sitemap.xml` no Search Console e atualizar o link
 do site no Perfil da Empresa no Google, no Instagram e no TikTok.
+
+### Registro do domínio
+
+`andretattoo.com.br` estava livre no whois do Registro.br em 2026-10-27.
+Registro.br, R$ 40,00 por ano, pago com CPF. Conferido na origem nessa data;
+valor e disponibilidade podem ter mudado desde então.
+
+### Apontar o domínio para a Netlify
+
+Dois caminhos. O primeiro é o recomendado.
+
+**DNS na Netlify.** No Registro.br, trocar os servidores DNS pelos que a Netlify
+mostra ao adicionar o domínio. É o único jeito de o domínio sem `www` usar a
+rede de distribuição da Netlify, em vez de cair num IP fixo.
+
+**DNS no Registro.br.** Manter o DNS onde está e criar dois registros:
+
+| Nome | Tipo | Valor |
+|---|---|---|
+| (vazio ou `@`) | A | `75.2.60.5` |
+| `www` | CNAME | `andretattoo.netlify.app` |
+
+O Registro.br não oferece ALIAS nem ANAME, então o domínio raiz precisa mesmo
+do registro A. Valores conferidos na documentação da Netlify em 2026-10-27;
+a própria Netlify mostra os atuais na tela de adicionar domínio, e é por ela
+que se deve conferir na hora.
+
+Em qualquer um dos dois, o HTTPS é emitido sozinho pela Netlify depois que o
+DNS propaga. Só trocar as 6 linhas acima quando o cadeado já estiver aparecendo.
