@@ -89,11 +89,11 @@ window.seek=function(t){
 
   /* ===== rig ===== */
   whipb.setAttribute('stdDeviation', `${C.whipBlur.toFixed(1)} 0`);
-  const rigBlur = lerp(0,13,E.inCubic(seg(t,21.0,21.9)));
+  const rigBlur = lerp(0,15,E.inCubic(seg(t,20.72,21.42)));
   $('#rig').style.transform=`translate(${C.whip.toFixed(1)}px,${C.y.toFixed(1)}px) scale(${C.s.toFixed(4)})`;
   $('#phone').style.transform=`rotateY(${C.ry.toFixed(2)}deg) rotateX(${C.rx.toFixed(2)}deg)`;
   $('#rig').style.filter = (C.whipBlur>0.4? `url(#whipx) ` : '') + `blur(${rigBlur.toFixed(2)}px)`;
-  $('#rig').style.opacity=(1-seg(t,21.2,22.0)).toFixed(3);
+  $('#rig').style.opacity=(1-seg(t,20.88,21.46)).toFixed(3);
   $('#sheen').style.setProperty('--psweep',`${lerp(-50,210,E.inOutCubic(seg(t,7.8,9.4)))}%`);
   $('#phone').style.boxShadow=`0 70px 160px rgba(0,0,0,.88),0 0 0 1px rgba(255,255,255,.09),0 0 ${(90*C.back*(1-C.inn)).toFixed(0)}px rgba(255,255,255,${(.10*C.back*(1-C.inn)).toFixed(3)})`;
 

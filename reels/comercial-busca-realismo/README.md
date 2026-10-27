@@ -2,7 +2,7 @@
 
 Filme publicitário 9:16 para Reels e Stories. Alguém procura tatuagem de realismo no Pinterest, encontra um trabalho do André, vai até o Instagram dele e toca no link da bio.
 
-**Saída:** `saida/andre-tattoo-busca-9x16.mp4` — 1080×1920 · 30 fps · 25,0 s · H.264 CRF 17 · AAC 192k
+**Saída:** `saida/andre-tattoo-busca-9x16.mp4` — 1080×1920 · 30 fps · 24,0 s · H.264 CRF 19 · AAC 192k · 19 MB
 **Prévia leve:** `saida/andre-tattoo-busca-720p.mp4` (720×1280, para WhatsApp)
 
 | Documento | O que tem |
@@ -13,15 +13,15 @@ Filme publicitário 9:16 para Reels e Stories. Alguém procura tatuagem de reali
 | [`SOM.md`](SOM.md) | Mapa de eventos sonoros e como trocar por música |
 
 ## Como foi feito
-O filme inteiro é **renderizado**, não montado em editor. `build/cena.html` desenha o quadro e `build/motor.js` expõe `seek(t)`, que posiciona cada elemento a partir do instante `t`. O Playwright percorre os 750 quadros chamando `seek()` e fotografando; o ffmpeg junta tudo. O resultado é determinístico: o mesmo comando sempre produz o mesmo arquivo, e mudar um tempo é mudar um número.
+O filme inteiro é **renderizado**, não montado em editor. `build/cena.html` desenha o quadro e `build/motor.js` expõe `seek(t)`, que posiciona cada elemento a partir do instante `t`. O Playwright percorre os 720 quadros chamando `seek()` e fotografando; o ffmpeg junta tudo. O resultado é determinístico: o mesmo comando sempre produz o mesmo arquivo, e mudar um tempo é mudar um número.
 
 ```
 build/cena.html   estrutura e estilo das cenas (telas do Pinterest e do Instagram, aparelho, marca)
 build/motor.js    coreografia — câmera, digitação, mosaico, órbita 3D, toques, marca
-build/render.mjs  Playwright: 750 PNG 1080×1920
+build/render.mjs  Playwright: 720 PNG 1080×1920 (FROM/TO para render parcial)
 build/audio.sh    trilha sintetizada com ffmpeg (sem sample licenciado)
 build/build.sh    pipeline completo
-assets/           fotos reais tratadas (ver abaixo)
+assets/           fotos reais tratadas, avatar, monograma e a logo (ver abaixo)
 ```
 
 ## Rodar de novo
@@ -43,6 +43,9 @@ Nenhum pixel de desenho, anatomia ou traço é gerado ou recomposto por IA. `ass
 
 ## O que o filme não diz
 Sem seguidores, publicações, avaliação, posição em ranking, "+X clientes" ou preço. O perfil mostra identidade, bio e trabalho. O pin do Pinterest não é atribuído a ninguém. Isso é decisão de direção, não limitação: número inventado em peça publicitária é o jeito mais rápido de perder a confiança que o resto do filme constrói.
+
+## A logo
+`assets/logo.png` é a logo real do André — o badge do "A" cromado com a agulha, extraído dos destaques do Instagram dele (média dos três destaques para reduzir ruído de compressão, máscara circular, realce). Se um dia houver um arquivo vetorial da marca, trocar esse PNG já atualiza o fecho do filme.
 
 ## Onde mexer no @
 O filme usa **`@andretatuadoor`** (confirmado em 27/10/2026, igual a `contexto/marca.md`). Ele aparece em três pontos:
