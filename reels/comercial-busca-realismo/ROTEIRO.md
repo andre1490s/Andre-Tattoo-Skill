@@ -21,7 +21,7 @@ O aparelho é o personagem: a câmera começa colada na tela, chicoteia para for
 | 09 | 13,70–16,90 | 3,20 | **O perfil** | Entra com **punch** de 7 %: avatar real, nome, números, bio, link azul, destaques com o monograma, grade. Rolagem de 130 px. | Punch | Instagram |
 | 10 | 16,90–19,40 | 2,50 | **O LINK** | **Spotlight**: o perfil inteiro escurece menos o link, que cresce 14 % e acende em azul. Uma **elipse verde é traçada à mão** em volta dele. Seta pulsa e entra `O LINK ESTÁ AQUI`. Então o toque. | Estática | Instagram |
 | 11 | 19,40–20,90 | 1,50 | **A conversa** | Folha sobe: `andretattoo.netlify.app` → **Agende sua sessão** → `Abrir conversa`. | Estática | Instagram |
-| 12 | 20,90–24,00 | 3,10 | **A LOGO** | O aparelho sai desfocado. A **logo do André em branco** entra com punch, flash e rotação. Halo verde se abre em volta. Depois `ANDRÉ TATTOO`, a chamada e o `@`. | Saída 0,42 | — |
+| 12 | 20,90–24,00 | 3,10 | **Marca** | O aparelho sai desfocado. Entra `ANDRÉ TATTOO` com o tracking fechando, fio verde, a chamada e o `@`. **Sem logo** — ver `README.md`: a fonte disponível tem 148 px e não dá uma marca apresentável. Com um arquivo bom, basta ligar `LOGO_OK`. | Saída 0,42 | — |
 
 ### Textos em tela
 - Busca Pinterest: `tatuagem realismo preto e cinza sp`
@@ -30,7 +30,7 @@ O aparelho é o personagem: a câmera começa colada na tela, chicoteia para for
 - Busca Instagram: `andretatuadoor`
 - Destaque: `O LINK ESTÁ AQUI`
 - Folha: `Agende sua sessão` · `Abrir conversa`
-- Fecho: logo · `ANDRÉ TATTOO` · `REALISMO PRETO E CINZA · SÃO PAULO` · `Seu próximo projeto começa aqui.` · `@andretatuadoor`
+- Fecho: `ANDRÉ TATTOO` · `REALISMO PRETO E CINZA · SÃO PAULO` · `Seu próximo projeto começa aqui.` · `@andretatuadoor`
 
 ## Gramática de corte
 Três técnicas, cada uma usada o mínimo necessário — efeito repetido vira filtro.

@@ -44,18 +44,17 @@ Nenhum pixel de desenho, anatomia ou traço é gerado ou recomposto por IA. `ass
 ## O que o filme não diz
 Sem seguidores, publicações, avaliação, posição em ranking, "+X clientes" ou preço. O perfil mostra identidade, bio e trabalho. O pin do Pinterest não é atribuído a ninguém. Isso é decisão de direção, não limitação: número inventado em peça publicitária é o jeito mais rápido de perder a confiança que o resto do filme constrói.
 
-## A logo
-A logo real do André — o monograma do "A" com a agulha — foi reconstruída a partir dos destaques do Instagram dele, única fonte disponível e com só **148 px**.
+## A logo — PENDENTE
+**O fecho está sem a logo, de propósito.** A única fonte que existe aqui é um recorte de **148 px** dos destaques do Instagram, de uma renderização cromada. Tentei duas vezes:
 
-Vetorizar o badge cromado não resolveu: reproduzir degradê exige detalhe que a fonte nunca teve, então ele continuava borrado por mais nítidas que ficassem as bordas. A solução foi **a marca em branco chapado** — sem degradê, não há o que perder. `build/vetorizar.py` traça a silhueta inteira (A, anel, agulha, fita e mira) como uma forma vetorial sólida, com limiar 24 sobre a média dos três destaques.
+1. Vetorizar o badge cromado por bandas de luminância — bordas ficaram nítidas, mas o degradê continuou borrado, porque reproduzir degradê exige detalhe que a fonte não tem.
+2. Reduzir a marca a uma silhueta branca chapada — resolveu o borrão, mas a silhueta de uma renderização cromada de 148 px sai com as pernas do "A" empeloteadas, o anel irregular e a agulha torta. Parece traçado de foto, não logo.
 
-Saídas: `assets/logo.svg` (mestre escalável) e `assets/logo.png` a 1400 px, que é o que o filme usa. Aparece a 372 px — 3,7× sobreamostrada.
+Nenhum processamento inventa informação que a imagem não tem. Então o filme fecha com o letreiro tipográfico, que é limpo.
 
-```bash
-python3 -I build/vetorizar.py origem.png assets/logo.svg 8
-```
+**Para ligar a logo:** coloque um arquivo bom em `assets/logo.png` (ou gere um a partir de vetor) e mude `LOGO_OK` para `true` no topo de `build/motor.js`. O fecho volta a ter o badge, o halo verde e o punch, e os tempos do letreiro se reajustam sozinhos. Serve PNG grande, PDF, SVG, ou foto nítida da marca (placa, cartão, adesivo) desde que ela ocupe boa parte do quadro.
 
-Se aparecer o arquivo original da marca, basta substituir `assets/logo.png`.
+`build/vetorizar.py` fica no repositório: dado um arquivo decente, ele gera o SVG e o PNG em alta.
 
 ## Os ícones de Pinterest e Instagram
 `assets/icons/` traz os ícones oficiais recortados da imagem de referência que o André enviou, não versões desenhadas em CSS:

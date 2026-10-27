@@ -16,8 +16,8 @@ Quadros extraídos do arquivo final, em `previews/` (JPEG 540×960).
 | 10 | `previews/10-perfil.jpg` | 14,6 s | Perfil carregado: números reais, bio, link azul, destaques |
 | 11 | `previews/11-link-destaque.jpg` | 18,2 s | **Spotlight no link** com a elipse verde e `O LINK ESTÁ AQUI` |
 | 12 | `previews/12-folha.jpg` | 19,9 s | `Agende sua sessão` / `Abrir conversa` |
-| 13 | `previews/13-logo.jpg` | 21,5 s | **A logo** entrando com varredura de luz |
-| 14 | `previews/14-marca.jpg` | 23,5 s | Logo + `ANDRÉ TATTOO` + chamada + `@andretatuadoor` |
+| 13 | `previews/13-fecho.jpg` | 21,5 s | `ANDRÉ TATTOO` resolvendo (fecho sem logo — ver README) |
+| 14 | `previews/14-marca.jpg` | 23,5 s | `ANDRÉ TATTOO` + chamada + `@andretatuadoor` |
 
 Para gerar qualquer outro instante:
 ```bash

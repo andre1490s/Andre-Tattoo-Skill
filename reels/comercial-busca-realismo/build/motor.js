@@ -1,6 +1,9 @@
 /* Motor deterministico. window.seek(t) desenha o quadro do instante t. 25,0 s */
 (() => {
 const DUR=24.0;
+// Ligue quando houver um arquivo de logo em boa resolucao em assets/logo.png.
+// Com false, o fecho e so tipografico.
+const LOGO_OK=false;
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const clamp=(v,a=0,b=1)=>v<a?a:v>b?b:v;
 const seg=(t,a,b)=>clamp((t-a)/(b-a));
@@ -202,26 +205,29 @@ window.seek=function(t){
   sb.style.opacity=(E.outCubic(seg(t,20.8,21.9))*.28*(1-seg(t,23.4,24.0))).toFixed(3);
   sb.style.transform=`scale(${lerp(1.18,1,E.outCubic(seg(t,20.8,23.5))).toFixed(3)}) rotate(${(t*.5).toFixed(2)}deg)`;
   const lgIn=E.outBack(clamp(seg(t,20.95,21.70))), lg=$('#logo');
-  lg.style.opacity=clamp(seg(t,20.95,21.30)).toFixed(3);
+  lg.style.opacity=(LOGO_OK? clamp(seg(t,20.95,21.30)) : 0).toFixed(3);
   lg.style.transform=`scale(${lerp(.72,1,lgIn).toFixed(3)}) rotate(${lerp(-9,0,lgIn).toFixed(2)}deg)`;
   lg.querySelector('img').style.filter=`drop-shadow(0 26px 60px rgba(0,0,0,.8)) blur(${lerp(14,0,E.outCubic(seg(t,20.95,21.55))).toFixed(2)}px)`;
   lg.querySelector('.sweep i').style.left=`${lerp(-30,112,E.inOutCubic(seg(t,21.45,22.30))).toFixed(1)}%`;
   const ha=lg.querySelector('.halo'), haP=E.outExpo(seg(t,21.40,22.20));
-  ha.style.opacity=(haP*(1-haP*.45)).toFixed(3);
+  ha.style.opacity=(LOGO_OK? haP*(1-haP*.45) : 0).toFixed(3);
   ha.style.transform=`scale(${lerp(.86,1.1,haP).toFixed(3)})`;
-  const wIn=E.outExpo(seg(t,21.75,22.45)), wm=$('#wm');
+  const wIn=E.outExpo(seg(t,LOGO_OK?21.75:21.05,LOGO_OK?22.45:21.80)), wm=$('#wm');
+  wm.style.top=(LOGO_OK?1010:752)+'px';
   wm.style.opacity=wIn.toFixed(3);
   wm.querySelector('.w').style.letterSpacing=`${lerp(.60,.40,wIn)}em`;
   wm.querySelector('.w').style.textIndent=`${lerp(.60,.40,wIn)}em`;
   wm.querySelector('.w').style.filter=`blur(${lerp(10,0,wIn).toFixed(2)}px)`;
-  wm.querySelector('.r').style.width=`${(E.outExpo(seg(t,22.05,22.75))*440).toFixed(0)}px`;
-  wm.querySelector('.s').style.opacity=E.outCubic(seg(t,22.25,22.85)).toFixed(3);
-  const cIn=E.outExpo(seg(t,22.40,23.00)), ct=$('#cta');
+  wm.querySelector('.r').style.width=`${(E.outExpo(seg(t,LOGO_OK?22.05:21.45,LOGO_OK?22.75:22.15))*440).toFixed(0)}px`;
+  wm.querySelector('.s').style.opacity=E.outCubic(seg(t,LOGO_OK?22.25:21.65,LOGO_OK?22.85:22.25)).toFixed(3);
+  const cIn=E.outExpo(seg(t,LOGO_OK?22.40:21.95,LOGO_OK?23.00:22.55)), ct=$('#cta');
+  ct.style.top=(LOGO_OK?1300:1058)+'px';
   ct.style.opacity=cIn.toFixed(3);
   ct.style.transform=`translateY(${lerp(24,0,cIn)}px)`;
   ct.style.filter=`blur(${lerp(10,0,cIn).toFixed(2)}px)`;
-  const hIn=clamp(E.outBack(seg(t,22.85,23.45))), hd=$('#handle');
-  hd.style.opacity=clamp(seg(t,22.85,23.25)).toFixed(3);
+  const hIn=clamp(E.outBack(seg(t,LOGO_OK?22.85:22.45,LOGO_OK?23.45:23.05))), hd=$('#handle');
+  hd.style.top=(LOGO_OK?1540:1310)+'px';
+  hd.style.opacity=clamp(seg(t,LOGO_OK?22.85:22.45,LOGO_OK?23.25:22.85)).toFixed(3);
   hd.style.transform=`translateX(-50%) translateY(${lerp(22,0,hIn)}px) scale(${lerp(.94,1,hIn)})`;
   hd.querySelector('.dot').style.boxShadow=`0 0 ${(14+10*Math.sin(t*4)**2).toFixed(0)}px var(--green)`;
 
