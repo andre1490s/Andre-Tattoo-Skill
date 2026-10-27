@@ -1,17 +1,21 @@
 # Legenda do post
 
-Existe uma parte dessa pergunta que quase ninguém responde com honestidade.
+> As duas primeiras linhas são o que aparece antes do "mais". Elas carregam o post.
 
-Toda tatuagem clareia. Preto e cinza inclusive. A diferença é que o preto é o pigmento mais resistente que existe: ele não escapa do tempo, mas atravessa melhor que qualquer outro.
+Toda tatuagem clareia. A sua também.
 
-O que clareia antes é o cinza mais claro. Cinza é preto diluído, e menos pigmento depositado na pele significa menos margem até a perda aparecer. Por isso luz e meio-tom pedem mais cuidado que o preto fechado.
+Isso não é defeito da tinta nem do tatuador. É o seu corpo fazendo o que ele faz. As células de defesa capturam e soltam pigmento o tempo todo, e a luz do sol quebra as partículas maiores em fragmentos que a pele consegue eliminar.
 
-E o que mais acelera tudo isso não é a tinta. É o sol.
+O preto resiste melhor que qualquer outro pigmento. Mas resistir não é escapar.
 
-No artigo completo eu explico o que está na sua mão e o que não adianta tentar.
+O que clareia primeiro é o cinza mais claro. Cinza é preto diluído: quanto menos pigmento ficou depositado na pele, menos margem existe até a perda ficar visível. Por isso luz e meio-tom pedem mais atenção que o preto fechado.
 
-**Comente TINTA e eu mando no seu direct.**
+E o que mais acelera tudo isso não está na tinta. Está no sol.
+
+Escrevi um guia completo com o que você controla, o que não adianta tentar e quando o retoque deixa de ser opcional.
+
+Comente TINTA e eu envio no seu direct.
 
 Peças da galeria: Têmis, retrato, leão e onça. Todas em preto e cinza.
 
-#realismopretoecinza #tatuagemrealista #pretoecinza #tatuagemsp #vilamatilde #zonalestesp
+#realismopretoecinza #tatuagemrealista #pretoecinza #tatuagemsp #tatuagemsaopaulo #vilamatilde #zonalestesp #tatuadorsp #blackandgrey
