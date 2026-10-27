@@ -1,6 +1,8 @@
 /* Motor deterministico. window.seek(t) desenha o quadro do instante t. 25,0 s */
 (() => {
-const DUR=24.0;
+const GANCHO=5.2;        // duracao do gancho tipografico
+const FILME=24.0;        // duracao do filme
+const DUR=GANCHO+FILME;
 // Ligue quando houver um arquivo de logo em boa resolucao em assets/logo.png.
 // Com false, o fecho e so tipografico.
 const LOGO_OK=false;
@@ -33,6 +35,21 @@ const orb=$('#orbit'), OC=[]; srnd(11);
 OF.forEach((f,i)=>{const d=document.createElement('div');d.className='ocard';
   d.innerHTML=`<img src="../assets/cards/${f}.jpg" alt="">`;orb.appendChild(d);
   OC.push({el:d,a:i*0.6283+rnd()*.35,r:490+rnd()*230,z:-180+(i%4)*210,yo:(rnd()-.5)*460,rot:(rnd()-.5)*30,sp:.5+rnd()*.5});});
+
+
+/* ---------- gancho ---------- */
+const FRASES=[
+  {t0:0.30, t1:2.00, html:'Você salvou <b>mil referências</b>.'},
+  {t0:2.00, t1:3.55, html:'E não marcou <b>nenhuma</b>.'},
+  {t0:3.55, t1:5.20, html:'Falta escolher <em>quem faz</em>.'},
+];
+const gt=$('#gtxt');
+FRASES.forEach(f=>{const d=document.createElement('div');d.className='ln';d.innerHTML=f.html;gt.appendChild(d);f.el=d;});
+const GF=['retrato-oculos','cigana-braco','retrato-bone','nossa-senhora','raposa-perna','lirio-costas','fada-fineline','lirio-perna','vaso-stencil'];
+const gcw=$('#gcards'), GC=[]; srnd(41);
+GF.forEach((f,i)=>{const d=document.createElement('div');d.className='gc';
+  d.innerHTML=`<img src="../assets/cards/${f}.jpg" alt="">`;gcw.appendChild(d);
+  GC.push({el:d,a:i*(6.2832/GF.length)+rnd()*.22,r:560+rnd()*210,z:-300+(i%3)*210,yo:(rnd()-.5)*240,rot:(rnd()-.5)*20});});
 
 const dust=$('#dust'),PTS=[];srnd(23);
 for(let i=0;i<50;i++){const p=document.createElement('div');p.className='pt';dust.appendChild(p);
@@ -76,8 +93,33 @@ function tap(t,x,y,t0,dur){
 
 const whipb=document.getElementById('whipb');
 
-window.seek=function(t){
-  t=clamp(t,0,DUR);
+function gancho(tt){
+  const g=$('#gancho'), fim=E.inOutCubic(seg(tt,GANCHO-0.50,GANCHO-0.18));
+  g.style.opacity=(clamp(seg(tt,.12,.45))*(1-fim)).toFixed(3);
+  $('#gveu').style.opacity=(clamp(seg(tt,.2,1.0))*.85*(1-fim)).toFixed(3);
+  // cartoes salvos, fora de foco, fechando um anel
+  const conv=E.inOutCubic(seg(tt,.3,4.6));
+  GC.forEach((c,i)=>{
+    const a=c.a+tt*.13, r=lerp(c.r,452,conv), z=lerp(c.z,-110,conv);
+    const push=E.inCubic(seg(tt,4.60,GANCHO+.06));
+    c.el.style.opacity=(clamp(seg(tt,.25+i*.055,.95+i*.055))*(1-fim*1.6)).toFixed(3);
+    c.el.style.transform=`translate3d(${(Math.cos(a)*r*1.02).toFixed(1)}px,${(Math.sin(a)*r*.80+c.yo*(1-conv)).toFixed(1)}px,${(z+push*620).toFixed(1)}px) rotateZ(${(c.rot*(1-conv*.6)).toFixed(1)}deg) scale(${lerp(1,1.3,push).toFixed(3)})`;
+    c.el.style.filter=`blur(${(lerp(8,4.5,conv)+push*16).toFixed(1)}px) brightness(${lerp(.46,.74,conv).toFixed(2)})`;
+  });
+  // frases: entram desfocadas e resolvem; saem subindo
+  FRASES.forEach(f=>{
+    const inn=E.outExpo(seg(tt,f.t0,f.t0+.52)), out=E.inOutCubic(seg(tt,f.t1-.30,f.t1+.02));
+    f.el.style.opacity=(inn*(1-out)).toFixed(3);
+    f.el.style.transform=`translateY(${(lerp(30,0,inn)+lerp(0,-26,out)).toFixed(1)}px)`;
+    f.el.style.filter=`blur(${(lerp(13,0,inn)+lerp(0,9,out)).toFixed(2)}px)`;
+  });
+}
+
+window.seek=function(tt){
+  tt=clamp(tt,0,DUR);
+  gancho(tt);
+  $('#filme').style.opacity=(tt<GANCHO-0.16?0:clamp(seg(tt,GANCHO-0.16,GANCHO+0.08))).toFixed(3);
+  const t=clamp(tt-GANCHO,0,FILME);
   const C=camera(t);
 
   /* ===== ambiente ===== */
@@ -233,12 +275,13 @@ window.seek=function(t){
 
   /* ===== acabamento ===== */
   $('#flash').style.opacity=Math.max(
+    seg(tt,GANCHO-0.12,GANCHO-0.07)*(1-seg(tt,GANCHO-0.07,GANCHO+0.16))*.34,
     seg(t,2.48,2.52)*(1-seg(t,2.52,2.72))*.20,
     seg(t,5.76,5.80)*(1-seg(t,5.80,5.98))*.14,
     seg(t,10.44,10.49)*(1-seg(t,10.49,10.72))*.34,
     seg(t,20.98,21.02)*(1-seg(t,21.02,21.26))*.26).toFixed(3);
-  $('#fade').style.opacity=Math.max(1-seg(t,0,.35),seg(t,23.55,24.0)).toFixed(3);
-  srnd(Math.round(t*1000)+13);
+  $('#fade').style.opacity=Math.max(1-seg(tt,0,.40),seg(t,23.55,24.0)).toFixed(3);
+  srnd(Math.round(tt*1000)+13);
   $('#grain').style.backgroundPosition=`${(rnd()*200)|0}px ${(rnd()*200)|0}px`;
 };
 window.DUR=DUR; window.seek(0);

@@ -175,6 +175,20 @@ body{font-family:"Inter","Inter Display",sans-serif;color:var(--white)}
 #handle .h{font-size:42px;font-weight:500;letter-spacing:-.01em}
 
 
+/* ====== gancho ====== */
+#gancho{position:absolute;inset:0;z-index:30;opacity:0}
+#gcards{position:absolute;inset:0;perspective:1500px;perspective-origin:50% 48%}
+#gcards .gc{position:absolute;left:50%;top:50%;width:230px;height:307px;margin:-153px 0 0 -115px;border-radius:14px;overflow:hidden;
+  background:#0a0b0c;box-shadow:0 30px 70px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.06)}
+#gcards .gc img{width:100%;height:100%;object-fit:cover;display:block}
+#gtxt{position:absolute;left:0;right:0;top:792px;text-align:center;padding:0 110px}
+#gtxt .ln{position:absolute;left:110px;right:110px;top:0;
+  font-family:"Inter Display","Inter",sans-serif;font-weight:300;font-size:68px;line-height:1.22;letter-spacing:-.022em;color:#E9EBE8}
+#gtxt .ln b{font-weight:500;color:#FFF}
+#gtxt .ln em{font-style:normal;font-weight:500;color:var(--green);text-shadow:0 0 30px rgba(47,224,138,.45)}
+#gveu{position:absolute;inset:0;z-index:29;pointer-events:none;opacity:0;
+  background:radial-gradient(ellipse 54% 26% at 50% 46%,rgba(0,0,0,.80),transparent 72%)}
+
 /* ====== impacto ====== */
 #igburst{position:absolute;inset:0;z-index:40;opacity:0;display:grid;place-items:center;
   background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
@@ -208,10 +222,13 @@ body{font-family:"Inter","Inter Display",sans-serif;color:var(--white)}
 <div id="amb"><div class="glow" id="g3"></div><div class="glow" id="g1"></div><div class="glow" id="g2"></div></div>
 <div id="spill"></div><div id="dust"></div>
 <div id="sigbg"><img src="../assets/cards/retrato-oculos.jpg" alt=""></div>
+<div id="gveu"></div>
+<div id="gancho"><div id="gcards"></div><div id="gtxt"></div></div>
 <svg width="0" height="0" style="position:absolute"><defs>
   <filter id="whipx" x="-30%" y="-10%" width="160%" height="120%"><feGaussianBlur id="whipb" in="SourceGraphic" stdDeviation="0 0"/></filter>
 </defs></svg>
 
+<div id="filme">
 <div id="world"><div id="rig">
   <div id="orbit"></div>
   <div id="phone"><div id="screen">
@@ -289,5 +306,6 @@ body{font-family:"Inter","Inter Display",sans-serif;color:var(--white)}
 <div id="spot"></div>
 <svg id="ringmark" viewBox="0 0 1080 1920"><ellipse cx="296" cy="409" rx="268" ry="64" transform="rotate(-3 296 409)"/></svg>
 <div id="arrow"></div><div id="aqui">o link está aqui</div>
+</div><!-- /filme -->
 <div id="vig"></div><div id="grain"></div><div id="flash"></div><div id="fade"></div>
 </div><script src="motor.js"></script></body></html>
