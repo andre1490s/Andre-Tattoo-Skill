@@ -1,0 +1,63 @@
+{
+  "titulo_serie": "No estúdio",
+  "artigo": "Preto e cinza desbota com o tempo?",
+  "palavra_gate": "TINTA",
+  "slides": [
+    {
+      "imagem": "fotos/temis.jpg",
+      "foco": 0.42,
+      "escuro": 0.8,
+      "etiqueta": "No estúdio",
+      "titulo": "Preto e cinza *desbota* com o tempo?",
+      "tam_titulo": 78,
+      "texto": "A resposta honesta — e o que de fato acelera o processo.",
+      "cta": "Comente TINTA e receba o artigo no direct"
+    },
+    {
+      "imagem": "fotos/retrato.jpg",
+      "foco": 0.5,
+      "escuro": 0.74,
+      "etiqueta": "A verdade",
+      "titulo": "Sim. Toda tatuagem *clareia*.",
+      "tam_titulo": 80,
+      "texto": "Não existe tinta eterna. Quem promete isso está vendendo. O que existe é peça que envelhece bem — e peça que envelhece mal."
+    },
+    {
+      "imagem": "fotos/leao.jpg",
+      "foco": 0.55,
+      "escuro": 0.8,
+      "etiqueta": "O pigmento",
+      "titulo": "O preto é o mais *resistente* que existe.",
+      "tam_titulo": 72,
+      "texto": "Entre todos os pigmentos, é o que mais segura ao longo dos anos. Preto e cinza não é imune ao tempo. É o que melhor atravessa ele."
+    },
+    {
+      "imagem": "fotos/leopardo.jpg",
+      "foco": 0.5,
+      "escuro": 0.78,
+      "etiqueta": "Onde começa",
+      "titulo": "O que clareia antes é o cinza mais *claro*.",
+      "tam_titulo": 70,
+      "texto": "Cinza é preto diluído. Quanto mais diluído, menos pigmento depositado na pele — e menos pigmento significa menos margem até a perda aparecer."
+    },
+    {
+      "imagem": "fotos/temis.jpg",
+      "foco": 0.68,
+      "escuro": 0.82,
+      "etiqueta": "O que mais pesa",
+      "titulo": "O *sol* decide o ritmo.",
+      "tam_titulo": 86,
+      "texto": "É o fator externo de maior peso. Área sempre exposta, como mão e antebraço, clareia antes da que fica coberta pela roupa. Protetor solar na pele já cicatrizada é a medida mais eficaz que existe."
+    },
+    {
+      "imagem": "fotos/leao.jpg",
+      "foco": 0.3,
+      "escuro": 0.84,
+      "etiqueta": "Na sua mão",
+      "titulo": "O que você de fato *controla*.",
+      "tam_titulo": 76,
+      "texto": "Protetor solar sempre que expuser. Pele hidratada. Evitar atrito constante na área. E escolher bem o local: onde a peça vai pesa tanto quanto a técnica com que ela é feita.",
+      "cta": "Comente TINTA e receba o artigo no direct"
+    }
+  ]
+}
