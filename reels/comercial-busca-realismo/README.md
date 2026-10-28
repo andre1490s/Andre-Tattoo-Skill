@@ -2,7 +2,7 @@
 
 Filme publicitário 9:16 para Reels e Stories. Alguém procura tatuagem de realismo no Pinterest, encontra um trabalho do André, vai até o Instagram dele e toca no link da bio.
 
-**Saída:** `saida/andre-tattoo-busca-9x16.mp4` — 1080×1920 · 30 fps · 29,2 s · H.264 CRF 19 · AAC 192k · 21 MB
+**Saída:** `saida/andre-tattoo-busca-9x16.mp4` — 1080×1920 · 30 fps · 33,9 s · H.264 CRF 19 · AAC 192k · 22 MB
 **Prévia leve:** `saida/andre-tattoo-busca-720p.mp4` (720×1280, para WhatsApp)
 
 | Documento | O que tem |
@@ -13,12 +13,12 @@ Filme publicitário 9:16 para Reels e Stories. Alguém procura tatuagem de reali
 | [`SOM.md`](SOM.md) | Mapa de eventos sonoros e como trocar por música |
 
 ## Como foi feito
-O filme inteiro é **renderizado**, não montado em editor. `build/cena.html` desenha o quadro e `build/motor.js` expõe `seek(t)`, que posiciona cada elemento a partir do instante `t`. O Playwright percorre os 876 quadros chamando `seek()` e fotografando; o ffmpeg junta tudo. O resultado é determinístico: o mesmo comando sempre produz o mesmo arquivo, e mudar um tempo é mudar um número.
+O filme inteiro é **renderizado**, não montado em editor. `build/cena.html` desenha o quadro e `build/motor.js` expõe `seek(t)`, que posiciona cada elemento a partir do instante `t`. O Playwright percorre os 1017 quadros chamando `seek()` e fotografando; o ffmpeg junta tudo. O resultado é determinístico: o mesmo comando sempre produz o mesmo arquivo, e mudar um tempo é mudar um número.
 
 ```
 build/cena.html   estrutura e estilo das cenas (telas do Pinterest e do Instagram, aparelho, marca)
 build/motor.js    coreografia — câmera, digitação, mosaico, órbita 3D, toques, marca
-build/render.mjs  Playwright: 876 PNG 1080×1920 (FROM/TO para render parcial)
+build/render.mjs  Playwright: 1017 PNG 1080×1920 (FROM/TO para render parcial)
 build/audio.sh    trilha sintetizada com ffmpeg (sem sample licenciado)
 build/build.sh    pipeline completo
 assets/           fotos reais tratadas, avatar, monograma e a logo (ver abaixo)

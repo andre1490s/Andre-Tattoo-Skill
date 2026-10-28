@@ -1,12 +1,12 @@
 # Desenho de som
 
-`saida/trilha.wav` vem sintetizada e sincronizada (29,2 s · 48 kHz · estéreo). Sem sample licenciado — nada que o Instagram possa silenciar.
+`saida/trilha.wav` vem sintetizada e sincronizada (33,9 s · 48 kHz · estéreo). Sem sample licenciado — nada que o Instagram possa silenciar.
 
 **Regra que guia a trilha:** todo zoom punch tem um impacto sonoro **no mesmo quadro**. Sem isso a mudança de velocidade parece arbitrária em vez de causada — é o que separa um corte com peso de um efeito solto.
 
 ## Mapa de eventos
 
-O filme começa em **5,20 s** — antes disso é o gancho tipográfico. Os tempos abaixo são os do arquivo.
+O filme começa em **9,90 s** — antes disso é o gancho tipográfico. Os tempos abaixo são os do arquivo.
 
 ### Gancho
 | Tempo | Evento | Som |
@@ -17,7 +17,7 @@ O filme começa em **5,20 s** — antes disso é o gancho tipográfico. Os tempo
 ### Filme
 | Tempo | Evento | Som |
 |---|---|---|
-| 0,0–29,2 | Leito | Drone de 48 Hz + 72,5 Hz e ar rosa filtrado (1,8–9 kHz) a −26 dB |
+| 0,0–33,9 | Leito | Drone de 48 Hz + 72,5 Hz e ar rosa filtrado (1,8–9 kHz) a −26 dB |
 | 5,55 | Digitação Pinterest | 34 cliques de 30 ms, 1.550–1.970 Hz |
 | 7,66 | **Enter** (punch 10 %) | Tom de 430 Hz com eco curto |
 | 7,72 | Carregando | Whoosh filtrado 500–7.000 Hz |

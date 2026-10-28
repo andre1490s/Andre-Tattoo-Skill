@@ -1,29 +1,34 @@
 # Roteiro — "Busca" | André Tattoo
-**Formato:** 9:16 · 1080×1920 · 30 fps · **29,2 s** · Reels e Stories
+**Formato:** 9:16 · 1080×1920 · 30 fps · **33,9 s** · Reels e Stories
 **Premissa:** o filme abre nomeando a situação de quem assiste — a pasta de referências que nunca virou sessão marcada. Então alguém procura tatuagem de realismo no Pinterest, encontra um trabalho do André, vai até o Instagram dele e toca no link da bio.
 
 **Perfil de destino:** `@andretatuadoor`.
 
 O aparelho é o personagem: a câmera começa colada na tela, chicoteia para fora e revela o celular flutuando no escuro, e volta a entrar. A troca de app é a dobradiça do filme — o mundo claro do Pinterest vira o grafite da marca.
 
-## Ato 0 — O gancho (0,00–5,20)
+## Ato 0 — Introdução de marca (0,00–9,90)
 
-A referência abria nomeando a situação de quem assiste — *"você salvou mil ideias e não executou nada"* — antes de mostrar a solução. É o que dava motivo ao filme. Traduzido para tatuagem:
+Segue beat a beat o trecho da referência que o André marcou: abertura de marca com elementos flutuando, tipografia cinética sobre o que a pessoa já salvou e não executou, anel de imagens, e o clique no dock que abre o app.
 
-| In–Out | Frase | Visual |
+| In–Out | Beat | Visual |
 |---|---|---|
-| 0,30–2,00 | **Você salvou mil referências.** | Preto. Nove tattoos do portfólio flutuam **desfocadas** num anel largo, girando devagar |
-| 2,00–3,55 | **E não marcou nenhuma.** | O anel se fecha, os cartões ganham brilho |
-| 3,55–5,20 | **Falta escolher _quem faz_.** | `quem faz` em verde. Os cartões aceleram para a lente e borram |
-| 5,20 | — | Flash. Entra a busca no Pinterest |
+| 0,18–2,00 | **A marca** | O monograma **"A"** entra com punch e rotação. Oito tattoos do portfólio orbitam em 3D, desfocadas. Luz verde no piso |
+| 2,00–2,50 | **Saída** | A logo avança para a lente e borra |
+| 2,90–4,45 | **Você salvou mil referências.** | |
+| 4,45–5,70 | **mil** | A palavra "referências" se dissolve num **enxame de 260 ícones minúsculos** que explode pela tela |
+| 5,70–7,10 | **E não _marcou_ nenhuma.** | `marcou` em verde |
+| 7,10–8,05 | **Você só quer começar, né?** | O anel de cartões começa a se formar |
+| 8,05–9,35 | **mas _com quem_?** | O anel fecha em volta do texto |
+| 8,95–9,90 | **O clique** | O dock de vidro sobe, o cursor toca o **Pinterest**, o ícone pulsa. Flash |
+| 9,90 | → | O Pinterest abre e o filme começa |
 
-- **Os cartões ficam desfocados de propósito.** São referências salvas, não o portfólio — este aparece nítido depois, no perfil. A desfocagem também impede que briguem com o texto.
-- **Verde só na virada.** As duas primeiras frases são o problema, em branco. O verde entra em `quem faz`, que é a pergunta que a busca vai responder.
-- **Sem gíria e sem clichê**, conforme o tom de voz em `contexto/marca.md`.
+**Duas adaptações deliberadas em relação à referência:**
+- **Palco escuro, não branco.** A referência usa fundo branco com onda rosa — é a marca do Pinterest. A logo do André é branca e sumiria num palco branco, e preto e cinza é o posicionamento dele.
+- **A onda rosa virou luz verde de piso.** Faz o mesmo papel de cor de marca sem brigar com a paleta.
 
-Na implementação, o filme foi embrulhado em `#filme` e o relógio dele passou a ser deslocado pela constante `GANCHO`. Os tempos da decupagem abaixo são **relativos ao início do filme** — some 5,20 s para achar o instante no arquivo.
+Na implementação, o filme foi embrulhado em `#filme` e o relógio dele é deslocado pela constante `GANCHO`. Os tempos da decupagem abaixo são **relativos ao início do filme** — some 9,90 s para achar o instante no arquivo.
 
-## Decupagem (a partir de 5,20 s no arquivo)
+## Decupagem (a partir de 9,90 s no arquivo)
 
 | # | In–Out | Dur | Cena | O que acontece | Câmera | Tela |
 |---|---|---|---|---|---|---|
@@ -38,7 +43,7 @@ Na implementação, o filme foi embrulhado em `#filme` e o relógio dele passou 
 | 09 | 13,70–16,90 | 3,20 | **O perfil** | Entra com **punch** de 7 %: avatar real, nome, números, bio, link azul, destaques com o monograma, grade. Rolagem de 130 px. | Punch | Instagram |
 | 10 | 16,90–19,40 | 2,50 | **O LINK** | **Spotlight**: o perfil inteiro escurece menos o link, que cresce 14 % e acende em azul. Uma **elipse verde é traçada à mão** em volta dele. Seta pulsa e entra `O LINK ESTÁ AQUI`. Então o toque. | Estática | Instagram |
 | 11 | 19,40–20,90 | 1,50 | **A conversa** | Folha sobe: `andretattoo.netlify.app` → **Agende sua sessão** → `Abrir conversa`. | Estática | Instagram |
-| 12 | 20,90–24,00 | 3,10 | **Marca** | O aparelho sai desfocado. Entra `ANDRÉ TATTOO` com o tracking fechando, fio verde, a chamada e o `@`. **Sem logo** — ver `README.md`: a fonte disponível tem 148 px e não dá uma marca apresentável. Com um arquivo bom, basta ligar `LOGO_OK`. | Saída 0,42 | — |
+| 12 | 20,90–24,00 | 3,10 | **Fecho** | O aparelho sai desfocado. Entra `ANDRÉ TATTOO` com o tracking fechando, fio verde, a chamada e o `@`. **Sem logo** — ver `README.md`: a fonte disponível tem 148 px e não dá uma marca apresentável. Com um arquivo bom, basta ligar `LOGO_OK`. | Saída 0,42 | — |
 
 ### Textos em tela
 - Busca Pinterest: `tatuagem realismo preto e cinza sp`
