@@ -1,6 +1,6 @@
 /* Motor deterministico. window.seek(t) desenha o quadro do instante t. 25,0 s */
 (() => {
-const GANCHO=5.2;        // duracao do gancho tipografico
+const GANCHO=9.9;        // duracao da introducao de marca
 const FILME=24.0;        // duracao do filme
 const DUR=GANCHO+FILME;
 // Ligue quando houver um arquivo de logo em boa resolucao em assets/logo.png.
@@ -37,19 +37,40 @@ OF.forEach((f,i)=>{const d=document.createElement('div');d.className='ocard';
   OC.push({el:d,a:i*0.6283+rnd()*.35,r:490+rnd()*230,z:-180+(i%4)*210,yo:(rnd()-.5)*460,rot:(rnd()-.5)*30,sp:.5+rnd()*.5});});
 
 
-/* ---------- gancho ---------- */
+/* ---------- introducao ---------- */
 const FRASES=[
-  {t0:0.30, t1:2.00, html:'Você salvou <b>mil referências</b>.'},
-  {t0:2.00, t1:3.55, html:'E não marcou <b>nenhuma</b>.'},
-  {t0:3.55, t1:5.20, html:'Falta escolher <em>quem faz</em>.'},
+  {t0:2.90, t1:4.45, y:800, fs:66, html:'Você salvou <b>mil referências</b>.'},
+  {t0:4.45, t1:5.70, y:812, fs:84, html:'<b>mil</b>'},
+  {t0:5.70, t1:7.10, y:800, fs:66, html:'E não <em>marcou</em> nenhuma.'},
+  {t0:7.10, t1:8.05, y:850, fs:40, html:'Você só quer começar, né?'},
+  {t0:8.05, t1:9.35, y:850, fs:40, html:'mas <em>com quem</em>?'},
 ];
 const gt=$('#gtxt');
-FRASES.forEach(f=>{const d=document.createElement('div');d.className='ln';d.innerHTML=f.html;gt.appendChild(d);f.el=d;});
-const GF=['retrato-oculos','cigana-braco','retrato-bone','nossa-senhora','raposa-perna','lirio-costas','fada-fineline','lirio-perna','vaso-stencil'];
+FRASES.forEach(f=>{const d=document.createElement('div');d.className='ln';d.innerHTML=f.html;
+  d.style.top=f.y+'px'; d.style.fontSize=f.fs+'px'; d.style.lineHeight='1.22'; gt.appendChild(d); f.el=d;});
+
+// cartoes que orbitam a logo na abertura
+const OF2=['retrato-oculos','cigana-braco','retrato-bone','nossa-senhora','raposa-perna','lirio-costas','fada-fineline','lirio-perna'];
+const orbw=$('#orb'), OB=[]; srnd(61);
+OF2.forEach((f,i)=>{const d=document.createElement('div');d.className='o';
+  const w=120+rnd()*90, h=w*1.33;
+  d.style.width=w+'px'; d.style.height=h+'px'; d.style.margin=`${-h/2}px 0 0 ${-w/2}px`;
+  d.innerHTML=`<img src="../assets/cards/${f}.jpg" alt="">`; orbw.appendChild(d);
+  OB.push({el:d,a:i*(6.2832/OF2.length)+rnd()*.3,r:360+rnd()*230,z:-260+(i%3)*200,yo:(rnd()-.5)*420,rot:(rnd()-.5)*26,sp:.7+rnd()*.6});});
+
+// anel de cartoes das frases
+const GF=['retrato-oculos','cigana-braco','retrato-bone','nossa-senhora','raposa-perna','lirio-costas','fada-fineline','lirio-perna','vaso-stencil','retrato-bone','cigana-braco','nossa-senhora'];
 const gcw=$('#gcards'), GC=[]; srnd(41);
 GF.forEach((f,i)=>{const d=document.createElement('div');d.className='gc';
   d.innerHTML=`<img src="../assets/cards/${f}.jpg" alt="">`;gcw.appendChild(d);
-  GC.push({el:d,a:i*(6.2832/GF.length)+rnd()*.22,r:560+rnd()*210,z:-300+(i%3)*210,yo:(rnd()-.5)*240,rot:(rnd()-.5)*20});});
+  GC.push({el:d,a:i*(6.2832/GF.length)+rnd()*.14,r:620+rnd()*180,z:-280+(i%3)*190,yo:(rnd()-.5)*200,rot:(rnd()-.5)*18});});
+
+// enxame de icones minusculos
+const exw=$('#enxame'), EX=[]; srnd(77);
+const CLS=['q','c','r','b'];
+for(let i=0;i<260;i++){const e=document.createElement('i');e.className=CLS[(rnd()*4)|0];
+  const sz=6+rnd()*14; e.style.width=sz+'px'; e.style.height=sz+'px'; exw.appendChild(e);
+  EX.push({el:e,x:rnd(),y:rnd(),sz,d:rnd(),ph:rnd()*6.28});}
 
 const dust=$('#dust'),PTS=[];srnd(23);
 for(let i=0;i<50;i++){const p=document.createElement('div');p.className='pt';dust.appendChild(p);
@@ -93,32 +114,72 @@ function tap(t,x,y,t0,dur){
 
 const whipb=document.getElementById('whipb');
 
-function gancho(tt){
-  const g=$('#gancho'), fim=E.inOutCubic(seg(tt,GANCHO-0.50,GANCHO-0.18));
-  g.style.opacity=(clamp(seg(tt,.12,.45))*(1-fim)).toFixed(3);
-  $('#gveu').style.opacity=(clamp(seg(tt,.2,1.0))*.85*(1-fim)).toFixed(3);
-  // cartoes salvos, fora de foco, fechando um anel
-  const conv=E.inOutCubic(seg(tt,.3,4.6));
+function intro(tt){
+  const g=$('#intro'), fim=E.inOutCubic(seg(tt,GANCHO-0.16,GANCHO+0.02));
+  g.style.opacity=(clamp(seg(tt,.10,.40))*(1-fim)).toFixed(3);
+  $('#onda').style.opacity=(clamp(seg(tt,.3,1.4))*(0.72+0.28*Math.sin(tt*.8))*(1-fim*.7)).toFixed(3);
+  $('#onda').style.transform=`translateY(${(Math.sin(tt*.5)*16).toFixed(1)}px) scaleX(${(1+Math.sin(tt*.37)*.04).toFixed(3)})`;
+
+  /* --- abertura de marca (0,0-2,45) --- */
+  const ab=$('#abre'), abIn=E.outBack(clamp(seg(tt,.18,1.05))), abOut=E.inOutCubic(seg(tt,2.00,2.50));
+  ab.style.opacity=(clamp(seg(tt,.18,.52))*(1-abOut)).toFixed(3);
+  const abImg=ab.querySelector('img');
+  abImg.style.transform=`scale(${(lerp(.62,1,abIn)*lerp(1,1.42,abOut)).toFixed(3)}) rotate(${lerp(-7,0,abIn).toFixed(2)}deg)`;
+  abImg.style.filter=`drop-shadow(0 0 70px rgba(255,255,255,.18)) blur(${(lerp(16,0,E.outCubic(seg(tt,.18,.95)))+abOut*14).toFixed(2)}px)`;
+  OB.forEach((c,i)=>{
+    const p=E.outExpo(seg(tt,.35+i*.055,1.45+i*.055));
+    const a=c.a+tt*.22*c.sp, r=lerp(120,c.r,p), z=lerp(80,c.z,p);
+    c.el.style.opacity=(p*(1-abOut*1.3)*.95).toFixed(3);
+    c.el.style.transform=`translate3d(${(Math.cos(a)*r*1.02).toFixed(1)}px,${(Math.sin(a)*r*.74+c.yo*p*.4).toFixed(1)}px,${(z+abOut*520).toFixed(1)}px) rotateZ(${(c.rot*p).toFixed(1)}deg) scale(${lerp(.4,1,p).toFixed(3)})`;
+    c.el.style.filter=`blur(${(lerp(8,2.2,p)+abOut*12).toFixed(1)}px) brightness(${lerp(.4,.82,p).toFixed(2)})`;
+  });
+
+  /* --- veu atras do texto --- */
+  $('#gveu').style.opacity=(clamp(seg(tt,2.7,3.3))*.88*(1-fim)).toFixed(3);
+
+  /* --- enxame de icones (4,45-5,90) --- */
+  const exIn=E.outCubic(seg(tt,4.45,5.15)), exOut=E.inOutCubic(seg(tt,5.55,5.95));
+  const exw=$('#enxame'); exw.style.opacity=(exIn*(1-exOut)).toFixed(3);
+  EX.forEach((e,i)=>{
+    const p=clamp(exIn*1.3-e.d*.3);
+    const cx=540+(e.x-.5)*1150*lerp(.14,1.0,p), cy=866+(e.y-.5)*860*lerp(.10,.95,p);
+    e.el.style.left=cx.toFixed(0)+'px'; e.el.style.top=(cy+Math.sin(tt*2+e.ph)*7).toFixed(0)+'px';
+    e.el.style.opacity=(p*(.42+.58*Math.abs(Math.sin(e.ph+tt*1.6)))).toFixed(2);
+    e.el.style.transform=`scale(${lerp(.3,1,p).toFixed(2)})`;
+  });
+
+  /* --- anel de cartoes das frases (7,10-9,35) --- */
+  const rIn=E.outExpo(seg(tt,7.10,8.60)), rOut=E.inOutCubic(seg(tt,9.05,9.45));
   GC.forEach((c,i)=>{
-    const a=c.a+tt*.13, r=lerp(c.r,452,conv), z=lerp(c.z,-110,conv);
-    const push=E.inCubic(seg(tt,4.60,GANCHO+.06));
-    c.el.style.opacity=(clamp(seg(tt,.25+i*.055,.95+i*.055))*(1-fim*1.6)).toFixed(3);
-    c.el.style.transform=`translate3d(${(Math.cos(a)*r*1.02).toFixed(1)}px,${(Math.sin(a)*r*.80+c.yo*(1-conv)).toFixed(1)}px,${(z+push*620).toFixed(1)}px) rotateZ(${(c.rot*(1-conv*.6)).toFixed(1)}deg) scale(${lerp(1,1.3,push).toFixed(3)})`;
-    c.el.style.filter=`blur(${(lerp(8,4.5,conv)+push*16).toFixed(1)}px) brightness(${lerp(.46,.74,conv).toFixed(2)})`;
+    const p=clamp(rIn*1.25-i*.035);
+    const a=c.a+tt*.09, r=lerp(c.r,452,p), z=lerp(c.z,-130,p);
+    c.el.style.opacity=(p*(1-rOut)).toFixed(3);
+    c.el.style.transform=`translate3d(${(Math.cos(a)*r*1.02).toFixed(1)}px,${(Math.sin(a)*r*.80+c.yo*(1-p)).toFixed(1)}px,${(z+rOut*480).toFixed(1)}px) rotateZ(${(c.rot*(1-p*.6)).toFixed(1)}deg) scale(${lerp(.7,1,p).toFixed(3)})`;
+    c.el.style.filter=`blur(${(lerp(10,4.2,p)+rOut*14).toFixed(1)}px) brightness(${lerp(.4,.72,p).toFixed(2)})`;
   });
-  // frases: entram desfocadas e resolvem; saem subindo
+
+  /* --- frases --- */
   FRASES.forEach(f=>{
-    const inn=E.outExpo(seg(tt,f.t0,f.t0+.52)), out=E.inOutCubic(seg(tt,f.t1-.30,f.t1+.02));
+    const inn=E.outExpo(seg(tt,f.t0,f.t0+.46)), out=E.inOutCubic(seg(tt,f.t1-.26,f.t1+.02));
     f.el.style.opacity=(inn*(1-out)).toFixed(3);
-    f.el.style.transform=`translateY(${(lerp(30,0,inn)+lerp(0,-26,out)).toFixed(1)}px)`;
-    f.el.style.filter=`blur(${(lerp(13,0,inn)+lerp(0,9,out)).toFixed(2)}px)`;
+    f.el.style.transform=`translateY(${(lerp(26,0,inn)+lerp(0,-22,out)).toFixed(1)}px)`;
+    f.el.style.filter=`blur(${(lerp(12,0,inn)+lerp(0,8,out)).toFixed(2)}px)`;
   });
+
+  /* --- dock e clique no Pinterest (9,00-9,90) --- */
+  const dk=$('#idock'), dIn=E.outBack(clamp(seg(tt,8.95,9.48))), dOut=seg(tt,9.74,9.90);
+  dk.style.opacity=(clamp(seg(tt,8.95,9.22))*(1-dOut)).toFixed(3);
+  dk.style.transform=`translateX(-50%) translateY(${lerp(90,0,clamp(dIn))+lerp(0,40,dOut)}px) scale(${lerp(.84,1,clamp(dIn))})`;
+  const dg=seg(tt,9.52,9.80);
+  $('#idockglow').style.opacity=(dg>0&&dg<1?(1-dg):0).toFixed(3);
+  $$('#idock .ic')[1].style.transform=`scale(${1+.22*Math.sin(Math.PI*clamp(seg(tt,9.52,9.86)))})`;
+  return tap(tt,430,1553,9.46,.38);
 }
 
 window.seek=function(tt){
   tt=clamp(tt,0,DUR);
-  gancho(tt);
-  $('#filme').style.opacity=(tt<GANCHO-0.16?0:clamp(seg(tt,GANCHO-0.16,GANCHO+0.08))).toFixed(3);
+  const tapIntro=intro(tt);
+  $('#filme').style.opacity=(tt<GANCHO-0.08?0:clamp(seg(tt,GANCHO-0.08,GANCHO+0.12))).toFixed(3);
   const t=clamp(tt-GANCHO,0,FILME);
   const C=camera(t);
 
@@ -231,7 +292,8 @@ window.seek=function(tt){
   $('#iprof').style.filter=`brightness(${lerp(1,.62,shIn)})`;
 
   /* ===== TOQUES ===== */
-  const T = tap(t,305,579,5.76,.40)
+  const T = tapIntro
+         || tap(t,305,579,5.76,.40)
          || tap(t,540,1683,10.16,.44)
          || tap(t,300,225,13.36,.40)
          || tap(t,290,409,18.52,.46);

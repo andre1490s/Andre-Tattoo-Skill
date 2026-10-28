@@ -175,19 +175,43 @@ body{font-family:"Inter","Inter Display",sans-serif;color:var(--white)}
 #handle .h{font-size:42px;font-weight:500;letter-spacing:-.01em}
 
 
-/* ====== gancho ====== */
-#gancho{position:absolute;inset:0;z-index:30;opacity:0}
+/* ====== introducao ====== */
+#intro{position:absolute;inset:0;z-index:30;opacity:0}
+#onda{position:absolute;left:-14%;right:-14%;bottom:-10%;height:40%;opacity:0;
+  background:radial-gradient(ellipse 46% 100% at 26% 108%,rgba(47,224,138,.30),transparent 64%),
+             radial-gradient(ellipse 42% 86% at 74% 112%,rgba(32,190,116,.22),transparent 62%),
+             radial-gradient(ellipse 96% 62% at 50% 124%,rgba(47,224,138,.36),transparent 66%);
+  filter:blur(48px)}
+#abre{position:absolute;inset:0;display:grid;place-items:center;opacity:0}
+#abre img{width:640px;height:640px;display:block;filter:drop-shadow(0 0 70px rgba(255,255,255,.18))}
+#orb{position:absolute;inset:0;perspective:1400px}
+#orb .o{position:absolute;left:50%;top:50%;border-radius:14px;overflow:hidden;background:#0a0b0c;
+  box-shadow:0 20px 50px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.07)}
+#orb .o img{width:100%;height:100%;object-fit:cover;display:block}
+
 #gcards{position:absolute;inset:0;perspective:1500px;perspective-origin:50% 48%}
-#gcards .gc{position:absolute;left:50%;top:50%;width:230px;height:307px;margin:-153px 0 0 -115px;border-radius:14px;overflow:hidden;
-  background:#0a0b0c;box-shadow:0 30px 70px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.06)}
+#gcards .gc{position:absolute;left:50%;top:50%;width:212px;height:283px;margin:-141px 0 0 -106px;border-radius:13px;overflow:hidden;
+  background:#0a0b0c;box-shadow:0 28px 64px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.06)}
 #gcards .gc img{width:100%;height:100%;object-fit:cover;display:block}
-#gtxt{position:absolute;left:0;right:0;top:792px;text-align:center;padding:0 110px}
-#gtxt .ln{position:absolute;left:110px;right:110px;top:0;
-  font-family:"Inter Display","Inter",sans-serif;font-weight:300;font-size:68px;line-height:1.22;letter-spacing:-.022em;color:#E9EBE8}
+
+#enxame{position:absolute;inset:0;opacity:0}
+#enxame i{position:absolute;display:block;background:rgba(238,242,240,.82);box-shadow:0 0 10px rgba(255,255,255,.18)}
+#enxame i.q{border-radius:3px}
+#enxame i.c{border-radius:50%}
+#enxame i.r{border-radius:50% 50% 50% 2px;transform:rotate(45deg)}
+#enxame i.b{border-radius:4px 4px 0 0}
+
+#gtxt{position:absolute;left:0;right:0;top:0;height:1920px;pointer-events:none}
+#gtxt .ln{position:absolute;left:110px;right:110px;text-align:center;
+  font-family:"Inter Display","Inter",sans-serif;font-weight:300;letter-spacing:-.022em;color:#EDEFEC}
 #gtxt .ln b{font-weight:500;color:#FFF}
-#gtxt .ln em{font-style:normal;font-weight:500;color:var(--green);text-shadow:0 0 30px rgba(47,224,138,.45)}
+#gtxt .ln em{font-style:normal;font-weight:500;color:var(--green);text-shadow:0 0 30px rgba(47,224,138,.5)}
 #gveu{position:absolute;inset:0;z-index:29;pointer-events:none;opacity:0;
-  background:radial-gradient(ellipse 54% 26% at 50% 46%,rgba(0,0,0,.80),transparent 72%)}
+  background:radial-gradient(ellipse 56% 28% at 50% 46%,rgba(0,0,0,.78),transparent 72%)}
+#idock{position:absolute;left:50%;bottom:300px;transform:translateX(-50%);display:flex;gap:26px;padding:24px 30px;border-radius:38px;opacity:0;
+  background:rgba(255,255,255,.07);backdrop-filter:blur(28px) saturate(1.3);-webkit-backdrop-filter:blur(28px) saturate(1.3);
+  border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.25),0 34px 80px rgba(0,0,0,.72)}
+#idockglow{position:absolute;inset:-14px;border-radius:30px;opacity:0;box-shadow:0 0 0 3px rgba(255,255,255,.55),0 0 50px rgba(255,255,255,.35)}
 
 /* ====== impacto ====== */
 #igburst{position:absolute;inset:0;z-index:40;opacity:0;display:grid;place-items:center;
@@ -223,7 +247,19 @@ body{font-family:"Inter","Inter Display",sans-serif;color:var(--white)}
 <div id="spill"></div><div id="dust"></div>
 <div id="sigbg"><img src="../assets/cards/retrato-oculos.jpg" alt=""></div>
 <div id="gveu"></div>
-<div id="gancho"><div id="gcards"></div><div id="gtxt"></div></div>
+<div id="intro">
+  <div id="onda"></div>
+  <div id="gcards"></div>
+  <div id="enxame"></div>
+  <div id="abre"><div id="orb"></div><img src="../assets/logo.png" alt=""></div>
+  <div id="gtxt"></div>
+  <div id="idock">
+    <span class="ic g1"></span>
+    <span class="ic pin"><img src="../assets/icons/pinterest-icone.png" alt=""><span id="idockglow"></span></span>
+    <span class="ic ig"><img src="../assets/icons/instagram.png" alt=""></span>
+    <span class="ic g2"></span><span class="ic g3"></span>
+  </div>
+</div>
 <svg width="0" height="0" style="position:absolute"><defs>
   <filter id="whipx" x="-30%" y="-10%" width="160%" height="120%"><feGaussianBlur id="whipb" in="SourceGraphic" stdDeviation="0 0"/></filter>
 </defs></svg>
@@ -295,7 +331,6 @@ body{font-family:"Inter","Inter Display",sans-serif;color:var(--white)}
   <span class="ic ig"><img src="../assets/icons/instagram.png" alt=""><span id="dockglow"></span></span>
   <span class="ic g2"></span><span class="ic g3"></span>
 </div>
-<div id="ripple"></div><div id="tap"></div>
 
 <div id="logo"><img src="../assets/logo.png" alt=""><div class="sweep"><i></i></div><div class="halo"></div></div>
 <div id="wm"><div class="w">ANDRÉ TATTOO</div><div class="r"></div><div class="s">Realismo preto e cinza · São Paulo</div></div>
@@ -307,5 +342,6 @@ body{font-family:"Inter","Inter Display",sans-serif;color:var(--white)}
 <svg id="ringmark" viewBox="0 0 1080 1920"><ellipse cx="296" cy="409" rx="268" ry="64" transform="rotate(-3 296 409)"/></svg>
 <div id="arrow"></div><div id="aqui">o link está aqui</div>
 </div><!-- /filme -->
+<div id="ripple"></div><div id="tap"></div>
 <div id="vig"></div><div id="grain"></div><div id="flash"></div><div id="fade"></div>
 </div><script src="motor.js"></script></body></html>
