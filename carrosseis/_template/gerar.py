@@ -1,62 +1,78 @@
 #!/usr/bin/env python3
 """
-Gerador de carrosséis editoriais do André Tattoo.
-Padrão visual de contexto/marca.md: fundo escuro, serifada creme, acento dourado,
-texto no canto superior esquerdo, rodapé "ANDRE TATTOO". Formato 4:5 (1080x1350).
+Gerador de carrosseis editoriais do Andre Tattoo.
+Padrao visual de contexto/marca.md: fundo escuro, serifada creme, acento dourado,
+rodape sem assinatura. Saida 1440x1800 (4:5), alta resolucao.
 
 Uso:  python3 -I gerar.py config.json saida/
-A tattoo NUNCA é alterada: só escurecimento e neutralização de dominante de cor.
+
+Campos por slide:
+  imagem    caminho da foto
+  recorte   [cx, cy, largura] em pixels da foto original, para dar zoom num detalhe
+  foco      0..1, usado quando nao ha recorte (enquadramento vertical ou horizontal)
+  posicao   sup-esq | inf-esq | sup-dir | inf-dir  (varia para o carrossel nao repetir)
+  etiqueta  linha pequena em caixa alta
+  titulo    palavra entre *asteriscos* sai em cursiva dourada
+  texto     corpo
+  escuro    0..1, forca do escurecimento
+
+A tattoo nunca e redesenhada: so luz, cor e enquadramento.
 """
 import json, sys, os, re
 from PIL import Image, ImageDraw, ImageFont, ImageEnhance, ImageFilter
 
-W, H = 1080, 1350
-CREME   = (239, 230, 214)
-DOURADO = (201, 162, 80)
-APAGADO = (176, 168, 156)
-ESCURO  = (12, 12, 11)
+W, H = 1440, 1800
+E = W / 1080.0                      # escala em relacao ao projeto original
+CREME, DOURADO = (239, 230, 214), (201, 162, 80)
+APAGADO, ESCURO = (178, 170, 158), (12, 12, 11)
 FD = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fontes')
+F = lambda n, t: ImageFont.truetype(os.path.join(FD, n), int(t * E))
 
-def F(nome, tam):
-    return ImageFont.truetype(os.path.join(FD, nome), tam)
-
-def tratar(path, foco=0.5, forca=0.78):
-    """Corta 4:5, neutraliza dominante de cor (mata LED azul), escurece e aplica
-    gradiente lateral para o texto respirar. A arte da tattoo não é redesenhada."""
-    im = Image.open(path).convert('RGB')
-    w, h = im.size
-    alvo = W / H
-    if w / h > alvo:
-        nw = int(h * alvo); x = int((w - nw) * foco)
-        im = im.crop((x, 0, x + nw, h))
+def tratar(cfg):
+    im = Image.open(cfg['imagem']).convert('RGB')
+    rec = cfg.get('recorte')
+    if rec:
+        cx, cy, lw = rec; lh = int(lw * H / W)
+        x0, y0 = max(0, cx - lw // 2), max(0, cy - lh // 2)
+        x1, y1 = min(im.width, x0 + lw), min(im.height, y0 + lh)
+        im = im.crop((x0, y0, x1, y1))
     else:
-        nh = int(w / alvo); y = int((h - nh) * foco)
-        im = im.crop((0, y, w, y + nh))
+        w, h = im.size; alvo = W / H; foco = cfg.get('foco', 0.5)
+        if w / h > alvo:
+            nw = int(h * alvo); x = int((w - nw) * foco); im = im.crop((x, 0, x + nw, h))
+        else:
+            nh = int(w / alvo); y = int((h - nh) * foco); im = im.crop((0, y, w, y + nh))
     im = im.resize((W, H), Image.LANCZOS)
-    # neutraliza dominante: mistura com a versão em cinza (preto e cinza é a promessa)
-    im = Image.blend(im, im.convert('L').convert('RGB'), 0.72)
-    im = ImageEnhance.Brightness(im).enhance(1 - forca * 0.42)
-    im = ImageEnhance.Contrast(im).enhance(1.14)
-    # leve tom quente, como a luz lateral do padrão editorial
+    im = im.filter(ImageFilter.UnsharpMask(radius=2, percent=58, threshold=3))
+    im = Image.blend(im, im.convert('L').convert('RGB'), 0.70)
+    f = cfg.get('escuro', 0.78)
+    im = ImageEnhance.Brightness(im).enhance(1 - f * 0.42)
+    im = ImageEnhance.Contrast(im).enhance(1.15)
     r, g, b = im.split()
-    im = Image.merge('RGB', (r.point(lambda v: min(255, int(v*1.06))), g,
-                             b.point(lambda v: int(v*0.95))))
-    # gradiente escuro da esquerda e do rodapé
-    gl = Image.new('L', (W, H), 0); d = ImageDraw.Draw(gl)
+    im = Image.merge('RGB', (r.point(lambda v: min(255, int(v * 1.06))), g,
+                             b.point(lambda v: int(v * 0.95))))
+    pos = cfg.get('posicao', 'sup-esq')
+    dire, vert = pos.split('-')[1], pos.split('-')[0]
+    g1 = Image.new('L', (W, H), 0); d = ImageDraw.Draw(g1)
     for x in range(W):
-        d.line([(x,0),(x,H)], fill=int(236 * max(0.0, 1 - (x / (W*0.80)))**1.45))
-    im = Image.composite(Image.new('RGB',(W,H),ESCURO), im, gl)
-    gb = Image.new('L', (W, H), 0); d = ImageDraw.Draw(gb)
+        t = (1 - x / (W * 0.82)) if dire == 'esq' else ((x - W * 0.18) / (W * 0.82))
+        d.line([(x, 0), (x, H)], fill=int(228 * max(0.0, t) ** 1.45))
+    im = Image.composite(Image.new('RGB', (W, H), ESCURO), im, g1)
+    g2 = Image.new('L', (W, H), 0); d = ImageDraw.Draw(g2)
     for y in range(H):
-        t = max(0.0, (y - H*0.60) / (H*0.40))
-        d.line([(0,y),(W,y)], fill=int(205 * t**1.5))
-    im = Image.composite(Image.new('RGB',(W,H),ESCURO), im, gb)
-    # painel suave atras da coluna de texto: garante leitura sem apagar a tattoo
-    pn = Image.new('L', (W, H), 0); d = ImageDraw.Draw(pn)
-    d.rectangle([0, 150, 700, 1010], fill=118)
-    pn = pn.filter(ImageFilter.GaussianBlur(120))
-    im = Image.composite(Image.new('RGB',(W,H),ESCURO), im, pn)
+        t = (1 - y / (H * 0.55)) if vert == 'sup' else ((y - H * 0.45) / (H * 0.55))
+        d.line([(0, y), (W, y)], fill=int(150 * max(0.0, t) ** 1.6))
+    im = Image.composite(Image.new('RGB', (W, H), ESCURO), im, g2)
     return im
+
+def partir(titulo):
+    out = []
+    for m in re.finditer(r'\*([^*]+)\*([^\s*]*)|([^*]+)', titulo):
+        if m.group(1) is not None:
+            out.append(((m.group(1) + (m.group(2) or '')).strip(), True))
+        elif m.group(3) and m.group(3).strip():
+            out.append((m.group(3).strip(), False))
+    return out
 
 def quebrar(d, txt, fonte, larg):
     linhas, atual = [], ''
@@ -69,85 +85,66 @@ def quebrar(d, txt, fonte, larg):
     if atual: linhas.append(atual)
     return linhas
 
-def espacado(d, xy, txt, fonte, fill, esp=4):
+def espacado(d, xy, txt, fonte, fill, esp):
     x, y = xy
     for c in txt:
-        d.text((x, y), c, font=fonte, fill=fill)
-        x += d.textlength(c, font=fonte) + esp
+        d.text((x, y), c, font=fonte, fill=fill); x += d.textlength(c, font=fonte) + esp
     return x
 
-def moldura(d):
-    m, r = 34, 14
-    d.rectangle([m, m, W-m, H-m], outline=(150,122,64), width=2)
+def slide(cfg, out):
+    im = tratar(cfg); d = ImageDraw.Draw(im)
+    m = int(34 * E); r = int(14 * E)
+    d.rectangle([m, m, W - m, H - m], outline=(150, 122, 64), width=2)
     for (cx, cy, sx, sy) in [(m,m,1,1), (W-m,m,-1,1), (m,H-m,1,-1), (W-m,H-m,-1,-1)]:
-        d.line([(cx+sx*r, cy+sy*r*0), (cx+sx*r, cy+sy*r)], fill=DOURADO, width=2)
-        d.line([(cx+sx*r*0, cy+sy*r), (cx+sx*r, cy+sy*r)], fill=DOURADO, width=2)
+        d.line([(cx + sx*r, cy), (cx + sx*r, cy + sy*r)], fill=DOURADO, width=2)
+        d.line([(cx, cy + sy*r), (cx + sx*r, cy + sy*r)], fill=DOURADO, width=2)
 
-def slide(cfg, n, total, out):
-    im = tratar(cfg['imagem'], cfg.get('foco', 0.5), cfg.get('escuro', 0.78))
-    d = ImageDraw.Draw(im)
-    moldura(d)
-    X, larg = 86, 560
+    pos = cfg.get('posicao', 'sup-esq')
+    vert, dire = pos.split('-')
+    larg = int(560 * E)
+    X = int(86 * E) if dire == 'esq' else W - int(86 * E) - larg
 
-    y = 168
-    if cfg.get('etiqueta'):
-        espacado(d, (X, y), cfg['etiqueta'].upper(), F('inter.ttf', 21), DOURADO, 5.5)
-        y += 62
-
-    # título: palavra entre *asteriscos* sai em cursiva dourada
-    f_tit = F('pf-bold.ttf', cfg.get('tam_titulo', 82))
-    f_it  = F('cormorant-italic.ttf', int(cfg.get('tam_titulo', 82) * 1.17))
-    partes = []
-    for m in re.finditer(r'\*([^*]+)\*([^\s*]*)|([^*]+)', cfg['titulo']):
-        if m.group(1) is not None:
-            partes.append(((m.group(1) + (m.group(2) or '')).strip(), True))
-        elif m.group(3) and m.group(3).strip():
-            partes.append((m.group(3).strip(), False))
+    tam = cfg.get('tam_titulo', 78)
+    f_et = F('inter.ttf', 21); f_ti = F('pf-bold.ttf', tam)
+    f_it = F('cormorant-italic.ttf', int(tam * 1.17)); f_tx = F('inter.ttf', 31)
+    lh = int(tam * 1.17 * E); lhx = int(46 * E)
 
     linha, linhas = [], []
-    for txt, it in partes:
+    for txt, it in partir(cfg['titulo']):
         for pal in txt.split():
-            f = f_it if it else f_tit
+            f = f_it if it else f_ti
             tent = linha + [(pal, it, f)]
-            lw = sum(d.textlength(w, font=ff) for w,_,ff in tent) + 14*(len(tent)-1)
-            if lw <= larg or not linha: linha = tent
-            else: linhas.append(linha); linha = [(pal, it, f)]
+            if sum(d.textlength(w, font=ff) for w, _, ff in tent) + 14*E*(len(tent)-1) <= larg or not linha:
+                linha = tent
+            else:
+                linhas.append(linha); linha = [(pal, it, f)]
     if linha: linhas.append(linha)
+    corpo = quebrar(d, cfg['texto'], f_tx, larg) if cfg.get('texto') else []
 
-    lh = int(cfg.get('tam_titulo', 82) * 1.17)
+    alt = (int(62*E) if cfg.get('etiqueta') else 0) + len(linhas)*lh + int(54*E) + len(corpo)*lhx
+    y = int(168 * E) if vert == 'sup' else H - int(150 * E) - alt
+
+    if cfg.get('etiqueta'):
+        espacado(d, (X, y), cfg['etiqueta'].upper(), f_et, DOURADO, 5.5 * E)
+        y += int(62 * E)
     for ln in linhas:
         x = X
         for pal, it, f in ln:
-            dy = int(lh*0.10) if it else 0
-            d.text((x, y - dy), pal, font=f, fill=DOURADO if it else CREME)
-            x += d.textlength(pal, font=f) + 14
+            d.text((x, y - (int(lh*0.10) if it else 0)), pal, font=f,
+                   fill=DOURADO if it else CREME)
+            x += d.textlength(pal, font=f) + 14 * E
         y += lh
-    y += 14
+    y += int(14 * E)
+    d.line([(X, y), (X + int(112*E), y)], fill=DOURADO, width=2)
+    y += int(40 * E)
+    for ln in corpo:
+        d.text((X, y), ln, font=f_tx, fill=APAGADO); y += lhx
 
-    d.line([(X, y), (X + 112, y)], fill=DOURADO, width=2); y += 40
-
-    if cfg.get('texto'):
-        f_tx = F('inter.ttf', 31)
-        for ln in quebrar(d, cfg['texto'], f_tx, larg):
-            d.text((X, y), ln, font=f_tx, fill=APAGADO); y += 46
-
-    if cfg.get('cta'):
-        f_c = F('inter.ttf', 27)
-        tw = d.textlength(cfg['cta'], font=f_c)
-        bx, by, bh = X, H - 212, 68
-        d.rounded_rectangle([bx, by, bx + tw + 58, by + bh], radius=34,
-                            outline=DOURADO, width=2, fill=(16,16,14))
-        d.text((bx + 29, by + 19), cfg['cta'], font=f_c, fill=CREME)
-
-    im.save(out, quality=95)
+    im.save(out, quality=96, subsampling=0)
     return out
 
 if __name__ == '__main__':
-    cfgp, outd = sys.argv[1], sys.argv[2]
-    cfg = json.load(open(cfgp, encoding='utf-8'))
+    cfg = json.load(open(sys.argv[1], encoding='utf-8')); outd = sys.argv[2]
     os.makedirs(outd, exist_ok=True)
-    n = len(cfg['slides'])
     for i, s in enumerate(cfg['slides'], 1):
-        p = os.path.join(outd, f"{i:02d}.jpg")
-        slide(s, i, n, p)
-        print('ok', p)
+        print('ok', slide(s, os.path.join(outd, f"{i:02d}.jpg")))

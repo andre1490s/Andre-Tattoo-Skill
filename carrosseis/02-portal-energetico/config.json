@@ -1,0 +1,114 @@
+{
+  "artigo": "Os símbolos do portal energético",
+  "palavra_gate": "PORTAL",
+  "slides": [
+    {
+      "imagem": "fotos/braco-b.jpg",
+      "foco": 0.45,
+      "escuro": 0.8,
+      "posicao": "inf-esq",
+      "etiqueta": "No estúdio",
+      "titulo": "Tem um *mapa* escrito nesse braço.",
+      "tam_titulo": 76,
+      "texto": "Cada hexágono guarda um símbolo com séculos de história. Vou traduzir os principais."
+    },
+    {
+      "imagem": "fotos/braco-a.jpg",
+      "recorte": [
+        750,
+        1260,
+        500
+      ],
+      "escuro": 0.76,
+      "posicao": "sup-dir",
+      "etiqueta": "O centro",
+      "titulo": "Merkaba, a *estrela* tetraédrica.",
+      "tam_titulo": 70,
+      "texto": "Dois tetraedros opostos, um apontando para cima e outro para baixo. A tradição lê como união de contrários: céu e terra, ativo e receptivo, matéria e espírito."
+    },
+    {
+      "imagem": "fotos/braco-a.jpg",
+      "recorte": [
+        700,
+        1690,
+        250
+      ],
+      "escuro": 0.78,
+      "posicao": "inf-dir",
+      "etiqueta": "A origem",
+      "titulo": "Fruto da Vida, treze *círculos*.",
+      "tam_titulo": 70,
+      "texto": "Ligando o centro desses treze círculos nasce o Cubo de Metatron, e dele sai a estrela do slide anterior. O braço traz a origem e o resultado lado a lado."
+    },
+    {
+      "imagem": "fotos/braco-a.jpg",
+      "recorte": [
+        195,
+        1800,
+        300
+      ],
+      "escuro": 0.76,
+      "posicao": "sup-esq",
+      "etiqueta": "O padrão",
+      "titulo": "A rosácea da *Flor da Vida*.",
+      "tam_titulo": 70,
+      "texto": "Seis pétalas que nascem de seis círculos sobrepostos. É um dos desenhos geométricos mais antigos já registrados, e reaparece em templos de culturas que nunca se encontraram."
+    },
+    {
+      "imagem": "fotos/braco-a.jpg",
+      "recorte": [
+        490,
+        1090,
+        420
+      ],
+      "escuro": 0.76,
+      "posicao": "inf-esq",
+      "etiqueta": "A flor",
+      "titulo": "O lótus nasce na *lama*.",
+      "tam_titulo": 76,
+      "texto": "Cresce enraizado no fundo barrento e abre limpo na superfície. No budismo é o símbolo da purificação: a origem não determina o que a flor se torna."
+    },
+    {
+      "imagem": "fotos/braco-a.jpg",
+      "recorte": [
+        540,
+        1660,
+        290
+      ],
+      "escuro": 0.78,
+      "posicao": "sup-dir",
+      "etiqueta": "O laço",
+      "titulo": "O nó que não tem *fim*.",
+      "tam_titulo": 76,
+      "texto": "Um dos Oito Símbolos Auspiciosos do budismo. Sem começo e sem fim, representa sabedoria e compaixão entrelaçadas, e a ideia de que nada no mundo acontece separado do resto."
+    },
+    {
+      "imagem": "fotos/braco-a.jpg",
+      "recorte": [
+        380,
+        1700,
+        300
+      ],
+      "escuro": 0.76,
+      "posicao": "inf-dir",
+      "etiqueta": "A proporção",
+      "titulo": "A espiral que a *natureza* repete.",
+      "tam_titulo": 66,
+      "texto": "A espiral áurea, construída sobre a sequência de Fibonacci. Aparece na concha do náutilo, na pinha e no miolo do girassol. Essa parte não é crença: é matemática."
+    },
+    {
+      "imagem": "fotos/braco-a.jpg",
+      "recorte": [
+        900,
+        1320,
+        260
+      ],
+      "escuro": 0.8,
+      "posicao": "sup-esq",
+      "etiqueta": "No meio de tudo",
+      "titulo": "E uma pessoa *sentada*.",
+      "tam_titulo": 78,
+      "texto": "Entre a galáxia e a geometria, o único símbolo humano da peça. Nada aqui é enfeite. O braço inteiro é um sistema, e cada peça foi escolhida."
+    }
+  ]
+}
