@@ -21,12 +21,18 @@ A tattoo nunca e redesenhada: so luz, cor e enquadramento.
 import json, sys, os, re
 from PIL import Image, ImageDraw, ImageFont, ImageEnhance, ImageFilter
 
-W, H = 1440, 1800
-E = W / 1080.0                      # escala em relacao ao projeto original
+FORMATOS = {'feed': (1440, 1800), 'story': (1080, 1920)}
+W, H = FORMATOS['feed']
+E = 1.0                             # escala em relacao ao projeto original (1080 de largura)
 CREME, DOURADO = (239, 230, 214), (201, 162, 80)
 APAGADO, ESCURO = (178, 170, 158), (12, 12, 11)
 FD = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fontes')
 F = lambda n, t: ImageFont.truetype(os.path.join(FD, n), int(t * E))
+
+def usar_formato(nome):
+    global W, H, E
+    W, H = FORMATOS[nome]
+    E = W / 1080.0
 
 def tratar(cfg):
     im = Image.open(cfg['imagem']).convert('RGB')
@@ -51,6 +57,16 @@ def tratar(cfg):
     r, g, b = im.split()
     im = Image.merge('RGB', (r.point(lambda v: min(255, int(v * 1.06))), g,
                              b.point(lambda v: int(v * 0.95))))
+    if cfg.get('formato') == 'story':
+        g = Image.new('L', (W, H), 0); d = ImageDraw.Draw(g)
+        for y in range(H):
+            t = min(1.0, max(0.0, (y - H * 0.30) / (H * 0.32)))
+            d.line([(0, y), (W, y)], fill=int(250 * t))
+        im = Image.composite(Image.new('RGB', (W, H), ESCURO), im, g)
+        gt = Image.new('L', (W, H), 0); d = ImageDraw.Draw(gt)
+        for y in range(int(H * 0.22)):
+            d.line([(0, y), (W, y)], fill=int(150 * (1 - y / (H * 0.22)) ** 1.5))
+        return Image.composite(Image.new('RGB', (W, H), ESCURO), im, gt)
     pos = cfg.get('posicao', 'sup-esq')
     dire, vert = pos.split('-')[1], pos.split('-')[0]
     g1 = Image.new('L', (W, H), 0); d = ImageDraw.Draw(g1)
@@ -99,10 +115,14 @@ def slide(cfg, out):
         d.line([(cx + sx*r, cy), (cx + sx*r, cy + sy*r)], fill=DOURADO, width=2)
         d.line([(cx, cy + sy*r), (cx + sx*r, cy + sy*r)], fill=DOURADO, width=2)
 
-    pos = cfg.get('posicao', 'sup-esq')
-    vert, dire = pos.split('-')
-    larg = int(560 * E)
-    X = int(86 * E) if dire == 'esq' else W - int(86 * E) - larg
+    story = cfg.get('formato') == 'story'
+    if story:
+        larg, X = int(880 * E), int(100 * E)
+    else:
+        pos = cfg.get('posicao', 'sup-esq')
+        vert, dire = pos.split('-')
+        larg = int(560 * E)
+        X = int(86 * E) if dire == 'esq' else W - int(86 * E) - larg
 
     tam = cfg.get('tam_titulo', 78)
     f_et = F('inter.ttf', 21); f_ti = F('pf-bold.ttf', tam)
@@ -122,7 +142,11 @@ def slide(cfg, out):
     corpo = quebrar(d, cfg['texto'], f_tx, larg) if cfg.get('texto') else []
 
     alt = (int(62*E) if cfg.get('etiqueta') else 0) + len(linhas)*lh + int(54*E) + len(corpo)*lhx
-    y = int(168 * E) if vert == 'sup' else H - int(150 * E) - alt
+    if story:
+        alt += int(150 * E) if cfg.get('cta') else 0
+        y = H - int(430 * E) - alt          # deixa a faixa inferior livre para o sticker de link
+    else:
+        y = int(168 * E) if vert == 'sup' else H - int(150 * E) - alt
 
     if cfg.get('etiqueta'):
         espacado(d, (X, y), cfg['etiqueta'].upper(), f_et, DOURADO, 5.5 * E)
@@ -140,6 +164,15 @@ def slide(cfg, out):
     for ln in corpo:
         d.text((X, y), ln, font=f_tx, fill=APAGADO); y += lhx
 
+    if cfg.get('cta'):
+        y += int(44 * E)
+        f_c = F('inter.ttf', 33)
+        tw = d.textlength(cfg['cta'], font=f_c)
+        bh = int(86 * E)
+        d.rounded_rectangle([X, y, X + tw + int(76*E), y + bh], radius=int(43*E),
+                            outline=DOURADO, width=3, fill=(18, 17, 15))
+        d.text((X + int(38*E), y + int(24*E)), cfg['cta'], font=f_c, fill=CREME)
+
     im.save(out, quality=96, subsampling=0)
     return out
 
@@ -147,4 +180,5 @@ if __name__ == '__main__':
     cfg = json.load(open(sys.argv[1], encoding='utf-8')); outd = sys.argv[2]
     os.makedirs(outd, exist_ok=True)
     for i, s in enumerate(cfg['slides'], 1):
+        usar_formato(s.get('formato', 'feed'))
         print('ok', slide(s, os.path.join(outd, f"{i:02d}.jpg")))

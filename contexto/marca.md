@@ -33,6 +33,10 @@ Decisões já em produção no @andretatuadoor. Diagnóstico que as motivou: `ap
 - **`Indique e Ganhe` fica fora do ar** enquanto as regras do programa não existirem (ver "Indique e Ganhe" abaixo).
 - **Os três posts fixados são Reels de transformação**, não fotos de peça pronta: portfólio confirma quem já decidiu, transformação recruta quem acabou de chegar.
 
+## Peças visuais
+
+Todo material gráfico da marca (carrossel, story, destaque, arte de post, peça de anúncio) segue `contexto/identidade-pecas.md`: formatos, paleta, tipografia, tratamento da foto, posição do texto e o modelo de gatilho de venda com escassez verdadeira. Peça nova se faz pelo gerador `carrosseis/_template/gerar.py`, a partir de um `config.json`, nunca montada à mão.
+
 ## Objetivo comercial
 Aumentar autoridade, atrair clientes com maior poder aquisitivo, elevar ticket e preencher a agenda com projetos de maior valor.
 

@@ -1,0 +1,16 @@
+{
+  "peca": "Story de agenda de novembro",
+  "slides": [
+    {
+      "formato": "story",
+      "imagem": "fotos/braco-geometria.jpg",
+      "foco": 0.46,
+      "escuro": 0.52,
+      "etiqueta": "Agenda de novembro",
+      "titulo": "Restam *4* finais de semana.",
+      "tam_titulo": 86,
+      "texto": "E alguns horários no meio da semana. Projeto grande ocupa o dia inteiro, então cada data fecha uma vez só. Quem fecha primeiro escolhe o dia.",
+      "cta": "Seu projeto começa no link"
+    }
+  ]
+}
