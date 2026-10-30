@@ -3,14 +3,21 @@
   "slides": [
     {
       "formato": "story",
-      "imagem": "fotos/braco-geometria.jpg",
-      "foco": 0.46,
-      "escuro": 0.52,
+      "modo": "retrato",
+      "imagem": "fotos/andre-trabalhando.jpg",
+      "altura_foto": 0.64,
+      "recorte": [
+        700,
+        980,
+        1200
+      ],
+      "escuro": 0.3,
       "etiqueta": "Agenda de novembro",
-      "titulo": "Restam *4* finais de semana.",
-      "tam_titulo": 86,
-      "texto": "E alguns horários no meio da semana. Projeto grande ocupa o dia inteiro, então cada data fecha uma vez só. Quem fecha primeiro escolhe o dia.",
-      "cta": "Seu projeto começa no link"
+      "numeral": 4,
+      "tam_numeral": 270,
+      "titulo": "finais de semana *livres*.",
+      "tam_titulo": 72,
+      "texto": "Mais alguns horários no meio da semana. Projeto grande ocupa o dia inteiro, então cada data fecha uma vez só."
     }
   ]
 }

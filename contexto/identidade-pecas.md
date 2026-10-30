@@ -40,7 +40,7 @@ A palavra entre `*asteriscos*` no campo `titulo` sai automaticamente em cursiva 
 
 Etiqueta em caixa alta espaçada, título, filete dourado curto, corpo. Moldura dourada fina com cantos reforçados.
 
-**Não entram na arte:** numeração de slide, assinatura no topo, assinatura no rodapé, CTA de comentário. O CTA de carrossel vive na legenda. O story leva caixa de CTA porque ali não existe legenda.
+**Não entram na arte:** numeração de slide, assinatura no topo, assinatura no rodapé, caixa de CTA, CTA de comentário. O CTA de carrossel vive na legenda. No story, o caminho é o sticker de link, colado por cima da faixa inferior, que a peça já deixa livre de propósito.
 
 ## Tratamento da foto
 
@@ -50,6 +50,18 @@ A tattoo **nunca** é redesenhada. Só luz, cor e enquadramento.
 2. Escurecimento conforme o campo `escuro`, mais contraste leve.
 3. Tom quente sutil, imitando a luz lateral do padrão editorial.
 4. Degradê que acompanha a posição do texto.
+
+## Modo retrato (peça de alto padrão)
+
+Campo `modo: "retrato"`. A foto ocupa o topo (`altura_foto`, padrão 0.66 da altura) e **morre no preto** a partir de 46% da própria altura. O texto vive no preto, sem disputar com a imagem.
+
+É o modo certo quando a foto tem fundo bagunçado ou elementos que roubam atenção no pé: o enquadramento corta o problema e o resto some no escuro. Usa dessaturação mais forte (82%) e escurecimento mais leve (`escuro` por volta de 0.30), porque a foto já está protegida pelo corte.
+
+## Numeral protagonista
+
+Campo `numeral`, com `tam_numeral` por volta de 250. Renderiza o número em Playfair, bem grande, acima do título.
+
+Serve para quando o número **é** a mensagem: vagas restantes, anos de profissão, número de sessões. Número grande lê em meio segundo numa tela de celular; número embutido na frase não lê. Um numeral por peça.
 
 ## Posição do texto
 

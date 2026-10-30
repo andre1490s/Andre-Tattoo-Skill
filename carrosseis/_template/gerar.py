@@ -57,6 +57,38 @@ def tratar(cfg):
     r, g, b = im.split()
     im = Image.merge('RGB', (r.point(lambda v: min(255, int(v * 1.06))), g,
                              b.point(lambda v: int(v * 0.95))))
+    if cfg.get('modo') == 'retrato':
+        alt_foto = int(H * cfg.get('altura_foto', 0.66))
+        src = Image.open(cfg['imagem']).convert('RGB')
+        rec = cfg.get('recorte')
+        if rec:
+            cx, cy, lw = rec; lh = int(lw * alt_foto / W)
+            x0, y0 = max(0, cx - lw // 2), max(0, cy - lh // 2)
+            src = src.crop((x0, y0, min(src.width, x0 + lw), min(src.height, y0 + lh)))
+        w, h = src.size; alvo = W / alt_foto
+        if w / h > alvo:
+            nw = int(h * alvo); x = int((w - nw) * cfg.get('foco', 0.5))
+            src = src.crop((x, 0, x + nw, h))
+        else:
+            nh = int(w / alvo); y = int((h - nh) * cfg.get('foco_v', 0.5))
+            src = src.crop((0, y, w, y + nh))
+        src = src.resize((W, alt_foto), Image.LANCZOS)
+        src = src.filter(ImageFilter.UnsharpMask(radius=2, percent=58, threshold=3))
+        src = Image.blend(src, src.convert('L').convert('RGB'), 0.82)
+        f = cfg.get('escuro', 0.42)
+        src = ImageEnhance.Brightness(src).enhance(1 - f * 0.42)
+        src = ImageEnhance.Contrast(src).enhance(1.16)
+        r, g, b = src.split()
+        src = Image.merge('RGB', (r.point(lambda v: min(255, int(v * 1.05))), g,
+                                  b.point(lambda v: int(v * 0.96))))
+        fade = Image.new('L', (W, alt_foto), 0); d = ImageDraw.Draw(fade)
+        ini = int(alt_foto * 0.46)
+        for y in range(ini, alt_foto):
+            d.line([(0, y), (W, y)], fill=int(255 * ((y - ini) / (alt_foto - ini)) ** 1.25))
+        src = Image.composite(Image.new('RGB', (W, alt_foto), ESCURO), src, fade)
+        base = Image.new('RGB', (W, H), ESCURO); base.paste(src, (0, 0))
+        return base
+
     if cfg.get('formato') == 'story':
         g = Image.new('L', (W, H), 0); d = ImageDraw.Draw(g)
         for y in range(H):
@@ -141,7 +173,11 @@ def slide(cfg, out):
     if linha: linhas.append(linha)
     corpo = quebrar(d, cfg['texto'], f_tx, larg) if cfg.get('texto') else []
 
-    alt = (int(62*E) if cfg.get('etiqueta') else 0) + len(linhas)*lh + int(54*E) + len(corpo)*lhx
+    alt = (int(62*E) if cfg.get('etiqueta') else 0) + len(linhas)*lh + int(80*E) + len(corpo)*lhx
+    if cfg.get('numeral'):
+        fn = F('pf-bold.ttf', cfg.get('tam_numeral', 250))
+        nb = d.textbbox((0, 0), str(cfg['numeral']), font=fn)
+        alt += (nb[3] - nb[1]) + int(28 * E)
     if story:
         alt += int(150 * E) if cfg.get('cta') else 0
         y = H - int(430 * E) - alt          # deixa a faixa inferior livre para o sticker de link
@@ -151,6 +187,12 @@ def slide(cfg, out):
     if cfg.get('etiqueta'):
         espacado(d, (X, y), cfg['etiqueta'].upper(), f_et, DOURADO, 5.5 * E)
         y += int(62 * E)
+    if cfg.get('numeral'):
+        f_n = F('pf-bold.ttf', cfg.get('tam_numeral', 250))
+        cx = str(cfg['numeral'])
+        cb = d.textbbox((0, 0), cx, font=f_n)
+        d.text((X - cb[0], y - cb[1] + int(6 * E)), cx, font=f_n, fill=CREME)
+        y += (cb[3] - cb[1]) + int(28 * E)
     for ln in linhas:
         x = X
         for pal, it, f in ln:
@@ -158,9 +200,9 @@ def slide(cfg, out):
                    fill=DOURADO if it else CREME)
             x += d.textlength(pal, font=f) + 14 * E
         y += lh
-    y += int(14 * E)
+    y += int(34 * E)
     d.line([(X, y), (X + int(112*E), y)], fill=DOURADO, width=2)
-    y += int(40 * E)
+    y += int(46 * E)
     for ln in corpo:
         d.text((X, y), ln, font=f_tx, fill=APAGADO); y += lhx
 
