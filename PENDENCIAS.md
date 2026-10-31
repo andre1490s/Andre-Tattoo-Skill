@@ -28,6 +28,26 @@ Decisões do André em 31/10/2026: nome **Clube 15**, mensalidade pode aparecer 
 - [ ] **Validar com advogado ou contador** antes de o regulamento ir ao ar: devolução do saldo, validade de 12 meses do crédito, permanência mínima de 3 meses e nota fiscal. Lista de perguntas no fim do `REGULAMENTO.md`.
 - [ ] **A partir de 10/11 — gravar e publicar o vídeo** (`clube-15/ROTEIRO-VIDEO.md`). Pedir autorização de imagem dos clientes que aparecerem.
 
+## URGENTE: o Netlify Forms está desligado (descoberto em 31/10/2026)
+
+Consultei o projeto `andretattoo` na Netlify: **a detecção de formulários está desligada e não há
+nenhum formulário registrado**. Consequência prática:
+
+- O formulário de orçamento do site **não está guardando cópia nenhuma** dos pedidos. O cliente
+  ainda chega em você, porque o site abre o WhatsApp no mesmo clique — mas **quem desistir de
+  apertar "enviar" no WhatsApp some sem deixar rastro**. A rede de segurança que o
+  `site/README.md` descreve não existe hoje.
+- O mesmo valeria para o cadastro do Clube 15. Por isso a página do clube agora tem a volta por
+  cima: se o registro falhar, ela mostra "me manda no WhatsApp" com a mensagem **já escrita** com
+  tudo o que a pessoa preencheu. O lead não se perde, mas a cópia no servidor continua faltando.
+
+**Como ligar (3 minutos, só você pode):** app.netlify.com → projeto **andretattoo** →
+*Project configuration* → *Forms* → ligar a detecção de formulários → **republicar o site** (a
+detecção só vale para deploys feitos depois de ligar). Depois, em *Forms → Form notifications →
+Add notification → Email notification*, coloque seu e-mail.
+
+Enquanto isso não for feito, não confie no site para guardar lead: confie no WhatsApp.
+
 ## URGENTE: privacidade do repositório
 - [ ] O repositório `andre1490s/Andre-Tattoo-Skill` está **PÚBLICO**. Tornar privado: GitHub > Settings > Danger Zone > Change repository visibility. Hoje ele expõe: valores de referência e políticas (marca.md, skills), o e-mail do Google (skill registrar-no-sistema) e o id do projeto Supabase (backup do app). Não há senhas, chaves nem dados de clientes.
 - Regra daqui para frente: não commitar fotos de tattoos, dados de clientes nem builds com imagens embutidas.

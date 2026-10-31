@@ -25,6 +25,11 @@ e coloque seu e-mail. O plano gratuito aceita 100 envios por mês.
 > O formulário só grava quando o site está hospedado na Netlify. Aberto localmente, ele apenas abre o
 > WhatsApp — o que é o comportamento esperado.
 
+> **Atenção (verificado em 31/10/2026): a detecção de formulários está DESLIGADA no projeto
+> `andretattoo` e não há nenhum formulário registrado.** Ou seja, o item 1 acima não está
+> acontecendo: nada está sendo gravado. Ligue em *Project configuration → Forms* e **republique** —
+> a detecção só vale para deploys feitos depois disso. Detalhes em `PENDENCIAS.md`.
+
 ## 2.1 Clube 15: as duas páginas do clube
 
 | Página | Quem vê | Para quê |

@@ -430,7 +430,7 @@ h1,h2,h3{margin:0}
 :root[data-theme="light"] .msg.err,
 :root[data-theme="light"] .ndl.short{border-color:rgba(164,57,43,.5)}
 :root[data-theme="light"] .bar .cols .co{background:#C08A80}
-:root[data-theme="light"] .bar .cols .ci{background:linear-gradient(180deg,#3A3D43,#8A8E95)}
+:root[data-theme="light"] .bar .cols .ci{background:linear-gradient(180deg,#6E7278,#23262B)}
 :root[data-theme="light"] .cal-d.off{color:#B2AFA8}
 :root[data-theme="light"] .cal-d.sel .dots b{background:var(--on-hi)}
 

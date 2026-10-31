@@ -310,10 +310,11 @@
 
     <div class="ok" id="clubeOk" role="status">
       <h3>Pronto, seu nome está na lista.</h3>
-      <p>Agora é comigo: eu te chamo no WhatsApp para entender o seu projeto e, se o clube fizer sentido
-      para você, te mando o link da mensalidade. Só depois disso é que entra pagamento.</p>
-      <p>Se quiser adiantar a conversa, me manda uma mensagem agora.</p>
-      <a class="btn btn--solid" href="#" data-wa><span>Falar comigo no WhatsApp</span></a>
+      <p id="okTexto">Agora é comigo: eu te chamo no WhatsApp para entender o seu projeto e, se o clube
+      fizer sentido para você, te mando o link da mensalidade. Só depois disso é que entra pagamento.</p>
+      <p id="okExtra">Se quiser adiantar a conversa, me manda os detalhes agora — já deixei a
+      mensagem escrita para você.</p>
+      <a class="btn btn--solid" id="okWa" href="#" target="_blank" rel="noopener"><span>Me mandar os detalhes</span></a>
     </div>
   </div>
 </section>
@@ -397,6 +398,39 @@
   var send = document.getElementById("clubeSend");
   if (!form) return;
 
+  /* A mensagem de WhatsApp com o que a pessoa preencheu. É a rede de segurança:
+     mesmo que o formulário não grave, o lead chega em você por escrito. */
+  function resumo() {
+    var v = function (n) { var e = form.elements[n]; return e && e.value ? e.value.trim() : ""; };
+    var cli = form.querySelector('input[name="cliente"]:checked');
+    return "Olá, André. Quero entrar no Clube 15.\n\n"
+      + "Nome: " + v("nome") + "\n"
+      + "WhatsApp: " + v("whatsapp") + "\n"
+      + "Projeto: " + v("projeto") + "\n"
+      + (cli ? cli.value + "." : "");
+  }
+
+  function concluir(gravou) {
+    var wab = document.getElementById("okWa");
+    if (wab) {
+      wab.href = NUM ? "https://wa.me/" + NUM + "?text=" + encodeURIComponent(resumo()) : IG;
+    }
+    if (!gravou) {
+      var tx = document.getElementById("okTexto");
+      if (tx) tx.textContent = "Não consegui registrar o seu cadastro aqui no site. Para eu não te "
+        + "perder de vista, me manda por WhatsApp: já deixei a mensagem escrita com tudo o que você "
+        + "preencheu, é só apertar enviar.";
+      var ex = document.getElementById("okExtra");
+      if (ex) ex.textContent = "Depois disso o caminho é o mesmo: eu entendo o seu projeto e, se o "
+        + "clube fizer sentido para você, te mando o link da mensalidade.";
+      var h3 = ok.querySelector("h3");
+      if (h3) h3.textContent = "Quase lá: me manda no WhatsApp.";
+    }
+    form.classList.add("is-off");
+    ok.classList.add("is-on");
+    ok.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
   form.addEventListener("submit", function (e) {
     if (!form.checkValidity()) {
       e.preventDefault();
@@ -413,16 +447,8 @@
     send.setAttribute("disabled", "disabled");
 
     fetch("/", { method: "POST", body: new FormData(form) })
-      .then(function (r) {
-        if (!r.ok) throw new Error("falha no envio");
-        form.classList.add("is-off");
-        ok.classList.add("is-on");
-        ok.scrollIntoView({ behavior: "smooth", block: "center" });
-      })
-      .catch(function () {
-        send.removeAttribute("disabled");
-        err.textContent = "Não consegui enviar agora. Me chame no WhatsApp que eu anoto na hora.";
-      });
+      .then(function (r) { concluir(!!r.ok); })
+      .catch(function () { concluir(false); });
   });
 })();
 </script>
