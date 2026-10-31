@@ -40,6 +40,7 @@ Instagram como canal principal, salvo instrução diferente.
 - Não prometer resultados garantidos.
 - Dados insuficientes: declarar a hipótese em vez de inventar números.
 - **Preço em público:** nunca citar valor em post, comentário ou legenda (nem "a partir de"). Valor só na conversa privada, e sempre passado pelo André.
+  - **Exceção (decisão do André em 31/10/2026):** a **mensalidade do Clube 15 (R$ 150/mês)** pode ser citada em público — vídeo, stories, legenda e página do site. A exceção vale só para a mensalidade do clube. **Preço de tattoo continua fora de qualquer peça pública** e só o André passa o valor final. Ver `clube-15/`.
 - **Anúncio pago (Meta Ads):** autorizado pelo André a partir de 08/10/2026, começando com R$ 20/dia, objetivo conversas no WhatsApp. Sem preço, promoção ou antes/depois na peça. Nada vai ao ar nem gasta sem aprovação dele. Valem o `gestor-de-trafego` e o plano do artifact "Plano de Anúncios".
 - Não criar escassez falsa; urgência só quando verdadeira.
 - Evitar clichês ("cada tatuagem conta uma história") sem contexto real e exageros ("exclusivo", "único", "melhor do Brasil").
@@ -69,6 +70,7 @@ Sinal (política do André):
 - **Idade mínima:** 18 anos. Qualquer indício de menor de idade: informar a regra.
 - **Trabalho grande:** um por dia. Alertar se houver mais de um no mesmo dia.
 - **"Indique e Ganhe":** existe, mas as regras ainda **não foram definidas**. Nenhuma skill menciona o programa até o André definir.
+- **Clube 15 (pré-reserva da agenda 2027):** 15 vagas, R$ 150/mês que viram crédito integral para tattoo, prioridade de horário para membro ativo, permanência mínima de 3 meses. Anúncio em novembro de 2026. Plano, regulamento e textos em `clube-15/`; página em `site/clube-15.html`. **O regulamento ainda não foi aprovado pelo André nem validado por advogado** — nenhuma skill promete regra do clube ao cliente até isso acontecer.
 
 ## Estúdio
 - Endereço: Av. Melchert, 606, Vila Matilde (São Paulo/SP presumido, **[confirmar]**).

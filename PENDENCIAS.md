@@ -8,6 +8,17 @@ Atualizado em 2026-10-07. Sem dados de clientes neste arquivo.
 - Regras do `contexto/marca.md` valem nos anúncios: sem preço em peça pública, sem escassez falsa, sem prometer resultado, só o André passa o valor final.
 - Antes de qualquer gasto ou publicação: o Claude propõe a campanha e o André aprova cada passo. Nada vai ao ar sem confirmação.
 
+## Clube 15 — lançamento em novembro (prazo curto)
+Plano, regulamento, roteiro do vídeo e stories em [`clube-15/`](clube-15/). Página em `site/clube-15.html`.
+Decisões do André em 31/10/2026: nome **Clube 15**, mensalidade pode aparecer em público, saldo devolvido se não usar.
+
+- [ ] **Até 2/11 — aprovar o regulamento** (`clube-15/REGULAMENTO.md`). São 5 itens marcados `[aprovar]`: 1 sessão/mês por membro, até 4 horários de prioridade/mês, R$ 150 de crédito consumido em desmarque com menos de 48 h, mensalidade travada para os fundadores, crédito não transferível.
+- [ ] **Até 2/11 — decidir como cobrar os R$ 150 todo mês.** Recomendação: link de assinatura recorrente (Asaas, InfinitePay ou Mercado Pago). Pix manual em 15 pessoas é o que mais mata clube de assinatura. Ver `clube-15/PLANO.md`, seção 5.
+- [ ] **Até 2/11 — publicar a página** e pôr o link na bio do Instagram.
+- [ ] **3 a 9/11 — rodar os stories da semana 1** (`clube-15/STORIES-SEMANA-1.md`). Anotar quantos votam "Sim" na enquete de quarta: é o número que decide o lançamento (mínimo 25).
+- [ ] **Validar com advogado ou contador** antes de o regulamento ir ao ar: devolução do saldo, validade de 12 meses do crédito, permanência mínima de 3 meses e nota fiscal. Lista de perguntas no fim do `REGULAMENTO.md`.
+- [ ] **A partir de 10/11 — gravar e publicar o vídeo** (`clube-15/ROTEIRO-VIDEO.md`). Pedir autorização de imagem dos clientes que aparecerem.
+
 ## URGENTE: privacidade do repositório
 - [ ] O repositório `andre1490s/Andre-Tattoo-Skill` está **PÚBLICO**. Tornar privado: GitHub > Settings > Danger Zone > Change repository visibility. Hoje ele expõe: valores de referência e políticas (marca.md, skills), o e-mail do Google (skill registrar-no-sistema) e o id do projeto Supabase (backup do app). Não há senhas, chaves nem dados de clientes.
 - Regra daqui para frente: não commitar fotos de tattoos, dados de clientes nem builds com imagens embutidas.

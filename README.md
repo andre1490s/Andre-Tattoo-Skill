@@ -8,6 +8,7 @@ Sistema de skills para o estúdio André Tattoo (@andretatuadoor): conteúdo, ve
 - **Memória de aprendizados:** [`aprendizados/`](aprendizados/)
 - **Referências de edição aprovadas:** [`referencias/`](referencias/)
 - **Site do estúdio (andretattoo.netlify.app):** [`site/`](site/) — ver [`site/README.md`](site/README.md)
+- **Clube 15 (pré-reserva da agenda 2027):** [`clube-15/`](clube-15/) — ver [`clube-15/PLANO.md`](clube-15/PLANO.md)
 - **Canal do YouTube (Shorts, retenção e monetização):** [`youtube/`](youtube/) — ver [`youtube/README.md`](youtube/README.md)
 
 ## Por onde começar
