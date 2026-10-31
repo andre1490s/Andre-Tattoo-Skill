@@ -75,10 +75,18 @@ a cobrança automática. Confirme qual você já usa ou quer abrir e eu monto o 
 
 | Semana | Quando | O que vai ao ar |
 |---|---|---|
-| 1 | 3 a 9/11 | Teaser nos stories + enquete de interesse. Textos em `STORIES-SEMANA-1.md` |
-| 2 | 10 a 16/11 | Anúncio oficial (vídeo), regras e lista de interesse no link da bio |
-| 3 | 17 a 23/11 | Abertura das vagas fundadoras |
-| 4 | 24/11 em diante | Black Friday como último aviso das vagas restantes |
+| 1 | 3 a 9/11 | Teaser e enquete de interesse — `STORIES-SEMANA-1.md` |
+| 2 | 10 a 16/11 | Anúncio oficial (vídeo), regras e lista no link da bio — `STORIES-SEMANA-2.md` |
+| 3 | 17 a 23/11 | Abertura das 15 vagas fundadoras — `STORIES-SEMANA-3.md` |
+| 4 | 24 a 30/11 | Black Friday como prazo (sem desconto) e fechamento — `STORIES-SEMANA-4.md` |
+
+Todas as mensagens de direct e WhatsApp das quatro semanas estão em `MENSAGENS.md`, numeradas —
+os arquivos de cada semana apontam para o número do item na hora certa.
+
+**Decisão já embutida na semana 4: Black Friday sem desconto.** O regulamento promete mensalidade
+travada para os fundadores; descontar a porta de entrada quebra essa promessa na frente de quem
+confiou primeiro. A data vira prazo, não preço. O raciocínio inteiro está no começo do
+`STORIES-SEMANA-4.md`, com a alternativa de bônus, caso você queira marcar a data de outro jeito.
 
 **Atenção ao calendário:** hoje é 31/10. A semana 1 começa em 3 dias. O que precisa estar pronto
 até 2/11: regulamento aprovado, forma de cobrança decidida e página publicada.
@@ -104,5 +112,9 @@ reativação), que é caixa mais barato.
 | `PLANO.md` | Este documento |
 | `REGULAMENTO.md` | Texto público completo, para a página e para mandar no WhatsApp |
 | `ROTEIRO-VIDEO.md` | Roteiro do vídeo de anúncio da semana 2 |
-| `STORIES-SEMANA-1.md` | Textos dos stories de 3 a 9/11 |
+| `STORIES-SEMANA-1.md` | Semana 1 (3 a 9/11): teaser e enquete |
+| `STORIES-SEMANA-2.md` | Semana 2 (10 a 16/11): o anúncio |
+| `STORIES-SEMANA-3.md` | Semana 3 (17 a 23/11): abertura das vagas |
+| `STORIES-SEMANA-4.md` | Semana 4 (24 a 30/11): Black Friday como prazo, e o fechamento |
+| `MENSAGENS.md` | Direct e WhatsApp: abertura, objeções, confirmação e lista de espera |
 | `../site/clube-15.html` | Página da lista de interesse (link da bio) |

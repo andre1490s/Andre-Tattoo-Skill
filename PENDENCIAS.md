@@ -16,6 +16,11 @@ Decisões do André em 31/10/2026: nome **Clube 15**, mensalidade pode aparecer 
 - [ ] **Até 2/11 — decidir como cobrar os R$ 150 todo mês.** Recomendação: link de assinatura recorrente (Asaas, InfinitePay ou Mercado Pago). Pix manual em 15 pessoas é o que mais mata clube de assinatura. Ver `clube-15/PLANO.md`, seção 5.
 - [ ] **Até 2/11 — publicar a página** e pôr o link na bio do Instagram.
 - [ ] **3 a 9/11 — rodar os stories da semana 1** (`clube-15/STORIES-SEMANA-1.md`). Anotar quantos votam "Sim" na enquete de quarta: é o número que decide o lançamento (mínimo 25).
+- [ ] **10 a 16/11 — anúncio** (`clube-15/STORIES-SEMANA-2.md`). No dia 10, mandar o vídeo no direct para quem votou "Sim": é a ação de maior retorno da semana. Meta: 20 nomes na lista até 16/11.
+- [ ] **17 a 23/11 — abertura das vagas** (`clube-15/STORIES-SEMANA-3.md`). Avisar a lista no direct **de manhã, antes** de publicar o story. Placar de vagas só com número verdadeiro.
+- [ ] **24 a 30/11 — Black Friday e fechamento** (`clube-15/STORIES-SEMANA-4.md`). **Sem desconto na mensalidade** — quebraria a trava de preço prometida aos fundadores. A data vira prazo. Decidir se quer o bônus alternativo (escolha da primeira data de 2027).
+- [ ] **Durante o mês inteiro:** as mensagens de direct e WhatsApp estão prontas em `clube-15/MENSAGENS.md` (objeções, confirmação de quem fecha, lista de espera).
+- [ ] **A partir do membro número 1:** manter o controle de crédito por membro (quanto pagou, acumulou, usou). Sem isso, vira discussão em março.
 - [ ] **Validar com advogado ou contador** antes de o regulamento ir ao ar: devolução do saldo, validade de 12 meses do crédito, permanência mínima de 3 meses e nota fiscal. Lista de perguntas no fim do `REGULAMENTO.md`.
 - [ ] **A partir de 10/11 — gravar e publicar o vídeo** (`clube-15/ROTEIRO-VIDEO.md`). Pedir autorização de imagem dos clientes que aparecerem.
 
