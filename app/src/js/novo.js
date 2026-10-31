@@ -172,6 +172,7 @@ function renderHoje(){
   else if(cloud && !data.cont.some(c=>c.data>=t && c.data<=addDays(t,6))) al.push({ic:'›', red:false, t:'Nenhum post planejado para os próximos 7 dias', s:'O agente de mídias monta o plano da semana.', act:'agenteMidia'});
   if(mcp){ const nP = data.agenda.filter(a=>!a.concluida && a.hora && a.data>=t && !a.googleId && !a.ignorado).length;
     if(nP) al.push({ic:'!', red:false, t:nP+(nP===1?' sessão ainda não está':' sessões ainda não estão')+' no Google Agenda', s:'Toque para enviar agora. Eventos iguais que já existirem não são duplicados.', act:'googleSync'}); }
+  clubeAlertas().forEach(x=>al.push(x));
   window.__hAl = al;
   $('hAlerts').innerHTML = bannerPadroes() + (al.length ? '<div class="brief"><div class="bh"><span>Atenção</span><small>'+al.length+'</small></div>'+al.map((x,i)=>'<button data-act="alertGo" data-i="'+i+'"><span class="ic'+(x.red?' red':'')+'">'+esc(x.ic)+'</span><span class="main"><div class="t">'+esc(x.t)+'</div><div class="s">'+esc(x.s||'')+'</div></span></button>').join('')+'</div>' : '');
   // agenda
@@ -266,6 +267,7 @@ function renderMais(){
     it('goTab',' data-tab-go="pend"','<path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/>','Pendências', nPend?nPend+(nPend===1?' coisa para resolver':' coisas para resolver'):'Tudo em dia')
    +it('goTab',' data-tab-go="mat"','<path d="M4 8l8-4 8 4v8l-8 4-8-4z"/><path d="M4 8l8 4 8-4M12 12v8"/>','Materiais e agulhas', low?low+(low===1?' item abaixo do mínimo':' itens abaixo do mínimo'):'Estoque em dia')
    +it('goTab',' data-tab-go="semana"','<rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 10h18M8 3v4M16 3v4M8 15h3M13 15h3"/>','Conteúdo da semana', (()=>{ const n = data.cont.filter(c=>c.data>=today() && c.data<=addDays(today(),6)).length; return n ? n+(n===1?' post nos próximos 7 dias':' posts nos próximos 7 dias') : 'Nenhum post planejado'; })())
+   +it('goTab',' data-tab-go="clube"','<path d="M12 3l2.6 5.6 6 .9-4.3 4.3 1 6.2-5.3-3-5.3 3 1-6.2L3.4 9.5l6-.9z"/>','Clube 15', (()=>{ const r = clubeResumo(); if(!r.ocupadas) return 'As '+r.vagas+' vagas estão abertas'; const at = r.atrasados ? ', '+r.atrasados+(r.atrasados===1?' em atraso':' em atraso') : ''; return r.ocupadas+' de '+r.vagas+' vagas'+at; })())
    +it('openInsta','','<rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".8"/>','Instagram','Alcance, seguidores, interações e melhores horários')
    +it('goTab',' data-tab-go="aprend"','<path d="M12 2l1.6 7.4L21 11l-7.4 1.6L12 20l-1.6-7.4L3 11l7.4-1.6z"/>','Aprendizado do Assistente', (nAv?nAv+' respostas sem avaliação':'Avalie as respostas')+(nSug?', '+nSug+(nSug===1?' sugestão':' sugestões'):''))
    +it('regras','','<path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/>','Regras da casa','Sinal, retoque, mínimo e política de preço')
@@ -280,7 +282,7 @@ async function exportar(tipo){
     const caixa = await stores.caixa.all();
     const dia = today();
     if(tipo==='json'){
-      const pacote = { gerado:dia, app:'Caixa Andre Tattoo', caixa, agenda:allAgenda, pendencias:data.pend, materiais:data.mat, orcamentos:data.orc, clientes:data.cli, conteudo:data.cont, config:data.cfg };
+      const pacote = { gerado:dia, app:'Caixa Andre Tattoo', caixa, agenda:allAgenda, pendencias:data.pend, materiais:data.mat, orcamentos:data.orc, clientes:data.cli, conteudo:data.cont, clube:data.clube, config:data.cfg };
       await dl.save({ filename:'andre-tattoo-backup-'+dia+'.json', data:JSON.stringify(pacote,null,2), request:'Backup completo dos dados do app' });
     } else {
       const num = v => String(Math.round((+v||0)*100)/100).replace('.',',');
@@ -498,7 +500,7 @@ async function snapshotAgente(){
   if(agenteAtual==='financeiro'){
     const all = caixaCache || data.caixa, ms = []; let m = curMes();
     for(let i=0;i<6;i++){ ms.unshift(fechamento(all, m)); m = prevMonth(m); }
-    s.ultimosMeses = ms; s.custosFixos = +data.cfg.custosFixos||0;
+    s.ultimosMeses = ms; s.custosFixos = +data.cfg.custosFixos||0; s.clube = clubeResumo();
     ['clientes','horariosLivres7dias','estilosValidos'].forEach(k=>delete s[k]);
     return s;
   }
@@ -673,6 +675,7 @@ async function enviarPendentesGoogle(){
 
 // ---------- Ações extras (chamadas pelo switch principal) ----------
 function extraAct(act, b, id){
+  if(clubeAct(act, b, id)) return;
   switch(act){
     case 'segCli': setTab(b.dataset.v==='funil'?'funil':'cli'); break;
     case 'funilFiltro': funilFiltro = b.dataset.f; renderFunil(); break;
@@ -699,7 +702,7 @@ function extraAct(act, b, id){
     case 'goFunil': setTab('funil'); break;
     case 'alertGo': {
       const x = (window.__hAl||[])[+b.dataset.i]; if(!x) break;
-      if(x.act==='goFunil') setTab('funil'); else if(x.act==='goAgenda') setTab('agenda'); else if(x.act==='goCli') setTab('cli'); else if(x.act==='goSemana') setTab('semana'); else if(x.act==='googleSync') enviarPendentesGoogle(); else if(x.act==='agenteMidia') abrirAgente('midia');
+      if(x.act==='goFunil') setTab('funil'); else if(x.act==='goAgenda') setTab('agenda'); else if(x.act==='goCli') setTab('cli'); else if(x.act==='goSemana') setTab('semana'); else if(x.act==='goClube') setTab('clube'); else if(x.act==='googleSync') enviarPendentesGoogle(); else if(x.act==='agenteMidia') abrirAgente('midia');
       else if(x.act==='cliente'){ setTab('cli'); setTimeout(()=>{ renderClientes(true).then(()=>openCliente2(x.id)); }, 350); }
       break; }
     case 'regras': openRegras(); break;

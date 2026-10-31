@@ -117,4 +117,6 @@ reativação), que é caixa mais barato.
 | `STORIES-SEMANA-3.md` | Semana 3 (17 a 23/11): abertura das vagas |
 | `STORIES-SEMANA-4.md` | Semana 4 (24 a 30/11): Black Friday como prazo, e o fechamento |
 | `MENSAGENS.md` | Direct e WhatsApp: abertura, objeções, confirmação e lista de espera |
+| `COBRANCA.md` | Como cobrar os R$ 150 todo mês: comparação de taxas, passo a passo e protocolo de atraso |
+| App Caixa > Mais > **Clube 15** | Controle de membros, mensalidades, crédito e vagas. Código em `app/src/js/clube.js` |
 | `../site/clube-15.html` | Página da lista de interesse (link da bio) |

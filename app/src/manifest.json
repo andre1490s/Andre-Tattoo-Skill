@@ -5,6 +5,7 @@
  ],
  "js": [
   "js/base.js",
+  "js/clube.js",
   "js/novo.js"
  ],
  "assets": {

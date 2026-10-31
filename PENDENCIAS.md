@@ -13,7 +13,8 @@ Plano, regulamento, roteiro do vídeo e stories em [`clube-15/`](clube-15/). Pá
 Decisões do André em 31/10/2026: nome **Clube 15**, mensalidade pode aparecer em público, saldo devolvido se não usar.
 
 - [ ] **Até 2/11 — aprovar o regulamento** (`clube-15/REGULAMENTO.md`). São 5 itens marcados `[aprovar]`: 1 sessão/mês por membro, até 4 horários de prioridade/mês, R$ 150 de crédito consumido em desmarque com menos de 48 h, mensalidade travada para os fundadores, crédito não transferível.
-- [ ] **Até 2/11 — decidir como cobrar os R$ 150 todo mês.** Recomendação: link de assinatura recorrente (Asaas, InfinitePay ou Mercado Pago). Pix manual em 15 pessoas é o que mais mata clube de assinatura. Ver `clube-15/PLANO.md`, seção 5.
+- [ ] **Até 2/11 — decidir como cobrar os R$ 150 todo mês.** Comparação com as taxas reais (consultadas em 31/10/2026) e o passo a passo em [`clube-15/COBRANCA.md`](clube-15/COBRANCA.md). Recomendação: Asaas com Pix recorrente, R$ 2,15 por cobrança (R$ 32/mês para 15 membros, 1,4% da entrada). Pix manual está fora: é o que mais mata clube de assinatura.
+- [ ] **Publicar a versão 19 do app** (tela Clube 15). O código está pronto e testado; falta o André aprovar a republicação. Ver `app/README.md`, Versão 19.
 - [ ] **Até 2/11 — publicar a página** e pôr o link na bio do Instagram.
 - [ ] **3 a 9/11 — rodar os stories da semana 1** (`clube-15/STORIES-SEMANA-1.md`). Anotar quantos votam "Sim" na enquete de quarta: é o número que decide o lançamento (mínimo 25).
 - [ ] **10 a 16/11 — anúncio** (`clube-15/STORIES-SEMANA-2.md`). No dia 10, mandar o vídeo no direct para quem votou "Sim": é a ação de maior retorno da semana. Meta: 20 nomes na lista até 16/11.

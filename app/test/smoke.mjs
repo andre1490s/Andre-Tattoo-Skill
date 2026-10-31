@@ -32,6 +32,11 @@ const seedScript = `(() => {
   });
   window.__mock.seed(B + '/materiais/itens', { m1:{nome:'Agulha 5RL', agulha:'5RL', qtd:12, minimo:5, unidade:'unidades'}, m2:{nome:'Luvas', qtd:1, minimo:3, unidade:'caixas'} });
   window.__mock.seed(B + '/orcamentos/itens', { o1:{ cliente:'Julia Prado', ideia:'Leão antebraço', estilo:'Realismo P&C', tamanho:'25 cm', local:'antebraço', valor:1500, etapa:'orcamento', followups:0, criado: Date.now()-5*86400000, atualizado: Date.now()-5*86400000, ultimoContato: ds(-5) } });
+  window.__mock.seed(B + '/clube/itens', {
+    cm1: { kind:'membro', nome:'Bruno Dias', telefone:'11999990000', entrada: ds(-120), mensalidade:150, forma:'Assinatura', status:'ativo' },
+    cp1: { kind:'pg', membroId:'cm1', data: ds(-120), valor:150, ref: ds(-120).slice(0,7), forma:'Assinatura' },
+    cp2: { kind:'pg', membroId:'cm1', data: ds(-90), valor:150, ref: ds(-90).slice(0,7), forma:'Assinatura' }
+  });
   window.__mock.seed(B + '/clientes/itens', { 'carlos mendes': { nome:'Carlos Mendes', nasc: ds(2).slice(5), notas:'Prefere sessões de manhã', indicacao:'Rafael' } });
   window.__mock.seed('aprendizado_sugestoes', { s1:{ titulo:'Perguntar a cor do realismo', regra:'Quando o pedido for realismo sem cor definida, perguntar se é preto e cinza ou colorido.', motivo:'Visto em 3 pedidos', confianca:3, status:'proposta', ts: Date.now() } });
   window.__mock.mcpHandlers['Google Calendar'] = {
@@ -245,6 +250,30 @@ async function run(label, viewport) {
   await page.screenshot({ path: path.join(out, label + '-08-conteudo.png') });
   await page.click('[data-act="postNext"]'); await page.waitForTimeout(400);
   ok(label + ': avançar etapa do post', (await page.evaluate(() => window.__mock.dump('data/users/u_test/conteudo/itens')))[0].status === 'gravar');
+  // Clube 15
+  await page.click('.tab[data-tab="hoje"]'); await page.waitForTimeout(350);
+  ok(label + ': aviso de mensalidade do clube em atraso na tela Hoje', /mensalidade[s]? do clube em atraso/i.test(await page.textContent('#hAlerts')));
+  await page.click('.tab[data-tab="mais"]'); await page.waitForTimeout(300);
+  ok(label + ': Clube 15 aparece no menu Mais', /Clube 15/.test(await page.textContent('#maisList')));
+  await page.click('[data-act="goTab"][data-tab-go="clube"] >> nth=0'); await page.waitForTimeout(400);
+  const cTxt = await page.textContent('#clubeList');
+  ok(label + ': membro listado com saldo e atraso', /Bruno Dias/.test(cTxt) && /em atraso/.test(cTxt), cTxt.slice(0, 90));
+  ok(label + ': painel mostra 14 vagas livres', /14/.test(await page.textContent('#clubePainel')));
+  const caixaAntes = await page.evaluate(() => window.__mock.dump('data/users/u_test').filter(d => d.kind === 'in').length);
+  await page.click('[data-act="clubePagar"]'); await page.waitForTimeout(350);
+  await page.click('#save'); await page.waitForTimeout(600);
+  const pgs = await page.evaluate(() => window.__mock.dump('data/users/u_test/clube/itens').filter(x => x.kind === 'pg'));
+  const caixaDepois = await page.evaluate(() => window.__mock.dump('data/users/u_test').filter(d => d.kind === 'in'));
+  ok(label + ': mensalidade registrada no clube', pgs.length === 3, 'pagamentos: ' + pgs.length);
+  ok(label + ': mensalidade vira entrada no caixa', caixaDepois.length === caixaAntes + 1 && caixaDepois.some(c => /Clube 15/.test(c.descricao || '')));
+  await page.screenshot({ path: path.join(out, label + '-09-clube.png') });
+  await page.click('[data-act="clubeUsar"]'); await page.waitForTimeout(350);
+  await page.fill('#f_valor', '300'); await page.click('#save'); await page.waitForTimeout(600);
+  const usos = await page.evaluate(() => window.__mock.dump('data/users/u_test/clube/itens').filter(x => x.kind === 'uso'));
+  const caixaFim = await page.evaluate(() => window.__mock.dump('data/users/u_test').filter(d => d.kind === 'in').length);
+  ok(label + ': crédito usado abate o saldo', usos.length === 1 && usos[0].valor === 300);
+  ok(label + ': usar crédito não lança entrada nova no caixa', caixaFim === caixaDepois.length);
+  ok(label + ': saldo restante aparece na tela', /R\$\s?150,00/.test(await page.textContent('#clubeList')), (await page.textContent('#clubeList')).slice(0, 120));
   // exportar
   await page.click('.tab[data-tab="mais"]'); await page.waitForTimeout(300);
   await page.click('[data-act="exportJson"]'); await page.waitForTimeout(400);
@@ -253,9 +282,11 @@ async function run(label, viewport) {
   ok(label + ': exporta JSON e CSV', dls.length === 2 && /\.json$/.test(dls[0]) && /\.csv$/.test(dls[1]), dls.join(', '));
   const dj = await page.evaluate(() => JSON.parse(window.__mock.downloads[0].data));
   ok(label + ': backup contém caixa, agenda e orçamentos', dj.caixa.length >= 5 && dj.agenda.length >= 4 && dj.orcamentos.length >= 2);
+  ok(label + ': backup inclui o Clube 15', Array.isArray(dj.clube) && dj.clube.some(x => x.kind === 'membro'));
   // dados antigos preservados: lançamentos continuam nos mesmos caminhos e campos
   const caixa = await page.evaluate(() => window.__mock.dump('data/users/u_test').filter(d => d.kind));
-  ok(label + ': dados antigos do caixa intactos', caixa.length === 5 && caixa.find(c => c.id === 'l1').valor === 1200);
+  const semClube = caixa.filter(c => !c.clube);
+  ok(label + ': dados antigos do caixa intactos', semClube.length === 5 && caixa.find(c => c.id === 'l1').valor === 1200, 'sem clube: ' + semClube.length);
   ok(label + ': sem erros de JS', errs.length === 0, errs.slice(0, 3).join(' || '));
   await ctx.close();
 }

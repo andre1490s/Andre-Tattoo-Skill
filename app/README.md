@@ -61,5 +61,15 @@ Republicar `caixa-andre-tattoo.v12-regra-orcamento.html` (ou a v1 original) na m
 - O formulário do orçamento tem **Data da sessão** (com o calendário) e **Horário**. Com a etapa **Sinal pago** ou **Agendado**, a sessão é criada na Agenda (valor, estilo, telefone, sinal da política) e no Google Agenda, e o orçamento passa a **Agendado**, ligado à sessão (`agendaId`). Editar data ou horário no orçamento atualiza a sessão e o evento do Google, sem duplicar. Com outras etapas, a data fica só como data prevista.
 - Orçamentos agendados saem da lista "Em andamento"; ficam no filtro **Agendado**.
 
+## Versão 19: Clube 15
+- Tela **Clube 15** (Mais > Clube 15), fonte `app/src/js/clube.js`. Controla a pré-reserva da agenda 2027: membros, mensalidades, crédito, validade e vagas. As regras ficam na constante `CLUBE` (`vagas`, `mensalidade`, `carenciaMeses`, `validadeMeses`, `saldoAposSaidaMeses`, `sessoesPorMes`). **Mudou `clube-15/REGULAMENTO.md`, muda `CLUBE`.**
+- **Receber mensalidade** faz três coisas num toque: registra o pagamento do membro, lança a entrada no caixa (descrição `Clube 15 — mensalidade MM/AAAA`, campo `clube:true`) e aumenta o crédito.
+- **Usar crédito** abate do saldo e **não lança no caixa** — o dinheiro entrou quando a mensalidade foi paga; lançar de novo contaria a receita duas vezes.
+- **Devolver saldo** (regulamento 4.4) zera o crédito e lança uma **saída** no caixa.
+- Validade do crédito: cada pagamento vale 12 meses a contar do dia dele. O crédito usado consome os pagamentos mais antigos primeiro (FIFO), então o extrato mostra o que vence e quando.
+- Avisos na tela Hoje, por regra e sem IA: mensalidade atrasada, crédito vencendo em 60 dias e cobranças dos próximos dias. O agente Financeiro recebe `clube` no snapshot (vagas, receita recorrente, crédito em aberto, atrasados).
+- Nova coleção `data/users/<id>/clube/itens`, com três tipos de documento: `membro`, `pg` (mensalidade), `uso` e `dev` (devolução). Entra no backup JSON.
+- Testes: 10 verificações novas em `app/test/smoke.mjs` (atraso, lançamento no caixa, abatimento sem duplicar receita, backup).
+
 ### Ainda não feito
 Fotos por projeto (capacidade `assets`), rotina semanal automática do aprendizado, melhores posts (se o Metricool passar a devolver dados por post).

@@ -22,7 +22,7 @@
   let mes = today().slice(0,7);
   let tab = 'caixa';
   try{ tab = localStorage.getItem('andre-tab2') || 'hoje'; }catch(e){}
-  const data = { caixa:[], agenda:[], pend:[], mat:[], orc:[], cli:[], cont:[] };
+  const data = { caixa:[], agenda:[], pend:[], mat:[], orc:[], cli:[], cont:[], clube:[] };
   let masked = false;
   try{ masked = localStorage.getItem('andre-mask')==='1'; }catch(e){}
   const money = v => '<span class="mval">'+(masked ? 'R$ ••••' : esc(brl.format(v)))+'</span>';
@@ -32,7 +32,7 @@
   // ---------- Armazenamento ----------
   // Nuvem: Caixa fica em data/users/<id> (mesmo lugar da V1); as abas novas em subcoleções.
   // Sem nuvem: guarda só neste aparelho.
-  const LS = { caixa:'caixa-andre-lancamentos', agenda:'andre-agenda', pend:'andre-pendencias', mat:'andre-materiais', orc:'andre-orcamentos', cli:'andre-clientes', cont:'andre-conteudo' };
+  const LS = { caixa:'caixa-andre-lancamentos', agenda:'andre-agenda', pend:'andre-pendencias', mat:'andre-materiais', orc:'andre-orcamentos', cli:'andre-clientes', cont:'andre-conteudo', clube:'andre-clube' };
   function localStore(name){
     const listeners = new Set();
     const all = () => { try{ return JSON.parse(localStorage.getItem(LS[name])||'[]'); }catch(e){ return []; } };
@@ -44,7 +44,7 @@
       async remove(id){ write(all().filter(x=>x.id!==id)); }
     };
   }
-  let stores = { caixa:localStore('caixa'), agenda:localStore('agenda'), pend:localStore('pend'), mat:localStore('mat'), orc:localStore('orc'), cli:localStore('cli'), cont:localStore('cont') };
+  let stores = { caixa:localStore('caixa'), agenda:localStore('agenda'), pend:localStore('pend'), mat:localStore('mat'), orc:localStore('orc'), cli:localStore('cli'), cont:localStore('cont'), clube:localStore('clube') };
   const CFG_DEFAULT = {meta:20000, inicio:'09:00', fim:'22:00', dias:['seg','ter','qua','qui','sex','sáb'], duracao:3, reativados:{}, custosFixos:0};
   data.cfg = Object.assign({}, CFG_DEFAULT);
   let cfgStore = {
@@ -70,7 +70,7 @@
     Object.values(unsubs).forEach(u=>{ try{u();}catch(e){} });
     subscribeCaixa();
     unsubs.cfg = cfgStore.subscribe(v => { data.cfg = Object.assign({}, CFG_DEFAULT, v||{}); cfgLoaded = true; renderAll(); });
-    ['agenda','pend','mat','orc','cli','cont'].forEach(n => { unsubs[n] = stores[n].subscribe(null, list => { if(n==='agenda'){ allAgenda=list; list=list.filter(a=>!a.ignorado); } data[n]=list; renderAll(); }); });
+    ['agenda','pend','mat','orc','cli','cont','clube'].forEach(n => { unsubs[n] = stores[n].subscribe(null, list => { if(n==='agenda'){ allAgenda=list; list=list.filter(a=>!a.ignorado); } data[n]=list; renderAll(); }); });
   }
   function subscribeCaixa(){
     if(unsubs.caixa) try{ unsubs.caixa(); }catch(e){}
@@ -92,7 +92,8 @@
         mat: cloudStore(db.doc(base+'/materiais').collection('itens')),
         orc: cloudStore(db.doc(base+'/orcamentos').collection('itens')),
         cli: cloudStore(db.doc(base+'/clientes').collection('itens')),
-        cont: cloudStore(db.doc(base+'/conteudo').collection('itens'))
+        cont: cloudStore(db.doc(base+'/conteudo').collection('itens')),
+        clube: cloudStore(db.doc(base+'/clube').collection('itens'))
       };
       DBREF = db;
       const cfgDoc = db.collection(base).doc('config');
@@ -161,7 +162,7 @@
   }
 
   // ---------- Telas ----------
-  function renderAll(){ renderCaixa(); renderAgenda(); renderPend(); renderMat(); renderHoje(); renderFunil(); renderMais(); renderAprend(); renderRel(); renderInsta(); renderSemana(); renderChrome(); }
+  function renderAll(){ renderCaixa(); renderAgenda(); renderPend(); renderMat(); renderHoje(); renderFunil(); renderMais(); renderAprend(); renderRel(); renderInsta(); renderSemana(); renderClube(); renderChrome(); }
 
   function renderChrome(){
     document.querySelectorAll('[data-view]').forEach(s=>s.hidden = s.dataset.view!==tab);
@@ -176,7 +177,8 @@
       mat:'<button class="btn primary" data-act="addMat">+ Novo material</button>',
       cli:'<button class="btn primary" data-act="addAgenda">+ Marcar sessão</button>',
       funil:'<button class="btn primary" data-act="addOrc">+ Novo orçamento</button>',
-      semana:'<button class="btn primary" data-act="addPost">+ Novo post</button>'
+      semana:'<button class="btn primary" data-act="addPost">+ Novo post</button>',
+      clube:'<button class="btn primary" data-act="addMembro">+ Novo membro</button>'
     };
     if(ab.dataset.tab!==tab){ ab.innerHTML = map[tab]||''; ab.className = 'in-bar'+(tab==='caixa'?' two':''); ab.dataset.tab = tab; }
   }
@@ -1184,7 +1186,7 @@ Formatos de ação possíveis:
 
   // ---------- Ações ----------
   const ORDER = ['hoje','agenda','cli','caixa','mais'];
-  const TABOF = {pend:'mais', mat:'mais', aprend:'mais', insta:'mais', semana:'mais', funil:'cli'};
+  const TABOF = {pend:'mais', mat:'mais', aprend:'mais', insta:'mais', semana:'mais', clube:'mais', funil:'cli'};
   const pt = t => TABOF[t]||t;
   function riseCards(sec){
     if(!sec) return;
