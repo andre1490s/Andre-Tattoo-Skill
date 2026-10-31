@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Área do Clube 15 — André Tattoo</title>
+<meta name="description" content="Área dos membros do Clube 15: as datas de 2027 abertas antes do público.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#07080a">
+
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&family=Pinyon+Script&display=swap">
+<script src="js/config.js"></script>
+<script>try{var t=(window.SITE&&window.SITE.tema)||"escuro";
+document.documentElement.setAttribute("data-tema",t);
+if(t==="claro")document.documentElement.style.colorScheme="light";}catch(e){}</script>
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+  section[id]{scroll-margin-top:92px}
+  .membro-hero{padding-block:clamp(110px,14vw,170px) clamp(30px,4vw,54px)}
+  .membro-hero .h2{max-width:20ch}
+  .lede{max-width:56ch;font-size:clamp(1rem,.5vw + .9rem,1.15rem);color:var(--cream-dim);margin:24px 0 0}
+  .privado{display:inline-flex;align-items:center;gap:9px;margin-top:26px;padding:9px 15px;
+    border:1px solid var(--line-2);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .privado::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold)}
+
+  .mes{font-family:var(--ff-serif);font-size:clamp(1.5rem,3.4vw,2.1rem);color:var(--cream);
+    margin:clamp(30px,4vw,44px) 0 16px}
+  .datas{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:1px;
+    background:var(--line);border:1px solid var(--line)}
+  .data{background:var(--ink);padding:clamp(20px,2.6vw,28px);display:flex;flex-direction:column;gap:14px}
+  .data__dia{display:flex;align-items:baseline;gap:12px}
+  .data__dia b{font-family:var(--ff-serif);font-weight:400;font-size:clamp(2.2rem,5vw,3rem);
+    line-height:1;color:var(--cream)}
+  .data__dia span{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .data__hora{font-size:.9rem;color:var(--cream-dim)}
+  .data__obs{font-size:.82rem;color:var(--muted)}
+  .data .btn{margin-top:auto}
+
+  .vazio{border:1px dashed var(--line-2);padding:clamp(30px,5vw,54px);text-align:center;
+    color:var(--muted);line-height:1.7}
+  .vazio b{color:var(--cream);font-weight:400}
+  .lista{list-style:none;padding:0;margin:18px 0 0}
+  .lista li{position:relative;padding-left:26px;margin-bottom:13px;font-size:.93rem}
+  .lista li::before{content:"";position:absolute;left:4px;top:.62em;width:9px;height:1px;background:var(--gold)}
+  .atualizado{margin-top:26px;font-size:.78rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#datas">Ir para as datas</a>
+
+<header class="nav is-stuck" id="nav">
+  <a class="nav__brand" href="/" aria-label="André Tattoo, início">
+    <svg class="nav__mark" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"></circle><path d="M38 84 L60 34 L82 84 M47 68 H73"></path></svg>
+    <span class="nav__name">André<em>Tattoo</em></span>
+  </a>
+  <nav class="nav__links" aria-label="Navegação principal">
+    <a href="#datas">Datas</a>
+    <a href="#mensalidade">Mensalidade</a>
+    <a href="#lembretes">Regras</a>
+  </nav>
+  <a class="btn btn--solid btn--sm nav__cta" href="#" data-wa><span>Falar comigo</span></a>
+</header>
+
+<main id="top">
+
+<section class="sec membro-hero">
+  <p class="eyebrow">Clube 15 — área do membro</p>
+  <h1 class="h2">As datas de 2027, antes de todo <em class="cursive">mundo</em>.</h1>
+  <p class="lede">
+    Esta página é só de quem está no clube. As datas abaixo ainda não foram para o público: você
+    escolhe primeiro. Quando achar a sua, toque em reservar e me confirme no WhatsApp — eu bloqueio
+    o dia no mesmo instante.
+  </p>
+  <span class="privado">Link privado — não compartilhe</span>
+</section>
+
+<section class="sec" id="datas">
+  <div class="sec__head">
+    <p class="eyebrow">01 — Datas abertas</p>
+    <h2 class="h2">Escolha o seu dia.</h2>
+  </div>
+  <div id="listaDatas"></div>
+  <p class="atualizado" id="atualizado" hidden></p>
+</section>
+
+<section class="sec" id="mensalidade">
+  <div class="sec__head">
+    <p class="eyebrow">02 — Mensalidade</p>
+    <h2 class="h2">Seu crédito continua correndo.</h2>
+    <p class="sec__sub" id="mensalTexto">Todo mês, o valor que você paga vira crédito no seu nome e
+    é abatido na sua próxima sessão.</p>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px">
+    <a class="btn btn--line" id="pgLink" href="#" target="_blank" rel="noopener" hidden><span>Ver a minha mensalidade</span></a>
+    <a class="btn btn--line" href="#" data-wa-saldo><span>Perguntar o meu saldo</span></a>
+  </div>
+</section>
+
+<section class="sec" id="lembretes">
+  <div class="sec__head">
+    <p class="eyebrow">03 — Para lembrar</p>
+    <h2 class="h2">O combinado, em cinco linhas.</h2>
+  </div>
+  <ul class="lista">
+    <li>O seu crédito acumula e é abatido no dia da sessão. Nada é taxa.</li>
+    <li>Cada crédito vale por 12 meses, contados do dia do pagamento que o gerou.</li>
+    <li>Prioridade na agenda vale enquanto a mensalidade está em dia.</li>
+    <li>Você pode usar crédito em uma sessão por mês.</li>
+    <li>Se precisar desmarcar, me avise com mais de 48 horas de antecedência.</li>
+  </ul>
+  <p class="atualizado">Regulamento completo: <a href="clube-15.html#regras" style="color:var(--gold-soft);text-decoration:underline">na página do clube</a>.</p>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__top">
+    <div class="foot__brand">
+      <svg class="foot__mark" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"></circle><path d="M38 84 L60 34 L82 84 M47 68 H73"></path></svg>
+      <p class="foot__tag">Realismo preto e cinza<br>São Paulo — Vila Matilde</p>
+    </div>
+    <nav class="foot__nav" aria-label="Rodapé">
+      <a href="/">Site</a><a href="clube-15.html">O clube</a><a href="#datas">Datas</a>
+    </nav>
+    <div class="foot__contact">
+      <a class="foot__big" href="#" data-ig>@andretatuadoor</a>
+      <p>Av. Melchert, 606 — Vila Matilde<br>Segunda a sábado, 9h às 22h</p>
+      <a class="foot__zap" href="#" data-wa>WhatsApp (11) 98271-3543</a>
+    </div>
+  </div>
+  <div class="foot__bot">
+    <p>© <span id="year">2026</span> André Tattoo. Todos os direitos reservados.</p>
+    <p>Área dos membros do Clube 15.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var CFG = window.SITE || {}, C = CFG.clube || {};
+  var NUM = (CFG.whatsapp || "").replace(/\D/g, "");
+  var IG = "https://www.instagram.com/" + (CFG.instagram || "andretatuadoor") + "/";
+  var wa = function (texto) {
+    return NUM ? "https://wa.me/" + NUM + "?text=" + encodeURIComponent(texto) : IG;
+  };
+  var each = function (sel, fn) { Array.prototype.forEach.call(document.querySelectorAll(sel), fn); };
+
+  each("[data-ig]", function (a) { a.href = IG; a.target = "_blank"; a.rel = "noopener"; });
+  each("[data-wa]", function (a) {
+    a.href = wa("Olá, André. Sou do Clube 15 e queria falar com você.");
+    a.target = "_blank"; a.rel = "noopener";
+  });
+  each("[data-wa-saldo]", function (a) {
+    a.href = wa("Olá, André. Sou do Clube 15. Quanto está o meu crédito acumulado?");
+    a.target = "_blank"; a.rel = "noopener";
+  });
+
+  var y = document.getElementById("year");
+  if (y) y.textContent = new Date().getFullYear();
+
+  if (C.assinatura) {
+    var lk = document.getElementById("pgLink");
+    if (lk) { lk.href = C.assinatura; lk.hidden = false; }
+  }
+
+  /* ---- datas abertas ---- */
+  var MES = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+  var SEM = ["domingo","segunda","terça","quarta","quinta","sexta","sábado"];
+  var hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+
+  var datas = (C.datas || []).filter(function (d) {
+    if (!d || !d.data) return false;
+    var p = String(d.data).split("-");
+    return new Date(+p[0], +p[1] - 1, +p[2]) >= hoje;
+  }).sort(function (a, b) {
+    return String(a.data + (a.hora || "")).localeCompare(String(b.data + (b.hora || "")));
+  });
+
+  var box = document.getElementById("listaDatas");
+  var esc = function (s) { var d = document.createElement("div"); d.textContent = s == null ? "" : String(s); return d.innerHTML; };
+
+  if (!datas.length) {
+    box.innerHTML = '<div class="vazio"><b>Ainda não abri as datas deste período.</b><br>'
+      + 'Assim que eu abrir, você recebe uma mensagem minha — os membros sempre são avisados antes.<br><br>'
+      + '<a class="btn btn--line" href="' + wa("Olá, André. Sou do Clube 15. Quando você abre as próximas datas?") + '" target="_blank" rel="noopener"><span>Perguntar sobre as próximas datas</span></a></div>';
+  } else {
+    var porMes = {}, ordem = [];
+    datas.forEach(function (d) {
+      var k = String(d.data).slice(0, 7);
+      if (!porMes[k]) { porMes[k] = []; ordem.push(k); }
+      porMes[k].push(d);
+    });
+    box.innerHTML = ordem.map(function (k) {
+      var p = k.split("-");
+      var m = MES[+p[1] - 1];
+      var titulo = m.charAt(0).toUpperCase() + m.slice(1) + " de " + p[0];
+      var cards = porMes[k].map(function (d) {
+        var q = String(d.data).split("-");
+        var dt = new Date(+q[0], +q[1] - 1, +q[2]);
+        var msg = "Olá, André. Sou do Clube 15 e quero reservar o dia "
+          + ("0" + dt.getDate()).slice(-2) + "/" + ("0" + (dt.getMonth() + 1)).slice(-2) + "/" + dt.getFullYear()
+          + (d.hora ? " às " + d.hora : "") + ".";
+        return '<div class="data">'
+          + '<div class="data__dia"><b>' + dt.getDate() + '</b><span>' + esc(SEM[dt.getDay()]) + '</span></div>'
+          + (d.hora ? '<div class="data__hora">a partir das ' + esc(d.hora) + '</div>' : '')
+          + (d.obs ? '<div class="data__obs">' + esc(d.obs) + '</div>' : '')
+          + '<a class="btn btn--solid" href="' + wa(msg) + '" target="_blank" rel="noopener"><span>Reservar este dia</span></a>'
+          + '</div>';
+      }).join("");
+      return '<h3 class="mes">' + esc(titulo) + '</h3><div class="datas">' + cards + '</div>';
+    }).join("");
+  }
+
+  if (C.atualizado) {
+    var at = document.getElementById("atualizado");
+    var p2 = String(C.atualizado).split("-");
+    at.textContent = "Datas atualizadas em " + p2[2] + "/" + p2[1] + "/" + p2[0] + ".";
+    at.hidden = false;
+  }
+})();
+</script>
+
+</body>
+</html>

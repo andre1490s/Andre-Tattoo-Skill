@@ -35,7 +35,9 @@ const seedScript = `(() => {
   window.__mock.seed(B + '/clube/itens', {
     cm1: { kind:'membro', nome:'Bruno Dias', telefone:'11999990000', entrada: ds(-120), mensalidade:150, forma:'Assinatura', status:'ativo' },
     cp1: { kind:'pg', membroId:'cm1', data: ds(-120), valor:150, ref: ds(-120).slice(0,7), forma:'Assinatura' },
-    cp2: { kind:'pg', membroId:'cm1', data: ds(-90), valor:150, ref: ds(-90).slice(0,7), forma:'Assinatura' }
+    cp2: { kind:'pg', membroId:'cm1', data: ds(-90), valor:150, ref: ds(-90).slice(0,7), forma:'Assinatura' },
+    cd1: { kind:'data', data: ds(30), hora:'09:00', obs:'dia inteiro' },
+    cd2: { kind:'data', data: ds(37), hora:'14:00' }
   });
   window.__mock.seed(B + '/clientes/itens', { 'carlos mendes': { nome:'Carlos Mendes', nasc: ds(2).slice(5), notas:'Prefere sessões de manhã', indicacao:'Rafael' } });
   window.__mock.seed('aprendizado_sugestoes', { s1:{ titulo:'Perguntar a cor do realismo', regra:'Quando o pedido for realismo sem cor definida, perguntar se é preto e cinza ou colorido.', motivo:'Visto em 3 pedidos', confianca:3, status:'proposta', ts: Date.now() } });
@@ -273,6 +275,18 @@ async function run(label, viewport) {
   const caixaFim = await page.evaluate(() => window.__mock.dump('data/users/u_test').filter(d => d.kind === 'in').length);
   ok(label + ': crédito usado abate o saldo', usos.length === 1 && usos[0].valor === 300);
   ok(label + ': usar crédito não lança entrada nova no caixa', caixaFim === caixaDepois.length);
+  const dTxt = await page.textContent('#clubeDatas');
+  ok(label + ': datas abertas aparecem com o mês e o estado', /Datas abertas/.test(dTxt) && /livre para os membros/.test(dTxt), dTxt.slice(0, 80));
+  await page.click('[data-act="clubeDatasSite"]'); await page.waitForTimeout(400);
+  const snippet = await page.inputValue('#f_texto');
+  ok(label + ': exporta as datas no formato do site', /clube: \{/.test(snippet) && /datas: \[/.test(snippet) && snippet.includes(ds(30)), snippet.slice(0, 70));
+  ok(label + ': exporta as vagas ocupadas de verdade', /ocupadas: 1/.test(snippet));
+  await page.click('#cancel'); await page.waitForTimeout(300);
+  await page.click('[data-act="clubeReservar"] >> nth=0'); await page.waitForTimeout(350);
+  await page.click('#save'); await page.waitForTimeout(700);
+  const reservada = (await page.evaluate(() => window.__mock.dump('data/users/u_test/clube/itens').filter(x => x.kind === 'data'))).find(x => x.membroId);
+  ok(label + ': reservar marca a data para o membro', !!reservada && reservada.membroId === 'cm1');
+  await page.click('#cancel'); await page.waitForTimeout(300);
   ok(label + ': saldo restante aparece na tela', /R\$\s?150,00/.test(await page.textContent('#clubeList')), (await page.textContent('#clubeList')).slice(0, 120));
   // exportar
   await page.click('.tab[data-tab="mais"]'); await page.waitForTimeout(300);

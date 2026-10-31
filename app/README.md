@@ -71,5 +71,24 @@ Republicar `caixa-andre-tattoo.v12-regra-orcamento.html` (ou a v1 original) na m
 - Nova coleção `data/users/<id>/clube/itens`, com três tipos de documento: `membro`, `pg` (mensalidade), `uso` e `dev` (devolução). Entra no backup JSON.
 - Testes: 10 verificações novas em `app/test/smoke.mjs` (atraso, lançamento no caixa, abatimento sem duplicar receita, backup).
 
+## Versão 20: tema claro e as datas do clube
+- **Tema claro ("Papel e Grafite"), agora o padrão.** Mesma paleta do tema claro do site
+  (`site/css/style.css`, `:root[data-tema="claro"]`): fundo osso, texto grafite. O dourado puro some
+  no claro, então o acento vira grafite escuro em vez de dourado.
+- Troca em **Ajustes do estúdio > Aparência** (Claro ou Escuro), gravada em `config.tema`. O tema é
+  aplicado em `aplicarTema()` a cada render e também muda a cor da barra do navegador.
+- O CSS ganhou o token `--on-hi` (a cor do texto por cima dos preenchimentos claros). No escuro é
+  quase preto; no claro, quase branco. Sem ele, todo botão preenchido ficaria ilegível no claro.
+- **Logo com fundo transparente.** O arquivo original tinha um retângulo preto em volta da marca,
+  que aparecia até no tema escuro. Agora são dois PNGs com alfa: `logo` (prata, tema escuro) e
+  `logo-claro` (grafite, tema claro), trocados por CSS. O original ficou em
+  `assets-src/logo-original-com-fundo.png`.
+- **Datas do clube.** Na tela Clube 15: *Abrir data* (dia, horário, observação; avisa quando passa
+  das 4 por mês do regulamento), *Reservar* para um membro (marca a data e já abre a sessão na
+  agenda) e *Liberar*. Documentos `kind:'data'` na mesma coleção `clube`.
+- **Datas para o site**: gera o bloco `clube` de `site/js/config.js` com vagas ocupadas e datas
+  livres, pronto para colar. É o que alimenta `site/clube-15-membro.html`.
+- Testes: 5 verificações novas (datas, exportação, reserva). Suíte inteira passando.
+
 ### Ainda não feito
 Fotos por projeto (capacidade `assets`), rotina semanal automática do aprendizado, melhores posts (se o Metricool passar a devolver dados por post).

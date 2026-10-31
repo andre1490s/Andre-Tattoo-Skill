@@ -105,6 +105,34 @@ Se a lista fechar novembro com menos de 10 nomes, o problema não é o clube: é
 a decisão é segurar o clube e voltar para `RENDA-EXTRA.md` Fase 0 (orçamentos parados e
 reativação), que é caixa mais barato.
 
+## 7.1 Por onde o cliente passa
+
+A pergunta mais prática do projeto: **onde ele se cadastra, onde paga e onde vê as datas.**
+
+| Etapa | Onde acontece | O que você faz |
+|---|---|---|
+| 1. Conhece o clube | `andretattoo.netlify.app/clube-15.html` (link da bio) | nada, a página explica |
+| 2. **Se cadastra** | formulário dessa mesma página | recebe o lead por e-mail do Netlify |
+| 3. Conversa | WhatsApp | qualifica o projeto e decide se o clube serve para ele |
+| 4. **Paga** | link de assinatura (Asaas, InfinitePay…) | manda o link; a cobrança se repete sozinha todo mês |
+| 5. Entra | app Caixa > Clube 15 > **+ Novo membro** | registra o membro e manda o link da área |
+| 6. **Vê as datas** | `andretattoo.netlify.app/clube-15-membro.html` | link não listado, só para membros |
+| 7. Escolhe a data | botão "Reservar este dia" → WhatsApp já escrito | confirma e marca a sessão no app |
+
+**Por que o pagamento não é automático na página.** Tattoo não é camiseta: você precisa ver o
+projeto antes de aceitar alguém por 12 meses. Se a página cobrasse direto, você acordaria com
+membros que você não escolheu e com projetos que não cabem na sua agenda. O cadastro é aberto,
+a entrada é sua decisão.
+
+**Por que as datas ficam fora do site público.** A promessa central do clube é que o membro escolhe
+antes de todo mundo. Se as datas estivessem na página pública, a promessa deixava de existir. Por
+isso a área do membro é um link não listado (sem busca, sem sitemap), que você manda só para quem
+entrou.
+
+**Como as datas chegam lá.** No app: **Mais > Clube 15 > Abrir data** (você escolhe quais dias de
+2027 vão para o clube; o app avisa se passar das 4 por mês do regulamento). Depois,
+**Datas para o site** gera o bloco de configuração pronto para colar em `site/js/config.js`.
+
 ## 8. Arquivos
 
 | Arquivo | O que é |
@@ -118,5 +146,7 @@ reativação), que é caixa mais barato.
 | `STORIES-SEMANA-4.md` | Semana 4 (24 a 30/11): Black Friday como prazo, e o fechamento |
 | `MENSAGENS.md` | Direct e WhatsApp: abertura, objeções, confirmação e lista de espera |
 | `COBRANCA.md` | Como cobrar os R$ 150 todo mês: comparação de taxas, passo a passo e protocolo de atraso |
-| App Caixa > Mais > **Clube 15** | Controle de membros, mensalidades, crédito e vagas. Código em `app/src/js/clube.js` |
+| `../site/clube-15.html` | Página pública: explica, mostra as regras e capta o cadastro |
+| `../site/clube-15-membro.html` | Área do membro (link não listado): as datas de 2027 e a mensalidade |
+| App Caixa > Mais > **Clube 15** | Controle de membros, mensalidades, crédito, vagas e as datas abertas. Código em `app/src/js/clube.js` |
 | `../site/clube-15.html` | Página da lista de interesse (link da bio) |

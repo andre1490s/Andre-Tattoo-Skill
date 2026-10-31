@@ -25,6 +25,35 @@ e coloque seu e-mail. O plano gratuito aceita 100 envios por mês.
 > O formulário só grava quando o site está hospedado na Netlify. Aberto localmente, ele apenas abre o
 > WhatsApp — o que é o comportamento esperado.
 
+## 2.1 Clube 15: as duas páginas do clube
+
+| Página | Quem vê | Para quê |
+|---|---|---|
+| `clube-15.html` | qualquer um (link da bio) | explica o clube, as regras e **capta o cadastro** (formulário Netlify `clube15`) |
+| `clube-15-membro.html` | **só quem é membro** | mostra as **datas de 2027** abertas antes do público e o link da mensalidade |
+
+A página do membro é **não listada**: tem `noindex`, está bloqueada no `robots.txt` e fora do
+`sitemap.xml`. Ela não tem senha — o que protege é o link não estar em lugar nenhum. Mande só para
+quem entrou, e não publique em story.
+
+**O caminho do cliente, do começo ao fim:**
+link da bio → `clube-15.html` → formulário → você conversa no WhatsApp → você manda o link da
+mensalidade → ele assina → você manda o link da área do membro → ele escolhe a data → confirma no
+WhatsApp → você marca a sessão no app.
+
+### Onde se mexe (tudo em `js/config.js`, bloco `clube`)
+
+| Campo | O que faz |
+|---|---|
+| `assinatura` | link de cobrança recorrente. **Vazio**: a página não mostra botão de pagar e manda falar no WhatsApp. Preenchido: aparece o botão nas duas páginas |
+| `ocupadas` | quantas das 15 vagas já estão ocupadas. A página calcula as restantes. Com 15, os botões viram "Entrar na lista de espera" |
+| `datas` | as datas que aparecem para os membros. Datas passadas somem sozinhas |
+| `atualizado` | data que aparece no rodapé da lista de datas |
+
+**Não preencha `datas` e `ocupadas` na mão.** No app Caixa: **Mais > Clube 15 > Datas para o site**.
+Ele gera esse bloco inteiro com os números certos — é só copiar e trocar o bloco `clube` do
+`config.js`. O campo `assinatura` o app não preenche: cole o link uma vez e ele fica.
+
 ## 3. Publicar
 **Opção A — arrastar:** app.netlify.com → site `andretattoo` → *Deploys* → arraste a pasta `site/`.
 **Opção B — ligar ao GitHub** (publica sozinho a cada commit): *Site configuration → Build & deploy →

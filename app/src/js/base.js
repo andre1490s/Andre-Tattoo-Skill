@@ -45,7 +45,7 @@
     };
   }
   let stores = { caixa:localStore('caixa'), agenda:localStore('agenda'), pend:localStore('pend'), mat:localStore('mat'), orc:localStore('orc'), cli:localStore('cli'), cont:localStore('cont'), clube:localStore('clube') };
-  const CFG_DEFAULT = {meta:20000, inicio:'09:00', fim:'22:00', dias:['seg','ter','qua','qui','sex','sáb'], duracao:3, reativados:{}, custosFixos:0};
+  const CFG_DEFAULT = {meta:20000, inicio:'09:00', fim:'22:00', dias:['seg','ter','qua','qui','sex','sáb'], duracao:3, reativados:{}, custosFixos:0, tema:'claro'};
   data.cfg = Object.assign({}, CFG_DEFAULT);
   let cfgStore = {
     subscribe(cb){ let v={}; try{ v = JSON.parse(localStorage.getItem('andre-config')||'{}'); }catch(e){} cb(v); return ()=>{}; },
@@ -164,7 +164,17 @@
   // ---------- Telas ----------
   function renderAll(){ renderCaixa(); renderAgenda(); renderPend(); renderMat(); renderHoje(); renderFunil(); renderMais(); renderAprend(); renderRel(); renderInsta(); renderSemana(); renderClube(); renderChrome(); }
 
+  const TEMA_COR = {light:'#FAF9F7', dark:'#060607'};
+  function aplicarTema(){
+    const t = (data.cfg.tema === 'escuro') ? 'dark' : 'light';
+    const el = document.documentElement;
+    if(el.dataset.theme === t) return;
+    el.dataset.theme = t;
+    const m = document.querySelector('meta[name="theme-color"]');
+    if(m) m.setAttribute('content', TEMA_COR[t]);
+  }
   function renderChrome(){
+    aplicarTema();
     document.querySelectorAll('[data-view]').forEach(s=>s.hidden = s.dataset.view!==tab);
     document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected', String(b.dataset.tab===pt(tab))));
     const n = data.pend.filter(p=>!p.feito).length + autoPend().length;
@@ -918,8 +928,9 @@ Formatos de ação possíveis:
     const c = data.cfg;
     openForm({
       title:'Ajustes do estúdio',
-      values:{meta:c.meta||null, inicio:c.inicio, fim:c.fim, dias:c.dias, duracao:c.duracao, custosFixos:c.custosFixos||null},
+      values:{meta:c.meta||null, inicio:c.inicio, fim:c.fim, dias:c.dias, duracao:c.duracao, custosFixos:c.custosFixos||null, tema:(c.tema==='escuro'?'Escuro':'Claro')},
       fields:[
+        {k:'tema',label:'Aparência',type:'chips',options:['Claro','Escuro']},
         {k:'meta',label:'Meta de faturamento do mês',type:'money',ph:'R$ 0,00'},
         {k:'dias',label:'Dias de atendimento',type:'multi',options:DIAS},
         {k:'inicio',label:'Começo do atendimento',type:'time'},
@@ -929,7 +940,7 @@ Formatos de ação possíveis:
         {hint:'O horário e a duração servem para calcular os horários livres. Sessões vindas do Google usam o horário de término do evento.'}
       ],
       validate:v=> (v.inicio && v.fim && toMin(v.fim)<=toMin(v.inicio)) ? 'O fim precisa ser depois do começo.' : '',
-      onSave: async v=>{ await cfgStore.save(Object.assign({}, data.cfg, {meta:v.meta||0, inicio:v.inicio||'09:00', fim:v.fim||'18:00', dias:(v.dias&&v.dias.length)?v.dias:CFG_DEFAULT.dias, duracao:v.duracao>0?v.duracao:3, custosFixos:v.custosFixos||0})); return 'Ajustes salvos'; }
+      onSave: async v=>{ await cfgStore.save(Object.assign({}, data.cfg, {meta:v.meta||0, inicio:v.inicio||'09:00', fim:v.fim||'18:00', dias:(v.dias&&v.dias.length)?v.dias:CFG_DEFAULT.dias, duracao:v.duracao>0?v.duracao:3, custosFixos:v.custosFixos||0, tema:(v.tema==='Escuro'?'escuro':'claro')})); return 'Ajustes salvos'; }
     });
   }
   function sessionRange(a){

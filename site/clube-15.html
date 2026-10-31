@@ -24,6 +24,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&family=Pinyon+Script&display=swap">
+<script src="js/config.js"></script>
+<script>try{var t=(window.SITE&&window.SITE.tema)||"escuro";document.documentElement.setAttribute("data-tema",t);if(t==="claro")document.documentElement.style.colorScheme="light";}catch(e){}</script>
 <link rel="stylesheet" href="css/style.css">
 
 <style>
@@ -80,9 +82,10 @@
   <nav class="nav__links" aria-label="Navegação principal">
     <a href="/">Site</a>
     <a href="#como">Como funciona</a>
+    <a href="#entrar">Como entrar</a>
     <a href="#regras">Regras</a>
   </nav>
-  <a class="btn btn--solid btn--sm nav__cta" href="#lista"><span>Entrar na lista</span></a>
+  <a class="btn btn--solid btn--sm nav__cta" href="#lista" data-cta><span>Entrar na lista</span></a>
 </header>
 
 <main id="top">
@@ -99,17 +102,18 @@
   </p>
 
   <div class="numbers">
-    <div><b>15</b><span>lugares, no total</span></div>
-    <div><b>R$ 150</b><span>por mês, vira crédito</span></div>
+    <div><b id="cVagas">15</b><span>lugares, no total</span></div>
+    <div><b id="cMensal">R$ 150</b><span>por mês, vira crédito</span></div>
     <div><b>100%</b><span>do valor volta em tattoo</span></div>
     <div><b>3 meses</b><span>de permanência mínima</span></div>
   </div>
 
   <div class="hero-cta">
-    <a class="btn btn--solid" href="#lista"><span>Quero entrar na lista</span></a>
+    <a class="btn btn--solid" href="#lista" data-cta><span>Quero entrar na lista</span></a>
     <a class="btn btn--line" href="#regras"><span>Ler as regras primeiro</span></a>
   </div>
 
+  <p class="note" id="cAviso">As 15 vagas estão abertas.</p>
   <p class="note">
     A mensalidade não é taxa de participação e não é assinatura de serviço: é crédito. Cada real
     que você paga volta em trabalho meu, na sua pele.
@@ -173,10 +177,42 @@
   </div>
 </section>
 
+<!-- ============ COMO ENTRAR ============ -->
+<section class="sec" id="entrar">
+  <div class="sec__head">
+    <p class="eyebrow">03 — Como entrar</p>
+    <h2 class="h2">Do seu nome na lista até a sua data.</h2>
+    <p class="sec__sub">Quatro passos. Nenhum deles cobra nada antes de a gente conversar.</p>
+  </div>
+
+  <ol class="steps">
+    <span class="steps__rail" aria-hidden="true"><i style="height:100%"></i></span>
+    <li class="step is-in"><span class="step__n">01</span>
+      <h3>Você se cadastra aqui</h3>
+      <p>O formulário no fim desta página. Leva um minuto e não cobra nada.</p></li>
+    <li class="step is-in"><span class="step__n">02</span>
+      <h3>Eu te chamo no WhatsApp</h3>
+      <p>Para entender o seu projeto e confirmar se o clube faz sentido para você. Se não fizer, eu falo —
+      prefiro marcar uma sessão comum a te colocar num clube que você não vai usar.</p></li>
+    <li class="step is-in"><span class="step__n">03</span>
+      <h3>Você assina a mensalidade</h3>
+      <p id="pgTexto">A cobrança é automática, uma vez por mês, e o comprovante chega no seu WhatsApp.
+      Eu te mando o link de pagamento depois da nossa conversa.</p>
+      <p id="pgBtn" hidden style="margin-top:14px"><a class="btn btn--line" id="pgLink" href="#" target="_blank" rel="noopener"><span>Ver o link da mensalidade</span></a></p></li>
+    <li class="step is-in"><span class="step__n">04</span>
+      <h3>Você recebe a área do clube</h3>
+      <p>Um link só dos membros, com as datas de 2027 que eu abro antes do público. Você escolhe a sua
+      e me confirma pelo WhatsApp.</p></li>
+  </ol>
+
+  <p class="note">Nada é cobrado por esta página. O pagamento só acontece depois que a gente conversar e
+  você decidir entrar.</p>
+</section>
+
 <!-- ============ REGRAS ============ -->
 <section class="sec" id="regras">
   <div class="sec__head">
-    <p class="eyebrow">03 — Regras</p>
+    <p class="eyebrow">04 — Regras</p>
     <h2 class="h2">O que está combinado, por escrito.</h2>
     <p class="sec__sub">Sem letra miúda. Se alguma coisa aqui não estiver clara, me pergunte antes de entrar.</p>
   </div>
@@ -230,7 +266,7 @@
 <!-- ============ LISTA ============ -->
 <section class="sec" id="lista">
   <div class="sec__head">
-    <p class="eyebrow">04 — Lista de interesse</p>
+    <p class="eyebrow">05 — Lista de interesse</p>
     <h2 class="h2">Coloque seu nome na <em class="cursive">lista</em>.</h2>
     <p class="sec__sub">Entrar na lista não cobra nada e não compromete nada. Eu te chamo no
     WhatsApp, entendo o seu projeto e você decide depois.</p>
@@ -274,9 +310,10 @@
 
     <div class="ok" id="clubeOk" role="status">
       <h3>Pronto, seu nome está na lista.</h3>
-      <p>Eu te chamo no WhatsApp para entender o seu projeto e explicar o resto com calma. Enquanto
-      isso, se quiser adiantar, me manda uma mensagem.</p>
-      <a class="btn btn--line" href="#" data-wa><span>Falar comigo no WhatsApp</span></a>
+      <p>Agora é comigo: eu te chamo no WhatsApp para entender o seu projeto e, se o clube fizer sentido
+      para você, te mando o link da mensalidade. Só depois disso é que entra pagamento.</p>
+      <p>Se quiser adiantar a conversa, me manda uma mensagem agora.</p>
+      <a class="btn btn--solid" href="#" data-wa><span>Falar comigo no WhatsApp</span></a>
     </div>
   </div>
 </section>
@@ -305,7 +342,6 @@
   </div>
 </footer>
 
-<script src="js/config.js"></script>
 <script>
 (function () {
   "use strict";
@@ -324,6 +360,36 @@
 
   var y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
+
+  /* ---- números e link de pagamento vêm de js/config.js ---- */
+  var C = CFG.clube || {};
+  var vagas = +C.vagas || 15, ocupadas = +C.ocupadas || 0;
+  var livres = Math.max(0, vagas - ocupadas);
+  var txt = function (id, v) { var e = document.getElementById(id); if (e) e.textContent = v; };
+
+  txt("cVagas", String(vagas));
+  if (C.mensalidade) txt("cMensal", "R$ " + String(C.mensalidade).replace(".", ","));
+
+  var aviso = document.getElementById("cAviso");
+  if (aviso) {
+    aviso.textContent = ocupadas === 0
+      ? "As " + vagas + " vagas estão abertas."
+      : livres === 0
+        ? "As " + vagas + " vagas estão ocupadas. A lista de espera continua aberta: quando alguém sai, eu chamo pela ordem."
+        : ocupadas + " de " + vagas + " vagas ocupadas. Restam " + livres + ".";
+  }
+  if (livres === 0) {
+    Array.prototype.forEach.call(document.querySelectorAll("[data-cta]"), function (a) {
+      var sp = a.querySelector("span"); if (sp) sp.textContent = "Entrar na lista de espera";
+    });
+  }
+
+  if (C.assinatura) {
+    var bt = document.getElementById("pgBtn"), lk = document.getElementById("pgLink");
+    if (bt && lk) { lk.href = C.assinatura; bt.hidden = false; }
+    txt("pgTexto", "A cobrança é automática, uma vez por mês, e o comprovante chega no seu WhatsApp. "
+      + "O link abaixo é o mesmo que eu te mando depois da nossa conversa.");
+  }
 
   var form = document.getElementById("clubeForm");
   var err  = document.getElementById("clubeErr");

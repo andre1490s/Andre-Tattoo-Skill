@@ -14,7 +14,10 @@ Decisões do André em 31/10/2026: nome **Clube 15**, mensalidade pode aparecer 
 
 - [ ] **Até 2/11 — aprovar o regulamento** (`clube-15/REGULAMENTO.md`). São 5 itens marcados `[aprovar]`: 1 sessão/mês por membro, até 4 horários de prioridade/mês, R$ 150 de crédito consumido em desmarque com menos de 48 h, mensalidade travada para os fundadores, crédito não transferível.
 - [ ] **Até 2/11 — decidir como cobrar os R$ 150 todo mês.** Comparação com as taxas reais (consultadas em 31/10/2026) e o passo a passo em [`clube-15/COBRANCA.md`](clube-15/COBRANCA.md). Recomendação: Asaas com Pix recorrente, R$ 2,15 por cobrança (R$ 32/mês para 15 membros, 1,4% da entrada). Pix manual está fora: é o que mais mata clube de assinatura.
-- [ ] **Publicar a versão 19 do app** (tela Clube 15). O código está pronto e testado; falta o André aprovar a republicação. Ver `app/README.md`, Versão 19.
+- [ ] **Colar o link da assinatura** em `site/js/config.js`, bloco `clube`, campo `assinatura`. Até lá, as páginas do clube mandam o cliente falar no WhatsApp em vez de mostrar um botão de pagar que não existe.
+- [ ] **Abrir as datas de 2027 para o clube** (app: Mais > Clube 15 > Abrir data) e depois **Datas para o site**, colando o bloco gerado no `config.js`. Sem isso a área do membro fica vazia.
+- [ ] **Decidir o tema do site.** O app já está claro, como você pediu. O site continua escuro — trocar é uma linha (`tema: "claro"` em `site/js/config.js`). As duas páginas do clube acompanham o que você escolher.
+- [ ] **Publicar o site** com as duas páginas novas do clube (`clube-15.html` e `clube-15-membro.html`). Netlify: arrastar a pasta `site/` ou ligar ao GitHub.
 - [ ] **Até 2/11 — publicar a página** e pôr o link na bio do Instagram.
 - [ ] **3 a 9/11 — rodar os stories da semana 1** (`clube-15/STORIES-SEMANA-1.md`). Anotar quantos votam "Sim" na enquete de quarta: é o número que decide o lançamento (mínimo 25).
 - [ ] **10 a 16/11 — anúncio** (`clube-15/STORIES-SEMANA-2.md`). No dia 10, mandar o vídeo no direct para quem votou "Sim": é a ação de maior retorno da semana. Meta: 20 nomes na lista até 16/11.

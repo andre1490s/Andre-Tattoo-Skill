@@ -50,6 +50,10 @@ R$ 1.800 em 12 meses.
    lançar no app.
 6. **Testar com você mesmo** antes do primeiro membro: crie uma assinatura de R$ 1, veja chegar o
    lembrete, pague e confira o aviso. Trinta minutos agora evitam um erro na frente de um cliente.
+7. **Colar o link no site.** Em `site/js/config.js`, bloco `clube`, campo `assinatura`. Enquanto
+   estiver vazio, as páginas do clube não mostram botão de pagar — mandam falar com você no
+   WhatsApp, que é o certo até a conta existir. Com o link preenchido, o botão aparece sozinho nas
+   duas páginas.
 
 ## 4. O que fazer quando o dinheiro cai
 

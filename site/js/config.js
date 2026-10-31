@@ -59,7 +59,29 @@ window.SITE = {
     ]
   },
 
-  /* ---------- 6. MEDIÇÃO (CRO) ----------
+  /* ---------- 6. CLUBE 15 ----------
+     Pré-reserva da agenda 2027. Regras completas em clube-15/REGULAMENTO.md.
+
+     Para atualizar as DATAS e as VAGAS: abra o app Caixa > Mais > Clube 15 >
+     "Datas para o site", copie o texto e troque este bloco inteiro por ele.
+
+     assinatura: link de cobrança recorrente (Asaas, InfinitePay, Mercado Pago).
+                 Enquanto estiver vazio, a página manda o cliente falar com você
+                 no WhatsApp em vez de mostrar um botão de pagar que não existe.
+  ------------------------------------- */
+  clube: {
+    ativo: true,
+    assinatura: "",
+    vagas: 15,
+    ocupadas: 0,
+    mensalidade: 150,
+    atualizado: "",
+    datas: [
+      // { data:"2027-01-12", hora:"09:00", obs:"dia inteiro" },
+    ]
+  },
+
+  /* ---------- 7. MEDIÇÃO (CRO) ----------
      Cole os IDs quando criar as contas. Vazio = nada é carregado.
   ------------------------------------- */
   analytics: { ga4: "", metaPixel: "" }

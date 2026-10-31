@@ -64,7 +64,9 @@ function clubeResumo(){
     creditoEmAberto: Math.round(credito*100)/100,
     jaVirouTattoo: Math.round(membros().reduce((s,m)=>s+movsDe(m.id,'uso').reduce((t,x)=>t+(+x.valor||0),0),0)*100)/100,
     atrasados: ativos.filter(m=>atrasoDe(m)>0).length,
-    avisaramSaida: membros().filter(m=>m.status==='aviso').length
+    avisaramSaida: membros().filter(m=>m.status==='aviso').length,
+    datasAbertas: datasClube().filter(d=>d.data>=today()).length,
+    datasLivres: datasLivres().length
   };
 }
 
@@ -93,6 +95,7 @@ function pillStatus(m){
 let clubeFiltro = 'ativos';
 function renderClube(){
   const el = $('clubeList'); if(!el) return;
+  renderDatasClube();
   const r = clubeResumo(), todos = membros();
   $('clubeSub').textContent = todos.length
     ? r.ocupadas+' de '+CLUBE.vagas+' vagas ocupadas'+(r.livres?', '+r.livres+(r.livres===1?' livre':' livres'):', lotado')+'.'
@@ -101,7 +104,7 @@ function renderClube(){
     + '<div class="kpi"><span>Vagas livres</span><strong class="num">'+r.livres+'</strong></div>'
     + '<div class="kpi"><span>Por mês</span><strong class="num">'+money(r.receitaRecorrenteMes)+'</strong></div>'
     + '<div class="kpi"><span>Crédito a entregar</span><strong class="num">'+money(r.creditoEmAberto)+'</strong></div></div>'
-    + (r.creditoEmAberto>0 ? '<div class="note">Crédito a entregar é trabalho que você já deve: esse dinheiro entrou, mas a tattoo ainda não foi feita. Já virou tattoo: '+esc(brl.format(r.jaVirouTattoo))+'.</div>' : '');
+    + (r.creditoEmAberto>0 ? '<p class="hint" style="margin:10px 0 0">Crédito a entregar é trabalho que você já deve: esse dinheiro entrou, mas a tattoo ainda não foi feita. Já virou tattoo: '+esc(brl.format(r.jaVirouTattoo))+'.</p>' : '');
 
   const chips = [{k:'ativos',n:'Ativos'},{k:'atraso',n:'Em atraso'},{k:'saiu',n:'Saíram'},{k:'todos',n:'Todos'}];
   $('clubeChips').innerHTML = chips.map(c=>'<button class="chip" data-act="clubeFiltro" data-f="'+c.k+'" aria-pressed="'+(clubeFiltro===c.k)+'">'+esc(c.n)+'</button>').join('');
@@ -264,6 +267,115 @@ function clubeAct(act, b, id){
     case 'clubeUsar': { const x=m(); if(x) formUsar(x); return true; }
     case 'clubeDevolver': { const x=m(); if(x) formDevolver(x); return true; }
     case 'clubeExtrato': { const x=m(); if(x) openExtrato(x); return true; }
+    case 'clubeAbrirData': formDataClube(); return true;
+    case 'clubeEditarData': { const d=datasClube().find(x=>x.id===id); if(d) formDataClube(d); return true; }
+    case 'clubeReservar': { const d=datasClube().find(x=>x.id===id); if(d) formReservarData(d); return true; }
+    case 'clubeLiberar': { const d=datasClube().find(x=>x.id===id); if(!d) return true;
+      const r = Object.assign({}, d); delete r.membroId; delete r.reservadoEm;
+      stores.clube.save(r).then(()=>toast('Data liberada')).catch(()=>toast('Não foi possível salvar.')); return true; }
+    case 'clubeDatasSite': exportarDatasSite(); return true;
   }
   return false;
+}
+
+/* ---------- Datas abertas para o clube ----------
+   O membro escolhe horario antes do publico (regulamento 3.1). Estas sao as
+   datas que voce abre para eles; o site do clube mostra so as que estao livres. */
+const datasClube = () => data.clube.filter(x=>x.kind==='data').slice()
+  .sort((a,b)=>String(a.data+(a.hora||'')).localeCompare(String(b.data+(b.hora||''))));
+const datasDoMes = ym => datasClube().filter(d=>String(d.data).slice(0,7)===ym);
+const datasLivres = () => datasClube().filter(d=>!d.membroId && d.data >= today());
+
+function formDataClube(d){
+  const ym = d ? String(d.data).slice(0,7) : today().slice(0,7);
+  openForm({
+    title: d ? 'Data do clube' : 'Abrir data para o clube',
+    values: d ? d : { data:'', hora:'09:00' },
+    fields:[
+      {hint:'Esta data aparece para os membros antes de você abrir a agenda ao público. O combinado é no máximo '+CLUBE.prioridadesPorMes+' por mês.'},
+      {k:'data',label:'Dia',type:'date'},
+      {k:'hora',label:'Horário',type:'time'},
+      {k:'obs',label:'Observação (opcional)',ph:'Ex.: dia inteiro, só peça grande'}
+    ],
+    validate: v => !v.data ? 'Escolha o dia.' : !v.hora ? 'Escolha o horário.'
+      : datasClube().some(x=>x.data===v.data && x.hora===v.hora && (!d || x.id!==d.id)) ? 'Essa data e horário já estão abertos.' : '',
+    onSave: async v => {
+      const mes = v.data.slice(0,7);
+      const jaNoMes = datasDoMes(mes).filter(x=>!d || x.id!==d.id).length;
+      await stores.clube.save(Object.assign({}, d||{}, v, { id: d?d.id:newId('cd'), kind:'data' }));
+      return jaNoMes + 1 > CLUBE.prioridadesPorMes
+        ? 'Data aberta. Atenção: ' + (jaNoMes+1) + ' neste mês, acima das ' + CLUBE.prioridadesPorMes + ' combinadas'
+        : 'Data aberta para o clube';
+    },
+    onDelete: d ? () => stores.clube.remove(d.id) : null
+  });
+}
+
+function formReservarData(d){
+  const ativos = membros().filter(ativoNoClube);
+  if(!ativos.length){ toast('Nenhum membro ativo para reservar.'); return; }
+  openForm({
+    title:'Reservar ' + shortDate(d.data) + ' às ' + d.hora,
+    values:{ membro: ativos[0].nome },
+    saveLabel:'Reservar',
+    fields:[
+      {hint:'A data sai da lista do site e eu já abro a sessão na agenda para você confirmar.'},
+      {k:'membro',label:'Para qual membro',type:'chips',options:ativos.map(m=>m.nome)}
+    ],
+    validate: v => !v.membro ? 'Escolha o membro.' : '',
+    onSave: async v => {
+      const m = ativos.find(x=>x.nome===v.membro);
+      await stores.clube.save(Object.assign({}, d, { membroId:m.id, reservadoEm:today() }));
+      setTimeout(()=>formAgenda(null, { cliente:m.nome, telefone:m.telefone||'', data:d.data, hora:d.hora }), 260);
+      return 'Data reservada para ' + firstName(m.nome);
+    }
+  });
+}
+
+/* Gera o trecho de configuracao do site (site/js/config.js, bloco clube). */
+function exportarDatasSite(){
+  const r = clubeResumo(), livres = datasLivres();
+  const linha = d => '    { data:"' + d.data + '", hora:"' + (d.hora||'') + '"' + (d.obs ? ', obs:"' + String(d.obs).replace(/"/g,"'") + '"' : '') + ' }';
+  const txt = '  clube: {\n'
+    + '    assinatura: "",            // cole aqui o link de cobrança recorrente\n'
+    + '    vagas: ' + CLUBE.vagas + ',\n'
+    + '    ocupadas: ' + r.ocupadas + ',\n'
+    + '    mensalidade: ' + CLUBE.mensalidade + ',\n'
+    + '    atualizado: "' + today() + '",\n'
+    + '    datas: [\n' + livres.map(linha).join(',\n') + (livres.length?'\n':'') + '    ]\n'
+    + '  },';
+  openTexto('Datas para o site',
+    livres.length ? txt : txt + '\n\n(Nenhuma data livre aberta. Toque em "Abrir data" antes de atualizar o site.)',
+    false);
+}
+
+function renderDatasClube(){
+  const el = $('clubeDatas'); if(!el) return;
+  const todas = datasClube(), futuras = todas.filter(d=>d.data >= today());
+  const livres = futuras.filter(d=>!d.membroId);
+  let h = '<div class="sec rowsec"><span>Datas abertas</span><span class="count num">'
+    + (livres.length ? livres.length + ' livre' + (livres.length===1?'':'s') : '—') + '</span></div>';
+  if(!futuras.length){
+    h += '<div class="empty">Nenhuma data aberta.<br>Abra as datas que os membros podem escolher antes do público.</div>';
+  } else {
+    const porMes = {};
+    futuras.forEach(d=>{ const k = d.data.slice(0,7); (porMes[k] = porMes[k]||[]).push(d); });
+    h += Object.keys(porMes).sort().map(k=>{
+      const lista = porMes[k], excede = lista.length > CLUBE.prioridadesPorMes;
+      const nome = new Date(k+'-01T12:00:00').toLocaleDateString('pt-BR',{month:'long',year:'numeric'});
+      return '<div class="day">' + esc(nome) + (excede ? ' · ' + lista.length + ' abertas, acima das ' + CLUBE.prioridadesPorMes + ' combinadas' : '') + '</div>'
+        + lista.map(d=>{
+          const m = d.membroId ? membros().find(x=>x.id===d.membroId) : null;
+          return '<div class="card"><div class="main" style="padding:10px 12px"><div class="t">'
+            + esc(shortDate(d.data) + (d.hora?' às '+d.hora:'')) + '</div><div class="s">'
+            + esc(m ? 'reservada para ' + firstName(m.nome) : (d.obs || 'livre para os membros')) + '</div></div>'
+            + (m ? '<button class="mini" data-act="clubeLiberar" data-id="'+esc(d.id)+'">Liberar</button>'
+                 : '<button class="mini solid" data-act="clubeReservar" data-id="'+esc(d.id)+'">Reservar</button>')
+            + '<button class="mini" data-act="clubeEditarData" data-id="'+esc(d.id)+'">Editar</button></div>';
+        }).join('');
+    }).join('');
+  }
+  h += '<div class="cal-act" style="margin-top:12px"><button class="btn ghost" data-act="clubeAbrirData">+ Abrir data</button>'
+     + '<button class="btn ghost" data-act="clubeDatasSite">Datas para o site</button></div>';
+  el.innerHTML = h;
 }

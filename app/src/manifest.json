@@ -20,6 +20,11 @@
    "fmt": "jpg",
    "q": 62,
    "gray": true
+  },
+  "logo-claro": {
+   "src": "assets-src/logo-claro.png",
+   "max": 256,
+   "fmt": "png"
   }
  }
 }

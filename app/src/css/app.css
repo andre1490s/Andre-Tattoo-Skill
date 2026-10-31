@@ -1,8 +1,8 @@
 /* ===== Fumaça e Prata ===== preto tinta, prata gravada, granulado, serifa de título em caixa alta, cantos retos.
    A luz vem por último: fundo escuro, brilho só no que importa. */
-:root,:root[data-theme="dark"],:root[data-theme="light"]{
+:root,:root[data-theme="dark"]{
   --bg:#060607; --bg2:#0b0b0c; --surface:#101012; --surface2:#17171a; --line:#232326; --line2:#36363b;
-  --ink:#ECEAE5; --muted:#8D8A85; --gold:#C9C6BF; --gold-dim:#5B5954; --gold-soft:#15151a;
+  --ink:#ECEAE5; --muted:#8D8A85; --gold:#C9C6BF; --gold-dim:#5B5954; --gold-soft:#15151a; --on-hi:#0A0A0A;
   --silver-hi:#F4F2ED; --silver-lo:#8F8B84;
   --in:#8FB0A0; --out:#C98B83; --warn:#C9AE76;
   --serif:"Cormorant","Cormorant Garamond",Georgia,serif;
@@ -101,7 +101,7 @@ h1,h2,h3{margin:0}
 .v.in{color:var(--in)}.v.out{color:var(--out)}
 .hour{flex:none;font-family:var(--serif);font-size:22px;font-weight:700;color:var(--silver-hi);min-width:50px;font-variant-numeric:lining-nums}
 .mini{flex:none;border:1px solid var(--line2);background:transparent;color:var(--gold);padding:8px 12px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:var(--r)}
-.mini.solid{background:var(--silver-hi);color:#0A0A0A;border-color:var(--silver-hi)}
+.mini.solid{background:var(--silver-hi);color:var(--on-hi);border-color:var(--silver-hi)}
 .mini[disabled]{opacity:.5}
 .check{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--gold-dim);background:transparent;cursor:pointer;display:grid;place-items:center;color:var(--bg);margin-left:8px}
 .check.on{background:var(--gold);border-color:var(--gold)}
@@ -119,7 +119,7 @@ h1,h2,h3{margin:0}
 .actionbar .in-bar{max-width:600px;margin:0 auto;display:grid;gap:10px}
 .actionbar .two{grid-template-columns:1.4fr 1fr}
 .btn{border:1px solid var(--line2);padding:15px 12px;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border-radius:var(--r);background:var(--surface);color:var(--ink)}
-.btn.primary{background:linear-gradient(180deg,#F4F2ED,#BDBAB3);color:#0A0A0A;border-color:#D7D4CD}
+.btn.primary{background:linear-gradient(180deg,#F4F2ED,#BDBAB3);color:var(--on-hi);border-color:#D7D4CD}
 .btn.ghost{background:var(--surface);color:var(--ink)}
 .btn.danger{background:transparent;color:var(--out);border-color:#4A2A26}
 .btn:disabled{opacity:.5}
@@ -130,7 +130,7 @@ h1,h2,h3{margin:0}
 .tab svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
 .tab[aria-selected="true"]{color:var(--silver-hi)}
 .tab[aria-selected="true"] svg{transform:translateY(-2px)}
-.badge{position:absolute;top:8px;left:calc(50% + 7px);background:var(--silver-hi);color:#0A0A0A;border-radius:999px;font-size:10px;min-width:16px;height:16px;padding:0 4px;display:grid;place-items:center;letter-spacing:0}
+.badge{position:absolute;top:8px;left:calc(50% + 7px);background:var(--silver-hi);color:var(--on-hi);border-radius:999px;font-size:10px;min-width:16px;height:16px;padding:0 4px;display:grid;place-items:center;letter-spacing:0}
 .tab-ind{position:absolute;top:-1px;left:0;width:20%;height:1px;display:flex;justify-content:center;transition:transform .35s cubic-bezier(.3,.7,.2,1);pointer-events:none}
 .tab-ind::after{content:"";width:38px;height:1px;background:var(--silver-hi);box-shadow:0 0 12px var(--gold)}
 
@@ -215,7 +215,7 @@ h1,h2,h3{margin:0}
 .seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;border:1px solid var(--line2);border-radius:var(--r);margin:14px 0 4px;overflow:hidden}
 .seg button{background:transparent;border:0;padding:11px 6px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);cursor:pointer}
 .seg button+button{border-left:1px solid var(--line2)}
-.seg button[aria-pressed="true"]{background:var(--silver-hi);color:#0A0A0A}
+.seg button[aria-pressed="true"]{background:var(--silver-hi);color:var(--on-hi)}
 .menu .card .open{padding:16px 14px}
 .menu .ico{flex:none;width:34px;height:34px;border:1px solid var(--line2);display:grid;place-items:center;border-radius:var(--r)}
 .menu .ico svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
@@ -281,11 +281,11 @@ h1,h2,h3{margin:0}
 .money{font-size:24px!important;font-weight:700}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{border:1px solid var(--line2);background:var(--bg);padding:9px 14px;cursor:pointer;font-size:14px;border-radius:var(--r)}
-.chip[aria-pressed="true"]{background:var(--silver-hi);border-color:var(--silver-hi);color:#0A0A0A;font-weight:700}
+.chip[aria-pressed="true"]{background:var(--silver-hi);border-color:var(--silver-hi);color:var(--on-hi);font-weight:700}
 .hint{font-size:13px;color:var(--muted);margin:-4px 0 14px;line-height:1.45}
 .actions{display:grid;gap:10px;margin-top:6px}
 .err{color:var(--out);font-size:14px;min-height:18px;margin-bottom:6px}
-.wa{display:block;text-align:center;text-decoration:none;padding:15px 12px;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;background:var(--silver-hi);color:#0A0A0A;margin-bottom:10px;border-radius:var(--r)}
+.wa{display:block;text-align:center;text-decoration:none;padding:15px 12px;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;background:var(--silver-hi);color:var(--on-hi);margin-bottom:10px;border-radius:var(--r)}
 
 /* Assistente em tela cheia */
 .chat{position:fixed;inset:0;z-index:30;background:var(--bg);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);transform:translateY(100%);transition:transform .3s cubic-bezier(.3,.7,.2,1);visibility:hidden}
@@ -296,13 +296,13 @@ h1,h2,h3{margin:0}
 .chat-x{width:36px;height:36px;border:1px solid var(--line2);background:var(--surface);font-size:16px;cursor:pointer;border-radius:var(--r)}
 .chat-body{flex:1;overflow-y:auto;padding:16px 18px 8px;max-width:640px;width:100%;margin:0 auto}
 .msg{max-width:88%;padding:11px 14px;margin-bottom:10px;line-height:1.5;font-size:15px;white-space:pre-wrap;word-wrap:break-word;border-radius:var(--r);animation:rise .25s ease both}
-.msg.me{margin-left:auto;background:var(--silver-hi);color:#0A0A0A;font-weight:500}
+.msg.me{margin-left:auto;background:var(--silver-hi);color:var(--on-hi);font-weight:500}
 .msg.ai{background:var(--surface);border:1px solid var(--line)}
 .msg.err{border-color:#5A2E28;color:var(--out)}
 .fb{display:flex;gap:6px;flex-wrap:wrap;margin:-4px 0 12px;align-items:center}
 .fb small{font-size:11px;color:var(--muted);margin-right:2px}
 .fb .mini{padding:6px 10px}
-.fb .mini[aria-pressed="true"]{background:var(--silver-hi);color:#0A0A0A}
+.fb .mini[aria-pressed="true"]{background:var(--silver-hi);color:var(--on-hi)}
 .dots{display:inline-flex;gap:4px;align-items:center;height:18px}
 .dots i{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:blink 1.2s infinite ease-in-out}
 .dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
@@ -320,10 +320,10 @@ h1,h2,h3{margin:0}
 .chat-in{display:flex;gap:8px;align-items:flex-end;padding:8px 18px calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);max-width:640px;width:100%;margin:0 auto}
 .chat-in textarea{flex:1;resize:none;max-height:120px;min-height:46px;padding:12px 14px;border:1px solid var(--line2);background:var(--surface);font-size:16px;line-height:1.35;border-radius:var(--r)}
 .chat-in textarea:focus{outline:none;border-color:var(--gold)}
-.send{flex:none;width:46px;height:46px;border:0;background:var(--silver-hi);color:#0A0A0A;font-size:20px;font-weight:800;cursor:pointer;border-radius:var(--r)}
+.send{flex:none;width:46px;height:46px;border:0;background:var(--silver-hi);color:var(--on-hi);font-size:20px;font-weight:800;cursor:pointer;border-radius:var(--r)}
 .send.stop{background:var(--surface);color:var(--gold);border:1px solid var(--gold-dim);font-size:15px}
 
-.toast{position:fixed;left:50%;bottom:calc(var(--tabh) + 92px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--silver-hi);color:#0A0A0A;font-weight:700;padding:10px 16px;font-size:13px;letter-spacing:.04em;opacity:0;pointer-events:none;transition:opacity .2s,transform .25s;z-index:60;border-radius:var(--r)}
+.toast{position:fixed;left:50%;bottom:calc(var(--tabh) + 92px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--silver-hi);color:var(--on-hi);font-weight:700;padding:10px 16px;font-size:13px;letter-spacing:.04em;opacity:0;pointer-events:none;transition:opacity .2s,transform .25s;z-index:60;border-radius:var(--r)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(-6px)}
 .rise{animation:rise .38s ease both}
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -348,11 +348,11 @@ h1,h2,h3{margin:0}
 .cal-d.vazio{pointer-events:none}
 .cal-d.off{color:#5d5a55}.cal-d.past{opacity:.5}
 .cal-d.today{border-color:var(--gold-dim)}
-.cal-d.sel{background:var(--silver-hi);color:#0A0A0A;opacity:1}
+.cal-d.sel{background:var(--silver-hi);color:var(--on-hi);opacity:1}
 .cal-d .dots{position:absolute;bottom:4px;left:50%;transform:translateX(-50%);display:flex;gap:2px}
 .cal-d .dots b{width:4px;height:4px;border-radius:50%;background:var(--gold)}
 .cal-d .dots b.big{background:var(--out)}
-.cal-d.sel .dots b{background:#0A0A0A}
+.cal-d.sel .dots b{background:var(--on-hi)}
 .cal-info{margin-top:12px;border-top:1px solid var(--line);padding-top:12px;font-size:14px;line-height:1.55}
 .cal-info .dia{font-family:var(--black);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
 .cal-info .m{color:var(--muted)}
@@ -365,3 +365,93 @@ h1,h2,h3{margin:0}
 .qk{position:relative}
 .newdot{position:absolute;top:9px;right:12px;width:10px;height:10px;border-radius:50%;background:var(--silver-hi);box-shadow:0 0 0 3px rgba(244,242,237,.16),0 0 12px var(--gold);animation:pulseDot 2.4s ease-in-out infinite}
 @keyframes pulseDot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.75}}
+
+/* =====================================================================
+   TEMA CLARO — "Papel e Grafite"
+   Mesma paleta do site (site/css/style.css, :root[data-tema="claro"]):
+   fundo osso, texto grafite, acento bronze. Dourado puro some no claro,
+   por isso o acento aqui é escuro, não dourado.
+   ===================================================================== */
+:root[data-theme="light"]{
+  --bg:#FAF9F7; --bg2:#F4F2ED; --surface:#FFFFFF; --surface2:#EFECE6;
+  --line:rgba(28,25,21,.14); --line2:rgba(28,25,21,.28);
+  --ink:#1C1E22; --muted:#6E7177;
+  --gold:#4A4E55; --gold-dim:rgba(28,25,21,.34); --gold-soft:#EDEAE3;
+  --silver-hi:#1C1E22; --silver-lo:#73777E; --on-hi:#FAF9F7;
+  --in:#2E6B50; --out:#A4392B; --warn:#8A6718;
+  color-scheme:light;
+}
+
+/* Fundo: no claro a luz vem de cima, sem brilho prateado */
+:root[data-theme="light"] body::before{
+  background:radial-gradient(70% 38% at 12% -4%,rgba(28,25,21,.05),transparent 70%),
+             radial-gradient(60% 42% at 108% 28%,rgba(28,25,21,.035),transparent 72%),
+             radial-gradient(80% 40% at 50% 112%,rgba(28,25,21,.03),transparent 70%)}
+:root[data-theme="light"] body::after{opacity:.05;mix-blend-mode:multiply}
+
+/* Marca: no escuro a prata sobre preto; no claro a mesma marca em grafite */
+.brand .mark--claro{display:none}
+:root[data-theme="light"] .brand .mark--escuro{display:none}
+:root[data-theme="light"] .brand .mark--claro{display:block}
+:root[data-theme="light"] .brand .mark{filter:none}
+
+/* Foto do topo: no claro ela é marca-d'água, não parede escura */
+:root[data-theme="light"] .hero-img{
+  background:linear-gradient(180deg,rgba(250,249,247,.42) 0%,rgba(250,249,247,.62) 38%,var(--bg) 94%),
+             url(@@ASSET:foto-leao@@) center 18%/cover no-repeat;
+  filter:grayscale(1) contrast(.86) brightness(1.3)}
+:root[data-theme="light"] .hero::after{border-color:rgba(28,25,21,.12)}
+:root[data-theme="light"] .big{
+  background:linear-gradient(180deg,#2B2E34 0%,#4A4E55 46%,#73777E 72%,#3A3D43 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+:root[data-theme="light"] .eye{background:rgba(255,255,255,.72)}
+
+/* Superfícies que no escuro eram vidro preto */
+:root[data-theme="light"] .tabs{background:rgba(250,249,247,.94)}
+:root[data-theme="light"] .card.alert{background:linear-gradient(180deg,#FFFDF8,var(--bg2))}
+:root[data-theme="light"] .nextcard{background:linear-gradient(120deg,#FFFDF8,var(--surface) 70%)}
+:root[data-theme="light"] .act{background:linear-gradient(180deg,#FFFDF8,var(--bg2))}
+:root[data-theme="light"] .askbar{background:linear-gradient(110deg,rgba(28,25,21,.05),var(--surface) 55%)}
+:root[data-theme="light"] .askbar .spark{background:radial-gradient(circle,rgba(28,25,21,.08),transparent 70%)}
+:root[data-theme="light"] .btn.primary{background:linear-gradient(180deg,#2B2E34,#1C1E22);color:#FAF9F7;border-color:#1C1E22}
+:root[data-theme="light"] .sheet-bg{background:rgba(28,25,21,.38)}
+:root[data-theme="light"] .calbg{background:rgba(28,25,21,.44)}
+:root[data-theme="light"] .field input,
+:root[data-theme="light"] .field textarea,
+:root[data-theme="light"] .field select{color-scheme:light}
+:root[data-theme="light"] .kit-row{background:var(--surface)}
+
+/* Sinais de estado: no claro precisam de contraste, não de brilho */
+:root[data-theme="light"] .pill.warn{border-color:rgba(138,103,24,.5)}
+:root[data-theme="light"] .pill.bad{border-color:rgba(164,57,43,.5)}
+:root[data-theme="light"] .pill.good{border-color:rgba(46,107,80,.5)}
+:root[data-theme="light"] .brief .ic.red{border-color:rgba(164,57,43,.5);background:#FBF0EE}
+:root[data-theme="light"] .btn.danger{border-color:rgba(164,57,43,.45)}
+:root[data-theme="light"] .msg.err,
+:root[data-theme="light"] .ndl.short{border-color:rgba(164,57,43,.5)}
+:root[data-theme="light"] .bar .cols .co{background:#C08A80}
+:root[data-theme="light"] .bar .cols .ci{background:linear-gradient(180deg,#3A3D43,#8A8E95)}
+:root[data-theme="light"] .cal-d.off{color:#B2AFA8}
+:root[data-theme="light"] .cal-d.sel .dots b{background:var(--on-hi)}
+
+/* Traços finos que no escuro brilhavam */
+:root[data-theme="light"] .needle .area{fill:rgba(28,25,21,.06)}
+:root[data-theme="light"] .tip{box-shadow:0 0 0 4px rgba(28,25,21,.1)}
+:root[data-theme="light"] .newdot{box-shadow:0 0 0 3px rgba(28,25,21,.12)}
+:root[data-theme="light"] .tab-ind::after{box-shadow:none}
+:root[data-theme="light"] .meta .mbar i{background:linear-gradient(90deg,#8A8E95,#1C1E22)}
+:root[data-theme="light"] .timeline::before{background:linear-gradient(to bottom,rgba(28,25,21,.3),var(--line) 60%,transparent)}
+:root[data-theme="light"] .datebtn::after{
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234A4E55' stroke-width='1.5' stroke-linecap='round'><rect x='3' y='5' width='18' height='16' rx='1'/><path d='M3 10h18M8 3v4M16 3v4'/></svg>")}
+
+/* Cartões ganham um apoio leve, senão somem no fundo osso */
+:root[data-theme="light"] .card,
+:root[data-theme="light"] .stub,
+:root[data-theme="light"] .rel,
+:root[data-theme="light"] .brief,
+:root[data-theme="light"] .kpis,
+:root[data-theme="light"] .ndl,
+:root[data-theme="light"] .qk{box-shadow:0 1px 2px rgba(28,25,21,.05)}
+:root[data-theme="light"] .timeline .card{box-shadow:none}
+:root[data-theme="light"] .sheet,
+:root[data-theme="light"] .cal{box-shadow:0 -10px 40px rgba(28,25,21,.14)}

@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /clube-15-membro.html
 
 Sitemap: https://andretattoo.netlify.app/sitemap.xml

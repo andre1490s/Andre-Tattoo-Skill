@@ -80,6 +80,14 @@ mensagem. **Nunca mande o valor de uma tattoo** — o clube tem preço público,
 > Vou te chamar em dezembro para a gente começar a desenhar o seu projeto e escolher a primeira
 > data. Qualquer dúvida, me chama.
 
+**Logo depois, mande o link da área do membro** (`andretattoo.netlify.app/clube-15-membro.html`):
+
+> Esse aqui é o seu link do clube. É onde ficam as datas de 2027 que eu abro para os membros antes
+> de todo mundo: [link]
+>
+> Guarda só para você. Quando bater o olho numa data que te serve, toca em "Reservar este dia" que
+> cai direto na nossa conversa.
+
 ## 7. Último aviso, Black Friday (27/11)
 
 Só para quem conversou com você em novembro e não fechou. **Uma vez. Não insista depois desta.**
@@ -91,6 +99,15 @@ Só para quem conversou com você em novembro e não fechou. **Uma vez. Não ins
 >
 > Se fizer sentido, o link está aqui: [link]. Se não for a hora, sem problema nenhum — fico à
 > disposição quando for.
+
+## 7.1 Quando você abre datas novas
+
+Mande para todos os membros ativos, no mesmo dia em que abrir as datas no app.
+
+> [Nome], abri as datas de [mês] para o clube. Estão no seu link de membro: [link]
+>
+> Como sempre, vocês escolhem antes de eu abrir a agenda ao público. Se nenhuma servir, me fala que
+> eu vejo o que dá para fazer.
 
 ## 8. Lista de espera, depois que fechar
 
