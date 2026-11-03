@@ -151,7 +151,7 @@ html.abertura .intro{display:grid;place-items:center;position:fixed;inset:0;z-in
    carrega) e enquanto o vídeo baixa, nunca aparece um buraco preto. */
 .hero--filme{
   position:relative;overflow:hidden;isolation:isolate;
-  background:#151311 url(../video/andre-trabalhando.webp) 50% 26%/cover;
+  background:#151311 url(../video/topo.webp) 50% 50%/cover;
   --ink:#F3F1EC;
   --paper:#151311;
   --ink-soft:#BCB5AA;
@@ -160,7 +160,7 @@ html.abertura .intro{display:grid;place-items:center;position:fixed;inset:0;z-in
   --gold-soft:#A47D35;
   color:var(--ink)}
 .hero__fundo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  object-position:50% 26%;z-index:0}
+  object-position:50% 50%;z-index:0}
 /* o véu é mais forte do lado da frase e abre para a direita, onde a imagem
    pode respirar sem atrapalhar leitura nenhuma */
 .hero__veu{position:absolute;inset:0;z-index:1;display:block;
