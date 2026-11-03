@@ -57,7 +57,7 @@ p{margin:0}
 #needle.is-mouse .track,#needle.is-mouse .ink{display:none}
 main,header,footer{position:relative}
 /* o que o fio não atravessa */
-.hero figure,.work,.about figure,.strip img,.studio figure,.rev__card,.btn,.ribbon,.nav{position:relative;z-index:3}
+.hero figure,.hero figure video,.work,.about figure,.strip img,.studio figure,.rev__card,.btn,.ribbon,.nav{position:relative;z-index:3}
 
 /* ---------- ABERTURA ----------
    O stencil vira a tattoo: os 19 traços do A são riscados um a um, como um
@@ -137,7 +137,9 @@ html.abertura .intro{display:grid;place-items:center;position:fixed;inset:0;z-in
 .hero p.lead{font-size:18px;color:var(--ink-soft);max-width:30ch}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
 .hero figure{margin:0;position:relative}
-.hero figure img{width:100%;aspect-ratio:4/5;max-height:min(62svh,560px);object-fit:cover;object-position:50% 43%;filter:contrast(1.04)}
+.hero figure img,.hero figure video{width:100%;aspect-ratio:4/5;max-height:min(62svh,560px);object-fit:cover;object-position:50% 43%;filter:contrast(1.04)}
+/* o vídeo já foi cortado em 4/5 no arquivo, então não precisa deslocar */
+.hero figure video{object-position:50% 50%;background:var(--paper-2)}
 .hero figure::after{content:"";position:absolute;inset:14px -14px -14px 14px;border:1px solid var(--gold-soft);z-index:-1}
 .hero figcaption{position:absolute;left:-18px;top:26px;background:var(--paper);padding:10px 14px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--rule)}
 .facts{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:40px;padding-top:22px;border-top:1px solid var(--rule);font-size:14px;color:var(--ink-soft)}

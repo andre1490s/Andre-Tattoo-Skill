@@ -36,6 +36,19 @@
   })();
 
   /* ---------------------------------------------------------------
+     0b. VÍDEO DO TOPO: quem pediu menos movimento no sistema não recebe
+     movimento nenhum. O poster continua aparecendo, então o topo nunca
+     fica vazio, e o controle aparece para a pessoa dar play se quiser.
+  --------------------------------------------------------------- */
+  (function filme(){
+    var v = document.querySelector('.hero__filme');
+    if(!v || !reduce) return;
+    v.removeAttribute('autoplay');
+    v.setAttribute('controls', '');
+    try { v.pause(); } catch(e){}
+  })();
+
+  /* ---------------------------------------------------------------
      1. CONTATO: um número só, vindo do dados.js
   --------------------------------------------------------------- */
   (function contato(){

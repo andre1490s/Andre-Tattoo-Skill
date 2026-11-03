@@ -116,8 +116,17 @@
         </a>
         <div class="facts"><span>Projetos autorais</span><span>Material descartável</span><span>Hora marcada</span><span>Ambiente reservado</span></div>
       </div>
+      <!-- O topo é vídeo, não foto. Movimento no primeiro olhar é o que
+           nenhum concorrente da região tem. Sem som, em looping, e o poster
+           é um quadro do próprio vídeo, então nada pisca ao carregar.
+           Para voltar à foto, troque este bloco pela linha comentada abaixo. -->
       <figure class="reveal">
-        <img src="img/andre-retrato.webp" alt="Andre, tatuador, de mãos juntas, em retrato preto e branco" width="1200" height="1600" fetchpriority="high">
+        <video class="hero__filme" src="video/andre-trabalhando.mp4"
+               poster="video/andre-trabalhando.webp"
+               autoplay muted loop playsinline preload="metadata"
+               width="880" height="1100"
+               aria-label="Andre tatuando no estúdio, vídeo sem som"></video>
+        <!-- <img src="img/andre-retrato.webp" alt="Andre, tatuador, de mãos juntas, em retrato preto e branco" width="1200" height="1600" fetchpriority="high"> -->
       </figure>
     </div>
   </section>
