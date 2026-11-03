@@ -93,20 +93,22 @@ window.DADOS = {
     ocupadas: 0,
 
     chamada: "Quinze pessoas. Nem uma a mais.",
-    resumo: "O Clube 15 é um grupo fechado de quinze clientes. A entrada é paga uma vez só e a vaga é sua enquanto você quiser. Enquanto as quinze estiverem ocupadas, ninguém entra.",
+    resumo: "O Clube 15 é um grupo fechado de quinze clientes. A entrada é paga uma vez só e volta pra você, abatida da sua próxima tattoo. A vaga é sua enquanto quiser, e enquanto as quinze estiverem ocupadas, ninguém entra.",
 
-    /* o que o membro leva */
+    /* o que o membro leva. São seis: o site desenha em duas fileiras de três. */
     inclui: [
+      { t:"A entrada vira crédito",
+        d:"O que você paga para entrar é abatido da sua próxima tattoo. Na prática, a vaga não te custa nada a mais." },
       { t:"Agenda antes de todo mundo",
         d:"Quando o mês abre, a sua data já está separada. Você não disputa horário com ninguém." },
       { t:"Projeto que não se repete",
         d:"O desenho é autoral e não vai para mais ninguém. Nem parecido." },
       { t:"Retoque incluso",
         d:"O que precisar de ajuste depois da cicatrização entra na sua vaga." },
+      { t:"Comunidade fechada",
+        d:"Um grupo só dos quinze. Desenho novo aparece lá antes do Instagram, e vocês se conhecem." },
       { t:"Canal direto comigo",
-        d:"Você fala comigo, não com recado. Dúvida de cuidado, ideia nova, remarcação." },
-      { t:"Primeiro a ver",
-        d:"Desenho novo que eu crio, membro vê antes de ir para o Instagram." }
+        d:"Você fala comigo, não com recado. Dúvida de cuidado, ideia nova, remarcação." }
     ],
 
     /* todo o esquema por escrito: é isto que a pessoa lê antes de decidir */
@@ -116,9 +118,13 @@ window.DADOS = {
       { p:"Como eu entro?",
         r:"Pelo botão desta página. Você me chama no WhatsApp, eu confirmo se tem vaga aberta e combino tudo com você por lá." },
       { p:"Quanto custa a entrada?",
-        r:"O valor eu passo na conversa, junto com tudo o que entra na sua vaga. Valor de tattoo e de clube eu não publico no site: isso é conversa minha com você." },
+        r:"O valor eu passo na conversa. E ele não é um custo a mais: a entrada é <strong>abatida da sua próxima tattoo</strong>. Valor de tattoo e de clube eu não publico no site, isso é conversa minha com você." },
+      { p:"Como funciona esse abatimento?",
+        r:"O que você pagou para entrar é descontado do valor da tattoo que você vier fazer comigo. Combinamos isso por escrito no WhatsApp antes de você pagar qualquer coisa." },
       { p:"É mensalidade?",
         r:"Não. Você paga uma vez, na entrada, e não tem cobrança nova depois." },
+      { p:"O que é a comunidade?",
+        r:"Um grupo fechado só com os quinze. É onde eu solto desenho novo antes de ir para o Instagram, aviso quando abre data e tiro dúvida. Entrar no grupo é opcional." },
       { p:"A vaga é minha até quando?",
         r:"Enquanto você quiser. Não tem renovação nem prazo para acabar." },
       { p:"Posso passar a minha vaga para outra pessoa?",
@@ -126,7 +132,7 @@ window.DADOS = {
       { p:"E se eu quiser sair?",
         r:"É só me avisar. A vaga volta para a fila e quem está esperando entra." },
       { p:"Membro ainda paga a sessão?",
-        r:"Paga. O clube trata de prioridade na agenda, projeto exclusivo e retoque. A sessão a gente combina como sempre." }
+        r:"Paga, já com a entrada abatida. O clube trata de prioridade na agenda, projeto exclusivo, retoque e a comunidade." }
     ]
   },
 
