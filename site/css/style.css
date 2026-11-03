@@ -137,7 +137,12 @@ html.abertura .intro{display:grid;place-items:center;position:fixed;inset:0;z-in
 .hero p.lead{font-size:18px;color:var(--ink-soft);max-width:30ch}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
 .hero figure{margin:0;position:relative}
-.hero figure img,.hero figure video{width:100%;aspect-ratio:4/5;max-height:min(62svh,560px);object-fit:cover;object-position:50% 43%;filter:contrast(1.04)}
+/* Sem max-height aqui de propósito. Com ele, a caixa virava quase quadrada e
+   o object-fit cortava o vídeo DE NOVO, por cima do corte que já existe no
+   arquivo. Resultado: rosto gigante. Agora a largura manda e a altura segue
+   o 4/5, então o que se vê é exatamente o quadro que eu enquadrei. */
+.hero figure{max-width:390px;margin-left:auto}
+.hero figure img,.hero figure video{width:100%;aspect-ratio:4/5;height:auto;object-fit:cover;object-position:50% 43%;filter:contrast(1.04)}
 /* o vídeo já foi cortado em 4/5 no arquivo, então não precisa deslocar */
 .hero figure video{object-position:50% 50%;background:var(--paper-2)}
 .hero figure::after{content:"";position:absolute;inset:14px -14px -14px 14px;border:1px solid var(--gold-soft);z-index:-1}
