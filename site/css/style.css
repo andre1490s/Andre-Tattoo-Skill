@@ -261,7 +261,9 @@ section{padding-block:110px}
 .rev.sem-cards .score{margin-bottom:0}
 .rev__list{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .rev__card{margin:0;border:1px solid var(--rule);background:var(--paper-2);padding:26px 24px}
-.rev__card p{font-family:var(--display);font-size:20px;line-height:1.45;margin:14px 0 18px}
+/* Mesma razão da FAQ: aqui é parágrafo de verdade, 40 palavras vezes seis
+   cartões. A Bodoni cansa nesse tamanho e avaliação é para ser lida. */
+.rev__card p{font-size:16px;line-height:1.62;margin:14px 0 18px;color:#2E2A25}
 .rev__card cite{font-style:normal;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);display:flex;flex-direction:column;gap:5px}
 .rev__card cite span{color:var(--gold)}
 
@@ -281,7 +283,11 @@ section{padding-block:110px}
 .acc__item{border-bottom:1px solid var(--rule)}
 .acc__item summary{display:flex;align-items:center;justify-content:space-between;gap:24px;
   padding:clamp(18px,2.4vw,24px) 0;cursor:pointer;list-style:none;
-  font-family:var(--display);font-size:clamp(19px,2.2vw,27px);color:var(--ink);line-height:1.25;
+  /* Aqui NÃO entra a Bodoni. Ela é Didone: o traço fino some abaixo de uns
+     28px e a pergunta fica custosa de ler. Título grande é com ela, pergunta
+     de FAQ é para ser lida de relance, então vai na fonte de texto. */
+  font-family:var(--body);font-weight:500;font-size:clamp(17px,1.9vw,21px);
+  color:var(--ink);line-height:1.35;letter-spacing:-.005em;
   transition:color .3s}
 .acc__item summary::-webkit-details-marker{display:none}
 .acc__item summary:hover{color:var(--gold)}
