@@ -20,7 +20,10 @@ window.DADOS = {
     topo:    "Oi, André! Vim pelo site e quero fazer uma tattoo.",
     obras:   "Oi, André! Vi os trabalhos no site e quero fazer uma tattoo.",
     estudio: "Oi, André! Vim pelo site e queria saber como agendar.",
-    barra:   "Oi, André! Vim pelo site e quero fazer uma tattoo."
+    barra:   "Oi, André! Vim pelo site e quero fazer uma tattoo.",
+    clube:   "Oi, André! Vim pelo site e quero entrar no Clube 15. Ainda tem vaga?",
+    /* usada sozinha quando as 15 vagas estão ocupadas */
+    clubeEspera: "Oi, André! O Clube 15 está cheio. Quero entrar na lista de espera."
   },
 
   /* ---------- 2. FORMULÁRIO ----------
@@ -72,6 +75,58 @@ window.DADOS = {
         texto:"Melhor tatuador da região, super cuidadoso e educado, os traços são perfeitos. Obrigado André pelo trabalho, aguardo ansiosamente para fazer outro." },
       { nome:"Renê S.",
         texto:"Excelente profissional, muito criativo, várias ideias e projetos, cara humilde. Fiz algumas tatuagens e com certeza vou fazer mais." }
+    ]
+  },
+
+  /* ---------- 5. CLUBE 15 ----------
+     Grupo fechado de 15 clientes. Entrada paga uma vez só.
+     A REGRA DA CASA VALE AQUI TAMBÉM: nenhum valor escrito no site.
+     Quem quer entrar cai no WhatsApp e o valor sai na conversa.
+
+     ocupadas: quantas das 15 já têm dono. É o ÚNICO número que você mexe
+     no dia a dia; os quinze risquinhos do site se pintam sozinhos a partir
+     dele. Mantenha honesto: escassez inventada queima a sua palavra, e
+     cliente que descobre não volta.
+  ------------------------------------- */
+  clube: {
+    vagas: 15,
+    ocupadas: 0,
+
+    chamada: "Quinze pessoas. Nem uma a mais.",
+    resumo: "O Clube 15 é um grupo fechado de quinze clientes. A entrada é paga uma vez só e a vaga é sua enquanto você quiser. Enquanto as quinze estiverem ocupadas, ninguém entra.",
+
+    /* o que o membro leva */
+    inclui: [
+      { t:"Agenda antes de todo mundo",
+        d:"Quando o mês abre, a sua data já está separada. Você não disputa horário com ninguém." },
+      { t:"Projeto que não se repete",
+        d:"O desenho é autoral e não vai para mais ninguém. Nem parecido." },
+      { t:"Retoque incluso",
+        d:"O que precisar de ajuste depois da cicatrização entra na sua vaga." },
+      { t:"Canal direto comigo",
+        d:"Você fala comigo, não com recado. Dúvida de cuidado, ideia nova, remarcação." },
+      { t:"Primeiro a ver",
+        d:"Desenho novo que eu crio, membro vê antes de ir para o Instagram." }
+    ],
+
+    /* todo o esquema por escrito: é isto que a pessoa lê antes de decidir */
+    regras: [
+      { p:"Quantas vagas são?",
+        r:"Quinze, e o número não muda. Quando as quinze estão ocupadas, a entrada fecha e só reabre se alguém sair." },
+      { p:"Como eu entro?",
+        r:"Pelo botão desta página. Você me chama no WhatsApp, eu confirmo se tem vaga aberta e combino tudo com você por lá." },
+      { p:"Quanto custa a entrada?",
+        r:"O valor eu passo na conversa, junto com tudo o que entra na sua vaga. Valor de tattoo e de clube eu não publico no site: isso é conversa minha com você." },
+      { p:"É mensalidade?",
+        r:"Não. Você paga uma vez, na entrada, e não tem cobrança nova depois." },
+      { p:"A vaga é minha até quando?",
+        r:"Enquanto você quiser. Não tem renovação nem prazo para acabar." },
+      { p:"Posso passar a minha vaga para outra pessoa?",
+        r:"Não. A vaga é pessoal e não transfere." },
+      { p:"E se eu quiser sair?",
+        r:"É só me avisar. A vaga volta para a fila e quem está esperando entra." },
+      { p:"Membro ainda paga a sessão?",
+        r:"Paga. O clube trata de prioridade na agenda, projeto exclusivo e retoque. A sessão a gente combina como sempre." }
     ]
   },
 

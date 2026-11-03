@@ -175,6 +175,67 @@ section{padding-block:110px}
 
 /* blocos de cor: seções inteiras no verde-oliva, para a página não ficar toda branca.
    Dentro do bloco os tokens escurecem — o dourado claro não tem contraste sobre o oliva. */
+/* ---------- CLUBE 15 ----------
+   É o único bloco escuro do site, e isso é proposital: numa página de papel
+   claro, uma seção invertida vira o ponto de parada do olho sem precisar de
+   cor berrante nenhuma. Também é de onde a logo veio, prata sobre preto.
+
+   A inversão é feita nos TOKENS, não regra por regra: o que era tinta vira
+   papel e o papel vira tinta. Com isso .btn, .btn.ghost, .eyebrow e o itálico
+   dourado se acertam sozinhos aqui dentro. */
+.clube{
+  background:#151311;
+  --ink:#F3F1EC;
+  --paper:#151311;
+  --ink-soft:#A49D92;
+  --rule:rgba(243,241,236,.20);
+  --gold:#C9A862;
+  --gold-soft:#A47D35;
+  color:var(--ink)}
+.clube__topo{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+.clube__contador{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.clube__vagas{font-family:var(--mono);font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold)}
+.clube__resumo{font-size:19px;line-height:1.65;color:var(--ink-soft);max-width:56ch;margin-top:30px}
+
+/* os quinze traços: cheio é vaga com dono, vazado é vaga aberta.
+   A inclinação é a mesma da agulha que costura a página. */
+.clube__marcas,.selo__marcas{display:inline-flex;gap:5px;align-items:center}
+.marca{width:4px;height:26px;border:1px solid var(--gold);border-radius:1px;
+  transform:skewX(-12deg);opacity:.5;transition:background .4s ease,opacity .4s ease}
+.marca.is-presa{background:var(--gold);opacity:1}
+
+.inclui{list-style:none;margin:48px 0 0;padding:0;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(204px,1fr));gap:24px}
+.inclui__item{border-top:1px solid var(--rule);padding-top:18px}
+.inclui__item h3{font-size:21px;margin-bottom:9px}
+.inclui__item p{font-size:14.5px;line-height:1.65;color:var(--ink-soft)}
+.clube__acao{display:flex;flex-wrap:wrap;gap:12px;margin-top:48px}
+
+/* a capa da página do clube: tem um filho só, então a grade de duas
+   colunas do hero vira coluna única aqui */
+.clube--capa{padding-block:0}   /* o wrap abaixo já dá o respiro; somar os dois estica demais */
+.clube--capa .wrap{grid-template-columns:1fr;padding-block:62px 84px}
+.clube--capa h1{margin:20px 0 0;max-width:18ch}
+.clube--capa .clube__contador{flex-direction:row;align-items:center;gap:18px;margin-top:32px}
+.clube--capa .clube__resumo{margin-top:26px}
+.clube--capa .clube__acao{margin-top:40px}
+
+/* o selo do topo: avisa que o clube existe sem tomar a primeira dobra */
+.selo{display:inline-flex;align-items:center;gap:14px;margin-top:26px;
+  padding:11px 18px;border:1px solid var(--rule);border-radius:999px;
+  text-decoration:none;position:relative;z-index:3;
+  transition:border-color .35s ease,transform .35s cubic-bezier(.2,.7,.2,1)}
+.selo:hover,.selo:focus-visible{border-color:var(--gold-soft);transform:translateY(-2px)}
+.selo .marca{height:15px;width:3px}
+.selo__txt{font-family:var(--mono);font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-soft)}
+.selo__txt i{color:var(--rule);font-style:normal}
+.selo__txt b{color:var(--gold);font-weight:500}
+.selo__seta{width:16px;height:1px;background:var(--gold);
+  transition:width .35s cubic-bezier(.2,.7,.2,1)}
+.selo:hover .selo__seta{width:26px}
+
 .bloco{background:var(--bloco);
   --rule:rgba(21,19,17,.22);
   --ink-soft:#413D35;
@@ -337,6 +398,10 @@ footer a{text-decoration:none}
   .info dl div{grid-template-columns:96px 1fr}
   .studio figure img{min-height:320px;aspect-ratio:4/5}
   .work .cap{opacity:1;transform:none}
+  .clube__topo{flex-direction:column;align-items:flex-start;gap:28px}
+  .clube__acao{flex-direction:column;align-items:stretch}
+  .clube__acao .btn{justify-content:center}
+  .selo{width:100%}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}

@@ -52,6 +52,28 @@ do Google. Preencha também `google.url` (link do Perfil da Empresa) para ligar 
 A primeira versão do site (tema escuro, formulário de 3 passos, FAQ e vídeo no topo)
 está inteira em `../site-v1/`, com a documentação de mercado e de SEO dela.
 
+## Clube 15
+
+Grupo fechado de 15 clientes, com página própria em `clube-15.html`. O convite
+aparece em dois lugares da home: um selo no topo, logo abaixo dos botões, e a
+seção escura depois das avaliações. Os três lugares leem o mesmo bloco `clube`
+do `js/dados.js`.
+
+**No dia a dia você mexe em um número só:** `ocupadas`. Os quinze risquinhos se
+pintam sozinhos a partir dele, e o texto ao lado vira "3 vagas abertas",
+"última vaga" ou "vagas esgotadas". Quando chega a zero, o botão deixa de
+oferecer vaga e passa a oferecer lista de espera, com outra mensagem de
+WhatsApp. Nada mais precisa ser editado.
+
+Mantenha esse número honesto. Escassez inventada funciona uma vez e queima a
+sua palavra: cliente que descobre não volta e ainda conta para os outros.
+
+**Nenhum valor aparece aqui**, igual ao resto do site. A página explica o que é
+e o botão abre o WhatsApp com "quero entrar no Clube 15". O valor da entrada
+sai na conversa, depois que você confirma que existe vaga. Essa ordem evita o
+pior cenário de um clube limitado, que é alguém pagar por uma vaga que já
+acabou e você passar a semana devolvendo dinheiro.
+
 ## Trocar para o domínio próprio
 
 Enquanto o domínio novo não estiver respondendo, o site segue apontando para
@@ -67,7 +89,8 @@ Netlify → esperar o HTTPS → só então trocar as **6 linhas** abaixo.
 | `index.html` | `og:url` | endereço no card de compartilhamento |
 | `index.html` | `og:image` | imagem do card de compartilhamento |
 | `index.html` | `"url"` e `"image"` no JSON-LD | ficha do estúdio para o Google |
-| `sitemap.xml` | `<loc>` | o mapa do site |
+| `clube-15.html` | `canonical`, `og:url`, `og:image` | o mesmo, na página do clube |
+| `sitemap.xml` | os dois `<loc>` | o mapa do site |
 | `robots.txt` | `Sitemap:` | onde o mapa está |
 
 Depois da troca: reenviar o `sitemap.xml` no Search Console e atualizar o link

@@ -136,6 +136,74 @@
     document.head.appendChild(s);
   })();
 
+  /* ---------------------------------------------------------------
+     3c. CLUBE 15 — os quinze risquinhos, o que inclui e o regulamento.
+     Os mesmos dados alimentam o convite da home e a página do clube:
+     o que você escrever uma vez no dados.js aparece nos dois lugares.
+  --------------------------------------------------------------- */
+  (function clube(){
+    var C = D.clube; if(!C) return;
+    var total = Math.max(0, C.vagas|0);
+    var presas = Math.min(total, Math.max(0, C.ocupadas|0));
+    var livres = total - presas;
+
+    /* os quinze traços: cheio é vaga com dono, vazado é vaga aberta */
+    [].forEach.call(document.querySelectorAll('[data-clube="marcas"]'), function(el){
+      var m = '';
+      for(var i = 0; i < total; i++){
+        m += '<i class="marca' + (i < presas ? ' is-presa' : '') + '" style="--i:' + i + '"></i>';
+      }
+      el.innerHTML = m;
+      el.setAttribute('role', 'img');
+      el.setAttribute('aria-label', livres + ' de ' + total + ' vagas abertas');
+    });
+
+    var frase = livres === 0 ? 'vagas esgotadas'
+              : livres === 1 ? 'última vaga'
+              : livres + ' vagas abertas';
+    [].forEach.call(document.querySelectorAll('[data-clube="vagas"]'), function(el){
+      el.textContent = frase;
+    });
+    [].forEach.call(document.querySelectorAll('[data-clube="chamada"]'), function(el){
+      el.textContent = C.chamada || '';
+    });
+    [].forEach.call(document.querySelectorAll('[data-clube="resumo"]'), function(el){
+      el.textContent = C.resumo || '';
+    });
+
+    /* sem vaga o botão não some: vira lista de espera. O bloco 1 já montou o
+       href, então aqui só trocamos o texto da mensagem e o rótulo. */
+    if(livres === 0){
+      var num = String(D.whatsapp || '').replace(/\D/g, '');
+      var espera = (D.mensagens && D.mensagens.clubeEspera) ||
+                   'Oi, André! O Clube 15 está cheio. Quero entrar na lista de espera.';
+      [].forEach.call(document.querySelectorAll('[data-clube="entrar"]'), function(a){
+        if(num) a.href = 'https://wa.me/' + num + '?text=' + encodeURIComponent(espera);
+        var rotulo = a.querySelector('[data-clube="rotulo"]') || a;
+        rotulo.textContent = 'Entrar na lista de espera';
+      });
+    }
+
+    [].forEach.call(document.querySelectorAll('[data-clube="inclui"]'), function(el){
+      el.innerHTML = (C.inclui || []).map(function(x){
+        return '<li class="inclui__item reveal"><h3>' + esc(x.t) + '</h3><p>' + esc(x.d) + '</p></li>';
+      }).join('');
+    });
+
+    [].forEach.call(document.querySelectorAll('[data-clube="regras"]'), function(el){
+      el.innerHTML = (C.regras || []).map(function(x){
+        return '<details class="acc__item reveal"><summary><span>' + esc(x.p) + '</span>' +
+          '<i aria-hidden="true"></i></summary><div class="acc__corpo"><p>' + esc(x.r) + '</p></div></details>';
+      }).join('');
+      var itens = [].slice.call(el.querySelectorAll('details'));
+      itens.forEach(function(d){
+        d.addEventListener('toggle', function(){
+          if(d.open) itens.forEach(function(o){ if(o !== d) o.open = false; });
+        });
+      });
+    });
+  })();
+
   /* mais blocos entram ao rolar: títulos, nota, formulário, rodapé */
   ['.head', '.score', '.form', '.studio figure', '.final .wrap', '.foot__id', '.redes']
     .forEach(function(sel){
@@ -158,16 +226,28 @@
   /* ---------------------------------------------------------------
      5. LINHA DA AGULHA
   --------------------------------------------------------------- */
-  var svg = document.getElementById('needle'), track = svg.querySelector('.track'), ink = svg.querySelector('.ink'),
-      rastro = svg.querySelector('.rastro'), tip = svg.querySelector('.tip'), ring = svg.querySelector('.tip-ring'), len = 0;
+  /* Tudo daqui para baixo tolera elemento ausente. O motivo é concreto: a
+     página do clube não é obrigada a ter os mesmos pedaços da home, e um
+     getElementById vazio aqui derrubaria o formulário lá embaixo junto. */
+  var svg = document.getElementById('needle');
+  var track = svg && svg.querySelector('.track'), ink = svg && svg.querySelector('.ink'),
+      rastro = svg && svg.querySelector('.rastro'), tip = svg && svg.querySelector('.tip'),
+      ring = svg && svg.querySelector('.tip-ring'), len = 0;
   /* com mouse o fio segue a mão; no toque continua a costura ligada à rolagem */
   var FIO = matchMedia('(hover:hover) and (pointer:fine)').matches && !reduce;
   function build(){
+    if(!ink) return;
     var W = document.documentElement.clientWidth, H = document.documentElement.scrollHeight;
     svg.setAttribute('width', W); svg.setAttribute('height', H); svg.setAttribute('viewBox','0 0 '+W+' '+H);
     var mobile = W < 900, edgeL = mobile ? 8 : Math.max(18, (W-1180)/2 - 26), edgeR = W - edgeL;
-    var ids = ['trabalhos','sobre','avaliacoes','duvidas','agendar','estudio','fim'];
-    var y0 = document.querySelector('.hero').offsetTop + 40;
+    /* Ordem do documento, com as seções das DUAS páginas na mesma lista: o que
+       não existir na página atual é pulado abaixo. Sem as âncoras da página do
+       clube o fio virava um risco diagonal atravessando o texto. */
+    var ids = ['trabalhos','sobre','avaliacoes','clube',
+               'inclui','regras','entrar',
+               'duvidas','agendar','estudio','fim'];
+    var heroEl = document.querySelector('.hero');
+    var y0 = (heroEl ? heroEl.offsetTop : 0) + 40;
     var d = 'M ' + edgeR + ' ' + y0;
     var side = 1, prevY = y0;
     ids.forEach(function(id){
@@ -179,7 +259,9 @@
       prevY = top + el.offsetHeight*0.6; side = 1 - side;
     });
     var fim = document.getElementById('fim');
-    var endY = fim.offsetTop + fim.offsetHeight - 70, cx = W/2;
+    var endY = fim ? fim.offsetTop + fim.offsetHeight - 70
+                   : Math.max(y0 + 200, H - 140);
+    var cx = W/2;
     d += ' C ' + (side?edgeR:edgeL) + ' ' + (endY-120) + ', ' + cx + ' ' + (endY-140) + ', ' + cx + ' ' + endY;
     track.setAttribute('d', d); ink.setAttribute('d', d);
     len = ink.getTotalLength();
@@ -199,8 +281,9 @@
   addEventListener('scroll', function(){
     if(ticking) return; ticking = true;
     requestAnimationFrame(function(){
-      draw(); nav.classList.toggle('scrolled', scrollY > 10);
-      fl.classList.toggle('on', scrollY > innerHeight*0.8 && (innerHeight + scrollY) < document.documentElement.scrollHeight - 400);
+      draw();
+      if(nav) nav.classList.toggle('scrolled', scrollY > 10);
+      if(fl) fl.classList.toggle('on', scrollY > innerHeight*0.8 && (innerHeight + scrollY) < document.documentElement.scrollHeight - 400);
       ticking = false;
     });
   }, {passive:true});
@@ -216,7 +299,7 @@
      fio fica preso ao conteúdo e rola junto — e liga tudo com curvas.
      A cauda se desfaz sozinha quando a mão para.
   --------------------------------------------------------------- */
-  if(FIO){
+  if(FIO && svg){
     svg.classList.add('is-mouse');
     document.body.appendChild(svg);      /* vai para o fim: passa acima dos fundos */
     svg.style.opacity = 0;
@@ -296,6 +379,14 @@
     var botao = document.getElementById('formEnviar');
     var num = String(D.whatsapp || '').replace(/\D/g, '');
 
+    /* o mesmo formulário serve a home e a página do clube: cada uma declara
+       quais campos tem, e de qual mensagem do dados.js parte o recado */
+    function campo(nome){
+      var el = f.elements[nome];
+      return el ? String(el.value).trim() : '';
+    }
+    var chaveWa = f.getAttribute('data-wa') || 'topo';
+
     /* máscara do telefone, enquanto digita */
     var fone = f.elements.whatsapp;
     fone.addEventListener('input', function(){
@@ -307,7 +398,7 @@
     });
 
     function recado(d){
-      var L = [(D.mensagens && D.mensagens.topo) || D.mensagem || 'Oi, André! Vim pelo site.', ''];
+      var L = [(D.mensagens && D.mensagens[chaveWa]) || D.mensagem || 'Oi, André! Vim pelo site.', ''];
       if(d.nome)   L.push('Nome: ' + d.nome);
       if(d.ideia)  L.push('Ideia: ' + d.ideia);
       if(d.local)  L.push('Região: ' + d.local);
@@ -320,17 +411,17 @@
       if(botao.disabled) return;
 
       var d = {
-        nome:     f.elements.nome.value.trim(),
-        whatsapp: f.elements.whatsapp.value.trim(),
-        ideia:    f.elements.ideia.value.trim(),
-        local:    f.elements.local.value.trim(),
-        quando:   f.elements.quando.value.trim(),
-        origem:   'formulario'
+        nome:     campo('nome'),
+        whatsapp: campo('whatsapp'),
+        ideia:    campo('ideia'),
+        local:    campo('local'),
+        quando:   campo('quando'),
+        origem:   f.getAttribute('data-origem') || 'formulario'
       };
 
-      if(!d.nome || !d.ideia){ erro.textContent = 'Preencha seu nome e o que você quer tatuar.'; return; }
+      if(!d.nome || !d.ideia){ erro.textContent = f.getAttribute('data-erro') || 'Preencha seu nome e o que você quer tatuar.'; return; }
       if(d.whatsapp.replace(/\D/g, '').length < 10){ erro.textContent = 'Confira o seu WhatsApp com DDD.'; return; }
-      if(!f.elements.idade.checked){ erro.textContent = 'Confirme que você tem 18 anos ou mais.'; return; }
+      if(f.elements.idade && !f.elements.idade.checked){ erro.textContent = 'Confirme que você tem 18 anos ou mais.'; return; }
       erro.textContent = '';
 
       var url = 'https://wa.me/' + num + '?text=' + encodeURIComponent(recado(d));
