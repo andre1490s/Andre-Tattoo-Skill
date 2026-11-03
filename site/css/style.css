@@ -143,32 +143,11 @@ html.abertura .intro{display:grid;place-items:center;position:fixed;inset:0;z-in
    o 4/5, então o que se vê é exatamente o quadro que eu enquadrei. */
 .hero figure{max-width:390px;margin-left:auto}
 
-/* ---------- TOPO ESCURO COM VÍDEO DE FUNDO ----------
-   Mesma inversão de tokens do Clube 15: o que era tinta vira papel. Com isso
-   os botões, o selo e o itálico dourado se acertam sozinhos aqui dentro, sem
-   uma regra nova para cada um.
-   O poster fica como fundo da seção, então no celular (onde o vídeo não
-   carrega) e enquanto o vídeo baixa, nunca aparece um buraco preto. */
-.hero--filme{
-  position:relative;overflow:hidden;isolation:isolate;
-  background:#151311 url(../video/topo.webp) 50% 50%/cover;
-  --ink:#F3F1EC;
-  --paper:#151311;
-  --ink-soft:#BCB5AA;
-  --rule:rgba(243,241,236,.26);
-  --gold:#C9A862;
-  --gold-soft:#A47D35;
-  color:var(--ink)}
-.hero__fundo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  object-position:50% 50%;z-index:0}
-/* o véu é mais forte do lado da frase e abre para a direita, onde a imagem
-   pode respirar sem atrapalhar leitura nenhuma */
-.hero__veu{position:absolute;inset:0;z-index:1;display:block;
-  background:linear-gradient(92deg,rgba(21,19,17,.90) 0%,rgba(21,19,17,.74) 44%,rgba(21,19,17,.40) 100%)}
-.hero--filme .wrap{position:relative;z-index:2;grid-template-columns:1fr;
-  min-height:clamp(430px,62svh,580px);align-content:center;padding-block:64px}
-.hero--filme h1{max-width:15ch;margin:20px 0 32px}
-.hero--filme .facts{border-top-color:var(--rule)}
+/* a "tv": quadrada e menor que a foto era, para não dominar o topo */
+.hero figure.tv{max-width:310px;margin-inline:auto}
+.tv .tv__tela{aspect-ratio:1;object-fit:cover;object-position:50% 50%;
+  border:1px solid var(--rule);background:var(--paper-2)}
+
 .hero figure img,.hero figure video{width:100%;aspect-ratio:4/5;height:auto;object-fit:cover;object-position:50% 43%;filter:contrast(1.04)}
 /* o vídeo já foi cortado em 4/5 no arquivo, então não precisa deslocar */
 .hero figure video{object-position:50% 50%;background:var(--paper-2)}
@@ -425,8 +404,6 @@ footer a{text-decoration:none}
   .nav ul{display:none}
   .hero .wrap{grid-template-columns:1fr;gap:44px;padding-block:28px 72px}
   .hero figure{order:-1;max-width:520px}
-  .hero__fundo{display:none}   /* no celular vale o poster, que já é o fundo */
-  .hero--filme .wrap{min-height:clamp(380px,56svh,460px);padding-block:52px}
   .hero figcaption{left:12px;top:14px}
   .gallery{gap:10px}
   .work{flex:0 0 calc((100% - 10px) / 2)}

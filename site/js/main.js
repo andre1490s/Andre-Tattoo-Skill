@@ -41,16 +41,13 @@
      fica vazio, e o controle aparece para a pessoa dar play se quiser.
   --------------------------------------------------------------- */
   (function filme(){
-    var v = document.querySelector('.hero__fundo');
-    if(!v) return;
-    /* O vídeo só baixa onde vai de fato tocar: tela grande e sem pedido de
-       menos movimento. No celular fica o poster, que já é o fundo da seção,
-       e a pessoa não gasta dado nem bateria com um vídeo que ia aparecer
-       num corte aleatório de qualquer jeito. */
-    if(reduce || !matchMedia('(min-width: 861px)').matches) return;
-    v.src = v.getAttribute('data-src');
-    var p = v.play();
-    if(p && p.catch) p.catch(function(){});   /* bloqueou: fica o poster */
+    var v = document.querySelector('.tv__tela');
+    if(!v || !reduce) return;
+    /* quem pede menos movimento no sistema fica com o quadro de capa e o
+       controle de play, em vez do vídeo rodando sozinho */
+    v.removeAttribute('autoplay');
+    v.setAttribute('controls', '');
+    try { v.pause(); } catch(e){}
   })();
 
   /* ---------------------------------------------------------------
