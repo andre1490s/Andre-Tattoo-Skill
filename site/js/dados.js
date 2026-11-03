@@ -21,9 +21,12 @@ window.DADOS = {
     obras:   "Oi, André! Vi os trabalhos no site e quero fazer uma tattoo.",
     estudio: "Oi, André! Vim pelo site e queria saber como agendar.",
     barra:   "Oi, André! Vim pelo site e quero fazer uma tattoo.",
-    clube:   "Oi, André! Vim pelo site e quero entrar no Clube 15. Ainda tem vaga?",
+    /* Esta precisa chegar diferente das outras: quando ela aparecer no seu
+       WhatsApp, você tem que saber na primeira linha que é alguém decidido a
+       entrar no clube, e não mais um orçamento de tattoo. */
+    clube:   "Oi, André! QUERO ENTRAR NO CLUBE 15. Li o regulamento no site e quero uma das quinze vagas. Ainda tem?",
     /* usada sozinha quando as 15 vagas estão ocupadas */
-    clubeEspera: "Oi, André! O Clube 15 está cheio. Quero entrar na lista de espera."
+    clubeEspera: "Oi, André! QUERO ENTRAR NO CLUBE 15, mas vi no site que as quinze vagas estão ocupadas. Me coloca na lista de espera?"
   },
 
   /* ---------- 2. FORMULÁRIO ----------
@@ -105,10 +108,10 @@ window.DADOS = {
         d:"O desenho é autoral e não vai para mais ninguém. Nem parecido." },
       { t:"Retoque incluso",
         d:"O que precisar de ajuste depois da cicatrização entra na sua vaga." },
-      { t:"Comunidade fechada",
-        d:"Um grupo só dos quinze. Desenho novo aparece lá antes do Instagram, e vocês se conhecem." },
       { t:"Canal direto comigo",
-        d:"Você fala comigo, não com recado. Dúvida de cuidado, ideia nova, remarcação." }
+        d:"Você fala comigo, não com recado. Dúvida de cuidado, ideia nova, remarcação." },
+      { t:"Primeiro a ver",
+        d:"Desenho novo que eu crio, membro vê antes de ir para o Instagram." }
     ],
 
     /* todo o esquema por escrito: é isto que a pessoa lê antes de decidir */
@@ -123,8 +126,6 @@ window.DADOS = {
         r:"O que você pagou para entrar é descontado do valor da tattoo que você vier fazer comigo. Combinamos isso por escrito no WhatsApp antes de você pagar qualquer coisa." },
       { p:"É mensalidade?",
         r:"Não. Você paga uma vez, na entrada, e não tem cobrança nova depois." },
-      { p:"O que é a comunidade?",
-        r:"Um grupo fechado só com os quinze. É onde eu solto desenho novo antes de ir para o Instagram, aviso quando abre data e tiro dúvida. Entrar no grupo é opcional." },
       { p:"A vaga é minha até quando?",
         r:"Enquanto você quiser. Não tem renovação nem prazo para acabar." },
       { p:"Posso passar a minha vaga para outra pessoa?",
@@ -132,7 +133,7 @@ window.DADOS = {
       { p:"E se eu quiser sair?",
         r:"É só me avisar. A vaga volta para a fila e quem está esperando entra." },
       { p:"Membro ainda paga a sessão?",
-        r:"Paga, já com a entrada abatida. O clube trata de prioridade na agenda, projeto exclusivo, retoque e a comunidade." }
+        r:"Paga, já com a entrada abatida. O clube trata de prioridade na agenda, projeto exclusivo e retoque." }
     ]
   },
 
