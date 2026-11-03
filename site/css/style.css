@@ -1,5 +1,5 @@
 /* =====================================================================
-   ANDRE TATTOO — folha de estilo
+   ANDRE TATTOO: folha de estilo
    Layout: folha de papel clara, fotos P&B como impressões e uma linha de
    agulha dourada costurando a página de cima a baixo.
    ===================================================================== */
@@ -41,7 +41,7 @@ p{margin:0}
    No celular (sem mouse) ela é a costura ligada à rolagem, e fica atrás das
    seções: z-index negativo pinta antes dos fundos.
    No PC vira um fio que segue o mouse: aí sobe para z-index 2, acima dos
-   fundos, e as fotos sobem para 3 — o fio passa por baixo delas.
+   fundos, e as fotos sobem para 3, o fio passa por baixo delas.
    Para isso main/header/footer não podem ter z-index: com ele viram um bloco
    só de empilhamento e nada de dentro conseguiria ficar acima do fio. */
 #needle{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:-1;overflow:visible}
@@ -63,7 +63,7 @@ main,header,footer{position:relative}
    O stencil vira a tattoo: os 19 traços do A são riscados um a um, como um
    desenho a lápis no papel, e a arte final aparece por cima do esboço.
    pathLength="1" no SVG normaliza os traços: todos riscam no mesmo tempo.
-   Só stroke-dashoffset, opacity e transform — nada repinta layout. */
+   Só stroke-dashoffset, opacity e transform, nada repinta layout. */
 .intro{display:none}
 html.abertura{overflow:hidden}
 html.abertura .intro{display:grid;place-items:center;position:fixed;inset:0;z-index:200;
@@ -174,7 +174,7 @@ section{padding-block:110px}
 .gallery-foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:36px;font-size:15px;color:var(--ink-soft)}
 
 /* blocos de cor: seções inteiras no verde-oliva, para a página não ficar toda branca.
-   Dentro do bloco os tokens escurecem — o dourado claro não tem contraste sobre o oliva. */
+   Dentro do bloco os tokens escurecem, o dourado claro não tem contraste sobre o oliva. */
 /* ---------- CLUBE 15 ----------
    É o único bloco escuro do site, e isso é proposital: numa página de papel
    claro, uma seção invertida vira o ponto de parada do olho sem precisar de

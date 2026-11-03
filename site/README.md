@@ -17,15 +17,15 @@ linha de agulha dourada que costura a página conforme você rola.
 | `netlify.toml`, `robots.txt`, `sitemap.xml` | configuração de publicação e Google |
 
 ## Contato que está no ar
-- **WhatsApp:** (11) 98271-3543 — aparece em 5 botões, todos com a mesma mensagem pronta
+- **WhatsApp:** (11) 98271-3543: aparece em 5 botões, todos com a mesma mensagem pronta
 - **Instagram:** @andretatuadoor
-- **Endereço:** Av. Melchert, 606 — Vila Matilde, São Paulo
+- **Endereço:** Av. Melchert, 606: Vila Matilde, São Paulo
 
-Para trocar o número ou o @, mexa só em `js/dados.js` — todos os botões se atualizam sozinhos.
+Para trocar o número ou o @, mexa só em `js/dados.js`, todos os botões se atualizam sozinhos.
 
 ## Publicar
-**Opção A — arrastar:** app.netlify.com → site `andretattoo` → *Deploys* → arraste a pasta `site/`.
-**Opção B — ligar ao GitHub** (publica sozinho a cada commit): *Site configuration → Build & deploy →
+**Opção A, arrastar:** app.netlify.com → site `andretattoo` → *Deploys* → arraste a pasta `site/`.
+**Opção B, ligar ao GitHub** (publica sozinho a cada commit): *Site configuration → Build & deploy →
 Link repository*, com **Base directory: `site`**, **Build command:** vazio, **Publish directory: `site`**.
 
 ## Publicar uma tattoo nova
@@ -33,18 +33,18 @@ Link repository*, com **Base directory: `site`**, **Build command:** vazio, **Pu
 2. Copie uma linha da lista `trabalhos` em `js/dados.js` e troque `img`, `cap` e `alt`
 
 A galeria se monta sozinha: **a primeira peça da lista é a grande**, as outras entram
-em fileiras de três. Pode ter 9, 15 ou 30 peças — a grade se ajusta.
+em fileiras de três. Pode ter 9, 15 ou 30 peças, a grade se ajusta.
 
 ## Dúvidas
 As perguntas ficam em `duvidas`, no `js/dados.js`. A sanfona do site e os dados
-estruturados que o Google lê saem da mesma lista — mexeu numa, mudou nas duas.
+estruturados que o Google lê saem da mesma lista, mexeu numa, mudou nas duas.
 
 > **Regra da casa:** nenhum valor, faixa de preço ou "a partir de" entra no site.
 > Preço é conversa do André com o cliente.
 
 ## Avaliações do Google
 A nota (`5,0`) aparece sempre. Os cards só aparecem quando houver texto real em
-`google.avaliacoes` no `js/dados.js` — **nenhuma avaliação é escrita aqui**, só copiada
+`google.avaliacoes` no `js/dados.js`, **nenhuma avaliação é escrita aqui**, só copiada
 do Google. Preencha também `google.url` (link do Perfil da Empresa) para ligar o botão
 "Ver no Google", e `google.total` para mostrar quantas avaliações são.
 

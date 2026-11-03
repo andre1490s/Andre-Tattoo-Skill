@@ -1,5 +1,5 @@
 /* =====================================================================
-   ANDRE TATTOO — interações
+   ANDRE TATTOO: interações
    Sem bibliotecas. O conteúdo que importa sai de js/dados.js.
    ===================================================================== */
 (function(){
@@ -14,7 +14,7 @@
   }
 
   /* ---------------------------------------------------------------
-     0. ABERTURA — a logo sai e o site entra. Nunca prende a página:
+     0. ABERTURA: a logo sai e o site entra. Nunca prende a página:
      se qualquer coisa falhar, o tempo máximo derruba a cortina.
   --------------------------------------------------------------- */
   (function abertura(){
@@ -36,7 +36,7 @@
   })();
 
   /* ---------------------------------------------------------------
-     1. CONTATO — um número só, vindo do dados.js
+     1. CONTATO: um número só, vindo do dados.js
   --------------------------------------------------------------- */
   (function contato(){
     var num = String(D.whatsapp || '').replace(/\D/g,'');
@@ -63,7 +63,7 @@
   })();
 
   /* ---------------------------------------------------------------
-     2. GALERIA — montada a partir de DADOS.trabalhos
+     2. GALERIA: montada a partir de DADOS.trabalhos
      A primeira peça da lista é a grande; as outras seguem o ritmo da grade.
   --------------------------------------------------------------- */
   (function galeria(){
@@ -80,7 +80,7 @@
   })();
 
   /* ---------------------------------------------------------------
-     3. AVALIAÇÕES — nota sempre; cards só com texto real de cliente
+     3. AVALIAÇÕES: nota sempre; cards só com texto real de cliente
   --------------------------------------------------------------- */
   (function avaliacoes(){
     var g = D.google || {}, sec = $('#avaliacoes'); if(!sec) return;
@@ -103,7 +103,7 @@
   })();
 
   /* ---------------------------------------------------------------
-     3b. DÚVIDAS — a sanfona e os dados estruturados saem da mesma lista,
+     3b. DÚVIDAS: a sanfona e os dados estruturados saem da mesma lista,
      para a resposta do site e a que o Google lê nunca divergirem.
   --------------------------------------------------------------- */
   (function duvidas(){
@@ -137,7 +137,7 @@
   })();
 
   /* ---------------------------------------------------------------
-     3c. CLUBE 15 — os quinze risquinhos, o que inclui e o regulamento.
+     3c. CLUBE 15: os quinze risquinhos, o que inclui e o regulamento.
      Os mesmos dados alimentam o convite da home e a página do clube:
      o que você escrever uma vez no dados.js aparece nos dois lugares.
   --------------------------------------------------------------- */
@@ -211,7 +211,7 @@
     });
 
   /* ---------------------------------------------------------------
-     4. ENTRADA SUAVE — só marca o que ainda está abaixo da tela
+     4. ENTRADA SUAVE: só marca o que ainda está abaixo da tela
   --------------------------------------------------------------- */
   var els = [].slice.call(document.querySelectorAll('.reveal'));
   if('IntersectionObserver' in window && !reduce){
@@ -295,8 +295,8 @@
 
   /* ---------------------------------------------------------------
      5b. O FIO QUE SEGUE O MOUSE (só no PC)
-     Guarda os últimos pontos do cursor em coordenadas da página — assim o
-     fio fica preso ao conteúdo e rola junto — e liga tudo com curvas.
+     Guarda os últimos pontos do cursor em coordenadas da página, assim o
+     fio fica preso ao conteúdo e rola junto, e liga tudo com curvas.
      A cauda se desfaz sozinha quando a mão para.
   --------------------------------------------------------------- */
   if(FIO && svg){
@@ -368,7 +368,7 @@
   lb.addEventListener('touchend', function(e){ if(sx === null) return; var dx = e.changedTouches[0].clientX - sx; if(Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); sx = null; });
 
   /* ---------------------------------------------------------------
-     7. FORMULÁRIO — grava o pedido e abre o WhatsApp
+     7. FORMULÁRIO: grava o pedido e abre o WhatsApp
      A janela do WhatsApp é aberta DENTRO do clique, senão o navegador
      bloqueia. O envio ao n8n corre em paralelo e em silêncio: se ele
      estiver fora do ar, a pessoa ainda fala com o André do mesmo jeito.
