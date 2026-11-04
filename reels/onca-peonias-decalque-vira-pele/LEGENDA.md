@@ -15,7 +15,7 @@ Aprovada pelo Andre em 04/11/2026. Registro de conversão com humor leve
 >
 > Agora, a parte séria.
 >
-> Essa onça saiu em uma sessão. Uma. Do decalque roxo até a última sombra, no mesmo dia e na mesma luz — o vídeo é o começo e o fim da mesma sessão.
+> Essa onça saiu em uma sessão. Uma. Realismo preto e cinza nas costas, do decalque roxo até a última sombra, no mesmo dia e na mesma luz — o vídeo é o começo e o fim da mesma sessão.
 >
 > Não prometo isso para toda peça. Depende do desenho, do tamanho e de como a sua pele responde, e eu prefiro te falar isso antes da agulha encostar, não depois.
 >
@@ -23,14 +23,24 @@ Aprovada pelo Andre em 04/11/2026. Registro de conversão com humor leve
 >
 > Se der para 2026 deixar de ser "ano que vem", me manda a ideia. Link na bio, cai direto no meu WhatsApp.
 
-#realismopretoecinza #tattooonca #fechamentodecostas #tatuagemrealista #andretattoo
+**Conjunto A — intenção de cliente (usar primeiro)**
+
+```
+#tatuagemnascostas #realismopretoecinza #tattoosp #vilamatilde #andretattoo
+```
+
+**Conjunto B — alcance (alternar com o A para comparar)**
+
+```
+#blackandgreytattoo #realismtattoo #jaguartattoo #tattoosp #andretattoo
+```
 
 ## Versão curta (stories)
 
 > **"Ano que vem eu faço."**
 > Escuto isso desde o ano passado. E no ano passado também era "ano que vem".
 > Até 20 de dezembro são 40 dias de atendimento e eu faço um trabalho grande por dia. Não é escassez de marketing, é só o que cabe.
-> A onça do vídeo saiu em uma sessão. Nem toda peça fecha assim, mas a sua pode estar mais perto do que você imagina.
+> A onça do vídeo — realismo preto e cinza nas costas — saiu em uma sessão. Nem toda peça fecha assim, mas a sua pode estar mais perto do que você imagina.
 > Me manda a ideia. Link na bio.
 
 ## Checar antes de publicar

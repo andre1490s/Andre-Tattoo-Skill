@@ -24,7 +24,7 @@ o CTA é o que fecha. Descrever o que se vê na foto continua proibido.
 | 2. Corpo | 2 a 5 linhas, **uma ideia só**. Tensão, ou algo que o Andre só sabe porque tatua todo dia. |
 | 3. Técnica | Meia linha. "Realismo preto e cinza nas costas." Não mais que isso. |
 | 4. CTA | **Um pedido só**, com verbo e atrito zero. "Me manda a ideia" converte mais que "orçamento sob consulta". |
-| 5. Hashtags | 5. Estilo + tema + local ou marca. |
+| 5. Hashtags | **No máximo 5 — é teto do Instagram, não escolha de estilo.** Ver seção Hashtags. |
 
 ### Calibragem de tom (o ponto que o Andre mais corrigiu)
 
@@ -72,6 +72,39 @@ Fato verificável do próprio trabalho (ex.: peça grande fechada em **uma sess�
 depende do desenho, do tamanho e de como a sua pele responde". Sem essa linha a
 legenda promete resultado garantido, o que o `contexto/marca.md` proíbe.
 
+## Hashtags
+
+**Teto de 5, imposto pela plataforma.** Desde 18/12/2025 o Instagram aceita no
+máximo 5 hashtags por post ou Reel (antes eram 30). Anunciado pela conta
+@creators; a Central de Ajuda registra "você pode usar até 5 tags em um post".
+Bloco de 20 ou 30 tags não é só ineficaz: o app recusa.
+
+**Hashtag virou rótulo de assunto, não motor de alcance.** O que entrega Reel
+hoje é tempo de visualização, compartilhamento em DM, salvamento e
+**palavra-chave escrita na legenda**, que o Instagram lê como buscador. Por isso
+o bloco 3 (técnica em meia linha) deixou de ser enfeite: é onde entram
+"realismo preto e cinza", a região do corpo e a cidade. Legenda sem essas
+palavras perde busca.
+
+**Priorizar intenção, não volume.** Tags amplas em inglês (#tattoo,
+#tattooartist) entregam para outros tatuadores no mundo inteiro. Tags locais e
+de região do corpo (#tattoosp, #vilamatilde, #tatuagemnascostas) entregam para
+quem pode sentar na cadeira. Como a meta é agenda cheia, o padrão é intenção
+local; alcance só quando o objetivo declarado for alcance.
+
+**Linha de base medida em 04/11/2026** (Metricool, ~6 posts de set–nov/2026 —
+amostra pequena, e o número é atribuição por post, não causa):
+
+| Hashtag | Posts | Views/post |
+|---|---|---|
+| #tattoo · #tattooartist · #realismtattoo (mesmo post) | 1 | 4.441 |
+| #tattoosp | 2 | 1.382 |
+| #tatuagemsp | 2 | 1.227 |
+| #realismopretoecinza | 2 | 388 |
+
+Reavaliar quando houver 20+ posts. Até lá, alternar dois conjuntos por post e
+comparar no Metricool em vez de decidir por intuição.
+
 ## Passos
 1. Olhar a foto/vídeo e pegar os detalhes: estilo, elementos do desenho, local do corpo. Usar história do cliente e tempo de sessão só se o Andre informar. Significado: história autorizada ou o simbolismo tradicional do elemento (tabela "Significados" em `referencias/registro-arte-gemini.md`), dito como simbolismo.
 2. Nomear o estilo com o vocabulário do Andre (ver regras).
@@ -86,7 +119,7 @@ legenda promete resultado garantido, o que o `contexto/marca.md` proíbe.
 - Nunca citar nome do cliente nem história dele sem autorização. Não inventar história pessoal nem tempo de sessão.
 - Nunca citar preço (exceção: mensalidade do Clube 15, e só quando o Andre liberar).
 - Post com arte da `arte-post-gemini`: termina, antes das hashtags, com "Foto tratada, tatuagem real."
-- Hashtags: estilo (#realismopretoecinza, #realismocolorido, #tatuagemrealista) + tema (#tattooonca, #tattoopet…) + local (#tattoosp, #vilamatilde) ou #andretattoo.
+- Hashtags: no máximo 5, e priorizando intenção local. Ver a seção "Hashtags" abaixo.
 
 ## Exemplo aprovado (Reels da onça, 04/11/2026)
 
@@ -100,7 +133,7 @@ legenda promete resultado garantido, o que o `contexto/marca.md` proíbe.
 >
 > Agora, a parte séria.
 >
-> Essa onça saiu em uma sessão. Uma. Do decalque roxo até a última sombra, no mesmo dia e na mesma luz — o vídeo é o começo e o fim da mesma sessão.
+> Essa onça saiu em uma sessão. Uma. Realismo preto e cinza nas costas, do decalque roxo até a última sombra, no mesmo dia e na mesma luz — o vídeo é o começo e o fim da mesma sessão.
 >
 > Não prometo isso para toda peça. Depende do desenho, do tamanho e de como a sua pele responde, e eu prefiro te falar isso antes da agulha encostar, não depois.
 >
