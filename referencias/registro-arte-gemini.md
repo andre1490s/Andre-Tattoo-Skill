@@ -24,6 +24,7 @@ Elemento → significado usado na arte. Reutilizar para manter coerência entre 
 | Fada com asas de borboleta e estrela | LEVEZA E LIBERDADE | fada | Asas de transformação, luz que guia. | simbolismo (fada = liberdade e magia; asas de borboleta = transformação; estrela = guia) |
 | São Miguel Arcanjo vencendo o demônio | PROTEÇÃO E VITÓRIA | São Miguel | A vitória do bem sobre o mal. | simbolismo cristão (arcanjo protetor, vence o mal) |
 | Urso rugindo com floresta, lua e montanhas | INSTINTO E CORAGEM | urso | Força selvagem que protege o que é seu. | simbolismo (urso = força, coragem e proteção; lua = ciclos; montanhas = superação) |
+| Onça com peônias | FORÇA E HONRA | onça | Força silenciosa, beleza que não pede licença. | simbolismo (onça = força, instinto e proteção; peônia = honra e prosperidade na tradição japonesa da tatuagem, desenhada junto do felino) |
 
 ## Diário por foto
 | Data | Tattoo (tema · estilo) | Textos usados | Resultado | O que o Gemini errou | Correção que funcionou |
