@@ -1,0 +1,19 @@
+{
+  "peca": "Story de vaga de sexta-feira",
+  "slides": [
+    {
+      "formato": "story",
+      "imagem": "fotos/retrato-rachado.jpg",
+      "recorte": [
+        800,
+        1450,
+        900
+      ],
+      "escuro": 0.3,
+      "etiqueta": "Agenda",
+      "titulo": "Abriu uma *sexta-feira*.",
+      "tam_titulo": 80,
+      "texto": "Um cliente precisou remarcar e o dia inteiro ficou livre. É uma data só, e é nesta semana."
+    }
+  ]
+}
