@@ -12,7 +12,7 @@ linha de agulha dourada que costura a página conforme você rola.
 | `css/style.css` | todo o visual (cores e fontes ficam nas variáveis do topo do arquivo) |
 | `js/dados.js` | **o arquivo do dia a dia**: WhatsApp, Instagram, TikTok, endereço do formulário, nota e avaliações do Google, dúvidas e lista de trabalhos |
 | `js/main.js` | monta a galeria e as avaliações, linha da agulha, entrada suave, foto ampliada |
-| `img/` | 10 fotos de trabalhos + 6 fotos do Andre e do estúdio |
+| `img/` | 12 fotos de trabalhos + fotos do Andre e do estúdio |
 | `404.html` | página de erro |
 | `netlify.toml`, `robots.txt`, `sitemap.xml` | configuração de publicação e Google |
 
@@ -32,8 +32,8 @@ Link repository*, com **Base directory: `site`**, **Build command:** vazio, **Pu
 1. Salve a foto em `img/` (WebP, ~1200 px de largura, até ~150 KB)
 2. Copie uma linha da lista `trabalhos` em `js/dados.js` e troque `img`, `cap` e `alt`
 
-A galeria se monta sozinha: **a primeira peça da lista é a grande**, as outras entram
-em fileiras de três. Pode ter 9, 15 ou 30 peças, a grade se ajusta.
+A galeria se monta sozinha: **todas as peças aparecem do mesmo tamanho**, três por fileira
+no computador e duas no celular. Pode ter 9, 15 ou 30 peças, a grade se ajusta.
 
 ## Dúvidas
 As perguntas ficam em `duvidas`, no `js/dados.js`. A sanfona do site e os dados

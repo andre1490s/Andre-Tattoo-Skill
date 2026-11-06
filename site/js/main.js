@@ -79,7 +79,8 @@
 
   /* ---------------------------------------------------------------
      2. GALERIA: montada a partir de DADOS.trabalhos
-     A primeira peça da lista é a grande; as outras seguem o ritmo da grade.
+     Todas do mesmo tamanho, três por fileira (duas no celular). A ordem da lista é a
+     ordem da galeria: as primeiras são as que mais aparecem.
   --------------------------------------------------------------- */
   (function galeria(){
     var box = $('#gallery'); if(!box) return;

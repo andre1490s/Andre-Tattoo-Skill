@@ -1,6 +1,6 @@
 # Pendências (retomar daqui)
 
-Atualizado em 2026-10-07. Sem dados de clientes neste arquivo.
+Atualizado em 2026-11-06. Sem dados de clientes neste arquivo.
 
 ## AMANHÃ: iniciar o Ads (decisão do André em 2026-10-07)
 - [x] (feito nas skills e marca.md; falta só o agente de Mídias do app) Mudança de regra: "foco orgânico". Atualizar `contexto/marca.md`, o agente de Mídias do app e as skills `roteiro-reels-tattoo`, `posts-semana-instagram` e `relatorio-instagram`. A skill `gestor-de-trafego` passa a ser usada de verdade.
@@ -9,8 +9,29 @@ Atualizado em 2026-10-07. Sem dados de clientes neste arquivo.
 - Antes de qualquer gasto ou publicação: o Claude propõe a campanha e o André aprova cada passo. Nada vai ao ar sem confirmação.
 
 ## URGENTE: privacidade do repositório
-- [ ] O repositório `andre1490s/Andre-Tattoo-Skill` está **PÚBLICO**. Tornar privado: GitHub > Settings > Danger Zone > Change repository visibility. Hoje ele expõe: valores de referência e políticas (marca.md, skills), o e-mail do Google (skill registrar-no-sistema) e o id do projeto Supabase (backup do app). Não há senhas, chaves nem dados de clientes.
+- [ ] Conferido em 06/11/2026: o repositório `andre1490s/Andre-Tattoo-Skill` continua **PÚBLICO**. Tornar privado: GitHub > Settings > Danger Zone > Change repository visibility. Hoje ele expõe: valores de referência e políticas (marca.md, skills), o e-mail do Google (skill registrar-no-sistema) e o id do projeto Supabase (backup do app). Não há senhas, chaves nem dados de clientes.
 - Regra daqui para frente: não commitar fotos de tattoos, dados de clientes nem builds com imagens embutidas.
+
+## Aviso de lead no Telegram (falta um número no n8n)
+
+Quando alguém preenche o formulário do site, o fluxo "Leads do site" no n8n grava o
+pedido na Data Table e deveria te avisar no Telegram. O aviso não sai porque o nó do
+Telegram está com um chat ID de exemplo.
+
+- **Chat ID do André: `6800960252`** (ele mandou em 06/11/2026, pelo @get_id_bot)
+- Onde colar: n8n > fluxo **Leads do site** (`arSPpODp7X9BPs3n`) > nó **Telegram** >
+  campo **Chat ID** > salvar e publicar.
+- O nó está com `onError: continueRegularOutput`, então **o lead é gravado mesmo sem o
+  aviso**. Nada se perde enquanto isso.
+- [ ] Trocar o chat ID no nó do Telegram e disparar um teste pelo formulário do site.
+
+Não consegui fazer isso daqui: o conector do n8n não conecta nesta sessão (erro 404) e o
+endereço de ngrok do n8n está fora da lista de domínios liberados na rede deste ambiente
+(a conexão é recusada antes de sair). Os dois caminhos estão fechados do meu lado.
+
+Esse número não é senha: quem manda mensagem é o bot, e o token do bot não está neste
+repositório. Mesmo assim, enquanto o repositório estiver público, é só avisar se preferir
+que eu tire o número daqui.
 
 ## App v2 publicado (versão 13)
 - Feito: redesign Fumaça e Prata, Hoje, Orçamentos (funil e retomadas), Finanças com relatórios, ficha do cliente, menu Mais, Aprendizado do Assistente (registro, avaliação e sugestões que o André aprova), backup JSON e CSV. Sem WhatsApp. Detalhes em `app/README.md`.
@@ -33,19 +54,32 @@ Versão nova no repositório desde 20/10: papel claro, Bodoni, fotos P&B e a lin
 A v1 (tema escuro, formulário de 3 passos, FAQ, vídeo no topo) está inteira em `site-v1/`, junto com
 o estudo de mercado (`site-v1/ESTUDO-MERCADO-UX-CRO.md`) e o passo a passo do Google (`site-v1/GOOGLE.md`).
 
-Decisões que ficaram em aberto na troca de versão:
-- [ ] **Publicar a v3 na Netlify** (hoje o ar ainda é a v2). Depois disso, reenviar o `sitemap.xml` no Search Console.
-- [ ] **O site perdeu o formulário de orçamento** — a v3 manda todo mundo para o WhatsApp. Isso significa
-      **nenhum lead gravado** se a pessoa não apertar enviar no WhatsApp. Decidir: fica assim ou volta o formulário?
-- [ ] **O site perdeu FAQ e dados estruturados de perguntas** (valiam busca no Google). Decidir se voltam.
-- [ ] **Não há medição nenhuma** na v3 (a v1 tinha os eventos prontos). Criar GA4 e Meta Pixel e me passar os IDs.
-- [ ] **Depoimentos:** a v3 não tem a seção. Com 3 depoimentos reais guardados, ela volta — ver skill `depoimento-para-o-site`.
+Decisões que ficaram em aberto na troca de versão (revisto em 06/11/2026):
+- [x] **No ar.** A v3 está publicada na Netlify, ligada ao GitHub, com domínio próprio
+      **https://andretattoo.com.br** (HTTPS pela Netlify) e o `sitemap.xml` já reenviado no
+      Search Console. Detalhes do domínio e do DNS em `site/README.md`.
+- [x] **O formulário voltou.** Home e `clube-15.html` têm formulário que grava o lead no n8n
+      antes de abrir o WhatsApp. Cada botão manda uma mensagem diferente, então pela frase você
+      sabe de onde o cliente saiu. Só falta o aviso no Telegram (ver seção acima).
+- [x] **FAQ e dados estruturados voltaram.** As perguntas ficam na lista `duvidas` do
+      `js/dados.js`; o `main.js` monta a sanfona e o FAQPage que o Google lê a partir dela.
+- [ ] **Não há medição nenhuma** (confirmado: zero tag de GA4 ou Pixel no `index.html`).
+      Criar GA4 e Meta Pixel e me passar os IDs. É o que falta para saber quanto o site traz.
+- [x] **Avaliações no ar.** Seis avaliações reais copiadas do Perfil da Empresa no Google,
+      com a nota 5,0, a contagem e o botão "Ver no Google". Nada escrito por nós.
+- [x] **Clube 15** publicado: selo no topo da home, seção escura depois das avaliações e a
+      página `clube-15.html` com o regulamento inteiro. Nenhum valor no site, como combinado.
+      No dia a dia você mexe em um número só: `clube.ocupadas` no `js/dados.js`.
 
 O que continua dependendo de você:
-- [ ] **MAIS FOTOS.** A galeria tem 9 peças e as posições são fixas. Alvo: 25 a 30 peças para valer uma galeria maior.
-- [ ] **Autorização de imagem** dos clientes das 9 peças publicadas — regra do repositório.
-- [ ] **Perfil da Empresa no Google** (google.com/business) — grátis e é o que traz cliente local antes do site ranquear.
-- [ ] **Link do seu Perfil da Empresa no Google** (avaliações públicas valem mais que depoimento no site).
+- [ ] **MAIS FOTOS.** A galeria tem 12 peças. Alvo: 25 a 30. A grade não tem posição fixa:
+      é só somar linhas na lista `trabalhos` do `js/dados.js` que ela se ajusta sozinha.
+- [ ] **Autorização de imagem** dos clientes das 12 peças publicadas — regra do repositório.
+- [x] **Perfil da Empresa no Google** criado em 11/2026, aguardando a análise do Google.
+- [x] **Link do Perfil da Empresa** já no site (`google.url` no `js/dados.js`), ligando o botão
+      "Ver no Google".
+- [ ] **Atualizar o link do site** na bio do Instagram (@andretatuadoor) e do TikTok
+      (@andretattoo.ink) para `https://andretattoo.com.br`.
 - [ ] 2 a 3 fotos do ambiente do estúdio (bancada, sala) — hoje as fotos são quase todas de você tatuando.
 - [ ] Confirmar: atende só com hora marcada? domingo e feriado?
 - [ ] Opcional, alto impacto: vídeo de 10 s de uma peça **cicatrizada** (30+ dias).
