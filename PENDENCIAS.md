@@ -68,16 +68,43 @@ Enquanto isso não for feito, não confie no site para guardar lead: confie no W
 - [ ] Revisar em Ajustes do app: dias e horário de atendimento (padrão do app é todos os dias, 09:00 às 18:00; o André atende seg a sáb, 9h às 22h).
 - [ ] Mensagem de lembrete do app diz "remarcação perde o sinal"; a política inclui cancelamento. Alinhar quando o André quiser.
 
+## SEO: o site no ar não é o do repositório (descoberto em 06/11/2026)
+
+Estudo completo, com a trilha de seis etapas, em [`site/ESTUDO-SEO.md`](site/ESTUDO-SEO.md).
+
+O que está publicado em `andretattoo.netlify.app` **não é o código de `site/` deste repositório** (tema claro,
+seção de avaliações do Google, TikTok no rodapé, `/clube-15` sem extensão). Qualquer correção de SEO
+commitada em `site/` **não chega ao ar**.
+
+- [ ] **André: dizer onde o site no ar é editado** — sem isso, as correções da etapa 1 do estudo não têm onde
+      ser aplicadas.
+- [ ] **Colar o endereço do site no Perfil da Empresa** (etapa 0 do estudo; 2 minutos, maior retorno).
+- [ ] **Criar o Search Console** e enviar o `sitemap.xml` — hoje ninguém sabe se o site está indexado.
+- [ ] **Pedir avaliação no fim de cada sessão.** Medido: **1,75 avaliação/mês** nos últimos 12 meses, com
+      **zero em 6 dos 12 meses**; a meta da trilha é 4/mês constante. A taxa de resposta do André já é
+      96,7% — falta o pedido, não a resposta. Skills `pos-tattoo-avaliacao` e `responder-avaliacoes-google`.
+- [ ] **Confirmar o bairro do CEP 03508-000** no perfil: o concorrente do mesmo número da Av. Melchert, 606
+      aparece como "Vila Esperança" e o do André como "Vila Matilde".
+- [ ] **Registrar o TikTok @andretattoo.ink em `contexto/marca.md`** — está no site no ar e fora da fonte
+      única de verdade.
+- [ ] Tirar `AggregateRating`/`Review` dos dados estruturados do site no ar: avaliação que o próprio negócio
+      controla é **inelegível** para estrela na busca (documentação do Google, item 5.3 do estudo). A seção
+      continua valendo para o cliente que lê.
+
 ## Site do estúdio (`site/`) — v2 no ar
 Estudo completo em `site/ESTUDO-MERCADO-UX-CRO.md`. O que falta é só você:
 - [ ] **MAIS FOTOS (prioridade 1).** O site está visualmente pobre porque tem 8 peças. Alvo: **25 a 30**.
       Lista do que mandar em `site/ESTUDO-MERCADO-UX-CRO.md`, seção 6.1.
 - [ ] **3 a 5 depoimentos reais** de clientes (texto + primeiro nome + peça). É o único bloco de prova que
       falta; a seção está pronta e desligada em `config.js`. Impacto alto na conversão.
-- [ ] **Link do seu Perfil da Empresa no Google** (avaliações públicas valem mais que depoimento no site).
+- [x] **Link do Perfil da Empresa no Google** — o site no ar já mostra a nota e seis avaliações reais, com link para o Google.
 - [ ] **Autorização de imagem** dos clientes das 9 peças publicadas — regra do repositório.
-- [ ] **Perfil da Empresa no Google** (google.com/business) — grátis e é o que traz cliente local
-      antes do site ranquear. Passo a passo em `site/GOOGLE.md`.
+- [x] **Perfil da Empresa no Google** — **já existe e já está verificado**: "Studio Andre Tattoo",
+      **nota 5,0 com 229 avaliações**, categoria "Estúdio de tatuagem" (medido em 06/11/2026). Melhor ativo
+      de busca do estúdio. O que falta agora é o item abaixo.
+- [ ] **PRIORIDADE: colar o endereço do site no Perfil da Empresa** (google.com/business → Informações →
+      Site). O perfil está **sem site vinculado**: 229 avaliações apontando para lugar nenhum. Leva 2 minutos
+      e é o item de maior retorno de todo o `site/ESTUDO-SEO.md`.
 - [ ] **Search Console**: enviar o `sitemap.xml` depois que o site estiver no ar.
 - [ ] Ligar as **notificações por e-mail** do Netlify Forms (Forms → Form notifications) para receber os pedidos.
 - [ ] Criar **GA4 e Meta Pixel** e me passar os IDs (os eventos já estão instrumentados).

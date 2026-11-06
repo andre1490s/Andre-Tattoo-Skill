@@ -1,5 +1,10 @@
 # Como colocar o site no Google — sem Ads e sem pagar hospedagem
 
+> **Atualização de 06/11/2026.** O **passo 2 já está feito**: o Perfil da Empresa existe e está verificado
+> ("Studio Andre Tattoo", nota 5,0 com 229 avaliações). Falta uma coisa dentro dele — **o site não está
+> vinculado ao perfil**. Esse é hoje o item de maior retorno do estúdio em busca.
+> A ordem de execução completa, com medição e portões, está em [`ESTUDO-SEO.md`](ESTUDO-SEO.md).
+
 Três coisas diferentes costumam ser confundidas:
 
 | | O que é | Precisa? | Custo |

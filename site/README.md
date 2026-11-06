@@ -4,6 +4,15 @@ Site de captação: uma página, sem framework e sem build, pronto para a Netlif
 A arquitetura de seções e as decisões de conversão estão justificadas em
 [`ESTUDO-MERCADO-UX-CRO.md`](ESTUDO-MERCADO-UX-CRO.md) — leia antes de mudar a ordem das seções.
 
+Busca orgânica, Perfil da Empresa no Google e a ordem de execução estão em
+[`ESTUDO-SEO.md`](ESTUDO-SEO.md) — leia antes de mexer em `<title>`, dados estruturados ou `sitemap.xml`.
+O passo a passo operacional de pôr o site no Google continua em [`GOOGLE.md`](GOOGLE.md).
+
+> **Atenção (verificado em 06/11/2026): o que está publicado em `andretattoo.netlify.app` NÃO é o código
+> desta pasta.** O site no ar tem tema claro, seção de avaliações do Google, link de TikTok e `/clube-15` sem
+> extensão; esta pasta tem a v2 escura, com vídeo no topo e formulário de 3 passos. Correção de SEO commitada
+> aqui **não chega ao ar**. Comparação completa em `ESTUDO-SEO.md`, item 1.2.
+
 ## 1. O que já está configurado
 - **WhatsApp:** (11) 98271-3543
 - **Portfólio:** 9 peças reais + 2 fotos de processo (stencil) + 2 fotos do artista
