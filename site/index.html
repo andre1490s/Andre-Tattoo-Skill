@@ -247,7 +247,14 @@
       </div>
       <p class="note">Todos os agendamentos são mediante sinal de reserva.</p>
 
-      <form class="form" id="form" novalidate>
+      <!-- name/method/data-netlify: a Netlify guarda uma cópia de cada lead e manda
+           e-mail na hora. É a rede de segurança: roda no mesmo lugar do site, então
+           funciona mesmo com o n8n do notebook desligado. -->
+      <form class="form" id="form" novalidate
+            name="lead-site" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="lead-site">
+        <input type="hidden" name="origem" value="site">
+        <p class="esconde" aria-hidden="true"><label>Deixe em branco<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <p class="form__topo">Me conta aqui e eu te chamo no WhatsApp. Leva um minuto.</p>
         <div class="form__grid">
           <label class="campo"><span>Seu nome</span>

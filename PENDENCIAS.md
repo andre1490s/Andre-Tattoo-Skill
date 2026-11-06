@@ -12,62 +12,62 @@ Atualizado em 2026-11-06. Sem dados de clientes neste arquivo.
 - [ ] Conferido em 06/11/2026: o repositório `andre1490s/Andre-Tattoo-Skill` continua **PÚBLICO**. Tornar privado: GitHub > Settings > Danger Zone > Change repository visibility. Hoje ele expõe: valores de referência e políticas (marca.md, skills), o e-mail do Google (skill registrar-no-sistema) e o id do projeto Supabase (backup do app). Não há senhas, chaves nem dados de clientes.
 - Regra daqui para frente: não commitar fotos de tattoos, dados de clientes nem builds com imagens embutidas.
 
-## Aviso de lead no Telegram (falta um número no n8n)
+## Captação de lead: resolvida em duas camadas (06/11/2026)
 
-Quando alguém preenche o formulário do site, o fluxo "Leads do site" no n8n grava o
-pedido na Data Table e deveria te avisar no Telegram. O aviso não sai porque o nó do
-Telegram está com um chat ID de exemplo.
+### [x] Telegram ligado e testado
 
-- **Chat ID do André: `6800960252`** (ele mandou em 06/11/2026, pelo @get_id_bot)
-- Onde colar: n8n > fluxo **Leads do site** (`arSPpODp7X9BPs3n`) > nó **Telegram** >
-  campo **Chat ID** > salvar e publicar.
-- [ ] Trocar o chat ID no nó do Telegram e disparar um teste pelo formulário do site.
+Chat ID `6800960252` gravado no nó Telegram do fluxo **Leads do site**
+(`arSPpODp7X9BPs3n`) e publicado. Teste de ponta a ponta rodado (execução 35):
+linha gravada na Data Table e mensagem entregue no Telegram, confirmada pela
+resposta da API (`ok: true`). O bot é o **Sofia André Tattoo**
+(@sofia_andretattoo2_bot). Ficou uma linha "TESTE (pode apagar)" na tabela.
 
-Não consegui fazer isso daqui: o conector do n8n não conecta nesta sessão e o endereço de
-ngrok do n8n está fora da lista de domínios liberados na rede deste ambiente (a conexão é
-recusada antes de sair, 403 do proxy). Os dois caminhos estão fechados do meu lado.
+### Diagnóstico: o fluxo nunca esteve quebrado
 
-### CORREÇÃO de um erro meu (06/11/2026)
+O `Cannot GET /webhook/lead-andre-tattoo` que o André viu no navegador é a
+resposta **normal** do n8n a uma visita (GET) num webhook que só aceita envio
+(POST). Não indicava nada de errado. Conferido pelo conector:
 
-Eu havia escrito aqui que "o lead é gravado mesmo sem o aviso, nada se perde". **Isso está
-errado** e só vale se o n8n estiver no ar. Fui ler o `site/js/main.js` (bloco 7) e o que
-acontece de verdade é:
+- fluxo **ativo**
+- caminho `lead-andre-tattoo`, método POST
+- endereço do ngrok **igual** ao que está no `js/dados.js`
+- `allowedOrigins: "*"`, então o navegador do visitante não é barrado
 
-1. O site abre o WhatsApp **primeiro**, com nome, ideia, região e quando a pessoa pode.
-2. Depois manda o pedido ao n8n **em silêncio**: `fetch(...).catch(function(){})` engole
-   qualquer erro.
+Antes disso eu havia chutado que o fluxo estava despublicado. Estava errado.
 
-Ou seja: com o n8n fora, o cliente ainda chega no WhatsApp (essa parte está salva), mas
-**o lead não é gravado e ninguém é avisado da falha**. Nem o André, nem o visitante.
+### [x] Rede de segurança: Netlify Forms
 
-O desenho do site está certo (abrir o WhatsApp primeiro é o que importa). O problema é a
-base: ngrok gratuito, sem nenhum aviso quando quebra.
+O problema real que o André levantou: o n8n só roda no notebook dele, com ngrok
+gratuito. Ele fica 99% do dia no celular, então na prática a captação ficava
+desligada a maior parte do tempo, **falhando calada**.
 
-### O 502 e o que conferir no n8n
+Agora cada lead sai em **duas cópias**, as duas depois de o WhatsApp já ter
+aberto (`site/js/main.js`, bloco 7):
 
-Quando o André reconectou o n8n em 06/11/2026, o erro do conector mudou de **404** para
-**502**. O 404 dizia "não achei esse conector"; o 502 diz "achei, tentei falar com o n8n
-e não teve resposta". Indica que a reconexão funcionou e o que não responde é o n8n.
+| Camada | O que faz | Cai com o notebook? |
+|---|---|---|
+| **Netlify Forms** | guarda o lead e manda e-mail na hora | Não |
+| **n8n** | grava na Data Table e avisa no Telegram | Sim |
 
-A conferir com o n8n aberto:
-- [ ] O n8n está rodando e o túnel do **ngrok está ativo**.
-- [ ] O fluxo **Leads do site** está **ativo/publicado**, não só salvo.
-- [ ] O endereço do webhook que o n8n mostra bate com o do site
-      (`webhook` no `js/dados.js`, hoje `https://unsaddle-arrange-track.ngrok-free.dev/webhook/lead-andre-tattoo`).
-      **Principal suspeito:** endereço de ngrok gratuito muda a cada reinício do n8n. Se
-      mudou, o site manda lead para um endereço morto desde então. É uma linha no
-      `dados.js`.
+Dois formulários separados, para o André distinguir a origem: `lead-site` na
+home e `lead-clube15` na página do clube. Campo isca anti-robô (`bot-field`)
+escondido pela classe `.esconde`. Forms já **ativado** no projeto da Netlify.
 
-### Proposta para quando o André quiser (não autorizada ainda)
+- [ ] **Falta o André fazer, 1 minuto:** Netlify > projeto `andretattoo` >
+      **Project configuration > Forms > Form notifications > Add notification >
+      Email notification** > `andrestudioempresa@gmail.com`. Sem isso o lead é
+      guardado mas o e-mail não sai.
+- [ ] Depois: enviar o formulário do site uma vez e conferir que chegou
+      e-mail, linha na Data Table e aviso no Telegram.
 
-Tirar a captação de lead de cima do ngrok gratuito e colocar um aviso quando o formulário
-falhar, em vez de falhar calado. Caminho mais simples: Netlify Forms, que já roda no mesmo
-lugar onde o site está publicado, não cai junto com o n8n e manda e-mail a cada envio. O
-n8n continua recebendo também, como hoje. **Não mexer nisso sem o André mandar.**
+### Sobre o endereço do ngrok
 
-Esse número não é senha: quem manda mensagem é o bot, e o token do bot não está neste
-repositório. Mesmo assim, enquanto o repositório estiver público, é só avisar se preferir
-que eu tire o número daqui.
+Continua valendo: endereço gratuito muda a cada reinício do n8n. Quando mudar,
+é uma linha (`webhook` no `js/dados.js`). A diferença é que agora isso **não
+custa mais nenhum lead**, porque a Netlify segura.
+
+Se um dia o André quiser o n8n sempre no ar, o caminho é n8n Cloud, uns US$ 20
+a 25 por mês. Não é urgente.
 
 ## App v2 publicado (versão 13)
 - Feito: redesign Fumaça e Prata, Hoje, Orçamentos (funil e retomadas), Finanças com relatórios, ficha do cliente, menu Mais, Aprendizado do Assistente (registro, avaliação e sugestões que o André aprova), backup JSON e CSV. Sem WhatsApp. Detalhes em `app/README.md`.

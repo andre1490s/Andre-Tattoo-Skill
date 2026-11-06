@@ -444,6 +444,36 @@
       var janela = num ? window.open(url, '_blank') : null;
       if(janela){ try { janela.opener = null; } catch(err){} }
 
+      /* DUAS CÓPIAS do mesmo lead, de propósito.
+
+         1) Netlify: roda no mesmo lugar onde o site está publicado. Nunca cai
+            junto com o n8n e manda e-mail na hora. É a rede de segurança.
+         2) n8n: grava na tabela e avisa no Telegram. Só funciona enquanto o
+            n8n estiver no ar.
+
+         As duas correm em silêncio DEPOIS que o WhatsApp já abriu, porque o
+         WhatsApp é o que realmente importa e não pode esperar por nada. */
+
+      var nomeForm = f.getAttribute('name');
+      if(nomeForm){
+        try {
+          var corpo = new URLSearchParams();
+          corpo.append('form-name', nomeForm);
+          corpo.append('nome', d.nome);
+          corpo.append('whatsapp', d.whatsapp);
+          corpo.append('ideia', d.ideia);
+          if(d.local)  corpo.append('local', d.local);
+          if(d.quando) corpo.append('quando', d.quando);
+          corpo.append('origem', d.origem);
+          fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: corpo.toString(),
+            keepalive: true
+          }).catch(function(){});
+        } catch(err){}
+      }
+
       if(D.webhook){
         try {
           fetch(D.webhook, {

@@ -440,3 +440,7 @@ footer a{text-decoration:none}
   .hero figure img{max-height:56svh}
   .facts{margin-top:28px;padding-top:18px}
 }
+
+/* Campo isca do anti-robô da Netlify. Pessoa nenhuma vê, robô preenche e o
+   envio é descartado. Fica fora do fluxo e fora do leitor de tela. */
+.esconde{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}

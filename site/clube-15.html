@@ -104,9 +104,15 @@
         <p>Eu confirmo se tem vaga aberta e acerto tudo com você pelo WhatsApp.</p>
       </div>
 
+      <!-- mesma rede de segurança da home, com nome próprio para você separar
+           quem veio pedir vaga no clube de quem veio pedir tattoo. -->
       <form class="form" id="form" novalidate
             data-wa="clube" data-origem="clube-15"
-            data-erro="Preencha seu nome e o que você quer fazer.">
+            data-erro="Preencha seu nome e o que você quer fazer."
+            name="lead-clube15" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="lead-clube15">
+        <input type="hidden" name="origem" value="clube-15">
+        <p class="esconde" aria-hidden="true"><label>Deixe em branco<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <p class="form__topo">Preencha e eu te chamo no WhatsApp. Leva um minuto.</p>
         <div class="form__grid">
           <label class="campo"><span>Seu nome</span>
