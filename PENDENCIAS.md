@@ -60,6 +60,71 @@ escondido pela classe `.esconde`. Forms já **ativado** no projeto da Netlify.
 - [ ] Depois: enviar o formulário do site uma vez e conferir que chegou
       e-mail, linha na Data Table e aviso no Telegram.
 
+### [!] O cache de 7 dias que atrapalhou o teste (achado em 06/11/2026)
+
+O André testou o formulário às 14:54, três minutos depois do deploy. Telegram
+chegou, Netlify não registrou nada. Causa: o `netlify.toml` mandava guardar
+`/js/*` e `/css/*` por **7 dias** no navegador. O celular dele ainda rodava o
+`main.js` velho, que não tinha o envio para a Netlify.
+
+Corrigido: js e css passam a `max-age=0, must-revalidate`. O navegador pergunta
+ao servidor a cada visita e recebe 304 vazio quando nada mudou. Imagem continua
+30 dias, porque foto nova entra com nome novo.
+
+**Isso valia para qualquer correção**, não só esta: a troca do endereço do ngrok
+no `dados.js`, por exemplo, levaria até uma semana para chegar em quem já tinha
+visitado o site. Agora chega na hora.
+
+- [ ] **Refazer o teste** depois deste deploy, com atualização forçada na
+      primeira vez. Tem que chegar: WhatsApp, Telegram, linha na Data Table
+      **e** envio registrado na Netlify.
+
+### Decisão do André sobre o aviso (06/11/2026)
+
+Ele prefere só o Telegram, por ser mais fácil de ver que e-mail. A captação pela
+Netlify continua ligada e guardando tudo de qualquer jeito, então nenhum lead se
+perde; o que falta é o aviso quando o n8n estiver fora.
+
+Caminho limpo, se ele quiser depois: uma função dentro da própria Netlify que
+manda o Telegram sem passar pelo notebook. O token do bot tem que ser colocado
+**por ele** nas variáveis de ambiente da Netlify, nunca no chat.
+
+## PRÓXIMO PASSO (o André pediu em 06/11/2026)
+
+O pedido, nas palavras dele: *"automatizar algumas mensagens no whats quando
+tiver esses leads novos, pedindo foto de referência, local do corpo e tamanho"*,
+com *"painel bonitinho"*, e a frase que resume tudo: **"enquanto tatuo, o
+sistema funciona"**.
+
+Ele avisou que o limite de uso estava acabando e que retoma depois de redefinir.
+
+**O que já está pronto e serve de base:**
+- Lead chega em duas camadas: Netlify (sempre) e n8n (Data Table + Telegram)
+- Data Table `0dPX5Xhv6uvt5Puw` já tem as colunas certas, incluindo `status`
+  (hoje sempre "novo"), que é o começo natural de um funil
+- Fluxo `arSPpODp7X9BPs3n` ativo e testado
+
+**Ponto técnico que decide o projeto inteiro, confirmar antes de desenhar:**
+o WhatsApp só deixa mandar mensagem automática para quem falou com você nas
+últimas 24 horas, fora disso só com modelo aprovado pela Meta. No fluxo do
+André isso **joga a favor**: o cliente sempre chama ele primeiro pelo `wa.me`,
+então a janela de 24h já está aberta quando o lead entra. A automação de
+"manda foto de referência, local e tamanho" cabe dentro da regra.
+
+**A decidir com ele:**
+1. Por onde mandar: ManyChat (ele já tinha aberto, caminho mais curto) ou a API
+   oficial da Meta direto no n8n (mais trabalho, mais controle, sem mensalidade
+   de terceiro).
+2. Onde o n8n vai morar. Automação que roda "enquanto ele tatua" não pode
+   depender do notebook. Isso volta a ser bloqueio aqui: ou n8n Cloud (uns
+   US$ 20 a 25/mês) ou mover o fluxo para dentro da Netlify.
+3. O painel: pode ser uma página nova no site, protegida, lendo a Data Table.
+   Checar antes se o app `app/` que ele já tem não é o lugar certo, em vez de
+   criar uma terceira tela para ele acompanhar.
+
+**Regra da casa continua valendo:** nenhum valor em mensagem automática. Preço
+é conversa dele com o cliente.
+
 ### Sobre o endereço do ngrok
 
 Continua valendo: endereço gratuito muda a cada reinício do n8n. Quando mudar,

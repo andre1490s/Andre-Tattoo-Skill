@@ -9,15 +9,29 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
 
+# ATENCAO, isto ja causou um problema de verdade (06/11/2026).
+# Antes o css e o js ficavam 7 dias guardados no navegador do visitante
+# (max-age=604800). Resultado: o Andre testou o formulario 3 minutos depois de
+# uma atualizacao e o navegador dele ainda rodava o main.js velho, entao metade
+# do que eu tinha acabado de subir nao existia para ele.
+#
+# Como nao ha etapa de build, o nome do arquivo nunca muda, e o navegador nao
+# tem como saber que o conteudo mudou. Com must-revalidate ele pergunta ao
+# servidor a cada visita: se nada mudou vem um 304 vazio (barato), se mudou vem
+# o arquivo novo na hora. Arquivo de css e js aqui tem poucos KB, entao o custo
+# e irrelevante perto de uma correcao demorar uma semana para chegar.
+#
+# Imagem continua guardada por 30 dias de proposito: foto nova entra com nome
+# novo, entao nunca fica velha.
 [[headers]]
   for = "/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/img/*"
