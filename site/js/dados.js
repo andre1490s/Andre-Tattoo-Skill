@@ -103,15 +103,11 @@ window.DADOS = {
       { t:"A entrada vira crédito",
         d:"O que você paga para entrar é abatido da sua próxima tattoo. Na prática, a vaga não te custa nada a mais." },
       { t:"Agenda antes de todo mundo",
-        d:"Quando o mês abre, a sua data já está separada. Você não disputa horário com ninguém." },
+        d:"Datas novas eu solto primeiro no WhatsApp, só para os quinze. Vocês escolhem antes de abrir para o resto." },
       { t:"Projeto que não se repete",
         d:"O desenho é autoral e não vai para mais ninguém. Nem parecido." },
-      { t:"Retoque incluso",
-        d:"O que precisar de ajuste depois da cicatrização entra na sua vaga." },
       { t:"Canal direto comigo",
-        d:"Você fala comigo, não com recado. Dúvida de cuidado, ideia nova, remarcação." },
-      { t:"Primeiro a ver",
-        d:"Desenho novo que eu crio, membro vê antes de ir para o Instagram." }
+        d:"Você fala comigo, não com recado. Dúvida de cuidado, ideia nova, remarcação." }
     ],
 
     /* todo o esquema por escrito: é isto que a pessoa lê antes de decidir */
@@ -124,6 +120,8 @@ window.DADOS = {
         r:"O valor eu passo na conversa. E ele não é um custo a mais: a entrada é <strong>abatida da sua próxima tattoo</strong>. Valor de tattoo e de clube eu não publico no site, isso é conversa minha com você." },
       { p:"Como funciona esse abatimento?",
         r:"O que você pagou para entrar é descontado do valor da tattoo que você vier fazer comigo. Combinamos isso por escrito no WhatsApp antes de você pagar qualquer coisa." },
+      { p:"Como funciona a prioridade na agenda?",
+        r:"Quando eu abro datas novas, mando primeiro no WhatsApp, só para os quinze. Vocês escolhem, e só o que sobrar vai para o público." },
       { p:"É mensalidade?",
         r:"Não. Você paga uma vez, na entrada, e não tem cobrança nova depois." },
       { p:"A vaga é minha até quando?",
@@ -133,7 +131,7 @@ window.DADOS = {
       { p:"E se eu quiser sair?",
         r:"É só me avisar. A vaga volta para a fila e quem está esperando entra." },
       { p:"Membro ainda paga a sessão?",
-        r:"Paga, já com a entrada abatida. O clube trata de prioridade na agenda, projeto exclusivo e retoque." }
+        r:"Paga, já com a entrada abatida. O clube trata de prioridade na agenda e de projeto exclusivo." }
     ]
   },
 
