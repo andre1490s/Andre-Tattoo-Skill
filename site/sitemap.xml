@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://andretattoo.netlify.app/</loc>
+    <loc>https://andretattoo.com.br/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://andretattoo.netlify.app/clube-15</loc>
+    <loc>https://andretattoo.com.br/clube-15</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

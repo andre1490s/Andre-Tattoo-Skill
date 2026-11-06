@@ -74,53 +74,32 @@ sai na conversa, depois que você confirma que existe vaga. Essa ordem evita o
 pior cenário de um clube limitado, que é alguém pagar por uma vaga que já
 acabou e você passar a semana devolvendo dinheiro.
 
-## Trocar para o domínio próprio
+## O domínio próprio
 
-Enquanto o domínio novo não estiver respondendo, o site segue apontando para
-`andretattoo.netlify.app`. Trocar antes da hora faz o Google desindexar a página,
-porque o endereço canônico passa a apontar para um lugar que não existe.
+Feito em 05/11/2026. O site responde em **https://andretattoo.com.br**, com
+HTTPS emitido pela Netlify.
 
-Ordem certa: publicar na Netlify → registrar o domínio → ligar o domínio na
-Netlify → esperar o HTTPS → só então trocar as **6 linhas** abaixo.
+O domínio está no Registro.br, no CPF do André, e **expira em 05/11/2027**.
+Se vencer, volta ao mercado e qualquer um registra: renove antes.
 
-| Arquivo | Linha | O que é |
-|---|---|---|
-| `index.html` | `<link rel="canonical">` | o endereço oficial da página para o Google |
-| `index.html` | `og:url` | endereço no card de compartilhamento |
-| `index.html` | `og:image` | imagem do card de compartilhamento |
-| `index.html` | `"url"` e `"image"` no JSON-LD | ficha do estúdio para o Google |
-| `clube-15.html` | `canonical`, `og:url`, `og:image` | o mesmo, na página do clube |
-| `sitemap.xml` | os dois `<loc>` | o mapa do site |
-| `robots.txt` | `Sitemap:` | onde o mapa está |
+O DNS continua nos servidores do Registro.br (`a.auto.dns.br` e `b.auto.dns.br`),
+de propósito. O domínio nasceu com DNSSEC ativo, e trocar os servidores para os
+da Netlify sem desligar o DNSSEC antes derruba o site. Lá dentro existe um
+registro A apontando o domínio para `75.2.60.5`, que é o balanceador da Netlify.
 
-Depois da troca: reenviar o `sitemap.xml` no Search Console e atualizar o link
+O endereço `andretattoo.netlify.app` continua funcionando e não atrapalha: a
+tag canonical de cada página aponta para o domínio próprio, então o Google
+entende qual é o oficial.
+
+Se um dia o endereço mudar de novo, estas são as linhas:
+
+| Arquivo | Linha |
+|---|---|
+| `index.html` | `canonical`, `og:url`, `og:image`, e `url` e `image` no JSON-LD |
+| `clube-15.html` | `canonical`, `og:url`, `og:image` |
+| `sitemap.xml` | os dois `<loc>` |
+| `robots.txt` | `Sitemap:` |
+
+Depois de trocar: reenviar o `sitemap.xml` no Search Console e atualizar o link
 do site no Perfil da Empresa no Google, no Instagram e no TikTok.
 
-### Registro do domínio
-
-`andretattoo.com.br` estava livre no whois do Registro.br em 2026-10-27.
-Registro.br, R$ 40,00 por ano, pago com CPF. Conferido na origem nessa data;
-valor e disponibilidade podem ter mudado desde então.
-
-### Apontar o domínio para a Netlify
-
-Dois caminhos. O primeiro é o recomendado.
-
-**DNS na Netlify.** No Registro.br, trocar os servidores DNS pelos que a Netlify
-mostra ao adicionar o domínio. É o único jeito de o domínio sem `www` usar a
-rede de distribuição da Netlify, em vez de cair num IP fixo.
-
-**DNS no Registro.br.** Manter o DNS onde está e criar dois registros:
-
-| Nome | Tipo | Valor |
-|---|---|---|
-| (vazio ou `@`) | A | `75.2.60.5` |
-| `www` | CNAME | `andretattoo.netlify.app` |
-
-O Registro.br não oferece ALIAS nem ANAME, então o domínio raiz precisa mesmo
-do registro A. Valores conferidos na documentação da Netlify em 2026-10-27;
-a própria Netlify mostra os atuais na tela de adicionar domínio, e é por ela
-que se deve conferir na hora.
-
-Em qualquer um dos dois, o HTTPS é emitido sozinho pela Netlify depois que o
-DNS propaga. Só trocar as 6 linhas acima quando o cadeado já estiver aparecendo.
