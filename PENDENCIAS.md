@@ -79,6 +79,7 @@ commitada em `site/` **não chega ao ar**.
 - [ ] **André: dizer onde o site no ar é editado** — sem isso, as correções da etapa 1 do estudo não têm onde
       ser aplicadas.
 - [ ] **Colar o endereço do site no Perfil da Empresa** (etapa 0 do estudo; 2 minutos, maior retorno).
+- [ ] **Colar descrição e serviços no Perfil da Empresa** — texto pronto em [`site/PERFIL-GOOGLE.md`](site/PERFIL-GOOGLE.md). Falta você confirmar dois pontos: atende só com hora marcada? domingo e feriado?
 - [ ] **Criar o Search Console** e enviar o `sitemap.xml` — hoje ninguém sabe se o site está indexado.
 - [ ] **Pedir avaliação no fim de cada sessão.** Medido: **1,75 avaliação/mês** nos últimos 12 meses, com
       **zero em 6 dos 12 meses**; a meta da trilha é 4/mês constante. A taxa de resposta do André já é

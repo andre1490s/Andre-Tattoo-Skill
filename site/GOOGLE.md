@@ -4,6 +4,7 @@
 > ("Studio Andre Tattoo", nota 5,0 com 229 avaliações). Falta uma coisa dentro dele — **o site não está
 > vinculado ao perfil**. Esse é hoje o item de maior retorno do estúdio em busca.
 > A ordem de execução completa, com medição e portões, está em [`ESTUDO-SEO.md`](ESTUDO-SEO.md).
+> O texto pronto para colar no perfil (descrição, serviços, perguntas) está em [`PERFIL-GOOGLE.md`](PERFIL-GOOGLE.md).
 
 Três coisas diferentes costumam ser confundidas:
 

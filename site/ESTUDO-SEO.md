@@ -275,7 +275,8 @@ O estúdio tem reputação de primeira linha e um site que ninguém encontra. Es
 3. **Conferir o bairro do endereço** (Vila Matilde vs. Vila Esperança, item 2c).
 4. **Preencher descrição e serviços** do perfil com o vocabulário do item 4 — braço, antebraço, costas,
    fechamento, cobertura, realismo preto e cinza, fine line — sem preço (regra da marca) e sem lista
-   artificial de palavras.
+   artificial de palavras. **Texto pronto para colar em [`PERFIL-GOOGLE.md`](PERFIL-GOOGLE.md)**, com
+   descrição, 12 serviços, atributos, perguntas e respostas e a checagem final.
 5. **Ligar o botão de agendamento** do perfil para o site ou para o WhatsApp.
 6. **Subir 10 a 15 fotos** no perfil, com a mesma luz lateral e o mesmo enquadramento descritos em
    `ESTUDO-MERCADO-UX-CRO.md`, seção 6.1.
