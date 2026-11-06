@@ -21,13 +21,49 @@ Telegram está com um chat ID de exemplo.
 - **Chat ID do André: `6800960252`** (ele mandou em 06/11/2026, pelo @get_id_bot)
 - Onde colar: n8n > fluxo **Leads do site** (`arSPpODp7X9BPs3n`) > nó **Telegram** >
   campo **Chat ID** > salvar e publicar.
-- O nó está com `onError: continueRegularOutput`, então **o lead é gravado mesmo sem o
-  aviso**. Nada se perde enquanto isso.
 - [ ] Trocar o chat ID no nó do Telegram e disparar um teste pelo formulário do site.
 
-Não consegui fazer isso daqui: o conector do n8n não conecta nesta sessão (erro 404) e o
-endereço de ngrok do n8n está fora da lista de domínios liberados na rede deste ambiente
-(a conexão é recusada antes de sair). Os dois caminhos estão fechados do meu lado.
+Não consegui fazer isso daqui: o conector do n8n não conecta nesta sessão e o endereço de
+ngrok do n8n está fora da lista de domínios liberados na rede deste ambiente (a conexão é
+recusada antes de sair, 403 do proxy). Os dois caminhos estão fechados do meu lado.
+
+### CORREÇÃO de um erro meu (06/11/2026)
+
+Eu havia escrito aqui que "o lead é gravado mesmo sem o aviso, nada se perde". **Isso está
+errado** e só vale se o n8n estiver no ar. Fui ler o `site/js/main.js` (bloco 7) e o que
+acontece de verdade é:
+
+1. O site abre o WhatsApp **primeiro**, com nome, ideia, região e quando a pessoa pode.
+2. Depois manda o pedido ao n8n **em silêncio**: `fetch(...).catch(function(){})` engole
+   qualquer erro.
+
+Ou seja: com o n8n fora, o cliente ainda chega no WhatsApp (essa parte está salva), mas
+**o lead não é gravado e ninguém é avisado da falha**. Nem o André, nem o visitante.
+
+O desenho do site está certo (abrir o WhatsApp primeiro é o que importa). O problema é a
+base: ngrok gratuito, sem nenhum aviso quando quebra.
+
+### O 502 e o que conferir no n8n
+
+Quando o André reconectou o n8n em 06/11/2026, o erro do conector mudou de **404** para
+**502**. O 404 dizia "não achei esse conector"; o 502 diz "achei, tentei falar com o n8n
+e não teve resposta". Indica que a reconexão funcionou e o que não responde é o n8n.
+
+A conferir com o n8n aberto:
+- [ ] O n8n está rodando e o túnel do **ngrok está ativo**.
+- [ ] O fluxo **Leads do site** está **ativo/publicado**, não só salvo.
+- [ ] O endereço do webhook que o n8n mostra bate com o do site
+      (`webhook` no `js/dados.js`, hoje `https://unsaddle-arrange-track.ngrok-free.dev/webhook/lead-andre-tattoo`).
+      **Principal suspeito:** endereço de ngrok gratuito muda a cada reinício do n8n. Se
+      mudou, o site manda lead para um endereço morto desde então. É uma linha no
+      `dados.js`.
+
+### Proposta para quando o André quiser (não autorizada ainda)
+
+Tirar a captação de lead de cima do ngrok gratuito e colocar um aviso quando o formulário
+falhar, em vez de falhar calado. Caminho mais simples: Netlify Forms, que já roda no mesmo
+lugar onde o site está publicado, não cai junto com o n8n e manda e-mail a cada envio. O
+n8n continua recebendo também, como hoje. **Não mexer nisso sem o André mandar.**
 
 Esse número não é senha: quem manda mensagem é o bot, e o token do bot não está neste
 repositório. Mesmo assim, enquanto o repositório estiver público, é só avisar se preferir
