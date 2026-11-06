@@ -23,7 +23,7 @@ O Clube 15 é um grupo fechado de quinze clientes. A entrada é paga uma vez só
 O que você paga para entrar é abatido da sua próxima tattoo. Na prática, a vaga não te custa nada a mais.
 
 **2. Agenda antes de todo mundo**
-Datas novas eu solto primeiro no WhatsApp, só para os quinze. Vocês escolhem antes de abrir para o resto.
+Datas novas eu solto primeiro no WhatsApp, só para os quinze. Quem responde primeiro escolhe primeiro.
 
 **3. Projeto que não se repete**
 O desenho é autoral e não vai para mais ninguém. Nem parecido.
@@ -48,7 +48,7 @@ O valor eu passo na conversa. E ele não é um custo a mais: a entrada é abatid
 O que você pagou para entrar é descontado do valor da tattoo que você vier fazer comigo. Combinamos isso por escrito no WhatsApp antes de você pagar qualquer coisa.
 
 **5. Como funciona a prioridade na agenda?**
-Quando eu abro datas novas, mando primeiro no WhatsApp, só para os quinze. Vocês escolhem, e só o que sobrar vai para o público.
+Quando eu abro datas novas, mando primeiro no WhatsApp, só para os quinze. Atendo por ordem de resposta, um de cada vez: quem responde primeiro escolhe primeiro, e enquanto eu estou fechando com uma pessoa as outras esperam a vez. O que sobrar vai para o público.
 
 **6. É mensalidade?**
 Não. Você paga uma vez, na entrada, e não tem cobrança nova depois.
