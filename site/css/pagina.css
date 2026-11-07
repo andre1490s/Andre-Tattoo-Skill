@@ -1,0 +1,98 @@
+/* =====================================================================
+   ANDRE TATTOO — paginas de conteudo (braco, costas, realismo,
+   delicada, cuidados). Depende de css/style.css: usa os mesmos tokens
+   e as classes .sec, .h2, .eyebrow, .acc, .btn, .nav e .foot.
+   Nao mexe em nada do style.css — so acrescenta o que estas paginas usam.
+   ===================================================================== */
+
+/* o menu fixo nao pode cobrir o titulo quando se clica num link interno */
+section[id]{scroll-margin-top:92px}
+
+.pg-hero{padding-block:clamp(110px,14vw,170px) clamp(32px,4.5vw,56px)}
+.pg-hero h1{max-width:24ch}
+
+.lede{max-width:60ch;margin:24px 0 0;color:var(--cream-dim);
+  font-size:clamp(1rem,.5vw + .9rem,1.14rem);line-height:1.62}
+
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(26px,3.6vw,40px)}
+
+/* ---------- texto corrido ---------- */
+.prose{max-width:66ch;color:var(--cream-dim);font-size:.96rem;line-height:1.72}
+.prose p{margin:0 0 18px}
+.prose strong{color:var(--cream);font-weight:500}
+.prose h3{font-family:var(--ff-serif);font-weight:400;color:var(--cream);
+  font-size:clamp(1.12rem,1.8vw,1.42rem);line-height:1.25;margin:28px 0 10px}
+.prose h3:first-child{margin-top:0}
+.prose ul{list-style:none;padding:0;margin:0 0 18px}
+.prose ul li{position:relative;padding-left:24px;margin-bottom:11px}
+.prose ul li::before{content:"";position:absolute;left:3px;top:.68em;
+  width:9px;height:1px;background:var(--gold)}
+.prose--note{border-left:1px solid var(--gold);padding:4px 0 4px 20px;
+  margin-top:clamp(26px,3.4vw,40px);font-size:.92rem}
+.prose.two{max-width:none;display:grid;gap:clamp(22px,3.2vw,48px);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+
+/* ---------- galeria de pecas ---------- */
+.gal{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));
+  margin-top:clamp(28px,4vw,46px)}
+.gal__i{position:relative;margin:0;background:var(--ink);overflow:hidden}
+.gal__i picture{display:block}
+.gal__i img{display:block;width:100%;height:clamp(300px,42vw,440px);
+  object-fit:cover;object-position:50% 40%;
+  filter:saturate(.9) contrast(1.04);transition:transform .9s var(--ease)}
+.gal__i:hover img{transform:scale(1.03)}
+.gal__i figcaption{padding:16px 18px 20px}
+.gal__i figcaption b{display:block;font-family:var(--ff-serif);font-weight:400;
+  color:var(--cream);font-size:1.06rem;line-height:1.2}
+.gal__i figcaption span{display:block;margin-top:7px;font-size:.64rem;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- passos numerados ---------- */
+.steps{list-style:none;counter-reset:s;padding:0;
+  margin:clamp(26px,3.6vw,42px) 0 0;max-width:72ch}
+.steps li{counter-increment:s;position:relative;padding:0 0 22px 56px;
+  border-bottom:1px solid var(--line);margin-bottom:22px}
+.steps li:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:2px;
+  font-family:var(--ff-serif);font-size:1.3rem;color:var(--gold);line-height:1}
+.steps b{display:block;color:var(--cream);font-weight:500;font-size:1rem;margin-bottom:6px}
+.steps span{display:block;color:var(--cream-dim);font-size:.93rem;line-height:1.68}
+
+/* ---------- texto oficial de cuidados ---------- */
+.official{border:1px solid var(--line);background:var(--smoke);
+  padding:clamp(22px,3vw,38px);margin-top:clamp(26px,3.6vw,42px);max-width:72ch}
+.official ul{list-style:none;padding:0;margin:0}
+.official ul li{position:relative;padding-left:26px;margin-bottom:14px;
+  color:var(--cream-dim);font-size:.96rem;line-height:1.66}
+.official ul li::before{content:"";position:absolute;left:4px;top:.66em;
+  width:10px;height:1px;background:var(--gold)}
+.official p{margin:18px 0 0;color:var(--cream-dim);font-size:.93rem;line-height:1.68}
+.official__alert{border-top:1px solid var(--line);padding-top:18px}
+.official__alert strong{color:var(--cream)}
+
+/* ---------- veja tambem ---------- */
+.veja{max-width:var(--maxw);margin:0 auto;padding:clamp(34px,5vw,60px) var(--gut);
+  border-top:1px solid var(--line)}
+.veja__links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.veja__links a{border:1px solid var(--line);padding:11px 16px;font-size:.82rem;
+  color:var(--cream-dim);transition:border-color .4s var(--ease),color .4s var(--ease)}
+.veja__links a:hover{border-color:var(--gold);color:var(--cream)}
+
+.pg-cta{text-align:left}
+.pg-cta .lede{margin-top:18px}
+
+/* esta pagina nao tem menu sanduiche: o botao de agendar fica visivel no celular */
+@media (max-width:1040px){
+  .nav__cta{display:inline-flex;white-space:nowrap}
+  .nav{gap:12px}
+}
+@media (max-width:620px){
+  .nav__name{font-size:.92rem;letter-spacing:.12em}
+  .nav__mark{width:28px;height:28px}
+  .nav__cta{padding:10px 14px;font-size:.6rem;letter-spacing:.12em}
+}
+
+/* uma foto so, em largura cheia */
+.gal--solo{grid-template-columns:1fr;margin-top:0}
+.gal--solo .gal__i img{height:clamp(320px,46vw,520px);object-position:50% 45%}

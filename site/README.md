@@ -4,6 +4,29 @@ Site de captação: uma página, sem framework e sem build, pronto para a Netlif
 A arquitetura de seções e as decisões de conversão estão justificadas em
 [`ESTUDO-MERCADO-UX-CRO.md`](ESTUDO-MERCADO-UX-CRO.md) — leia antes de mudar a ordem das seções.
 
+## Páginas de conteúdo (etapa 3 do `ESTUDO-SEO.md`)
+
+Cinco páginas escritas para a demanda medida em São Paulo — região do corpo e significado, não nome de
+estilo. Cada uma tem `<h1>` único, `canonical`, `BreadcrumbList`, peças reais do portfólio com `alt`
+descritivo e as dúvidas respondidas pela política da casa.
+
+| Página | Para que busca | Peças usadas |
+|---|---|---|
+| `tatuagem-no-braco.html` | braço, no braço, antebraço, fechamento | retrato-bone, cigana-braco, nossa-senhora, fada-fineline |
+| `tatuagem-nas-costas.html` | costas, projeto grande | lirio-costas, vaso-stencil |
+| `realismo-preto-e-cinza.html` | o posicionamento da marca | retrato-bone, nossa-senhora, cigana-braco, retrato-oculos |
+| `tatuagem-feminina-delicada.html` | feminina, delicada, fine line | fada-fineline, lirio-costas, lirio-perna |
+| `cuidados-depois-da-tatuagem.html` | pomada, cicatrização, retoque | foto do estúdio |
+
+- Estilo e layout: `css/pagina.css` (só acrescenta; não mexe no `style.css`). Links e ano do rodapé:
+  `js/pagina.js`. **Todo o texto e as imagens estão no HTML** — a página continua completa se o script
+  não carregar, que é o contrário do portfólio da home, montado por JS.
+- **Regras que valem ao editar:** nenhum valor em nenhuma página (nem "a partir de"); nenhum depoimento,
+  número de clientes ou ano de carreira inventado; o texto de cuidados é o **oficial**, igual ao da skill
+  `pos-tattoo-avaliacao` e do app — se mudar, mude nos três.
+- As cinco entram no `sitemap.xml` com `lastmod` e são linkadas da home (bloco "Ver por estilo e região",
+  depois das especialidades) e do rodapé.
+
 Busca orgânica, Perfil da Empresa no Google e a ordem de execução estão em
 [`ESTUDO-SEO.md`](ESTUDO-SEO.md) — leia antes de mexer em `<title>`, dados estruturados ou `sitemap.xml`.
 O passo a passo operacional de pôr o site no Google continua em [`GOOGLE.md`](GOOGLE.md).

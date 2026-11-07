@@ -39,7 +39,7 @@ Tabela original:
 | Idade mínima **18 anos** | `orcamento-tattoo` |
 | Trabalho grande: **um por dia** | `orcamento-tattoo`, `resumo-agenda-semanal` |
 | Vocabulário: "sinal para reserva do horário" (nunca "entrada" ou "adiantamento"); nunca rotular por técnica (ex.: "pontilhismo") | `orcamento-tattoo`, `legenda-tattoo` |
-| Cuidados pós-tattoo: texto oficial (Cicaplast) | `pos-tattoo-avaliacao` |
+| Cuidados pós-tattoo: texto oficial (Cicaplast) | `pos-tattoo-avaliacao`, app Caixa e, desde 07/11/2026, a página `site/cuidados-depois-da-tatuagem.html` (não publicada: aguarda o André aprovar o texto) |
 | Referência interna: realismo em média **R$ 1.200** | `orcamento-tattoo` (só nota interna) |
 | Tempo disponível para conteúdo: 4 a 7 h/semana, 3 a 4 posts | `posts-semana-instagram` |
 | Agente de WhatsApp **Sofia** (n8n) e fluxo financeiro no n8n | `revisao-conversas-sofia`, `fechamento-mensal-estudio` |

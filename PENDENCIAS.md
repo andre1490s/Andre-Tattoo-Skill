@@ -78,7 +78,11 @@ seção de avaliações do Google, TikTok no rodapé, `/clube-15` sem extensão)
 commitada em `site/` **não chega ao ar**.
 
 - [ ] **André: dizer onde o site no ar é editado** — sem isso, as correções da etapa 1 do estudo não têm onde
-      ser aplicadas.
+      ser aplicadas, **e as cinco páginas novas não vão para o ar**.
+- [ ] **Aprovar o texto oficial de cuidados** antes de a página `site/cuidados-depois-da-tatuagem.html` ir ao
+      ar. É o mesmo texto que você já manda no WhatsApp (skill `pos-tattoo-avaliacao` e app), mas na página
+      ele fica público e permanente, e consta como "a confirmar" em `contexto/conflitos-a-resolver.md`.
+      Vale conferir principalmente a indicação do Cicaplast pelo nome.
 - [ ] **Colar o endereço do site no Perfil da Empresa** (etapa 0 do estudo; 2 minutos, maior retorno).
 - [ ] **Colar descrição e serviços no Perfil da Empresa** — texto pronto e já com o horário confirmado em [`site/PERFIL-GOOGLE.md`](site/PERFIL-GOOGLE.md). Ao preencher o horário, **marcar os sete dias**: perfil sem domingo fica fora do filtro "aberto agora" do Google justamente no dia em que o cliente pesquisa com calma.
 - [ ] **Criar o Search Console** e enviar o `sitemap.xml` — hoje ninguém sabe se o site está indexado.

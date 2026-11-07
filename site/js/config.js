@@ -17,7 +17,7 @@ window.SITE = {
   estudio: {
     endereco: "Av. Melchert, 606 — Vila Matilde",
     cidade: "São Paulo, SP",
-    horario: "Segunda a sábado, 9h às 22h",
+    horario: "Todos os dias, 9h às 22h",
     atendimento: "Somente com hora marcada",
     maps: "https://www.google.com/maps/search/?api=1&query=Av.+Melchert,+606+-+Vila+Matilde,+Sao+Paulo"
   },

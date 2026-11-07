@@ -353,6 +353,12 @@ página nova sem reputação atrás não ranqueia em busca local.
 
 ### Etapa 3 — Páginas para a demanda medida · mês 2 a 3 · Claude escreve, André aprova
 
+> **Escritas em 07/11/2026.** As cinco páginas estão em `site/`, com peças reais do portfólio, `<h1>`
+> único, `canonical`, `BreadcrumbList`, `sitemap.xml` com `lastmod` e links da home. Detalhe em
+> `site/README.md`. **Elas ainda não estão no ar**, pelo motivo do item 1.2: o site publicado não sai
+> deste repositório. E falta o André aprovar o texto oficial de cuidados, que é o único conteúdo da
+> etapa que ainda está como "a confirmar" em `contexto/conflitos-a-resolver.md`.
+
 Agora, e não antes, o site ganha páginas. Cinco, não trinta: a regra é **uma página por assunto que alguém
 pesquisa**, cada uma com foto real do portfólio do André, não texto de preenchimento.
 
