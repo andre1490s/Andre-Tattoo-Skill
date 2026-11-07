@@ -74,6 +74,6 @@ Sinal (política do André):
 
 ## Estúdio
 - Endereço: Av. Melchert, 606, Vila Matilde (São Paulo/SP presumido, **[confirmar]**).
-- Horário: segunda a sábado, das 9h às 22h. Domingo e feriado: **[confirmar]**.
+- Horário: **todos os dias, das 9h às 22h, inclusive domingo e feriado** (confirmado pelo André em 07/11/2026).
 - Canal de agendamento: **link na bio** do Instagram (@andretatuadoor). O link leva **direto ao WhatsApp, com formulário**.
-- **[confirmar]** se atende só com hora marcada.
+- Atendimento **somente com hora marcada** (confirmado pelo André em 07/11/2026).

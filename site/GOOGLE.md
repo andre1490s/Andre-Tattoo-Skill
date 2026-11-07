@@ -32,7 +32,7 @@ app.netlify.com → *Add new site* → arraste a pasta `site/`, ou ligue o repos
 "tatuagem realismo são paulo".
 - Categoria: **Estúdio de tatuagem**
 - Endereço: Av. Melchert, 606 — Vila Matilde
-- Horário: seg a sáb, 9h às 22h
+- Horário: todos os dias, 9h às 22h (inclusive domingo e feriado)
 - Telefone: (11) 98271-3543
 - Site: o endereço da Netlify
 - Suba 10 a 15 fotos das tattoos e do estúdio

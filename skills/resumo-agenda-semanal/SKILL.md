@@ -34,6 +34,6 @@ description: "Use quando o Andre pedir o resumo da agenda da semana: sessões ma
 - Nunca inventar sessão, horário, valor ou pagamento. O que não estiver na agenda vira [confirmar].
 - Sinal: sempre "sinal para reserva do horário", abatido do valor final. Valor: R$ 100 em trabalhos até R$ 1.000; 20% do valor em trabalhos acima de R$ 1.000. O valor final do trabalho é sempre passado pelo Andre. O sinal não é reembolsado em caso de cancelamento ou reagendamento.
 - Trabalho grande é um por dia; alertar se houver mais de um no mesmo dia.
-- Atendimento de segunda a sábado, das 9h às 22h (domingo e feriado: [confirmar] com o Andre).
+- Atendimento todos os dias, das 9h às 22h, inclusive domingo e feriado, somente com hora marcada (confirmado em 07/11/2026).
 - Não alterar nem criar eventos na agenda sem o Andre pedir.
 - Resumo curto e escaneável, sem emojis.

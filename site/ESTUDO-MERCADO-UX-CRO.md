@@ -173,7 +173,7 @@ ganho de conversão de toda a reforma.
 | **Link do seu Perfil da Empresa no Google** | Alto | Avaliação pública verificável vale mais que depoimento no site |
 | **Autorização de imagem** dos clientes das fotos publicadas | Obrigatório | Regra do próprio repositório |
 | 2 a 3 fotos do estúdio (ambiente, bancada) | Médio | Credibilidade de instalação física |
-| Confirmar: atende só com hora marcada? domingo/feriado? | Médio | Está no ar como "hora marcada" |
+| ~~Confirmar: atende só com hora marcada? domingo/feriado?~~ **Resolvido em 07/11/2026** | — | Somente com hora marcada, **todos os dias**, 9h às 22h. `marca.md` e o site atualizados |
 | Vídeo de 10 s de cicatrizado (30+ dias) | Médio | Mata a objeção nº 1 melhor que qualquer texto |
 
 ---

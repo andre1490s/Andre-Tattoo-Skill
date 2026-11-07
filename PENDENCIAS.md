@@ -65,7 +65,7 @@ Enquanto isso não for feito, não confie no site para guardar lead: confie no W
 - [x] (feito na v2) Etapa 2: registrar cada resposta do Assistente + botões "Serviu / Editei / Errou". **Decisão do André: o registro inclui o nome do cliente** (ele compara com o WhatsApp; quanto mais informação do cliente, melhor). Confirmar com ele se inclui também telefone e valores.
 - [x] (feito na v2) Etapa 3: tela de sugestões de melhoria, aprovadas pelo André, que atualizam as regras sem republicar o app.
 - [ ] Etapa 4 (opcional): análise semanal agendada.
-- [ ] Revisar em Ajustes do app: dias e horário de atendimento (padrão do app é todos os dias, 09:00 às 18:00; o André atende seg a sáb, 9h às 22h).
+- [ ] Corrigir em Ajustes do app o **horário de fechamento: 18:00 → 22:00**. Os dias do app já estavam certos: o André confirmou em 07/11/2026 que atende **todos os dias**, das 9h às 22h. O aviso "Aplicar padrões" do app ainda oferece "segunda a sábado" como padrão da casa (`app/src/js/novo.js`) — aplicar esse padrão hoje grava dia errado.
 - [ ] Mensagem de lembrete do app diz "remarcação perde o sinal"; a política inclui cancelamento. Alinhar quando o André quiser.
 
 ## SEO: o site no ar não é o do repositório (descoberto em 06/11/2026)
@@ -79,7 +79,7 @@ commitada em `site/` **não chega ao ar**.
 - [ ] **André: dizer onde o site no ar é editado** — sem isso, as correções da etapa 1 do estudo não têm onde
       ser aplicadas.
 - [ ] **Colar o endereço do site no Perfil da Empresa** (etapa 0 do estudo; 2 minutos, maior retorno).
-- [ ] **Colar descrição e serviços no Perfil da Empresa** — texto pronto em [`site/PERFIL-GOOGLE.md`](site/PERFIL-GOOGLE.md). Falta você confirmar dois pontos: atende só com hora marcada? domingo e feriado?
+- [ ] **Colar descrição e serviços no Perfil da Empresa** — texto pronto e já com o horário confirmado em [`site/PERFIL-GOOGLE.md`](site/PERFIL-GOOGLE.md). Ao preencher o horário, **marcar os sete dias**: perfil sem domingo fica fora do filtro "aberto agora" do Google justamente no dia em que o cliente pesquisa com calma.
 - [ ] **Criar o Search Console** e enviar o `sitemap.xml` — hoje ninguém sabe se o site está indexado.
 - [ ] **Pedir avaliação no fim de cada sessão.** Medido: **1,75 avaliação/mês** nos últimos 12 meses, com
       **zero em 6 dos 12 meses**; a meta da trilha é 4/mês constante. A taxa de resposta do André já é
@@ -110,7 +110,7 @@ Estudo completo em `site/ESTUDO-MERCADO-UX-CRO.md`. O que falta é só você:
 - [ ] Ligar as **notificações por e-mail** do Netlify Forms (Forms → Form notifications) para receber os pedidos.
 - [ ] Criar **GA4 e Meta Pixel** e me passar os IDs (os eventos já estão instrumentados).
 - [ ] 2 a 3 fotos do ambiente do estúdio (bancada, sala) — hoje só há fotos suas.
-- [ ] Confirmar: atende só com hora marcada? domingo e feriado?
+- [x] Confirmado em 07/11/2026: **somente com hora marcada**, **todos os dias**, das 9h às 22h. Já propagado para `contexto/marca.md`, `site/index.html`, `site/clube-15-membro.html`, `site/GOOGLE.md`, `site/PERFIL-GOOGLE.md` e as skills `resumo-agenda-semanal` e `orcamento-tattoo`.
 - [ ] Opcional, alto impacto: vídeo de 10 s de uma peça **cicatrizada** (30+ dias).
 - [ ] Liberar na rede do ambiente os domínios dos sites de referência (fernandosouzatattoo.com.br,
       robertocarlosart.com, dobskennel.com.br, camilotuero.art) para eu completar a análise de concorrência.
@@ -123,7 +123,7 @@ Estudo completo em `site/ESTUDO-MERCADO-UX-CRO.md`. O que falta é só você:
 ## Contexto de marca ainda em aberto (`contexto/marca.md`)
 - [ ] R$ 1.000 exato: entra no sinal de R$ 100 ou no de 20%?
 - [ ] Formas de pagamento (Pix, cartão, parcelamento) e como o sinal é passado ao cliente.
-- [ ] Atende só com hora marcada? Domingo e feriado?
+- [x] Atende só com hora marcada? Domingo e feriado? → **somente com hora marcada, todos os dias, 9h às 22h** (confirmado em 07/11/2026).
 - [ ] Cidade (presumida São Paulo/SP).
 - [ ] Texto de preparação para a sessão (o que o cliente faz antes).
 - [ ] Regras do "Indique e Ganhe".

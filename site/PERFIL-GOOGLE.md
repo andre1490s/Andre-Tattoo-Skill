@@ -21,20 +21,20 @@ relevância que o nome daria vem da categoria, dos serviços e da descrição, q
 
 ## 1. Descrição (Informações → Descrição da empresa · limite de 750 caracteres)
 
-**Versão principal — 733 caracteres:**
+**Versão principal — 716 caracteres:**
 
 ```
 Estúdio de tatuagem autoral na Vila Matilde, zona leste de São Paulo, com foco em realismo preto e cinza: retratos, animais, peças religiosas e fechamento de braço, antebraço, costas e perna. Também faço fine line, trabalhos delicados, blackwork, aquarela e cobertura de tatuagem antiga.
 
-Cada projeto é desenhado do zero para a sua ideia e para a região do corpo, e você vê o desenho antes da sessão. O atendimento é somente com hora marcada, em ambiente reservado, com material descartável aberto na sua frente.
+Cada projeto é desenhado do zero para a sua ideia e para a região do corpo, e você vê antes da sessão. O atendimento é somente com hora marcada, em ambiente reservado, com material descartável aberto na sua frente.
 
-Você manda a ideia, as referências, o local do corpo e o tamanho pelo WhatsApp; eu avalio e passo o valor; a data fica reservada com o sinal. Segunda a sábado, das 9h às 22h. Maiores de 18 anos, com documento com foto.
+Você manda a ideia, o local do corpo e o tamanho pelo WhatsApp; eu avalio e passo o valor; a data fica reservada com o sinal. Atendo todos os dias, das 9h às 22h, inclusive domingo e feriado. Maiores de 18 anos.
 ```
 
-**Versão curta — 475 caracteres** (se preferir algo mais enxuto, ou para reaproveitar em outros cadastros):
+**Versão curta — 501 caracteres** (se preferir algo mais enxuto, ou para reaproveitar em outros cadastros):
 
 ```
-Tatuagem autoral na Vila Matilde, São Paulo, com foco em realismo preto e cinza: retratos, animais, peças religiosas e fechamento de braço, antebraço e costas. Também fine line, trabalhos delicados, blackwork e cobertura de tatuagem antiga. Cada desenho é feito do zero para a sua ideia, e você vê antes da sessão. Atendimento somente com hora marcada, em ambiente reservado, com material descartável aberto na sua frente. Segunda a sábado, das 9h às 22h. Maiores de 18 anos.
+Tatuagem autoral na Vila Matilde, São Paulo, com foco em realismo preto e cinza: retratos, animais, peças religiosas e fechamento de braço, antebraço e costas. Também fine line, trabalhos delicados, blackwork e cobertura de tatuagem antiga. Cada desenho é feito do zero para a sua ideia, e você vê antes da sessão. Atendimento somente com hora marcada, em ambiente reservado, com material descartável aberto na sua frente. Todos os dias, das 9h às 22h, inclusive domingo e feriado. Maiores de 18 anos.
 ```
 
 **Por que esse texto e não outro.** Cada palavra ali tem motivo medido no `ESTUDO-SEO.md`, item 4:
@@ -47,6 +47,7 @@ Tatuagem autoral na Vila Matilde, São Paulo, com foco em realismo preto e cinza
 | realismo preto e cinza, peças religiosas | o posicionamento da marca, e "tatuagem santa ceia" está subindo 70% |
 | cobertura de tatuagem antiga | serviço que o André faz e que o cliente procura por nome |
 | material descartável, ambiente reservado, hora marcada | as objeções reais do cliente, resolvidas antes da conversa |
+| **todos os dias, inclusive domingo e feriado** | é vantagem competitiva de verdade: o Google filtra por "aberto agora", e quem pesquisa tatuador no domingo encontra quem está aberto no domingo |
 | desenho do zero, você vê antes | sustenta o ticket sem citar valor |
 | maiores de 18 anos | regra do estúdio, filtra lead errado de graça |
 
@@ -87,7 +88,7 @@ Marcar só o que for verdade. O que já se sabe pelo repositório e pelo site:
 
 | Atributo | Marcar? |
 |---|---|
-| Agendamento obrigatório / necessário | **Sim** — "somente com hora marcada" |
+| Agendamento obrigatório / necessário | **Sim** — somente com hora marcada (confirmado pelo André em 07/11/2026) |
 | Atendimento no local | **Sim** |
 | Exige documento com foto (18+) | Sim, se o Google oferecer o campo; se não, já está na descrição |
 
@@ -146,14 +147,21 @@ Autorização de imagem do cliente vale aqui igual ao site: regra do repositóri
 - [ ] Nome inalterado: "Studio Andre Tattoo"
 - [ ] Nenhum valor em nenhum campo
 - [ ] Nenhum serviço que o estúdio não faz (maori, piercing)
-- [ ] Horário: segunda a sábado, 9h às 22h
+- [ ] Horário: **todos os dias, das 9h às 22h** — os sete dias preenchidos, sem domingo marcado como fechado
 - [ ] Telefone: (11) 98271-3543
 - [ ] Botão de agendamento apontando para o site ou para o WhatsApp
 
-**Dois pontos que dependem de você antes de colar** (estão como `[confirmar]` no `contexto/marca.md`, e o
-texto acima seguiu o que o site já afirma em público):
+## 7. Os dois pontos que estavam em aberto — respondidos em 07/11/2026
 
-1. **"Somente com hora marcada"** — o site no ar diz isso. Se atender sem agendamento em algum caso, me avise
-   que eu troco a frase.
-2. **Domingo e feriado** — a descrição diz "segunda a sábado". Se atender em algum domingo, o horário do
-   perfil precisa refletir isso, senão o Google mostra o estúdio como fechado na hora em que ele está aberto.
+O André confirmou: **atende somente com hora marcada** e **atende todos os dias**. As duas coisas saíram de
+`[confirmar]` em `contexto/marca.md` e já estão no texto acima, no site e nas skills que repetiam o horário.
+
+**Por que isso vale mais do que parece.** O Google filtra resultado local por "aberto agora", e o perfil só
+entra nesse filtro se os sete dias estiverem preenchidos. Dos dez concorrentes com reputação relevante no
+raio de 2,5 km (item 2 do `ESTUDO-SEO.md`), estúdio de tatuagem que atende domingo é minoria — e domingo é
+justamente quando o cliente tem tempo de pesquisar e decidir. Preencher os sete dias no perfil é ganho de
+visibilidade sem custo nenhum.
+
+Uma consequência operacional, que não é de SEO: com domingo e feriado na agenda, o lembrete de sessão e o
+resumo semanal passam a contar sete dias. As skills `resumo-agenda-semanal` e `orcamento-tattoo` já foram
+atualizadas; **o app Caixa ainda está com 9h às 18h nos Ajustes** e continua pendente em `PENDENCIAS.md`.
