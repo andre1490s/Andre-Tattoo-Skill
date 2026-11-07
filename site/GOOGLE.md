@@ -65,7 +65,12 @@ de bairro, mais tempo para termos disputados como "tatuagem realismo são paulo"
 Empresa** dá resultado bem antes disso. O que mais acelera o site: mais peças publicadas (cada
 uma é conteúdo novo) e avaliações no Google.
 
-## Domínio próprio (opcional)
+## Domínio próprio — JÁ ESTÁ NO AR (verificado em 07/11/2026)
+
+**`https://andretattoo.com.br` é hoje o endereço principal do site**, e o código já usa ele no `canonical`,
+no `sitemap.xml` e no `robots.txt`. O que segue abaixo é o registro de como isso foi decidido.
+
+### Como era quando este guia foi escrito
 `andretattoo.com.br` custa cerca de R$ 40/ano no **registro.br** e se liga à Netlify sem custo
 extra. Não muda nada no Google no curto prazo, mas passa mais credibilidade do que um
 endereço `.netlify.app` — principalmente para cliente de ticket alto.

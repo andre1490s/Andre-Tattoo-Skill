@@ -6,8 +6,8 @@ Novembro/2026 · respeita as regras de `contexto/marca.md`: sem preço, sem esca
 
 ## Antes de colar: a ordem das três coisas
 
-1. **Vincular o site** (Informações → Site): `https://andretattoo.netlify.app`. É o item de maior retorno
-   do estudo inteiro e não depende de nenhum texto abaixo.
+1. **Vincular o site** (Informações → Site): **`https://andretattoo.com.br`** — o domínio próprio, não o
+   endereço `.netlify.app`. É o item de maior retorno do estudo inteiro e não depende de nenhum texto abaixo.
 2. **Conferir a categoria principal:** deve ser **Estúdio de tatuagem** — é o fator individual mais forte do
    bloco local. Hoje está correta; só confirmar que ninguém mexeu.
 3. **Colar descrição e serviços** (abaixo).

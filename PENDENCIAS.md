@@ -28,7 +28,13 @@ Decisões do André em 31/10/2026: nome **Clube 15**, mensalidade pode aparecer 
 - [ ] **Validar com advogado ou contador** antes de o regulamento ir ao ar: devolução do saldo, validade de 12 meses do crédito, permanência mínima de 3 meses e nota fiscal. Lista de perguntas no fim do `REGULAMENTO.md`.
 - [ ] **A partir de 10/11 — gravar e publicar o vídeo** (`clube-15/ROTEIRO-VIDEO.md`). Pedir autorização de imagem dos clientes que aparecerem.
 
-## URGENTE: o Netlify Forms está desligado (descoberto em 31/10/2026)
+## ~~URGENTE: o Netlify Forms está desligado~~ — RESOLVIDO (verificado em 07/11/2026)
+
+Consultei a Netlify hoje: **a detecção de formulários está ligada** (`forms: enabled`) no projeto
+`andretattoo`. A branch publicada também passou a mandar o lead para o Netlify Forms além do n8n, e há aviso
+por Telegram. O texto abaixo fica como registro do que estava errado até 06/11/2026.
+
+### Como era até 06/11/2026
 
 Consultei o projeto `andretattoo` na Netlify: **a detecção de formulários está desligada e não há
 nenhum formulário registrado**. Consequência prática:
@@ -69,23 +75,28 @@ Enquanto isso não for feito, não confie no site para guardar lead: confie no W
 - [ ] **André, no app:** os ajustes ficam salvos no seu aparelho, então o código não muda o que já está gravado. Abra a tela **Hoje** e toque em **"Aplicar padrões"** no aviso "Ajustes da casa" — isso grava os sete dias e o fechamento às 22h de uma vez. Se preferir fazer à mão, é em *Ajustes do estúdio*. Enquanto não fizer, o calendário mostra domingo como "Fora dos seus dias de atendimento" e esconde as janelas livres.
 - [ ] Mensagem de lembrete do app diz "remarcação perde o sinal"; a política inclui cancelamento. Alinhar quando o André quiser.
 
-## SEO: o site no ar não é o do repositório (descoberto em 06/11/2026)
+## SEO: duas branches do site (atualizado em 07/11/2026)
 
 Estudo completo, com a trilha de seis etapas, em [`site/ESTUDO-SEO.md`](site/ESTUDO-SEO.md).
 
-O que está publicado em `andretattoo.netlify.app` **não é o código de `site/` deste repositório** (tema claro,
-seção de avaliações do Google, TikTok no rodapé, `/clube-15` sem extensão). Qualquer correção de SEO
-commitada em `site/` **não chega ao ar**.
+**O que a Netlify mostra:** o site no ar sai **deste repositório**, da branch
+**`claude/awesome-gauss-8n5y96`**, pasta `site/` (lá o site antigo virou `site-v1/`), e o endereço principal
+é **`https://andretattoo.com.br`** — o domínio próprio já está funcionando. A branch de SEO
+(`claude/seo-em-trilha-23ouwm`) tem a versão antiga do site, então **correção feita nela não chega ao ar**.
 
-- [ ] **André: dizer onde o site no ar é editado** — sem isso, as correções da etapa 1 do estudo não têm onde
-      ser aplicadas, **e as cinco páginas novas não vão para o ar**.
-- [ ] **Aprovar o texto oficial de cuidados** antes de a página `site/cuidados-depois-da-tatuagem.html` ir ao
-      ar. É o mesmo texto que você já manda no WhatsApp (skill `pos-tattoo-avaliacao` e app), mas na página
-      ele fica público e permanente, e consta como "a confirmar" em `contexto/conflitos-a-resolver.md`.
-      Vale conferir principalmente a indicação do Cicaplast pelo nome.
+- [ ] **DECISÃO: como juntar as duas branches.** As cinco páginas novas e as correções de SEO estão na branch
+      de SEO, escritas em cima da versão antiga do site. Para irem ao ar precisam ser portadas para a `site/`
+      da branch publicada (tema claro, `js/main.js` e `js/dados.js`, endereços sem `.html`). É só dizer que eu
+      faço — mas preciso de autorização para trabalhar naquela branch.
+- [x] **Texto oficial de cuidados: APROVADO pelo André em 07/11/2026.** Registrado em `contexto/marca.md`.
+      Vale igual nos três lugares: skill `pos-tattoo-avaliacao`, app Caixa e a página do site. Mudar nos três
+      juntos.
 - [ ] **Colar o endereço do site no Perfil da Empresa** (etapa 0 do estudo; 2 minutos, maior retorno).
 - [ ] **Colar descrição e serviços no Perfil da Empresa** — texto pronto e já com o horário confirmado em [`site/PERFIL-GOOGLE.md`](site/PERFIL-GOOGLE.md). Ao preencher o horário, **marcar os sete dias**: perfil sem domingo fica fora do filtro "aberto agora" do Google justamente no dia em que o cliente pesquisa com calma.
-- [ ] **Criar o Search Console** e enviar o `sitemap.xml` — hoje ninguém sabe se o site está indexado.
+- [x] **Search Console: posse confirmada** — o arquivo `site/google7695fdf6c6a1b3b8.html` está na branch
+      publicada.
+- [ ] **Enviar o `sitemap.xml` no Search Console** (propriedade `andretattoo.com.br`) e pedir indexação.
+      É o que falta para a trilha ter régua: sem isso ninguém sabe quais buscas trazem gente.
 - [ ] **Pedir avaliação no fim de cada sessão.** Medido: **1,75 avaliação/mês** nos últimos 12 meses, com
       **zero em 6 dos 12 meses**; a meta da trilha é 4/mês constante. A taxa de resposta do André já é
       96,7% — falta o pedido, não a resposta. Skills `pos-tattoo-avaliacao` e `responder-avaliacoes-google`.

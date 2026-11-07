@@ -19,7 +19,7 @@ principalmente para provar isso com número.
 | Perfil da Empresa no Google (nota, avaliações, categoria, site vinculado) | dados públicos do Google Maps |
 | Ritmo de avaliações dos últimos 24 meses e taxa de resposta | amostra das 60 avaliações mais recentes |
 | 20 estúdios concorrentes num raio de ~2,5 km | busca "estúdio de tatuagem Vila Matilde São Paulo" |
-| O site no ar (`andretattoo.netlify.app`): cabeçalho, dados estruturados, títulos, sitemap, robots | leitura direta da página publicada |
+| O site no ar (`andretattoo.com.br`): cabeçalho, dados estruturados, títulos, sitemap, robots | leitura da página publicada e do código-fonte da branch que a Netlify publica |
 | O que São Paulo pesquisa em 12 meses | consultas relacionadas de busca, estado de SP |
 | Peso de cada fator de ranqueamento local | pesquisa Local Search Ranking Factors 2026 + documentação do Google |
 
@@ -62,12 +62,24 @@ escrito na página e não vem do Google em tempo real.
 Esse número vai envelhecer sozinho e, pior, é exatamente o tipo de dado que o Google prefere ler do perfil,
 não da página (item 5.3).
 
-### 1.2 O site no ar não é o site deste repositório
+### 1.2 Correção de 07/11/2026: o site no ar é deste repositório, em outra branch
 
-O que está publicado em `andretattoo.netlify.app` **não é** o código de `site/` deste repositório. Comparação
-feita na página publicada:
+**O que este item dizia antes estava errado, e a correção importa.** Consultando o projeto na Netlify, o
+deploy de produção vem de:
 
-| | `site/` no repositório | O que está no ar |
+| | |
+|---|---|
+| Repositório | `github.com/andre1490s/Andre-Tattoo-Skill` — **este** |
+| Branch publicada | **`claude/awesome-gauss-8n5y96`** |
+| Pasta | `site/` daquela branch (o site antigo foi renomeado lá para `site-v1/`) |
+| Commit no ar | `3833811`, publicado em 06/11/2026 |
+| **Endereço principal** | **`https://andretattoo.com.br`** — o domínio próprio já está no ar |
+
+Ou seja: não são dois projetos, são **duas branches do mesmo repositório**. A `site/` que eu li para
+escrever este estudo é a versão antiga (lá chamada `site-v1/`); o site que o cliente vê é a `site/` da outra
+branch. A comparação abaixo continua valendo — ela descreve a diferença entre as duas versões:
+
+| | `site/` desta branch (versão antiga) | `site/` da branch publicada |
 |---|---|---|
 | Tema | escuro | claro (`#F3F1EC`) |
 | Topo | vídeo em slow motion | título "Transformando suas ideias em desenhos únicos" |
@@ -77,9 +89,9 @@ feita na página publicada:
 | TikTok no rodapé | não existe | **@andretattoo.ink** |
 | Dados estruturados | `TattooParlor` + `FAQPage` | `LocalBusiness`, `TattooParlor`, `AggregateRating`, `Review`, `FAQPage`, `BreadcrumbList` |
 
-**Consequência direta:** toda correção técnica da etapa 1 precisa ser feita **onde o site no ar é gerado**, e
-esse lugar não está aqui. Enquanto isso não se resolver, qualquer ajuste de SEO commitado em `site/` é
-trabalho que não chega ao cliente. Isso é pendência de decisão do André, não de execução — está no item 9.
+**Consequência direta:** correção de SEO precisa ser feita na `site/` da branch `claude/awesome-gauss-8n5y96`,
+não na desta branch. Mexer na versão antiga é trabalho que não chega ao cliente. O que falta agora não é
+informação, é decidir como juntar as duas linhas de trabalho — está no item 9.
 
 Observação de marca: o TikTok **@andretattoo.ink** aparece no site no ar e **não existe em
 `contexto/marca.md`**. Para o Google, cada perfil oficial é um sinal de que a entidade "André Tattoo" é real
@@ -217,7 +229,15 @@ Quatro conclusões, e elas contrariam o instinto:
 
 ## 5. Auditoria do site no ar
 
-Leitura direta de `andretattoo.netlify.app` em 06/11/2026.
+Leitura da página publicada em 06/11/2026 e **do código-fonte da branch publicada em 07/11/2026**.
+
+> **Três itens desta auditoria foram corrigidos em 07/11/2026.** A primeira leitura foi feita por extração
+> automática da página renderizada, e ela errou em três pontos: disse que não havia `canonical` (há, e aponta
+> para `https://andretattoo.com.br/`, correto); disse que havia dois `<h1>` (há um só); e listou dados
+> estruturados de `LocalBusiness`, `AggregateRating`, `Review` e `BreadcrumbList` que **não existem no
+> código**. Conferido no fonte: a página declara `TattooParlor` (com endereço e horário) e injeta `FAQPage`
+> por JavaScript — nada mais. As ferramentas de extração reescrevem endereços para o host consultado e
+> inferem o que não está lá; o fonte manda.
 
 ### 5.1 O que já está certo (e não precisa de ninguém)
 - `<title>` com estúdio + estilo + bairro + cidade, dentro do tamanho que o Google exibe inteiro
@@ -230,29 +250,33 @@ Leitura direta de `andretattoo.netlify.app` em 06/11/2026.
   para entender foto de tatuagem
 - `robots.txt` e `sitemap.xml` publicados e válidos
 
-### 5.2 Os cinco problemas, em ordem de impacto
+### 5.2 Os quatro problemas, em ordem de impacto
 
 | # | Problema | Por que importa | Custo de corrigir |
 |---|---|---|---|
-| 1 | **Avaliações marcadas como dados estruturados próprios** (`AggregateRating` + `Review` dentro de `LocalBusiness`) | O Google **não exibe estrela** para avaliação que o próprio negócio controla, inclusive vinda do widget do Google. É código que não produz nada e pode arrastar o resto dos dados estruturados na validação | 10 min |
-| 2 | **O único `<h1>` da página não diz o que o negócio é** — "Transformando suas ideias em desenhos únicos." | O `<title>` acerta tudo (estúdio + estilo + bairro); o `<h1>`, que é o título do conteúdo, não tem "tatuagem", "realismo" nem "Vila Matilde". Logo acima dele existe a frase certa — "Tatuador na Vila Matilde, São Paulo" — em texto comum | 10 min |
-| 3 | **Uma página só** (mais `/clube-15`) | Com 15% de peso no bloco local e **33% no orgânico**, uma página só consegue competir por um assunto. A demanda do item 4 está dividida em cinco ou seis assuntos | etapa 3 |
-| 4 | **Nenhuma medição instalada** — sem GA4, sem Pixel | Sem isso, toda decisão de SEO daqui para frente é palpite, inclusive avaliar esta trilha | 20 min (depende dos IDs) |
-| 5 | **`sitemap.xml` sem `lastmod`** e imagens sem `width`/`height` declarados | `lastmod` ajuda o Google a priorizar a recoleta; dimensão declarada evita a página "pular" enquanto carrega, o que conta na experiência medida | 15 min |
+| 1 | **O único `<h1>` da página não diz o que o negócio é** — "Transformando suas ideias em desenhos únicos." | O `<title>` acerta tudo (estúdio + estilo + bairro); o `<h1>`, que é o título do conteúdo, não tem "tatuagem", "realismo" nem "Vila Matilde". Logo acima dele existe a frase certa — "Tatuador na Vila Matilde, São Paulo" — em texto comum | 10 min |
+| 2 | **Uma página só** (mais `/clube-15`) | Com 15% de peso no bloco local e **33% no orgânico**, uma página só consegue competir por um assunto. A demanda do item 4 está dividida em cinco ou seis assuntos | etapa 3 |
+| 3 | **Nenhuma medição instalada** — sem GA4, sem Pixel (conferido no fonte: nenhum `gtag`, nenhum `fbq`) | Sem isso, toda decisão de SEO daqui para frente é palpite, inclusive avaliar esta trilha | 20 min (depende dos IDs) |
+| 4 | **`sitemap.xml` sem `lastmod`**, com duas URLs, e imagens sem `width`/`height` declarados | `lastmod` ajuda o Google a priorizar a recoleta; dimensão declarada evita a página "pular" enquanto carrega, o que conta na experiência medida | 15 min |
 
-### 5.3 Sobre o problema nº 1, com fonte
+### 5.3 Um aviso para não criar problema: avaliação não se marca como dado estruturado
 
-O Google documenta duas coisas que se somam exatamente neste caso:
+A página mostra a nota e seis avaliações do Google, e a tentação óbvia de quem for mexer nela é marcar isso
+como `AggregateRating` para tentar estrela na busca. **Não faça.** O Google documenta:
 
 > *"Se a entidade avaliada controla as avaliações sobre si mesma, as páginas que usam `LocalBusiness` ou
 > qualquer outro tipo de `Organization` são inelegíveis para o recurso de estrela. Por exemplo, uma avaliação
 > sobre a entidade A colocada no site da entidade A, diretamente nos dados estruturados ou por um widget de
 > terceiro (como o widget de avaliações do Google)."*
 
-Ou seja: a seção de avaliações do site **continua valendo muito para o cliente que lê** — é prova social
-perto do botão, é o que o estudo de CRO pede. O que não vale é marcá-la como dados estruturados esperando
-estrela na busca: isso não vai acontecer. **Não é punição, é inelegibilidade.** A estrela do André já aparece
-na busca — pelo Perfil da Empresa, que é o lugar certo dela.
+Hoje o site **não** faz isso, e está certo assim. A seção de avaliações vale muito para o cliente que lê —
+é prova social perto do botão, é o que o estudo de CRO pede. O que não funcionaria é marcá-la esperando
+estrela: **não é punição, é inelegibilidade.** A estrela do André já aparece na busca, pelo Perfil da
+Empresa, que é o lugar certo dela.
+
+Na mesma linha: o `FAQPage` que o `main.js` injeta não custa nada e pode ficar, mas não conte com resultado
+rico por causa dele — desde 2023 o Google restringiu a exibição de FAQ em destaque a sites de governo e de
+saúde. Ele serve hoje para a máquina entender a página, não para ganhar espaço na tela.
 
 ---
 
@@ -291,11 +315,13 @@ O estúdio tem reputação de primeira linha e um site que ninguém encontra. Es
 Enquanto não existe Search Console, ninguém sabe se o site está indexado — e esta trilha inteira fica sem
 régua.
 
-1. **Search Console** (search.google.com/search-console): adicionar `andretattoo.netlify.app`, confirmar a
-   posse, enviar o `sitemap.xml`, pedir indexação das duas páginas. Passo a passo em `site/GOOGLE.md`.
+1. **Search Console** — a **posse já está confirmada**: o arquivo de verificação
+   `site/google7695fdf6c6a1b3b8.html` está na branch publicada. Falta a parte que gera dado: entrar em
+   search.google.com/search-console na propriedade `andretattoo.com.br`, **enviar o `sitemap.xml`** e pedir
+   indexação das páginas. Passo a passo em `site/GOOGLE.md`.
 2. **GA4** (e Pixel, se o Ads continuar): criar e me passar os IDs.
-3. **Decidir onde o site no ar é editado** (item 1.2). Sem isso, as correções abaixo não têm onde ser
-   aplicadas.
+3. **Decidir como juntar as duas branches** (item 1.2). As correções abaixo valem para a `site/` da branch
+   `claude/awesome-gauss-8n5y96`, que é a publicada.
 4. **Corrigir os itens de código do 5.2:** tirar `AggregateRating`/`Review` dos dados estruturados; reescrever
    o `<h1>` para dizer o que o negócio é e onde fica (a frase "Tatuador na Vila Matilde, São Paulo" já está na
    página, logo acima — basta promovê-la, mantendo a frase atual como subtítulo); `lastmod` no `sitemap.xml`;
@@ -438,9 +464,11 @@ agendada** — cruzamento que só o app Caixa sabe fazer (`gestor-financeiro`, `
   com estúdio de centro. "Perto de mim" + bairro + região do corpo paga mais rápido.
 - **Não citar preço em página nenhuma** (regra da marca; a mensalidade do Clube 15 é a única exceção já
   autorizada).
-- **Não trocar de domínio agora.** `andretattoo.com.br` vale pela credibilidade (e está no `GOOGLE.md`), mas
-  trocar endereço **antes** de ter indexação medida é perder a pouca autoridade acumulada sem saber quanto se
-  perdeu. Primeiro a etapa 1; depois, se quiser, o domínio — com redirecionamento 301 de tudo.
+- **Não trocar de domínio de novo.** O `andretattoo.com.br` já está no ar como endereço principal, e o
+  código já usa ele no `canonical`. Trocar endereço outra vez custa autoridade acumulada. O que vale
+  conferir no Search Console é se a propriedade do domínio é a que está recebendo dado, e se o
+  `andretattoo.netlify.app` responde com redirecionamento para o domínio em vez de servir o mesmo conteúdo
+  nos dois endereços.
 
 ---
 
@@ -465,8 +493,8 @@ Dois minutos, e é a diferença entre ter um site e ter um site que alguém enco
 | Item | Impacto | Por quê |
 |---|---|---|
 | **Vincular o site no Perfil da Empresa** | **Altíssimo** | 229 avaliações apontando para lugar nenhum |
-| **Dizer onde o site no ar é editado** (item 1.2) | **Altíssimo** | sem isso, nenhuma correção de código chega ao ar |
-| Criar Search Console e enviar o sitemap | Alto | é a régua de tudo |
+| **Decidir como juntar as duas branches** (item 1.2) | **Altíssimo** | a branch publicada é a `claude/awesome-gauss-8n5y96`; correção feita na outra não chega ao ar |
+| Enviar o `sitemap.xml` no Search Console (a posse já está confirmada) | Alto | é a régua de tudo |
 | Criar GA4 (e Pixel) e passar os IDs | Alto | sem medição, SEO é palpite |
 | Confirmar o bairro do CEP 03508-000 no perfil | Médio | bairro divergente é relevância perdida |
 | Confirmar e registrar o TikTok @andretattoo.ink em `contexto/marca.md` | Médio | é sinal de entidade e está fora da fonte de verdade |
@@ -489,5 +517,5 @@ Dois minutos, e é a diferença entre ter um site e ter um site que alguém enco
 
 **Dados próprios coletados em 06/11/2026:** Perfil da Empresa e 20 concorrentes via dados públicos do Google
 Maps; ritmo de avaliações pela amostra das 60 avaliações mais recentes; consultas relacionadas de busca do
-estado de São Paulo (12 meses, índice relativo); leitura direta da página publicada em
-`andretattoo.netlify.app`.
+estado de São Paulo (12 meses, índice relativo); leitura da página publicada em
+`andretattoo.com.br` e do fonte da branch `claude/awesome-gauss-8n5y96`.

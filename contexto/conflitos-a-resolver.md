@@ -28,7 +28,7 @@ Decisão do André: manter os padrões que ele informou nesta conversa. As skill
 ## B. Fatos que só existem nas skills
 
 **Confirmados pelo André e já em `marca.md`:** meta de R$ 20.000/mês; retoque a partir de 40 dias (com a política de falha e de desgaste); idade mínima de 18 anos; um trabalho grande por dia. "Indique e Ganhe" existe, mas as regras seguem indefinidas.
-**Ainda não confirmados (continuam só nas skills):** vocabulário ("sinal para reserva do horário", nunca "entrada"; nunca rotular por técnica), texto oficial de cuidados (Cicaplast), referência interna de realismo (média R$ 1.200), tempo de conteúdo (4 a 7 h/semana, 3 a 4 posts), agente Sofia e fluxos do n8n.
+**Ainda não confirmados (continuam só nas skills):** vocabulário ("sinal para reserva do horário", nunca "entrada"; nunca rotular por técnica), referência interna de realismo (média R$ 1.200), tempo de conteúdo (4 a 7 h/semana, 3 a 4 posts), agente Sofia e fluxos do n8n.
 
 Tabela original:
 
@@ -39,7 +39,7 @@ Tabela original:
 | Idade mínima **18 anos** | `orcamento-tattoo` |
 | Trabalho grande: **um por dia** | `orcamento-tattoo`, `resumo-agenda-semanal` |
 | Vocabulário: "sinal para reserva do horário" (nunca "entrada" ou "adiantamento"); nunca rotular por técnica (ex.: "pontilhismo") | `orcamento-tattoo`, `legenda-tattoo` |
-| Cuidados pós-tattoo: texto oficial (Cicaplast) | `pos-tattoo-avaliacao`, app Caixa e, desde 07/11/2026, a página `site/cuidados-depois-da-tatuagem.html` (não publicada: aguarda o André aprovar o texto) |
+| ~~Cuidados pós-tattoo: texto oficial (Cicaplast)~~ **APROVADO em 07/11/2026** | `pos-tattoo-avaliacao`, app Caixa e a página `site/cuidados-depois-da-tatuagem.html`. Registrado em `contexto/marca.md`; mudar nos três juntos |
 | Referência interna: realismo em média **R$ 1.200** | `orcamento-tattoo` (só nota interna) |
 | Tempo disponível para conteúdo: 4 a 7 h/semana, 3 a 4 posts | `posts-semana-instagram` |
 | Agente de WhatsApp **Sofia** (n8n) e fluxo financeiro no n8n | `revisao-conversas-sofia`, `fechamento-mensal-estudio` |
