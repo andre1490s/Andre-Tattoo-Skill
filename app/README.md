@@ -35,7 +35,7 @@ Para voltar atrás: republicar `caixa-andre-tattoo.v1791292358-968f.html` na mes
 Republicar `caixa-andre-tattoo.v12-regra-orcamento.html` (ou a v1 original) na mesma URL passando `contract: "0.2.66"` e as capacidades antigas (db, sample, user, mcp com Google Calendar e Supabase).
 
 ## Versão 14: ajustes da casa e Instagram
-- Aviso na tela Hoje quando os ajustes salvos são antigos (sem `padraoV`): "Aplicar padrões" (meta R$ 20.000, seg a sáb, 9h às 22h; preserva duração e custos fixos) ou "Manter os meus".
+- Aviso na tela Hoje quando os ajustes salvos são antigos (`padraoV` ausente ou menor que `PADRAO_V`): "Aplicar padrões" (meta R$ 20.000, todos os dias, 9h às 22h; preserva duração e custos fixos) ou "Manter os meus".
 - Tela Instagram (Mais): conector Metricool, só leitura (`getBrandSettings`, `getAnalyticsDataByMetrics`, `getBestTimeToPostByNetwork`). Métricas `IGEV*`: seguidores, alcance, visualizações, interações, salvos, compartilhados, reels, contas engajadas, mais melhores horários. Período atual x anterior (7, 30 ou 90 dias).
 - Limites do conector: **não há visitas ao perfil nem cliques no link** (campos marcados "não usar"), e o desempenho por post (`IGPF*`) voltou vazio; por isso não há "melhores posts".
 - Nome do servidor no manifesto: `METRICOOL` (não verificado no app real).
@@ -89,6 +89,21 @@ Republicar `caixa-andre-tattoo.v12-regra-orcamento.html` (ou a v1 original) na m
 - **Datas para o site**: gera o bloco `clube` de `site/js/config.js` com vagas ocupadas e datas
   livres, pronto para colar. É o que alimenta `site/clube-15-membro.html`.
 - Testes: 5 verificações novas (datas, exportação, reserva). Suíte inteira passando.
+
+## Horário da casa: todos os dias (07/11/2026)
+
+O André confirmou que atende **todos os dias, das 9h às 22h, somente com hora marcada**
+(`contexto/marca.md`). O app estava com `seg a sáb` em dois lugares, o que fazia o calendário marcar
+domingo como "Fora dos seus dias de atendimento" e esconder as janelas livres do dia.
+
+- `CFG_DEFAULT.dias` (`js/base.js`) e `DIAS_CASA` (`js/novo.js`): entram os sete dias, com `dom`.
+- O aviso "Ajustes da casa" passa a dizer "todos os dias" em vez de "segunda a sábado".
+- **`PADRAO_V` (hoje 3).** Os ajustes ficam salvos no aparelho (`localStorage`), então mudar o código
+  não muda o que já está gravado. O aviso agora reaparece para quem aplicou um padrão anterior
+  (`padraoV` menor que `PADRAO_V`), e um toque em "Aplicar padrões" grava os sete dias. Ao mudar o
+  padrão da casa de novo, **subir `PADRAO_V`** — senão a correção não chega em quem já usa o app.
+- Teste de fumaça atualizado: agora exige `padraoV === 3`, sete dias e `dom` entre eles. Suíte inteira
+  passando (build com imagens de teste, porque `app/assets-src/` não está no repositório).
 
 ### Ainda não feito
 Fotos por projeto (capacidade `assets`), rotina semanal automática do aprendizado, melhores posts (se o Metricool passar a devolver dados por post).

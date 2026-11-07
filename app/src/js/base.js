@@ -45,7 +45,7 @@
     };
   }
   let stores = { caixa:localStore('caixa'), agenda:localStore('agenda'), pend:localStore('pend'), mat:localStore('mat'), orc:localStore('orc'), cli:localStore('cli'), cont:localStore('cont'), clube:localStore('clube') };
-  const CFG_DEFAULT = {meta:20000, inicio:'09:00', fim:'22:00', dias:['seg','ter','qua','qui','sex','sáb'], duracao:3, reativados:{}, custosFixos:0, tema:'claro'};
+  const CFG_DEFAULT = {meta:20000, inicio:'09:00', fim:'22:00', dias:['dom','seg','ter','qua','qui','sex','sáb'], duracao:3, reativados:{}, custosFixos:0, tema:'claro'};
   data.cfg = Object.assign({}, CFG_DEFAULT);
   let cfgStore = {
     subscribe(cb){ let v={}; try{ v = JSON.parse(localStorage.getItem('andre-config')||'{}'); }catch(e){} cb(v); return ()=>{}; },

@@ -569,16 +569,20 @@ function formPost(c, preset){
 
 // ---------- Ajustes da casa (padrões novos x ajustes antigos) ----------
 let cfgLoaded = false;
-const DIAS_CASA = ['seg','ter','qua','qui','sex','sáb'];
+const DIAS_CASA = ['dom','seg','ter','qua','qui','sex','sáb'];
+// Versão do padrão da casa. Subir quando o padrão mudar: quem aplicou um padrão
+// anterior volta a ver o aviso, porque os ajustes ficam salvos no aparelho dele.
+// v3 (07/11/2026): domingo entrou — o André confirmou atendimento todos os dias.
+const PADRAO_V = 3;
 function bannerPadroes(){
-  if(!cfgLoaded || data.cfg.padraoV) return '';
+  if(!cfgLoaded || (+data.cfg.padraoV||0) >= PADRAO_V) return '';
   const c = data.cfg, meta = +c.meta>0 ? brl.format(+c.meta) : 'não definida';
   const dias = (c.dias||[]).length===7 ? 'todos os dias' : (c.dias||[]).join(', ');
-  return '<div class="brief"><div class="bh"><span>Ajustes da casa</span></div><div style="padding:4px 14px 14px"><div class="s" style="white-space:normal;margin-bottom:12px;line-height:1.5">Seus ajustes são da versão antiga: meta '+esc(meta)+', atendimento '+esc(dias)+', das '+esc(c.inicio)+' às '+esc(c.fim)+'.<br>Padrão da casa: meta '+esc(brl.format(POLITICA.metaMensal))+', segunda a sábado, das 9h às 22h.</div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="mini solid" data-act="padroesOk">Aplicar padrões</button><button class="mini" data-act="padroesNo">Manter os meus</button></div></div></div>';
+  return '<div class="brief"><div class="bh"><span>Ajustes da casa</span></div><div style="padding:4px 14px 14px"><div class="s" style="white-space:normal;margin-bottom:12px;line-height:1.5">Seus ajustes são da versão antiga: meta '+esc(meta)+', atendimento '+esc(dias)+', das '+esc(c.inicio)+' às '+esc(c.fim)+'.<br>Padrão da casa: meta '+esc(brl.format(POLITICA.metaMensal))+', todos os dias, das 9h às 22h.</div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="mini solid" data-act="padroesOk">Aplicar padrões</button><button class="mini" data-act="padroesNo">Manter os meus</button></div></div></div>';
 }
 async function aplicarPadroes(ok){
   try{
-    const v = ok ? Object.assign({}, data.cfg, {meta:POLITICA.metaMensal, dias:DIAS_CASA.slice(), inicio:'09:00', fim:'22:00', padraoV:2}) : Object.assign({}, data.cfg, {padraoV:2});
+    const v = ok ? Object.assign({}, data.cfg, {meta:POLITICA.metaMensal, dias:DIAS_CASA.slice(), inicio:'09:00', fim:'22:00', padraoV:PADRAO_V}) : Object.assign({}, data.cfg, {padraoV:PADRAO_V});
     await cfgStore.save(v); toast(ok?'Padrões da casa aplicados':'Ajustes mantidos');
   }catch(e){ toast('Não foi possível salvar os ajustes.'); }
 }

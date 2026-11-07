@@ -85,7 +85,7 @@ async function run(label, viewport) {
   ok(label + ': aviso de ajustes antigos aparece', /Ajustes da casa/.test(hoje) && /Aplicar padrões/.test(hoje));
   await page.click('[data-act="padroesOk"]'); await page.waitForTimeout(400);
   const cfg = await page.evaluate(() => window.__mock.dump('data/users/u_test').find(d => d.id === 'config'));
-  ok(label + ': aplicar padrões grava meta, dias e horário', cfg.padraoV === 2 && cfg.meta === 20000 && cfg.dias.length === 6 && cfg.fim === '22:00' && cfg.custosFixos === 3500, JSON.stringify([cfg.meta, cfg.dias.length, cfg.fim, cfg.custosFixos]));
+  ok(label + ': aplicar padrões grava meta, dias e horário', cfg.padraoV === 3 && cfg.meta === 20000 && cfg.dias.length === 7 && cfg.dias.includes('dom') && cfg.fim === '22:00' && cfg.custosFixos === 3500, JSON.stringify([cfg.padraoV, cfg.meta, cfg.dias.length, cfg.fim, cfg.custosFixos]));
   ok(label + ': aviso some depois de aplicar', !/Ajustes da casa/.test(await page.textContent('#hAlerts')));
   const dotOn = (k) => page.evaluate((x) => !document.getElementById('dot-' + x).hidden, k);
   ok(label + ': pontos de aviso nos três agentes', (await dotOn('vendas')) && (await dotOn('financeiro')) && (await dotOn('midia')));

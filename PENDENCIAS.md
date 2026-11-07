@@ -65,7 +65,8 @@ Enquanto isso não for feito, não confie no site para guardar lead: confie no W
 - [x] (feito na v2) Etapa 2: registrar cada resposta do Assistente + botões "Serviu / Editei / Errou". **Decisão do André: o registro inclui o nome do cliente** (ele compara com o WhatsApp; quanto mais informação do cliente, melhor). Confirmar com ele se inclui também telefone e valores.
 - [x] (feito na v2) Etapa 3: tela de sugestões de melhoria, aprovadas pelo André, que atualizam as regras sem republicar o app.
 - [ ] Etapa 4 (opcional): análise semanal agendada.
-- [ ] Corrigir em Ajustes do app o **horário de fechamento: 18:00 → 22:00**. Os dias do app já estavam certos: o André confirmou em 07/11/2026 que atende **todos os dias**, das 9h às 22h. O aviso "Aplicar padrões" do app ainda oferece "segunda a sábado" como padrão da casa (`app/src/js/novo.js`) — aplicar esse padrão hoje grava dia errado.
+- [x] Código do app corrigido em 07/11/2026: o padrão da casa passou a ser **todos os dias, 9h às 22h** (`CFG_DEFAULT`, `DIAS_CASA` e o texto do aviso), e `PADRAO_V` subiu para 3 para o aviso voltar a aparecer.
+- [ ] **André, no app:** os ajustes ficam salvos no seu aparelho, então o código não muda o que já está gravado. Abra a tela **Hoje** e toque em **"Aplicar padrões"** no aviso "Ajustes da casa" — isso grava os sete dias e o fechamento às 22h de uma vez. Se preferir fazer à mão, é em *Ajustes do estúdio*. Enquanto não fizer, o calendário mostra domingo como "Fora dos seus dias de atendimento" e esconde as janelas livres.
 - [ ] Mensagem de lembrete do app diz "remarcação perde o sinal"; a política inclui cancelamento. Alinhar quando o André quiser.
 
 ## SEO: o site no ar não é o do repositório (descoberto em 06/11/2026)
