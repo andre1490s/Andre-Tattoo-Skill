@@ -1,131 +1,332 @@
-# Dez testes de gancho (Fase 1 do plano intensivo)
+# Dez testes de gancho: ficha de filmagem
 
-Criado em 2026-11-07. Base: `PLANO-INTENSIVO-AUDIENCIA.md`, Fase 1. Dados do perfil em `aprendizados/LE-0008.md`.
-
-## Por que gancho e não vídeo inteiro
-
-Dos seus dados: abaixo de 3 segundos de tempo médio assistido o alcance mediano é 99. Acima de 7 segundos é 1.304. **Treze vezes de diferença**, e o que decide isso são os dois primeiros segundos.
-
-A pesquisa de 07/11 sobre o algoritmo aponta tempo assistido como o sinal de maior peso em Reels, e indica que o que conta é o **número absoluto de segundos**, não a porcentagem concluída. Vídeo mais longo não é penalizado por ter menos conclusão. Ou seja: prender vale mais que ser curto.
-
-## O método
-
-1. Grave **um corpo de vídeo só** por teste, do segundo 2 em diante.
-2. Grave **duas aberturas diferentes** de 0 a 2 segundos para esse mesmo corpo.
-3. Monte as duas versões. **Do segundo 2 em diante elas têm que ser idênticas.** É isso que torna o teste válido.
-4. Publique as duas como **Reels de teste**, no mesmo dia, com algumas horas de diferença. Reels de teste entrega só para quem não te segue, então o resultado é público frio puro.
-5. Em 24 a 48 horas, compare o **tempo médio assistido**. Só isso decide.
-6. Publique no perfil **apenas a vencedora**. A perdedora é arquivada.
-
-**Não publique a perdedora no perfil.** Conteúdo fraco no perfil custa alcance no próximo.
-
-Observação: Reels de teste exige conta profissional pública com mais de mil seguidores, e não aceita parceiro de colaboração. As duas coisas estão resolvidas no seu caso, mas a segunda importa na Fase 3.
+Criado em 2026-11-07, reescrito no formato de ficha. Base: `PLANO-INTENSIVO-AUDIENCIA.md`, Fase 1.
 
 ---
 
-## Os dez testes
+# PRIMEIRO: como funciona (leia uma vez)
 
-### Teste 1: resultado pronto x pele em branco
-- **Gancho A:** a tattoo pronta, close máximo no detalhe mais forte, imóvel.
-- **Gancho B:** a pele em branco, mesmo enquadramento, antes de qualquer traço.
-- **Hipótese:** A ganha, porque entrega beleza imediata. Mas B pode ganhar por abrir uma pergunta ("o que vai virar isso?").
-- **Testa:** entregar x criar expectativa.
+Cada teste é **um vídeo só, com duas aberturas diferentes**.
 
-### Teste 2: macro extremo x peça inteira
-- **Gancho A:** macro tão fechado que não dá para saber o que é. Textura, poro, tinta.
-- **Gancho B:** a peça inteira enquadrada de uma vez.
-- **Hipótese:** A ganha. Quando o olho não resolve o que está vendo, ele fica para descobrir.
-- **Testa:** curiosidade visual x compreensão imediata.
+Você grava três coisas:
 
-### Teste 3: corte seco x revelação lenta
-- **Gancho A:** peça pronta e, no frame seguinte, pele em branco. Corte sem transição.
-- **Gancho B:** a mesma troca, feita com dissolve de meio segundo.
-- **Hipótese:** A ganha. Corte seco é interrupção de padrão; transição suave é previsível.
-- **Testa:** choque x suavidade.
+```
+  1. O CORPO          12 segundos, gravado UMA vez
+  2. A ABERTURA A      2 segundos
+  3. A ABERTURA B      2 segundos
+```
 
-### Teste 4: som da agulha x música
-- **Gancho A:** som ambiente real, a máquina zunindo, sem música.
-- **Gancho B:** a mesma imagem com trilha.
-- **Hipótese:** incerta e é por isso que vale testar. Som real é raro no feed e pode segurar; música é o padrão e pode performar melhor na distribuição.
-- **Testa:** autenticidade x convenção.
+Depois monta duas versões:
 
-### Teste 5: com texto x sem texto
-- **Gancho A:** uma linha de até 4 palavras, serifada creme, canto superior esquerdo.
-- **Gancho B:** nenhum texto, só imagem.
-- **Hipótese:** B ganha nos seus primeiros 2 segundos, porque texto divide a atenção quando a imagem já é forte.
-- **Testa:** se a sua imagem precisa de legenda ou se ela fala sozinha.
+```
+  VERSÃO A  =  [abertura A: 2s]  +  [o corpo: 12s]
+  VERSÃO B  =  [abertura B: 2s]  +  [o corpo: 12s]
+                      ↑                   ↑
+                 só isso muda      isso é idêntico
+```
 
-### Teste 6: cobertura, ruim primeiro x bom primeiro
-- **Gancho A:** a tatuagem antiga, borrada e desbotada, em close.
-- **Gancho B:** a cobertura pronta, em close.
-- **Hipótese:** A ganha. O problema prende mais que a solução, porque quem tem uma tattoo ruim se reconhece.
-- **Testa:** dor x resultado. Este é o teste de maior valor comercial da lista.
+**O corpo tem que ser exatamente o mesmo arquivo nas duas versões.** Se mudar qualquer coisa depois do segundo 2, o teste não vale, porque você não saberá o que causou a diferença.
 
-### Teste 7: mão trabalhando x pele parada
-- **Gancho A:** sua mão enluvada com a máquina, em movimento, pele embaixo.
-- **Gancho B:** só a pele, sem presença humana.
-- **Hipótese:** A ganha. Movimento e mão humana prendem mais que objeto estático.
-- **Testa:** se a sua presença no quadro ajuda ou atrapalha.
+### O que fazer com as duas
 
-### Teste 8: pergunta x afirmação
-- **Gancho A:** texto em pergunta. Por exemplo `ISSO É PELE?`
-- **Gancho B:** texto em afirmação. Por exemplo `ISSO É PELE.`
-- **Hipótese:** A ganha. Pergunta abre um laço que só fecha assistindo.
-- **Testa:** a forma do texto, com a mesma imagem nos dois.
+1. Publica as duas como **Reels de teste** no mesmo dia, com umas 3 horas de diferença.
+2. Espera 24 a 48 horas.
+3. Abre as métricas e olha **só o tempo médio assistido**. Quem tiver o maior, venceu.
+4. A vencedora você publica no perfil. **A perdedora você arquiva e não publica.**
 
-### Teste 9: tempo real x acelerado
-- **Gancho A:** os 2 primeiros segundos em velocidade real, agulha entrando na pele.
-- **Gancho B:** os mesmos 2 segundos acelerados de 4 a 8 vezes.
-- **Hipótese:** A ganha na retenção inicial, porque tempo real deixa ver o detalhe. Acelerado vira borrão.
-- **Testa:** velocidade do gancho.
+### O corpo (vale para todos os dez testes)
 
-### Teste 10: rosto do cliente x só a pele
-- **Gancho A:** a reação do cliente vendo a peça pronta.
-- **Gancho B:** só a peça, sem pessoa.
-- **Hipótese:** A ganha em compartilhamento, B ganha em tempo assistido. Vale olhar as duas métricas aqui.
-- **Testa:** emoção x estética. Precisa de autorização do cliente.
+12 segundos de processo comprimido, no formato de 4 atos:
+
+| Trecho | O quê |
+|---|---|
+| 0 a 3s | primeiros traços, close na agulha entrando |
+| 3 a 7s | sombreado, acelerado de 4 a 8 vezes |
+| 7 a 10s | um detalhe difícil, em velocidade real |
+| 10 a 12s | a peça pronta, câmera parada |
+
+**Se você não tatuar todo dia:** grave um corpo bom e use ele em dois ou três testes seguidos. O que o teste mede é a abertura, então repetir o corpo não atrapalha. Só não publique dois vídeos iguais no perfil.
+
+### O que você precisa
+
+Celular, um apoio qualquer para a câmera não tremer nos closes, e luz lateral. Nada além disso.
 
 ---
 
-## Planilha de resultados
+# DIA 1 — peça pronta x pele em branco
 
-Preencher depois de 24 a 48 horas de cada teste.
+**Testa:** abrir entregando o resultado, ou abrir criando a pergunta.
+
+### Grave
+
+| # | O quê | Câmera | Tempo |
+|---|---|---|---|
+| 1 | **Corpo** | padrão acima | 12s |
+| 2 | **Abertura A** | a peça **pronta**, celular a 15 cm do braço, parado, sem mexer | 2s |
+| 3 | **Abertura B** | a **pele em branco**, antes de qualquer traço. Mesma distância de 15 cm, mesmo ângulo, mesmo pedaço do braço | 2s |
+
+As aberturas A e B têm que ter o **mesmo enquadramento**. Só muda se tem tattoo ou não.
+
+### Monte
+- **A** = peça pronta (2s) + corpo
+- **B** = pele branca (2s) + corpo
+
+### Lendo o resultado
+- **A venceu:** seu público quer ver o resultado antes. Abra sempre pelo pronto.
+- **B venceu:** seu público fica pela curiosidade. Abra sempre pelo vazio.
+
+---
+
+# DIA 2 — macro extremo x peça inteira
+
+**Testa:** confundir o olho ou mostrar tudo de cara.
+
+### Grave
+
+| # | O quê | Câmera | Tempo |
+|---|---|---|---|
+| 1 | **Corpo** | padrão | 12s |
+| 2 | **Abertura A** | macro a **5 cm** da pele. Tão perto que não dá para saber o que é: só textura, poro e tinta | 2s |
+| 3 | **Abertura B** | a peça inteira, celular a **50 cm**, tudo visível de uma vez | 2s |
+
+No A, a regra é: se der para identificar o desenho, está longe demais. Chegue mais perto.
+
+### Monte
+- **A** = macro (2s) + corpo
+- **B** = peça inteira (2s) + corpo
+
+### Lendo o resultado
+- **A venceu:** macro vira sua abertura padrão. É o mais fácil de repetir e é onde seu realismo brilha.
+- **B venceu:** seu público decide pelo conjunto, não pelo detalhe.
+
+---
+
+# DIA 3 — corte seco x transição suave
+
+**Testa:** choque ou suavidade na troca.
+
+### Grave
+
+| # | O quê | Câmera | Tempo |
+|---|---|---|---|
+| 1 | **Corpo** | padrão | 12s |
+| 2 | **Peça pronta** | 15 cm, parado | 1s |
+| 3 | **Pele em branco** | mesmo enquadramento | 1s |
+
+Aqui você grava os mesmos dois clipes e muda só a **montagem**.
+
+### Monte
+- **A** = pronta (1s) → **corte seco** → branca (1s) + corpo
+- **B** = pronta (1s) → **dissolve de 0,5s** → branca (1s) + corpo
+
+### Lendo o resultado
+- **A venceu:** nunca mais use transição no começo. Corte seco sempre.
+- **B venceu:** vale manter transição curta nas trocas.
+
+---
+
+# DIA 4 — som da agulha x música
+
+**Testa:** som real ou trilha.
+
+### Grave
+
+| # | O quê | Câmera | Tempo |
+|---|---|---|---|
+| 1 | **Corpo** | padrão | 12s |
+| 2 | **Abertura** | a que venceu no Dia 1 ou 2 | 2s |
+
+Grave **uma abertura só**. O que muda aqui é o áudio, não a imagem.
+
+### Monte
+- **A** = abertura + corpo, com **som ambiente real**: a máquina zunindo, sem música nenhuma
+- **B** = abertura + corpo, com **música** por cima
+
+### Lendo o resultado
+- **A venceu:** som real segura. É raro no feed e isso te diferencia.
+- **B venceu:** mantenha trilha, mas deixe o zunido audível por baixo.
+
+---
+
+# DIA 5 — com texto x sem texto
+
+**Testa:** se a sua imagem precisa de legenda ou fala sozinha.
+
+### Grave
+
+| # | O quê | Câmera | Tempo |
+|---|---|---|---|
+| 1 | **Corpo** | padrão | 12s |
+| 2 | **Abertura** | a vencedora dos dias anteriores | 2s |
+
+Mesma imagem nas duas versões. Muda só o texto na tela.
+
+### Monte
+- **A** = abertura com uma linha de até **4 palavras**, serifada creme, canto superior esquerdo. Exemplo: `PELE EM BRANCO`
+- **B** = abertura **sem texto nenhum**
+
+### Lendo o resultado
+- **B venceu:** tire texto de todas as aberturas. Ele estava roubando atenção da imagem.
+- **A venceu:** o texto ajuda. Mantenha curto e sempre no mesmo lugar.
+
+---
+
+# DIA 6 — cobertura: o ruim primeiro x o bom primeiro
+
+**O teste mais importante da lista.** É o de maior valor comercial.
+
+### Grave (precisa ser uma sessão de cobertura)
+
+| # | O quê | Câmera | Tempo |
+|---|---|---|---|
+| 1 | **Corpo** | padrão, cobrindo a tattoo antiga | 12s |
+| 2 | **Abertura A** | a **tatuagem antiga**, borrada e desbotada, close a 15 cm. Sem filtro, sem embelezar | 2s |
+| 3 | **Abertura B** | a **cobertura pronta**, close a 15 cm | 2s |
+
+No A, mostre o problema de verdade. Quanto pior estiver a tattoo antiga, melhor o teste.
+
+### Monte
+- **A** = tattoo ruim (2s) + corpo
+- **B** = cobertura pronta (2s) + corpo
+
+### Lendo o resultado
+- **A venceu:** o problema prende mais que a solução. Isso muda sua linha editorial inteira: toda cobertura passa a abrir pelo que está errado. E cobertura é o seu serviço de maior ticket.
+- **B venceu:** mantenha a abertura pelo resultado em tudo.
+
+---
+
+# DIA 7 — mão trabalhando x pele parada
+
+**Testa:** se a sua presença no quadro ajuda.
+
+### Grave
+
+| # | O quê | Câmera | Tempo |
+|---|---|---|---|
+| 1 | **Corpo** | padrão | 12s |
+| 2 | **Abertura A** | sua **mão enluvada com a máquina**, em movimento, pele embaixo. 20 cm | 2s |
+| 3 | **Abertura B** | **só a pele**, sem mão, sem máquina. Mesmo enquadramento | 2s |
+
+### Monte
+- **A** = mão em movimento (2s) + corpo
+- **B** = pele parada (2s) + corpo
+
+### Lendo o resultado
+- **A venceu:** apareça sempre. Movimento e mão humana prendem.
+- **B venceu:** a peça sozinha é mais forte que você no quadro. Útil saber.
+
+---
+
+# DIA 8 — pergunta x afirmação
+
+O teste mais barato de todos. Muda **um caractere**.
+
+### Grave
+
+| # | O quê | Câmera | Tempo |
+|---|---|---|---|
+| 1 | **Corpo** | padrão | 12s |
+| 2 | **Abertura** | macro extremo a 5 cm, onde não dá para saber se é pele ou foto | 2s |
+
+### Monte
+- **A** = abertura com o texto `ISSO É PELE?`
+- **B** = abertura com o texto `ISSO É PELE.`
+
+Mesma imagem, mesma fonte, mesma posição. Só o ponto final muda.
+
+### Lendo o resultado
+- **A venceu:** pergunta abre um laço que só fecha assistindo. Use pergunta em toda abertura com texto.
+- **B venceu:** afirmação soa mais confiante e combina mais com o seu posicionamento.
+
+---
+
+# DIA 9 — tempo real x acelerado
+
+**Testa:** a velocidade dos primeiros 2 segundos.
+
+### Grave
+
+| # | O quê | Câmera | Tempo |
+|---|---|---|---|
+| 1 | **Corpo** | padrão | 12s |
+| 2 | **Abertura** | agulha entrando na pele, macro a 8 cm, gravado em **velocidade real** | 4s |
+
+Grave 4 segundos aqui, porque você vai precisar de material para acelerar.
+
+### Monte
+- **A** = 2 segundos em **velocidade real** + corpo
+- **B** = os 4 segundos **acelerados de 4 a 8 vezes**, virando 2 segundos + corpo
+
+### Lendo o resultado
+- **A venceu:** nunca acelere a abertura. Tempo real deixa ver o detalhe, que é o seu diferencial.
+- **B venceu:** acelerado funciona e você pode comprimir mais processo no mesmo tempo.
+
+---
+
+# DIA 10 — rosto do cliente x só a peça
+
+**Precisa de autorização do cliente.** Pergunte antes de gravar.
+
+### Grave
+
+| # | O quê | Câmera | Tempo |
+|---|---|---|---|
+| 1 | **Corpo** | padrão | 12s |
+| 2 | **Abertura A** | a **reação do cliente** vendo a peça pronta pela primeira vez | 2s |
+| 3 | **Abertura B** | **só a peça**, sem pessoa | 2s |
+
+### Monte
+- **A** = reação (2s) + corpo
+- **B** = peça (2s) + corpo
+
+### Lendo o resultado
+Aqui olhe **duas** métricas, não uma:
+- **Tempo assistido:** a aposta é que B ganha, porque estética segura mais que emoção.
+- **Envios:** a aposta é que A ganha, porque reação humana é o que a pessoa manda para alguém.
+
+Se der isso, você passa a usar reação nos vídeos feitos para compartilhamento (Fase 2) e peça pura nos feitos para retenção.
+
+---
+
+# Planilha
 
 | Dia | Teste | Versão | Tempo médio assistido | View rate | Alcance | Envios | Vencedor |
 |---|---|---|---|---|---|---|---|
-| 1 | 1 pronto x branco | A |  |  |  |  |  |
+| 1 | pronta x branca | A |  |  |  |  |  |
 | 1 | | B |  |  |  |  |  |
-| 2 | 2 macro x inteira | A |  |  |  |  |  |
+| 2 | macro x inteira | A |  |  |  |  |  |
 | 2 | | B |  |  |  |  |  |
-| 3 | 3 corte x dissolve | A |  |  |  |  |  |
+| 3 | corte x dissolve | A |  |  |  |  |  |
 | 3 | | B |  |  |  |  |  |
-| 4 | 4 agulha x música | A |  |  |  |  |  |
+| 4 | agulha x música | A |  |  |  |  |  |
 | 4 | | B |  |  |  |  |  |
-| 5 | 5 texto x sem texto | A |  |  |  |  |  |
+| 5 | texto x sem texto | A |  |  |  |  |  |
 | 5 | | B |  |  |  |  |  |
-| 6 | 6 ruim x bom | A |  |  |  |  |  |
+| 6 | ruim x bom | A |  |  |  |  |  |
 | 6 | | B |  |  |  |  |  |
-| 7 | 7 mão x pele | A |  |  |  |  |  |
+| 7 | mão x pele | A |  |  |  |  |  |
 | 7 | | B |  |  |  |  |  |
-| 8 | 8 pergunta x afirmação | A |  |  |  |  |  |
+| 8 | pergunta x afirmação | A |  |  |  |  |  |
 | 8 | | B |  |  |  |  |  |
-| 9 | 9 real x acelerado | A |  |  |  |  |  |
+| 9 | real x acelerado | A |  |  |  |  |  |
 | 9 | | B |  |  |  |  |  |
-| 10 | 10 rosto x pele | A |  |  |  |  |  |
+| 10 | rosto x peça | A |  |  |  |  |  |
 | 10 | | B |  |  |  |  |  |
 
-**Linha de base para comparar:** tempo médio assistido mediano de 4,4 segundos, alcance mediano de 291. Qualquer versão acima de 7 segundos já é vitória sobre o seu histórico.
+**Sua linha de base:** 4,4 segundos de tempo médio assistido e 291 de alcance mediano. Qualquer versão acima de **7 segundos** já é vitória sobre todo o seu histórico.
 
-## O que fazer no dia 11
+---
 
-Junte os dez vencedores. O padrão que aparecer vira a **receita fixa de abertura** e entra em `contexto/identidade-pecas.md` e em `reels/roteiros-fixados/README.md`.
+# Regras que valem para os dez
 
-A partir daí você para de testar gancho e passa a testar motivo de envio, que é a Fase 2.
+1. **Um teste por dia.** Dois no mesmo dia disputam a mesma amostra e sujam o resultado.
+2. **Publicar às 10h**, terça a sexta. É o pico do seu perfil.
+3. **Nunca publicar a perdedora** no perfil.
+4. **Do segundo 2 em diante, idêntico.** Sem exceção.
+5. **Se as duas ficarem abaixo de 4 segundos**, o problema não é o gancho: é o corpo do vídeo. Pare os testes e volte ao formato de 4 atos.
 
-## Regras que valem para os dez
+# No dia 11
 
-- Do segundo 2 em diante, as duas versões são **idênticas**. Sem exceção.
-- Um teste por dia. Dois testes no mesmo dia disputam a mesma amostra e sujam o resultado.
-- Publicar às 10h, que é o pico do perfil de terça a sexta.
-- **Nunca** publicar a perdedora no perfil.
-- Se as duas ficarem abaixo de 4 segundos, o problema não é o gancho: é o corpo do vídeo. Volte ao formato de 4 atos antes de seguir.
+Junte os dez vencedores e veja o padrão. Ele vira a sua **receita fixa de abertura** e entra em `contexto/identidade-pecas.md` e em `reels/roteiros-fixados/README.md`.
+
+A partir daí você para de testar gancho e começa a Fase 2, que é testar motivo de envio.
