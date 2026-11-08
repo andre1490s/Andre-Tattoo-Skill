@@ -188,8 +188,16 @@ Decisões que ficaram em aberto na troca de versão (revisto em 06/11/2026):
       sabe de onde o cliente saiu. Só falta o aviso no Telegram (ver seção acima).
 - [x] **FAQ e dados estruturados voltaram.** As perguntas ficam na lista `duvidas` do
       `js/dados.js`; o `main.js` monta a sanfona e o FAQPage que o Google lê a partir dela.
-- [ ] **Não há medição nenhuma** (confirmado: zero tag de GA4 ou Pixel no `index.html`).
-      Criar GA4 e Meta Pixel e me passar os IDs. É o que falta para saber quanto o site traz.
+- [~] **Medição: o encanamento está pronto, faltam os dois números.** O bloco
+      `medicao` do `js/dados.js` já liga Analytics e Pixel nas sete páginas e
+      marca WhatsApp (com o botão de origem), formulário e Clube 15. Vazio =
+      desligado, nada é baixado. Teste: `node site/test/medicao.mjs`.
+      - [ ] André: criar a propriedade do GA4 e pegar o `G-...`
+      - [ ] André: criar no Gerenciador de Eventos um conjunto de dados **do
+            tipo Web**. Em 07/11/2026 ele só tinha três do tipo aplicativo
+            (INKFLOW), que não servem para site. Criar no mesmo portfólio do
+            Instagram @andretatuadoor, senão o Pixel não aparece na hora de
+            anunciar.
 - [x] **Avaliações no ar.** Seis avaliações reais copiadas do Perfil da Empresa no Google,
       com a nota 5,0, a contagem e o botão "Ver no Google". Nada escrito por nós.
 - [x] **Clube 15** publicado: selo no topo da home, seção escura depois das avaliações e a

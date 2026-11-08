@@ -8,6 +8,11 @@
   var D = window.DADOS || {};
   var $ = function(s){ return document.querySelector(s); };
 
+  /* Fica vazia de propósito: se o André não tiver colado os códigos de medição
+     no dados.js, todo mundo continua chamando esta função e ela não faz nada.
+     Assim nenhum outro bloco precisa saber se existe medição ou não. */
+  var marcaEvento = function(){};
+
   function esc(s){
     return String(s == null ? '' : s)
       .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -485,10 +490,94 @@
         } catch(err){}
       }
 
+      marcaEvento('generate_lead', 'Lead', { origem: d.origem });
+
       botao.innerHTML = '<span class="dot"></span>Pedido enviado';
       botao.disabled = true;
       f.classList.add('is-enviado');
       if(num && !janela) location.href = url;   /* bloqueou a janela: vai direto */
     });
+  })();
+
+  /* ---------------------------------------------------------------
+     8. MEDIÇÃO: Google Analytics e Pixel da Meta
+
+     Os dois ficam DESLIGADOS enquanto os códigos estiverem vazios no
+     dados.js: nenhum arquivo é baixado e nada é enviado. Para ligar é
+     só colar os códigos lá e publicar. Vale para o site inteiro, porque
+     todas as páginas carregam este arquivo.
+
+     NÃO medimos visita, medimos contato:
+       whatsapp      quem clicou para chamar, e de QUAL botão saiu
+       generate_lead quem preencheu o formulário inteiro
+       clube_15      quem foi olhar o clube
+
+     É isso que diz onde vale pôr esforço e dinheiro de anúncio, e é
+     disso que o Meta aprende quem procurar. Contagem de visita não
+     responde nenhuma das duas perguntas.
+  --------------------------------------------------------------- */
+  (function medicao(){
+    var M  = D.medicao || {};
+    var ga = String(M.ga4   || '').trim();
+    var px = String(M.pixel || '').trim();
+    if(!ga && !px) return;              /* nada colado: o bloco inteiro é um no-op */
+
+    /* ----- Google Analytics ----- */
+    if(ga){
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
+      var g = document.createElement('script');
+      g.async = true;
+      g.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(ga);
+      document.head.appendChild(g);
+      window.gtag('js', new Date());
+      window.gtag('config', ga);
+    }
+
+    /* ----- Pixel da Meta ----- */
+    if(px){
+      if(!window.fbq){
+        var f = window.fbq = function(){
+          f.callMethod ? f.callMethod.apply(f, arguments) : f.queue.push(arguments);
+        };
+        if(!window._fbq) window._fbq = f;
+        f.push = f; f.loaded = true; f.version = '2.0'; f.queue = [];
+        var pp = document.createElement('script');
+        pp.async = true;
+        pp.src = 'https://connect.facebook.net/en_US/fbevents.js';
+        document.head.appendChild(pp);
+      }
+      window.fbq('init', px);
+      window.fbq('track', 'PageView');
+    }
+
+    /* Daqui para frente marcaEvento faz alguma coisa. Cada envio vai dentro do
+       seu try: se um dos dois estiver bloqueado no navegador da pessoa, o outro
+       continua funcionando e o site não quebra por causa de medição. */
+    marcaEvento = function(nomeGa, nomeMeta, dados){
+      var d = dados || {};
+      if(ga){ try { window.gtag('event', nomeGa, d); } catch(e){} }
+      if(px && nomeMeta){ try { window.fbq('track', nomeMeta, d); } catch(e){} }
+    };
+
+    /* Um ouvinte só, na captura, para a página inteira. Na captura porque o
+       clique no WhatsApp abre outra janela: se esperássemos a vez normal, em
+       alguns navegadores a marcação não sairia a tempo. */
+    document.addEventListener('click', function(e){
+      var alvo = e.target;
+      if(!alvo || !alvo.closest) return;
+
+      var wa = alvo.closest('a[href*="wa.me"]');
+      if(wa){
+        marcaEvento('whatsapp', 'Contact', {
+          botao:  wa.getAttribute('data-wa') || 'outro',
+          pagina: location.pathname
+        });
+        return;
+      }
+
+      var cl = alvo.closest('a[href*="clube-15"]');
+      if(cl) marcaEvento('clube_15', 'ViewContent', { pagina: location.pathname });
+    }, true);
   })();
 })();

@@ -75,6 +75,31 @@ A nota (`5,0`) aparece sempre. Os cards só aparecem quando houver texto real em
 do Google. Preencha também `google.url` (link do Perfil da Empresa) para ligar o botão
 "Ver no Google", e `google.total` para mostrar quantas avaliações são.
 
+## Medição (Analytics e Pixel)
+
+Os dois códigos ficam no bloco `medicao` do `js/dados.js`. **Vazios = desligado:**
+nada é baixado e nada é enviado. Para ligar, é só colar e publicar; vale para as
+sete páginas de uma vez, porque todas carregam o mesmo `js/main.js`.
+
+| Campo | Onde achar |
+|---|---|
+| `ga4` | analytics.google.com → Administrador → Fluxos de dados → Web (começa com `G-`) |
+| `pixel` | facebook.com/events_manager2 → Conjuntos de dados **do tipo Web** (uns 15 dígitos) |
+
+Nenhum dos dois é senha: ficam visíveis no código de qualquer site que os use.
+
+**O que é medido não é visita, é contato:**
+
+| Evento | O que responde |
+|---|---|
+| `whatsapp` / `Contact` | quantos chamaram, e de **qual botão** saíram |
+| `generate_lead` / `Lead` | quantos preencheram o formulário inteiro |
+| `clube_15` / `ViewContent` | quantos foram olhar o clube |
+
+Para conferir depois de mexer: `node site/test/medicao.mjs`. Ele abre o site num
+navegador de verdade e checa os dois estados (desligado e ligado), mais o campo
+isca anti-robô.
+
 ## Versão anterior
 A primeira versão do site (tema escuro, formulário de 3 passos, FAQ e vídeo no topo)
 está inteira em `../site-v1/`, com a documentação de mercado e de SEO dela.

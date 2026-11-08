@@ -29,6 +29,27 @@ window.DADOS = {
     clubeEspera: "Oi, André! QUERO ENTRAR NO CLUBE 15, mas vi no site que as quinze vagas estão ocupadas. Me coloca na lista de espera?"
   },
 
+  /* ---------- 1b. MEDIÇÃO ----------
+     Os dois campos abaixo são a ÚNICA coisa que você precisa colar para o site
+     começar a medir. Enquanto estiverem vazios, nada é carregado e nada é
+     enviado: o site funciona igual, só não conta nada.
+
+     ga4:   código do Google Analytics, começa com G-
+            (analytics.google.com > Administrador > Fluxos de dados > Web)
+     pixel: código do Pixel da Meta, uns 15 dígitos
+            (facebook.com/events_manager2 > Conjuntos de dados, do tipo Web)
+
+     Nenhum dos dois é senha: os dois ficam visíveis no código de qualquer site
+     que os usa. Pode colar aqui sem medo.
+
+     O que é medido NÃO é visita, é contato: clique no WhatsApp (com o botão de
+     onde saiu), formulário enviado e interesse no Clube 15. Visita não paga
+     conta. Conversa paga. */
+  medicao: {
+    ga4:   "",
+    pixel: ""
+  },
+
   /* ---------- 2. FORMULÁRIO ----------
      Para onde o pedido é enviado antes de abrir o WhatsApp.
      É o endereço do fluxo "Leads do site" no n8n.
