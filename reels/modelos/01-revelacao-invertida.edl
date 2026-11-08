@@ -1,0 +1,20 @@
+# MODELO 1 — "Revelação invertida — o formato padrão"   ·   youtube/FORMATOS.md
+# 18 s · cliente · 9:16 · cortes na grade de 0,5 s · padrão em skills/editor-videos-tattoo § 1.B
+#
+# 1. ./scripts/montar_reels.sh medir CLIPE.mov 2,6,9 medicao.png   (grade de 10%)
+# 2. Preencha x,y,w. Ponto focal em ~0,42 da largura e ~0,44 da altura do recorte:
+#      x = focal_x - 0.42*w       y = focal_y - 0.44*(w*16/9)
+#    (a interface do Reels cobre topo 220, base 420 e direita 220 de 1080x1920)
+# 3. ./scripts/montar_reels.sh montar este.edl saida.mp4 A=pronta.mov B=processo.mov
+# 4. ./scripts/montar_reels.sh conferir saida.mp4 zona.png
+#
+# A = peça pronta   ·   B = processo (estêncil, primeiro traço, sombreado)
+# O último plano repete o enquadramento do primeiro: é o que costura o loop.
+#
+# nome      clipe  ss   dur   x0 y0 w0   x1 y1 w1   transicao
+flash       A      ?    0.5   ?  ?  ?    ?  ?  ?    corte
+estencil    B      ?    2.5   ?  ?  ?    ?  ?  ?    corte
+traco       B      ?    5.0   ?  ?  ?    ?  ?  ?    corte
+sombra1     B      ?    3.0   ?  ?  ?    ?  ?  ?    corte
+sombra2     B      ?    3.0   ?  ?  ?    ?  ?  ?    corte
+final       A      ?    4.0   ?  ?  ?    ?  ?  ?    corte

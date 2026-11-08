@@ -1,0 +1,8 @@
+# Onça com peônias — modelo 5. Medições de 08/11/2026.
+# nome      clipe  ss      dur   x0   y0    w0    x1    y1    w1    transicao
+gancho      B      13.00   1.5     9  1126   800   181  1117   780  corte
+decalque    A       0.80   2.5     0   150   720   164   290   640  morph
+posmorph    B       6.00   2.75  419   697  1247   233   655  1340  corte
+abertura    B      10.00   2.5    47     0  2000   391   204  1760  corte
+detalhe     B       2.00   2.0     0   792  1000   153   866   900  corte
+fecho       B      14.45   1.5   163   947  1000   507  1088   800  corte

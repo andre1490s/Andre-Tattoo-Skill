@@ -1,0 +1,21 @@
+# MODELO 3 — "Cobertura (cover-up)"   ·   youtube/FORMATOS.md
+# 25 s · cliente · 9:16 · cortes na grade de 0,5 s · padrão em skills/editor-videos-tattoo § 1.B
+#
+# 1. ./scripts/montar_reels.sh medir CLIPE.mov 2,6,9 medicao.png   (grade de 10%)
+# 2. Preencha x,y,w. Ponto focal em ~0,42 da largura e ~0,44 da altura do recorte:
+#      x = focal_x - 0.42*w       y = focal_y - 0.44*(w*16/9)
+#    (a interface do Reels cobre topo 220, base 420 e direita 220 de 1080x1920)
+# 3. ./scripts/montar_reels.sh montar este.edl saida.mp4 A=nova.mov B=antiga.mov C=processo.mov
+# 4. ./scripts/montar_reels.sh conferir saida.mp4 zona.png
+#
+# A = peça nova pronta · B = tatuagem antiga · C = processo
+# Antes/depois é liberado no orgânico; em anúncio pago, não (contexto/marca.md).
+#
+# nome      clipe  ss   dur   x0 y0 w0   x1 y1 w1   transicao
+nova        A      ?    1.0   ?  ?  ?    ?  ?  ?    corte
+antiga      B      ?    3.0   ?  ?  ?    ?  ?  ?    corte
+estencil    C      ?    4.0   ?  ?  ?    ?  ?  ?    corte
+processo1   C      ?    3.5   ?  ?  ?    ?  ?  ?    corte
+processo2   C      ?    3.5   ?  ?  ?    ?  ?  ?    corte
+processo3   C      ?    3.0   ?  ?  ?    ?  ?  ?    corte
+resultado   A      ?    7.0   ?  ?  ?    ?  ?  ?    corte

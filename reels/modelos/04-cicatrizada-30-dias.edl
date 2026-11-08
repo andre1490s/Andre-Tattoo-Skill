@@ -1,0 +1,19 @@
+# MODELO 4 — "Cicatrizada 30 dias"   ·   youtube/FORMATOS.md
+# 15 s · cliente · 9:16 · cortes na grade de 0,5 s · padrão em skills/editor-videos-tattoo § 1.B
+#
+# 1. ./scripts/montar_reels.sh medir CLIPE.mov 2,6,9 medicao.png   (grade de 10%)
+# 2. Preencha x,y,w. Ponto focal em ~0,42 da largura e ~0,44 da altura do recorte:
+#      x = focal_x - 0.42*w       y = focal_y - 0.44*(w*16/9)
+#    (a interface do Reels cobre topo 220, base 420 e direita 220 de 1080x1920)
+# 3. ./scripts/montar_reels.sh montar este.edl saida.mp4 A=cicatrizada.mov B=dia-da-sessao.mov
+# 4. ./scripts/montar_reels.sh conferir saida.mp4 zona.png
+#
+# A = peça cicatrizada (retorno) · B = o dia da sessão, pele recém-feita
+# Depende da foto de retorno: a skill pos-tattoo-avaliacao já faz esse contato.
+# Use `morph` no plano `sessao` para a passagem fresca -> cicatrizada casar no quadro.
+#
+# nome      clipe  ss   dur   x0 y0 w0   x1 y1 w1   transicao
+cicatriz    A      ?    1.0   ?  ?  ?    ?  ?  ?    corte
+sessao      B      ?    4.0   ?  ?  ?    ?  ?  ?    morph
+passagem    A      ?    5.25  ?  ?  ?    ?  ?  ?    corte
+close       A      ?    5.0   ?  ?  ?    ?  ?  ?    corte

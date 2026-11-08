@@ -41,6 +41,31 @@ O objetivo é transformar a referência em um MÉTODO DE EDIÇÃO reproduzível.
 
 ---
 
+# 1.A. O MONTADOR — use antes de montar qualquer coisa à mão
+
+Os formatos do `youtube/FORMATOS.md` existem como moldes executáveis em
+`reels/modelos/*.edl`, e `scripts/montar_reels.sh` os renderiza já acabados.
+**Não remonte um corte à mão: copie o modelo do formato e preencha.**
+
+```
+cp reels/modelos/05-estencil-vira-pele.edl reels/<peca>/corte.edl
+./scripts/montar_reels.sh medir    CLIPE.mov 2,6,9,13 medicao.png
+./scripts/montar_reels.sh montar   reels/<peca>/corte.edl saida.mp4 A=... B=...
+./scripts/montar_reels.sh conferir saida.mp4 zona.png
+```
+
+O montador aplica sozinho o padrão de 1.B: easing, grade de 0,5 s (avisa se sair
+dela), correção por fonte, acabamento único no fim, saída 1080x1920 sem áudio.
+
+**O único trabalho de julgamento é medir o ponto focal de cada plano** — ver o PNG
+do `medir` e preencher `x y w`. Não extrapolar entre dois tempos: pan na mão não é
+linear, e esse atalho já custou três remontagens.
+
+Formato que ainda não tem `.edl`: escrever um novo em `reels/modelos/`, com os
+tempos que o `FORMATOS.md` já define para ele, em vez de inventar estrutura.
+
+---
+
 # 1.B. PADRÃO TÉCNICO DE ENTREGA (aprendido na peça da onça, 08/11/2026)
 
 Regras de ofício que valem para todo corte entregue. Cada uma custou um erro real.

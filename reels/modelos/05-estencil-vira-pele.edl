@@ -1,0 +1,24 @@
+# MODELO 5 — "Estêncil vira pele" (match cut)   ·   youtube/FORMATOS.md
+# 12,5 s · 9:16 · cortes na grade de 0,5 s · padrão em skills/editor-videos-tattoo § 1.B
+#
+# COMO USAR
+#   1. ./scripts/montar_reels.sh medir CLIPE.mov 2,6,9,13 medicao.png
+#      Abra o PNG e leia o ponto focal (rosto da peça) como fração do quadro.
+#      Multiplique pela resolução da fonte para ter x,y em pixels.
+#   2. Preencha as colunas abaixo. Regra de enquadramento: o ponto focal fica em
+#      ~0,42 da largura e ~0,44 da altura do RECORTE, porque a interface do Reels
+#      cobre topo 220, base 420 e direita 220 de um quadro 1080x1920.
+#        x = focal_x - 0.42*w        y = focal_y - 0.44*(w*16/9)
+#   3. ./scripts/montar_reels.sh montar este.edl saida.mp4 A=decalque.mov B=pronta.mov
+#   4. ./scripts/montar_reels.sh conferir saida.mp4 zona.png   e olhe o PNG.
+#
+# A = clipe do decalque   ·   B = clipe da peça pronta
+# A duração de `posmorph` já compensa os 0,25 s que o morph consome.
+#
+# nome      clipe  ss     dur   x0  y0   w0    x1  y1   w1    transicao
+gancho      B      ?      1.5   ?   ?    ?     ?   ?    ?     corte
+decalque    A      ?      2.5   ?   ?    ?     ?   ?    ?     morph
+posmorph    B      ?      2.75  ?   ?    ?     ?   ?    ?     corte
+abertura    B      ?      2.5   ?   ?    ?     ?   ?    ?     corte
+detalhe     B      ?      2.0   ?   ?    ?     ?   ?    ?     corte
+fecho       B      ?      1.5   ?   ?    ?     ?   ?    ?     corte
