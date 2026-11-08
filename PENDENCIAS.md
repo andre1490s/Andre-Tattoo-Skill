@@ -178,6 +178,17 @@ produção pausados até **25 de novembro de 2026** (o ciclo começa dia 25), co
 cinco páginas novas, a correção do campo isca e a medição presas no GitHub sem
 chegar no ar.
 
+### Lembrete agendado para o dia da virada
+
+Criado em 08/11/2026 a pedido do André: dispara em **25/11/2026 às 14:30 (SP)**,
+abre uma sessão nova e manda notificação no celular dele.
+ID: `trig_019AYC2FuDg4S339rrsztPgs` (para cancelar ou remarcar).
+
+**Limitação conhecida:** essa sessão nasce **sem conectores** (sem Netlify, sem
+ferramenta de scrape, sem GitHub MCP). Ela serve para lembrar e orientar, não
+para verificar. A conferência de fora tem que ser feita numa conversa normal
+com o André.
+
 ### A regra, daqui para frente
 
 - **Juntar as mudanças e publicar UMA vez**, com o conjunto pronto e testado.
