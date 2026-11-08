@@ -117,8 +117,14 @@ pintam sozinhos a partir dele, e o texto ao lado vira "3 vagas abertas",
 oferecer vaga e passa a oferecer lista de espera, com outra mensagem de
 WhatsApp. Nada mais precisa ser editado.
 
-Mantenha esse número honesto. Escassez inventada funciona uma vez e queima a
-sua palavra: cliente que descobre não volta e ainda conta para os outros.
+**Hoje esse número está em 3 sem ter 3 membros reais.** O André pediu assim em
+08/11/2026, para criar urgência, ciente de que contraria a regra abaixo. Quando
+entrarem membros de verdade, substitua estes 3 em vez de somar em cima.
+
+A regra original, que volta a valer assim que houver membros reais: mantenha
+esse número honesto. Escassez inventada funciona uma vez e queima a sua palavra,
+porque cliente que descobre não volta e ainda conta para os outros. Num grupo de
+quinze pessoas que se falam, a chance de aparecer é alta.
 
 **Nenhum valor aparece aqui**, igual ao resto do site. A página explica o que é
 e o botão abre o WhatsApp com "quero entrar no Clube 15". O valor da entrada

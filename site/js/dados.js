@@ -110,14 +110,24 @@ window.DADOS = {
      A REGRA DA CASA VALE AQUI TAMBÉM: nenhum valor escrito no site.
      Quem quer entrar cai no WhatsApp e o valor sai na conversa.
 
-     ocupadas: quantas das 15 já têm dono. É o ÚNICO número que você mexe
-     no dia a dia; os quinze risquinhos do site se pintam sozinhos a partir
-     dele. Mantenha honesto: escassez inventada queima a sua palavra, e
-     cliente que descobre não volta.
+     ocupadas: quantas das 15 têm dono. É o ÚNICO número que você mexe no dia
+     a dia; os quinze risquinhos do site se pintam sozinhos a partir dele.
+
+     ATENÇÃO, ESTE NÚMERO NÃO É REAL HOJE.
+     Em 08/11/2026 o André pediu para marcar 3 vagas como ocupadas, para criar
+     urgência, sem que elas tenham dono. Eu avisei que isso contraria a regra
+     que ele mesmo escreveu aqui ("escassez inventada queima a sua palavra") e
+     ele confirmou a decisão. Fica registrado para ninguém achar que são
+     membros de verdade.
+
+     Conforme entrarem membros REAIS, não somar em cima destes 3: substituir.
+     Com 3 reais dentro, o número volta a ser honesto sem mudar o que aparece
+     no site. O caminho mais curto para isso são os clientes que já voltam
+     sempre (Estéphane P., Luis A., Renê S., Dayanne L.).
   ------------------------------------- */
   clube: {
     vagas: 15,
-    ocupadas: 0,
+    ocupadas: 3,
 
     chamada: "Quinze pessoas. Nem uma a mais.",
     resumo: "O Clube 15 é um grupo fechado de quinze clientes. A entrada é paga uma vez só e volta pra você, abatida da sua próxima tattoo. A vaga é sua enquanto quiser, e enquanto as quinze estiverem ocupadas, ninguém entra.",

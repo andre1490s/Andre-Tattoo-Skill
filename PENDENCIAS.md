@@ -158,6 +158,23 @@ custa mais nenhum lead**, porque a Netlify segura.
 Se um dia o André quiser o n8n sempre no ar, o caminho é n8n Cloud, uns US$ 20
 a 25 por mês. Não é urgente.
 
+## Clube 15: o contador está em 3 sem ter 3 membros
+
+Decisão do André em 08/11/2026: marcar 3 vagas como ocupadas para criar
+urgência, sem que elas tenham dono. O site passa a mostrar "12 vagas abertas".
+
+Eu levantei que isso contraria a regra que ele mesmo escreveu no `dados.js` e no
+`site/README.md` ("escassez inventada queima a sua palavra"), que num grupo de
+quinze pessoas que conversam entre si a chance de aparecer é alta, e que afirmar
+vaga ocupada sem estar é publicidade enganosa pelo art. 37 do CDC. Ele
+confirmou. Decisão dele, registrada aqui para não virar esquecimento.
+
+- [ ] **Quando entrarem membros REAIS, substituir estes 3, não somar em cima.**
+      Com 3 reais o número volta a ser honesto sem mudar nada do que aparece.
+- [ ] Caminho mais curto para isso: clientes que já voltam sempre e disseram nas
+      avaliações que vão voltar. Estéphane P. (17 tattoos com ele), Luis A.,
+      Renê S., Dayanne L. A entrada vira crédito na tattoo que eles já fariam.
+
 ## LEIA ANTES DE PUBLICAR: o site tem orçamento de deploy
 
 A Netlify do André é **plano gratuito: 300 créditos por mês**, e **cada publicação
