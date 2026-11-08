@@ -184,6 +184,18 @@ section{padding-block:110px}
   font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
   opacity:0;transform:translateY(6px);transition:.35s}
 .work:hover .cap,.work:focus-visible .cap{opacity:1;transform:none}
+/* O h1 da home passou a incluir a linha "Tatuador na Vila Matilde, São Paulo",
+   que antes era um <span> solto acima dele. Visualmente nada muda; a diferença
+   é que o título da página passa a dizer o que o negócio é e onde fica. */
+.hero h1 .eyebrow{display:block;margin-bottom:22px}
+
+/* links para as páginas por estilo e região, logo depois da galeria */
+.porestilo{margin-top:56px;padding-top:40px;border-top:1px solid var(--rule)}
+.porestilo__links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.porestilo__links a{border:1px solid var(--rule);padding:12px 18px;font-size:15px;
+  color:var(--ink);transition:border-color .3s,color .3s,transform .3s}
+.porestilo__links a:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
 .gallery-foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:36px;font-size:15px;color:var(--ink-soft)}
 
 /* blocos de cor: seções inteiras no verde-oliva, para a página não ficar toda branca.

@@ -59,7 +59,10 @@ window.DADOS = {
   ------------------------------------- */
   google: {
     nota: "5,0",
-    total: "228",                       // vazio não mostra a contagem
+    total: "230",                       // vazio não mostra a contagem
+                                        // conferido no Perfil da Empresa em 08/11/2026.
+                                        // Este número é escrito à mão: reveja de vez em
+                                        // quando, ou deixe vazio para não envelhecer.
     url: "https://share.google/JyrQZJZmjx97Fmlcr",
 
     /* Avaliações REAIS, copiadas do Perfil da Empresa no Google.

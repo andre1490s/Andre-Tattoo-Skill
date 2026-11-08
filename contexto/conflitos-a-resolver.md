@@ -9,7 +9,7 @@ Abaixo, onde os dois divergem. **Nada foi mudado nas skills**: o André decide q
 Decisão do André: manter os padrões que ele informou nesta conversa. As skills afetadas foram atualizadas (21 trechos em 11 skills) e todas as 17 importadas passaram a apontar para `contexto/marca.md`. Notas da aplicação:
 - **A4 (anúncio):** "manter os padrões" não cobriu esse ponto diretamente. Apliquei o mais conservador: foco orgânico; nenhuma skill sugere anúncio sozinha; o André decide e aí entra o `gestor-de-trafego`. Se quiser outro critério, é só dizer.
 - **A5 (preço em posts):** passou a valer "nunca citar valor em público, nem 'a partir de'".
-- **A3 (horário):** domingo e feriado ficaram como [confirmar].
+- **A3 (horário): RESOLVIDO em 07/11/2026** — o André confirmou atendimento **todos os dias, das 9h às 22h**, inclusive domingo e feriado, e **somente com hora marcada**.
 
 (Tabela original abaixo, mantida como registro.)
 
