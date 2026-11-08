@@ -158,6 +158,45 @@ custa mais nenhum lead**, porque a Netlify segura.
 Se um dia o André quiser o n8n sempre no ar, o caminho é n8n Cloud, uns US$ 20
 a 25 por mês. Não é urgente.
 
+## LEIA ANTES DE PUBLICAR: o site tem orçamento de deploy
+
+A Netlify do André é **plano gratuito: 300 créditos por mês**, e **cada publicação
+em produção custa 15**. Ou seja, **20 publicações por mês e acabou**.
+
+**Em 08/11/2026 esse limite estourou, e a culpa foi de publicar commit a commit.**
+O extrato não deixa dúvida:
+
+| | Créditos |
+|---|---|
+| Publicações (20) | **300** |
+| Visitas (7.609) | 1,5 |
+| Tráfego | 4,4 |
+| **Total** | **305,9** |
+
+**98% foi deploy. O site inteiro existindo custou 5,9.** Resultado: deploys de
+produção pausados até **25 de novembro de 2026** (o ciclo começa dia 25), com
+cinco páginas novas, a correção do campo isca e a medição presas no GitHub sem
+chegar no ar.
+
+### A regra, daqui para frente
+
+- **Juntar as mudanças e publicar UMA vez**, com o conjunto pronto e testado.
+  Nunca um push por commit.
+- **Testar local**, que não gasta crédito: `node site/test/medicao.mjs`.
+- Para mostrar algo ao André antes de publicar, usar **deploy de branch**:
+  na Netlify é ilimitado e grátis; só a publicação no domínio custa.
+- Com 3 publicações por mês (45 créditos) sobram 255 para tráfego. Para
+  referência, o site usou 4,4 no ciclo inteiro. O plano gratuito é folgado:
+  o problema nunca foi o plano.
+
+### Alternativa, se um dia o gratuito apertar de verdade
+
+GitHub Pages é grátis e aceita domínio no apex **por registro A**, então não
+exigiria trocar os servidores de DNS no Registro.br nem mexer no DNSSEC (que,
+se trocado sem desligar antes, derruba o domínio). O custo é perder o
+**Netlify Forms**, que hoje é a rede de segurança dos leads. Não vale fazer
+essa troca às vésperas de um lançamento.
+
 ## App v2 publicado (versão 13)
 - Feito: redesign Fumaça e Prata, Hoje, Orçamentos (funil e retomadas), Finanças com relatórios, ficha do cliente, menu Mais, Aprendizado do Assistente (registro, avaliação e sugestões que o André aprova), backup JSON e CSV. Sem WhatsApp. Detalhes em `app/README.md`.
 - André: abrir o app no Safari e testar (principalmente Hoje, Orçamentos e o Assistente). Dizer o que mudar.
