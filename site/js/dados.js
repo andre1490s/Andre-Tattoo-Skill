@@ -46,7 +46,7 @@ window.DADOS = {
      onde saiu), formulário enviado e interesse no Clube 15. Visita não paga
      conta. Conversa paga. */
   medicao: {
-    ga4:   "",
+    ga4:   "G-81HPQZ847M",
     pixel: ""
   },
 

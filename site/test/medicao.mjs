@@ -74,6 +74,12 @@ const browser = await chromium.launch();
 // ---------------------------------------------------------------- CENARIO 1
 console.log('\n1) CODIGOS VAZIOS: o site nao pode baixar nem enviar nada');
 {
+  /* Zera os codigos de proposito: o teste tem que valer tambem depois que o
+     Andre colar os dele de verdade no dados.js. */
+  const orig0 = fs.readFileSync(path.join(RAIZ,'js/dados.js'),'utf8');
+  patchDados = orig0.replace(/ga4:\s*"[^"]*"/, 'ga4:   ""')
+                    .replace(/pixel:\s*"[^"]*"/, 'pixel: ""');
+
   const { ctx, pg, externos, erros } = await abrir(browser);
   await pg.goto(BASE + '/index.html', { waitUntil: 'networkidle' });
 
@@ -101,15 +107,17 @@ console.log('\n1) CODIGOS VAZIOS: o site nao pode baixar nem enviar nada');
   erros.length === 0 ? ok('clique no WhatsApp sem erro de JS')
                      : mal('erro de JS: ' + erros[0]);
   await ctx.close();
+  patchDados = null;
 }
 
 // ---------------------------------------------------------------- CENARIO 2
 console.log('\n2) CODIGOS PREENCHIDOS: tem que carregar e marcar os eventos');
 {
   const orig = fs.readFileSync(path.join(RAIZ,'js/dados.js'),'utf8');
-  patchDados = orig.replace('ga4:   ""', 'ga4:   "G-TESTE12345"')
-                   .replace('pixel: ""', 'pixel: "111122223333444"');
-  if (patchDados === orig) mal('nao consegui injetar os codigos de teste');
+  patchDados = orig.replace(/ga4:\s*"[^"]*"/,   'ga4:   "G-TESTE12345"')
+                   .replace(/pixel:\s*"[^"]*"/, 'pixel: "111122223333444"');
+  if (!/G-TESTE12345/.test(patchDados) || !/111122223333444/.test(patchDados))
+    mal('nao consegui injetar os codigos de teste');
 
   const { ctx, pg, externos, erros } = await abrir(browser);
   const eventos = [];
@@ -188,6 +196,32 @@ console.log('\n3) CAMPO ISCA: nao pode aparecer para ninguem');
     !visivel ? ok('sem CSS nenhum, segue escondido em ' + pagina)
              : mal('APARECE sem CSS em ' + pagina + ' ' + JSON.stringify(cx));
   }
+  await ctx.close();
+}
+
+// ---------------------------------------------------------------- CENARIO 4
+console.log('\n4) O QUE ESTA PUBLICADO DE VERDADE no dados.js');
+{
+  const real = fs.readFileSync(path.join(RAIZ,'js/dados.js'),'utf8');
+  const vGa = (real.match(/ga4:\s*"([^"]*)"/)   || [,''])[1].trim();
+  const vPx = (real.match(/pixel:\s*"([^"]*)"/) || [,''])[1].trim();
+  console.log('   ga4="' + vGa + '"  pixel="' + vPx + '"');
+
+  if (vGa && !/^G-[A-Z0-9]{6,}$/i.test(vGa)) mal('o codigo do GA4 nao tem a cara de um G-: "' + vGa + '"');
+  if (vPx && !/^[0-9]{10,20}$/.test(vPx))    mal('o codigo do Pixel nao e so digitos: "' + vPx + '"');
+
+  const { ctx, pg, externos, erros } = await abrir(browser);
+  await pg.goto(BASE + '/index.html', { waitUntil: 'networkidle' });
+
+  const pediuGa = externos.some(h => /googletagmanager/.test(h));
+  const pediuPx = externos.some(h => /connect\.facebook\.net/.test(h));
+
+  (vGa ? pediuGa : !pediuGa) ? ok(vGa ? 'Analytics ligado e carregando' : 'Analytics vazio e desligado')
+                             : mal(vGa ? 'tem codigo de GA4 mas nao carregou' : 'sem codigo de GA4 e mesmo assim carregou');
+  (vPx ? pediuPx : !pediuPx) ? ok(vPx ? 'Pixel ligado e carregando' : 'Pixel vazio e desligado')
+                             : mal(vPx ? 'tem codigo de Pixel mas nao carregou' : 'sem codigo de Pixel e mesmo assim carregou');
+
+  erros.length === 0 ? ok('nenhum erro de JS') : mal('erro de JS: ' + erros[0]);
   await ctx.close();
 }
 
