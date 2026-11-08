@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://andretattoo.com.br/</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+<!--imagens:inicio-->
+    <image:image><image:loc>https://andretattoo.com.br/img/justica.webp</image:loc><image:title>Realismo - Dama da Justiça</image:title><image:caption>Dama da Justiça com balança e espada, em realismo preto e cinza no antebraço</image:caption></image:image>
+    <image:image><image:loc>https://andretattoo.com.br/img/retrato-oculos.webp</image:loc><image:title>Realismo - Retrato</image:title><image:caption>Retrato masculino de óculos em realismo preto e cinza, com respingos de tinta, na panturrilha</image:caption></image:image>
+    <image:image><image:loc>https://andretattoo.com.br/img/poseidon.webp</image:loc><image:title>Realismo - Poseidon</image:title><image:caption>Rosto de Poseidon com tridente e grega, em realismo preto e cinza no antebraço</image:caption></image:image>
+    <image:image><image:loc>https://andretattoo.com.br/img/leao.webp</image:loc><image:title>Realismo - Leão</image:title><image:caption>Leão em realismo preto e cinza no antebraço, com cruz e figura em oração entre as nuvens</image:caption></image:image>
+    <image:image><image:loc>https://andretattoo.com.br/img/fera.webp</image:loc><image:title>Blackwork - Pontilhismo</image:title><image:caption>Peça em blackwork com sombreado em pontilhismo no antebraço</image:caption></image:image>
+    <image:image><image:loc>https://andretattoo.com.br/img/arcanjo.webp</image:loc><image:title>Realismo - Arcanjo</image:title><image:caption>Arcanjo em realismo preto e cinza no antebraço</image:caption></image:image>
+    <image:image><image:loc>https://andretattoo.com.br/img/rostos.webp</image:loc><image:title>Realismo - Rostos</image:title><image:caption>Composição de rostos em realismo no antebraço</image:caption></image:image>
+    <image:image><image:loc>https://andretattoo.com.br/img/retrato.webp</image:loc><image:title>Realismo - Retrato</image:title><image:caption>Retrato realista no braço</image:caption></image:image>
+    <image:image><image:loc>https://andretattoo.com.br/img/urso.webp</image:loc><image:title>Realismo - Urso</image:title><image:caption>Urso com lua e montanhas em realismo no braço</image:caption></image:image>
+    <image:image><image:loc>https://andretattoo.com.br/img/cigana.webp</image:loc><image:title>Realismo - Cigana</image:title><image:caption>Cigana de capuz com lua na testa, segurando uma galáxia, em realismo preto e cinza no braço</image:caption></image:image>
+    <image:image><image:loc>https://andretattoo.com.br/img/raposa.webp</image:loc><image:title>Blackwork - Raposa</image:title><image:caption>Raposa em blackwork pela perna</image:caption></image:image>
+    <image:image><image:loc>https://andretattoo.com.br/img/pet.webp</image:loc><image:title>Realismo colorido - Pet</image:title><image:caption>Cachorrinho em realismo colorido com flores no antebraço</image:caption></image:image>
+<!--imagens:fim-->
   </url>
   <url>
     <loc>https://andretattoo.com.br/realismo-preto-e-cinza</loc>

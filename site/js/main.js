@@ -91,6 +91,18 @@
     var box = $('#gallery'); if(!box) return;
     var lista = D.trabalhos || [];
     if(!lista.length) return;
+
+    /* O build.py ja gravou a galeria no index.html, para o Google e os
+       rastreadores de IA enxergarem as fotos sem executar JavaScript.
+       Nas paginas de conteudo a galeria e uma selecao propria, menor que a
+       lista inteira: ali o JS nao pode tocar.
+       Na home, se o HTML bate com o dados.js, tambem nao mexemos. Se alguem
+       editou o dados.js e esqueceu de rodar o build, remontamos aqui: o site
+       continua certo para quem visita, so volta a ficar invisivel para os
+       rastreadores ate o build rodar de novo. */
+    if(box.getAttribute('data-fonte') === 'pagina') return;
+    if(box.querySelectorAll('.work').length === lista.length) return;
+
     box.innerHTML = lista.map(function(o, i){
       return '<button class="work reveal" data-cap="' + esc(o.cap) + '">' +
         '<img src="img/' + esc(o.img) + '.webp" alt="' + esc(o.alt) + '"' +
@@ -131,7 +143,12 @@
     var caixa = $('#acc'), lista = D.duvidas || [];
     if(!caixa || !lista.length) return;
 
-    caixa.innerHTML = lista.map(function(d){
+    /* Mesma logica da galeria: o build.py ja gravou as duvidas e o JSON-LD do
+       FAQ no HTML. So remontamos se o HTML estiver defasado. */
+    var jaNoHtml = caixa.getAttribute('data-fonte') === 'pagina'
+                || caixa.querySelectorAll('details').length === lista.length;
+
+    if(!jaNoHtml) caixa.innerHTML = lista.map(function(d){
       return '<details class="acc__item reveal"><summary><span>' + esc(d.p) + '</span>' +
         '<i aria-hidden="true"></i></summary><div class="acc__corpo"><p>' + d.r + '</p></div></details>';
     }).join('');
@@ -151,10 +168,14 @@
                  acceptedAnswer: { '@type':'Answer', text: String(d.r).replace(/<[^>]+>/g, '') } };
       })
     };
-    var s = document.createElement('script');
-    s.type = 'application/ld+json';
-    s.textContent = JSON.stringify(marcacao);
-    document.head.appendChild(s);
+    /* So injeta se o build nao tiver gravado antes: dois FAQPage na mesma
+       pagina confundem o Google. */
+    if(!jaNoHtml){
+      var s = document.createElement('script');
+      s.type = 'application/ld+json';
+      s.textContent = JSON.stringify(marcacao);
+      document.head.appendChild(s);
+    }
   })();
 
   /* ---------------------------------------------------------------
@@ -365,8 +386,13 @@
   /* ---------------------------------------------------------------
      6. GALERIA AMPLIADA
   --------------------------------------------------------------- */
-  var works = [].slice.call(document.querySelectorAll('.work')), lb = document.getElementById('lb'),
-      lbImg = lb.querySelector('img'), lbCap = lb.querySelector('.lbcap'), cur = 0, last = null;
+  /* A clube-15.html nao tem o elemento #lb. Sem esta guarda, a linha abaixo
+     estourava "Cannot read properties of null" e TUDO o que vem depois parava
+     de rodar naquela pagina, inclusive a medicao la embaixo: o Analytics e o
+     Pixel nunca carregavam na pagina do clube. Verificado em 08/11/2026. */
+  var works = [].slice.call(document.querySelectorAll('.work')), lb = document.getElementById('lb');
+  if(lb){
+  var lbImg = lb.querySelector('img'), lbCap = lb.querySelector('.lbcap'), cur = 0, last = null;
   function show(i){
     cur = (i + works.length) % works.length;
     var im = works[cur].querySelector('img');
@@ -387,6 +413,8 @@
   var sx = null;
   lb.addEventListener('touchstart', function(e){ sx = e.touches[0].clientX; }, {passive:true});
   lb.addEventListener('touchend', function(e){ if(sx === null) return; var dx = e.changedTouches[0].clientX - sx; if(Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); sx = null; });
+
+  } /* fim do if(lb) */
 
   /* ---------------------------------------------------------------
      7. FORMULÁRIO: grava o pedido e abre o WhatsApp

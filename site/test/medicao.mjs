@@ -28,7 +28,11 @@ import http from 'http';
 import fs from 'fs';
 import path from 'path';
 
-const RAIZ = '/home/user/Andre-Tattoo-Skill/site';
+/* A raiz e a pasta site/, deduzida da posicao deste arquivo. Antes era um
+   caminho absoluto fixo, entao o teste so rodava na maquina onde foi
+   escrito e quebrava em qualquer clone novo do repositorio. */
+import { fileURLToPath } from 'url';
+const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const TIPOS = { '.html':'text/html', '.css':'text/css', '.js':'application/javascript',
                 '.webp':'image/webp', '.png':'image/png', '.xml':'application/xml',
                 '.mp4':'video/mp4', '.txt':'text/plain' };
