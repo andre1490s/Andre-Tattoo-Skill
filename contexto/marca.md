@@ -66,12 +66,13 @@ Sinal (política do André):
   - Falha na aplicação: retoque sem custo.
   - Inflamação ou desgaste por cuidados inadequados do cliente: a área é refeita e o valor é cobrado novamente.
   - Com o cliente, explicar com educação, sem acusar. Quem decide cada caso é o André; nenhuma skill promete retoque gratuito antes dele ver.
+- **Cuidados pós-tatuagem:** o texto oficial foi **aprovado pelo André em 07/11/2026**. Ele vive em três lugares que precisam continuar idênticos: a skill `pos-tattoo-avaliacao`, o app Caixa e a página `site/cuidados-depois-da-tatuagem.html`. Nenhuma skill reescreve esse texto nem responde sobre cuidados além do que está nele.
 - **Idade mínima:** 18 anos. Qualquer indício de menor de idade: informar a regra.
 - **Trabalho grande:** um por dia. Alertar se houver mais de um no mesmo dia.
 - **"Indique e Ganhe":** existe, mas as regras ainda **não foram definidas**. Nenhuma skill menciona o programa até o André definir.
 
 ## Estúdio
 - Endereço: Av. Melchert, 606, Vila Matilde (São Paulo/SP presumido, **[confirmar]**).
-- Horário: segunda a sábado, das 9h às 22h. Domingo e feriado: **[confirmar]**.
+- Horário: **todos os dias, das 9h às 22h, inclusive domingo e feriado** (confirmado pelo André em 07/11/2026).
 - Canal de agendamento: **link na bio** do Instagram (@andretatuadoor). O link leva **direto ao WhatsApp, com formulário**.
-- **[confirmar]** se atende só com hora marcada.
+- Atendimento **somente com hora marcada** (confirmado pelo André em 07/11/2026).

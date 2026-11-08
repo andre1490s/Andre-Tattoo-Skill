@@ -8,6 +8,30 @@ Atualizado em 2026-11-06. Sem dados de clientes neste arquivo.
 - Regras do `contexto/marca.md` valem nos anúncios: sem preço em peça pública, sem escassez falsa, sem prometer resultado, só o André passa o valor final.
 - Antes de qualquer gasto ou publicação: o Claude propõe a campanha e o André aprova cada passo. Nada vai ao ar sem confirmação.
 
+## SEO: cinco páginas novas no ar (08/11/2026)
+
+Estudo completo, com a trilha de seis etapas e a medição, em `site/ESTUDO-SEO.md` na branch
+`claude/seo-em-trilha-23ouwm`. O que entrou nesta branch:
+
+- Cinco páginas de conteúdo (braço, costas, realismo, delicada, cuidados) — detalhe em `site/README.md`.
+- A home ganhou o bloco "Ver por estilo e região" depois da galeria, e o `<h1>` passou a incluir
+  "Tatuador na Vila Matilde, São Paulo" (antes era um `<span>` solto acima dele; visualmente nada mudou).
+- `sitemap.xml` com as sete URLs e `lastmod`.
+- `dados.js`: a contagem do Google foi de 228 para **230** (conferida em 08/11/2026). Esse número é escrito
+  à mão e envelhece sozinho — revise de vez em quando.
+
+**Bom de registrar:** o Perfil da Empresa **já está com o site vinculado** (conferido em 08/11/2026), que
+era o item de maior retorno do estudo. Nota 5,0 com 230 avaliações.
+
+- [ ] **Enviar o `sitemap.xml` no Search Console** (propriedade `andretattoo.com.br`) e pedir indexação das
+      cinco páginas novas. A posse já está confirmada pelo arquivo `google7695fdf6c6a1b3b8.html`.
+- [ ] **Pedir avaliação no fim de cada sessão.** Medido: 1,75 por mês nos últimos 12 meses, com zero em 6
+      dos 12 meses. A meta da trilha é 4 por mês, constante.
+- [ ] **Fotografar uma peça de costas cicatrizada.** A página de costas é a única sem uma peça finalizada
+      da região: hoje ela se sustenta no lírio e nas fotos de processo.
+- [ ] **GA4 e Meta Pixel:** nenhuma medição instalada no site. Sem isso não dá para saber se as páginas
+      novas trazem gente.
+
 ## URGENTE: privacidade do repositório
 - [ ] Conferido em 06/11/2026: o repositório `andre1490s/Andre-Tattoo-Skill` continua **PÚBLICO**. Tornar privado: GitHub > Settings > Danger Zone > Change repository visibility. Hoje ele expõe: valores de referência e políticas (marca.md, skills), o e-mail do Google (skill registrar-no-sistema) e o id do projeto Supabase (backup do app). Não há senhas, chaves nem dados de clientes.
 - Regra daqui para frente: não commitar fotos de tattoos, dados de clientes nem builds com imagens embutidas.

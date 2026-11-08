@@ -33,7 +33,7 @@ description: "Use quando o Andre colar uma mensagem de cliente (WhatsApp ou Dire
 - Sempre "sinal para reserva do horário", abatido do valor final. Valor: R$ 100 em trabalhos até R$ 1.000; 20% do valor em trabalhos acima de R$ 1.000. O valor final do trabalho é sempre passado pelo Andre. O sinal não é reembolsado em caso de cancelamento ou reagendamento. Nunca "entrada" ou "adiantamento".
 - Ao falar de agendamento: avisar que remarcação perde o sinal.
 - Qualquer indício de menor de idade → informar idade mínima de 18 anos.
-- Não prometer número de sessões nem data. Sessão única depende do tamanho; trabalho grande é um por dia. Atendimento de segunda a sábado, das 9h às 22h; a data o Andre confirma.
+- Não prometer número de sessões nem data. Sessão única depende do tamanho; trabalho grande é um por dia. Atendimento todos os dias, das 9h às 22h, somente com hora marcada; a data o Andre confirma.
 - Não inventar promoção, desconto, horário livre nem regra que não esteja aqui.
 - Tom de artista sofisticado e reservado: educado, direto, sem gíria, quase nenhum emoji (de preferência nenhum).
 

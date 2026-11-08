@@ -13,8 +13,35 @@ linha de agulha dourada que costura a página conforme você rola.
 | `js/dados.js` | **o arquivo do dia a dia**: WhatsApp, Instagram, TikTok, endereço do formulário, nota e avaliações do Google, dúvidas e lista de trabalhos |
 | `js/main.js` | monta a galeria e as avaliações, linha da agulha, entrada suave, foto ampliada |
 | `img/` | 12 fotos de trabalhos + fotos do Andre e do estúdio |
+| `tatuagem-no-braco.html` · `tatuagem-nas-costas.html` · `realismo-preto-e-cinza.html` · `tatuagem-feminina-delicada.html` · `cuidados-depois-da-tatuagem.html` | as cinco páginas de conteúdo (ver abaixo) |
+| `css/pagina.css` | o pouco que só as cinco páginas usam; carrega depois do `style.css` e não altera a home |
 | `404.html` | página de erro |
 | `netlify.toml`, `robots.txt`, `sitemap.xml` | configuração de publicação e Google |
+
+## As cinco páginas de conteúdo (08/11/2026)
+
+A home disputa uma busca só. Estas cinco disputam as buscas que São Paulo realmente faz — que se
+organizam por **região do corpo** e por **significado**, não por nome de estilo (medição em
+`ESTUDO-SEO.md`, na branch `claude/seo-em-trilha-23ouwm`).
+
+| Página | Para que busca | Peças |
+|---|---|---|
+| `tatuagem-no-braco` | braço, no braço, antebraço, fechamento | samurai, leão, cigana, justiça, urso, retrato |
+| `tatuagem-nas-costas` | costas, projeto grande | lírio nas costas, processo, stencil |
+| `realismo-preto-e-cinza` | o posicionamento da marca | leão, Poseidon, arcanjo, retrato, rostos, peitoral |
+| `tatuagem-feminina-delicada` | feminina, delicada, fine line | fada, lírios na perna, pet |
+| `cuidados-depois-da-tatuagem` | pomada, cicatrização, retoque | foto do estúdio |
+
+**Como mexer.** Diferente da home, o conteúdo delas está **no HTML, não no `dados.js`** — de propósito:
+texto montado por JavaScript conta pouco para busca, e essas páginas existem para serem encontradas. Para
+editar, abra o arquivo. O cabeçalho, o rodapé e os botões continuam vindo do `dados.js` e do `main.js`.
+
+**Regras que valem ao editar:** nenhum valor em nenhuma delas, nem "a partir de"; nada de depoimento,
+número de clientes ou ano de carreira inventado; e o texto de cuidados é o **oficial**, idêntico ao da
+skill `pos-tattoo-avaliacao` e do app Caixa — se mudar, mude nos três.
+
+Cinco imagens vieram do site antigo (`site-v1/img/portfolio/`): a fada, os dois lírios, a Nossa Senhora e o
+stencil do vaso. São fotos do próprio Andre, já publicadas antes. Elas **não** entraram na galeria da home.
 
 ## Contato que está no ar
 - **WhatsApp:** (11) 98271-3543: aparece em 5 botões, todos com a mesma mensagem pronta
