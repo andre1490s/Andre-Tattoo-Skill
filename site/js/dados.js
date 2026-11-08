@@ -47,7 +47,7 @@ window.DADOS = {
      conta. Conversa paga. */
   medicao: {
     ga4:   "G-81HPQZ847M",
-    pixel: ""
+    pixel: "2572740583206164"
   },
 
   /* ---------- 2. FORMULÁRIO ----------
