@@ -41,6 +41,56 @@ O objetivo é transformar a referência em um MÉTODO DE EDIÇÃO reproduzível.
 
 ---
 
+# 1.B. PADRÃO TÉCNICO DE ENTREGA (aprendido na peça da onça, 08/11/2026)
+
+Regras de ofício que valem para todo corte entregue. Cada uma custou um erro real.
+
+## Zona segura do Reels — compor para o que o app mostra
+A interface cobre, num quadro 1080x1920: **topo ~220px, base ~420px** (legenda,
+usuário, áudio) e **direita ~220px** (botões). A janela sempre visível é
+aproximadamente **x 0–860, y 220–1500**.
+
+- Ponto focal da cena em **~0,42 da largura e ~0,44 da altura**, acima do centro.
+- Nunca entregar sem conferir: sobrepor as três faixas no corte e olhar frame a frame.
+- Plano aberto demais perde o pé para a legenda. Se a peça não couber inteira na
+  janela, **não force**: enquadre a parte mais forte e deixe o sacrifício ser
+  decisão, não acidente.
+
+## Medir, nunca extrapolar
+Pan de câmera na mão **não é linear** — vai e volta. Modelo linear errou a posição
+da cabeça em mais de 600px (um quarto do quadro) e jogou o plano no ombro.
+**Medir com grade de 10% no timecode exato de cada corte.** Três reconstruções
+foram gastas por confiar em interpolação.
+
+## Movimento com easing
+Rampas lineares parecem máquina. Usar smoothstep no progresso:
+`p = on/N` → `e = p*p*(3-2*p)`, e interpolar recorte e posição por `e`.
+
+## Cortes na grade de 0,5s (120 BPM)
+Fechar cada corte num múltiplo de 0,5s. Assim qualquer música de 120 BPM que o
+Andre escolher no app cai na batida, sem reeditar.
+
+## Corte seco em vez de zoom para dar escala
+Zoom longo não entrega contraste de tamanho; **corte entrega na hora**. Quando o
+material limita a abertura (fonte de menor resolução no match, zona segura), troque
+o pull-out pelo corte seco entre um plano fechado e um aberto.
+
+## Uma passada de acabamento no fim
+Grade, vinheta e grão **depois** da montagem, sobre o corte inteiro, para fontes
+diferentes (aqui 1080p e 4K) ficarem com a mesma textura. O grão também serve de
+dither contra banding nos degradês de pele.
+Base usada: `curves=master='0/0 0.25/0.22 0.5/0.5 0.75/0.78 1/1'`,
+`vignette=angle=PI/4.2`, `noise=alls=4:allf=t+u`.
+
+## Armadilhas da zoompan do ffmpeg
+- `x` e `y` são coordenadas **da entrada**, não da imagem ampliada. Não multiplicar por z.
+- `z = largura_da_fonte / largura_do_recorte`; a filtro mostra `iw/z` da entrada.
+- `z` só aceita **>= 1**: para desescalar, renderize numa resolução interna maior
+  (ex.: 1620) e desça com lanczos no fim.
+- `xfade` recusa pontas com timebases diferentes: `settb=AVTB,fps=30` nas duas.
+
+---
+
 # 2. PRINCÍPIO FUNDAMENTAL
 
 Quando o usuário enviar uma referência, NÃO responda apenas:
