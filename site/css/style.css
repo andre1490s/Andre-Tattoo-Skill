@@ -442,5 +442,11 @@ footer a{text-decoration:none}
 }
 
 /* Campo isca do anti-robô da Netlify. Pessoa nenhuma vê, robô preenche e o
-   envio é descartado. Fica fora do fluxo e fora do leitor de tela. */
+   envio é descartado. Fica fora do fluxo e fora do leitor de tela.
+
+   O mesmo esconder está REPETIDO no style= do próprio elemento, de propósito.
+   Em 08/11/2026 o André viu o campo aparecer na home: o HTML dele era o novo e
+   o css ainda era o velho, guardado no navegador. Enquanto a invisibilidade
+   depender desta folha, qualquer atraso ou falha do css mostra uma caixa
+   estranha no meio do formulário. No style= ela chega junto com o campo. */
 .esconde{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
