@@ -24,6 +24,9 @@ COMO USAR
 import io, os, re, json, datetime
 
 RAIZ = os.path.dirname(os.path.abspath(__file__))
+# 3 colunas no computador (~380px) e 2 no celular (meia tela). Se o layout da
+# galeria mudar em css/style.css, este valor muda junto.
+SIZES_GALERIA = '(max-width:900px) 50vw, 380px'
 def caminho(*p): return os.path.join(RAIZ, *p)
 
 # ---------------------------------------------------------------- dimensoes
@@ -78,11 +81,18 @@ def html_galeria(trabalhos):
         if not os.path.exists(arq):
             raise SystemExit('ERRO: falta a imagem %s, citada em dados.js' % arq)
         w, h = tamanho_webp(arq)
+        # versao de 600px para o celular, que mostra a foto em meia tela. O
+        # lightbox continua abrindo o arquivo grande, que fica no src.
+        pequena = caminho('img', o['img'] + '-600.webp')
+        if not os.path.exists(pequena):
+            raise SystemExit('ERRO: falta %s' % pequena)
+        srcset = (' srcset="img/%s-600.webp 600w, img/%s.webp %dw" sizes="%s"'
+                  % (esc(o['img']), esc(o['img']), w, SIZES_GALERIA))
         out.append(
             '<button class="work reveal" data-cap="%s">'
-            '<img src="img/%s.webp" alt="%s" width="%d" height="%d"%s decoding="async">'
+            '<img src="img/%s.webp"%s alt="%s" width="%d" height="%d"%s decoding="async">'
             '<span class="cap">%s</span></button>'
-            % (esc(o['cap']), esc(o['img']), esc(o['alt']), w, h,
+            % (esc(o['cap']), esc(o['img']), srcset, esc(o['alt']), w, h,
                ' loading="lazy"' if i else '', esc(o['cap'].split('·')[-1].strip())))
     return '\n        '.join(out)
 
@@ -114,8 +124,19 @@ def imagens_sitemap(trabalhos):
         % (esc(o['img']), esc(o['cap'].replace('·', '-')), esc(o['alt'])) for o in trabalhos)
 
 # ---------------------------------------------------------------- escrita
+def miniaturas(trabalhos):
+    """Gera img/<nome>-600.webp para cada foto do portfolio que ainda nao tem."""
+    from PIL import Image
+    for o in trabalhos:
+        src = caminho('img', o['img'] + '.webp'); dst = caminho('img', o['img'] + '-600.webp')
+        if os.path.exists(dst): continue
+        im = Image.open(src); w, h = im.size
+        im.resize((600, round(h * 600 / w)), Image.LANCZOS).save(dst, 'WEBP', quality=82, method=6)
+        print('miniatura    %s' % os.path.basename(dst))
+
 def main():
     trabalhos, duvidas = ler_dados()
+    miniaturas(trabalhos)   # foto nova ganha a versao de 600px sozinha
 
     p = caminho('index.html')
     s = io.open(p, encoding='utf-8').read()

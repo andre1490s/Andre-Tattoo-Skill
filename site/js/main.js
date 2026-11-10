@@ -105,7 +105,8 @@
 
     box.innerHTML = lista.map(function(o, i){
       return '<button class="work reveal" data-cap="' + esc(o.cap) + '">' +
-        '<img src="img/' + esc(o.img) + '.webp" alt="' + esc(o.alt) + '"' +
+        '<img src="img/' + esc(o.img) + '.webp" srcset="img/' + esc(o.img) + '-600.webp 600w, img/' +
+        esc(o.img) + '.webp 1200w" sizes="(max-width:900px) 50vw, 380px" alt="' + esc(o.alt) + '"' +
         (i ? ' loading="lazy"' : '') + ' decoding="async">' +
         '<span class="cap">' + esc((o.cap || '').split('·').pop().trim()) + '</span></button>';
     }).join('');

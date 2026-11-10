@@ -37,3 +37,10 @@
   for = "/img/*"
   [headers.values]
     Cache-Control = "public, max-age=2592000"
+
+# Fontes servidas pelo proprio site (antes vinham do Google Fonts). O nome do
+# arquivo so muda se a fonte for trocada, entao pode ficar guardado 1 ano.
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
