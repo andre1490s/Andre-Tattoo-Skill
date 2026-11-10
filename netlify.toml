@@ -44,3 +44,10 @@
   for = "/img/*"
   [headers.values]
     Cache-Control = "public, max-age=2592000"
+
+# Fontes servidas pelo proprio site (10/11/2026). Mesma regra do
+# site/netlify.toml: os dois arquivos precisam ter os mesmos cabecalhos.
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
