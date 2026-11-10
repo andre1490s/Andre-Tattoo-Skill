@@ -97,8 +97,16 @@ Nenhum dos dois é senha: ficam visíveis no código de qualquer site que os use
 | `clube_15` / `ViewContent` | quantos foram olhar o clube |
 
 Para conferir depois de mexer: `node site/test/medicao.mjs`. Ele abre o site num
-navegador de verdade e checa os dois estados (desligado e ligado), mais o campo
-isca anti-robô.
+navegador de verdade e checa cinco coisas: o estado desligado (não pode baixar
+nem enviar nada), o estado ligado, o campo isca anti-robô mesmo sem CSS, o que
+está publicado de verdade no `dados.js`, e **a medição em cada uma das páginas**.
+
+Esse último cenário existe por causa de um bug real: a `clube-15.html` não tem o
+elemento da galeria ampliada, a linha que o usava estourava e tudo o que vinha
+depois no `main.js` parava de rodar **só naquela página**, medição inclusive.
+Passou despercebido porque o teste só abria a home. Página nova com um pedaço a
+menos pode repetir isso, então agora toda página que carrega o `main.js` é
+verificada.
 
 ## Versão anterior
 A primeira versão do site (tema escuro, formulário de 3 passos, FAQ e vídeo no topo)

@@ -229,6 +229,51 @@ console.log('\n4) O QUE ESTA PUBLICADO DE VERDADE no dados.js');
   await ctx.close();
 }
 
+// ---------------------------------------------------------------- CENARIO 5
+console.log('\n5) MEDICAO EM TODAS AS PAGINAS, nao so na home');
+/* Este cenario existe por causa de um bug real, de 08/11/2026: a clube-15.html
+   nao tem o elemento #lb da galeria ampliada, a linha que o usava estourava, e
+   TUDO que vinha depois no main.js parava de rodar naquela pagina, inclusive a
+   medicao. Analytics e Pixel nunca carregavam no Clube 15 e ninguem percebeu,
+   porque o teste so abria a home. Uma pagina nova com um pedaco a menos pode
+   repetir isso, entao agora toda pagina que carrega o main.js e verificada. */
+{
+  const paginas = fs.readdirSync(RAIZ)
+    .filter(f => f.endsWith('.html'))
+    .filter(f => fs.readFileSync(path.join(RAIZ, f), 'utf8').includes('js/main.js'));
+  console.log('   ' + paginas.length + ' paginas carregam o main.js');
+
+  const real = fs.readFileSync(path.join(RAIZ,'js/dados.js'),'utf8');
+  const temGa = /ga4:\s*"[^"]+"/.test(real);
+  const temPx = /pixel:\s*"[^"]+"/.test(real);
+
+  for (const pagina of paginas) {
+    const { ctx, pg, externos, erros } = await abrir(browser);
+    await pg.goto(BASE + '/' + pagina, { waitUntil: 'networkidle' });
+
+    const falhou = [];
+    if (erros.length) falhou.push('erro de JS: ' + erros[0].slice(0, 90));
+    if (temGa && !externos.some(h => /googletagmanager/.test(h)))   falhou.push('Analytics nao carregou');
+    if (temPx && !externos.some(h => /connect\.facebook\.net/.test(h))) falhou.push('Pixel nao carregou');
+
+    /* o ouvinte de clique do WhatsApp fica no mesmo bloco da medicao: se ele
+       responde, o bloco inteiro chegou ao fim naquela pagina */
+    const marcou = await pg.evaluate(() => {
+      window.__t = [];
+      window.gtag = function(){ window.__t.push([].slice.call(arguments)); };
+      document.addEventListener('click', e => e.preventDefault());
+      const a = document.querySelector('a[href*="wa.me"]');
+      if (!a) return 'sem link de WhatsApp';
+      a.removeAttribute('target'); a.click();
+      return window.__t.some(x => x[1] === 'whatsapp');
+    });
+    if (temGa && marcou !== true) falhou.push('clique no WhatsApp nao marcou (' + marcou + ')');
+
+    falhou.length === 0 ? ok(pagina) : mal(pagina + ': ' + falhou.join('; '));
+    await ctx.close();
+  }
+}
+
 await browser.close();
 srv.close();
 console.log('\n' + (falhas.length ? 'FALHAS: ' + falhas.length : 'TUDO PASSOU'));
