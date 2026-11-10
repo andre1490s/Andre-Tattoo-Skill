@@ -1,0 +1,46 @@
+# Configuracao de publicacao na raiz do repositorio.
+#
+# Por que ela existe (10/11/2026): o site fica em site/, e ate aqui os deploys
+# eram disparados de fora, a dedo. Dependendo de onde o deploy e iniciado, a
+# Netlify procura o netlify.toml na raiz, nao em site/ — e sem este arquivo ela
+# publicaria a raiz do repositorio, deixando o site no ar sem index.html.
+#
+# Com publish = "site", qualquer caminho leva ao mesmo lugar certo:
+#   - deploy iniciado na raiz -> le este arquivo e publica a pasta site/
+#   - deploy iniciado em site/ -> le site/netlify.toml, que tem publish = "."
+#
+# NAO ligue o repositorio para publicar a cada commit. A Netlify do Andre e
+# plano gratuito: 300 creditos por mes e 15 por publicacao em producao, ou seja
+# 20 publicacoes. Em 08/11/2026 o limite estourou justamente por publicar commit
+# a commit (ver PENDENCIAS.md). A regra e juntar as mudancas e publicar uma vez.
+#
+# Os cabecalhos abaixo sao os mesmos de site/netlify.toml. Se mudar la, mude aqui.
+
+[build]
+  publish = "site"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# css e js sem cache de validade longa: nao ha etapa de build, o nome do arquivo
+# nunca muda, e uma correcao levaria dias para chegar em quem ja visitou.
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# imagem fica 30 dias: foto nova entra com nome novo, entao nunca fica velha.
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"

@@ -206,6 +206,18 @@ ferramenta de scrape, sem GitHub MCP). Ela serve para lembrar e orientar, não
 para verificar. A conferência de fora tem que ser feita numa conversa normal
 com o André.
 
+### Rede de seguranca para o dia da publicacao (10/11/2026)
+
+Existe agora um **`netlify.toml` na raiz do repositório**, com `publish = "site"`. Ele não muda nada no
+dia a dia: serve para o deploy de 25/11 não ter como errar a pasta. Sem ele, um deploy disparado da raiz
+publicaria o repositório inteiro, e o site ficaria no ar sem `index.html` — gastando 15 créditos para
+derrubar o site e mais 15 para consertar. Com ele, os dois caminhos levam à pasta certa:
+
+- deploy iniciado na raiz → lê o arquivo novo e publica `site/`
+- deploy iniciado em `site/` → lê `site/netlify.toml`, que tem `publish = "."`
+
+Os cabeçalhos (segurança e cache) são iguais nos dois arquivos. **Se mudar um, mude o outro.**
+
 ### A regra, daqui para frente
 
 - **Juntar as mudanças e publicar UMA vez**, com o conjunto pronto e testado.
