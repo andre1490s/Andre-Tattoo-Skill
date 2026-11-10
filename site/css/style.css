@@ -152,26 +152,26 @@ main,header,footer{position:relative}
 .intro{display:none}
 html.abertura{overflow:hidden}
 html.abertura .intro{display:grid;place-items:center;position:fixed;inset:0;z-index:200;
-  background:var(--paper);transition:opacity .7s ease}
+  background:var(--paper);transition:opacity .45s ease}
 .intro.is-out{opacity:0}
 .intro__palco{position:relative;width:min(255px,46vw);aspect-ratio:422/468;
-  transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+  transition:transform .45s cubic-bezier(.2,.7,.2,1)}
 .intro.is-out .intro__palco{transform:scale(1.05)}
 
 .intro__esboco,.intro__esboco svg{position:absolute;inset:0;width:100%;height:100%}
-.intro__esboco{color:#6B645B;animation:esbocoSai .55s ease 1.3s forwards}
+.intro__esboco{color:#6B645B;animation:esbocoSai .35s ease .75s forwards}
 .intro__esboco path{stroke-dasharray:1;stroke-dashoffset:1;
-  animation:risca .7s cubic-bezier(.35,0,.25,1) forwards;
-  animation-delay:calc(.12s + var(--i) * .032s)}
+  animation:risca .45s cubic-bezier(.35,0,.25,1) forwards;
+  animation-delay:calc(.06s + var(--i) * .019s)}
 
 .intro__arte{position:absolute;inset:0;opacity:0;
   background:url("../img/logo-a-tinta.webp") center/contain no-repeat;
-  animation:arteEntra .7s ease 1.2s forwards}
+  animation:arteEntra .45s ease .7s forwards}
 
 .intro__risco{position:absolute;left:50%;bottom:-10%;width:min(210px,38vw);height:1px;
   background:linear-gradient(90deg,transparent,var(--gold),transparent);
   transform:translateX(-50%) scaleX(0);
-  animation:introRisco .8s cubic-bezier(.2,.7,.2,1) 1.05s forwards}
+  animation:introRisco .5s cubic-bezier(.2,.7,.2,1) .6s forwards}
 
 @keyframes risca{to{stroke-dashoffset:0}}
 @keyframes esbocoSai{to{opacity:0}}

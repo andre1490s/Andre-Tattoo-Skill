@@ -33,9 +33,11 @@
         raiz.classList.remove('abertura');
         if(el.parentNode) el.parentNode.removeChild(el);
         build();                       /* a barra de rolagem volta: refaz a linha */
-      }, 760);
+      }, 500);
     }
-    setTimeout(sai, 2050);  /* o esboço fecha em ~1,4s e a arte final entra até 1,9s */
+    /* Encurtada a pedido do Andre (10/11/2026): a cortina começa a subir em
+       1,2s. O esboço fecha em ~1,1s e a arte final entra até ~1,15s. */
+    setTimeout(sai, 1200);
     addEventListener('pointerdown', sai);   /* quem tem pressa, pula */
     addEventListener('keydown', sai);
   })();
