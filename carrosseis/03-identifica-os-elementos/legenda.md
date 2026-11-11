@@ -1,19 +1,29 @@
 # Legenda do post
 
-> As duas primeiras linhas são o que aparece antes do "mais".
+> As duas primeiras linhas são o que aparece antes do "mais". Elas carregam o post inteiro.
 
-São dez elementos nesse braço. Quantos você reconheceu antes de deslizar?
+Aposto que você reconhece três. No máximo quatro.
 
-Geometria sagrada, budismo, Reiki e matemática no mesmo antebraço, em preto e cinza com pontilhismo.
+São dez elementos nesse braço, e cada um vem de uma tradição diferente. Geometria sagrada, budismo, Reiki e matemática pura, no mesmo antebraço.
 
-O detalhe que quase ninguém percebe: os treze círculos separados são o Fruto da Vida, e é ligando o centro deles que se desenha o Cubo de Metatron, que é a estrela logo acima. A peça traz a origem e o resultado a poucos centímetros um do outro.
+O que quase ninguém percebe: aqueles treze círculos separados são o Fruto da Vida. Ligando o centro deles você desenha o Cubo de Metatron, que é exatamente a estrela que está logo acima, na mesma pele. A peça traz a origem e o resultado a poucos centímetros um do outro.
 
-Tem o nó sem fim, do budismo. Tem o Cho Ku Rei, primeiro símbolo do Reiki. Tem a espiral áurea, que é a única parte da peça que não depende de crença nenhuma: é matemática, e a natureza repete ela na concha e no girassol.
+A espiral é a única parte que não depende de crença nenhuma. É Fibonacci, e a natureza repete ela na concha do náutilo e no miolo do girassol.
 
-E tem um número que eu não explico, porque não tem leitura tradicional. Esse é do dono do braço.
+E tem um número ali que eu não explico, porque não existe leitura tradicional para ele. Esse é do dono do braço.
 
-**Comenta quantos você acertou.**
+**Comenta quantos você acertou.** Se passou de cinco, você entende de geometria sagrada mais que a maioria.
 
-Se quiser o significado de cada um em detalhe, comenta PORTAL que eu mando no seu direct.
+Quer o significado de cada um em detalhe? Comenta **PORTAL** que eu mando no seu direct.
 
-#geometriasagrada #tatuagemgeometrica #merkaba #flordavida #reiki #chokurei #pontilhismo #pretoecinza #tatuagemsp #vilamatilde #zonalestesp #tatuadorsp
+#geometriasagrada #tatuagemgeometrica #merkaba #flordavida #cubodemetatron #reiki #chokurei #fibonacci #pontilhismo #pretoecinza #tatuagemsp #tatuagemsaopaulo #vilamatilde #zonalestesp #tatuadorsp
+
+---
+
+## Variação mais suave da abertura
+
+Se achar a aposta agressiva demais para o seu público, troque a primeira linha por:
+
+> Quantos desses dez você consegue nomear sem pesquisar?
+
+Mantém o desafio e tira a provocação. O resto da legenda não muda.
