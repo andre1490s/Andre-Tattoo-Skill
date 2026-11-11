@@ -1,0 +1,143 @@
+{
+  "artigo": "Consegue identificar os elementos desta tatuagem?",
+  "palavra_gate": "PORTAL",
+  "slides": [
+    {
+      "imagem": "fotos/braco-completo.jpg",
+      "foco": 0.35,
+      "escuro": 0.55,
+      "veu": 0.52,
+      "posicao": "sup-esq",
+      "etiqueta": "Quiz",
+      "titulo": "Consegue *identificar* os elementos desta tatuagem?",
+      "tam_titulo": 64,
+      "texto": "São dez, e cada um tem séculos de história. Quantos você reconhece antes de deslizar?"
+    },
+    {
+      "imagem": "fotos/braco-completo.jpg",
+      "recorte": [
+        860,
+        880,
+        480
+      ],
+      "escuro": 0.88,
+      "posicao": "sup-dir",
+      "etiqueta": "Um",
+      "titulo": "*Merkaba*, a estrela tetraédrica.",
+      "tam_titulo": 68,
+      "texto": "Dois tetraedros opostos. A tradição lê como união de contrários: céu e terra, matéria e espírito."
+    },
+    {
+      "imagem": "fotos/braco-completo.jpg",
+      "recorte": [
+        850,
+        1370,
+        280
+      ],
+      "escuro": 0.76,
+      "posicao": "inf-dir",
+      "etiqueta": "Dois",
+      "titulo": "*Fruto da Vida*, treze círculos.",
+      "tam_titulo": 66,
+      "texto": "Ligando o centro deles nasce o Cubo de Metatron, que é a estrela do slide anterior. A origem e o resultado no mesmo braço."
+    },
+    {
+      "imagem": "fotos/braco-completo.jpg",
+      "recorte": [
+        380,
+        1510,
+        270
+      ],
+      "escuro": 0.74,
+      "posicao": "sup-esq",
+      "etiqueta": "Três",
+      "titulo": "A rosácea da *Flor da Vida*.",
+      "tam_titulo": 68,
+      "texto": "Seis pétalas formadas por seis círculos sobrepostos. Um dos desenhos geométricos mais antigos já registrados."
+    },
+    {
+      "imagem": "fotos/braco-completo.jpg",
+      "recorte": [
+        520,
+        1540,
+        260
+      ],
+      "escuro": 0.76,
+      "posicao": "inf-esq",
+      "etiqueta": "Quatro",
+      "titulo": "O *nó* que não tem fim.",
+      "tam_titulo": 74,
+      "texto": "Um dos Oito Símbolos Auspiciosos do budismo. Sabedoria e compaixão entrelaçadas, sem começo e sem fim."
+    },
+    {
+      "imagem": "fotos/braco-completo.jpg",
+      "recorte": [
+        480,
+        1230,
+        260
+      ],
+      "escuro": 0.74,
+      "posicao": "sup-dir",
+      "etiqueta": "Cinco",
+      "titulo": "A *espiral* áurea.",
+      "tam_titulo": 78,
+      "texto": "Construída sobre Fibonacci. Aparece na concha, na pinha e no girassol. É a única parte da peça que não depende de crença."
+    },
+    {
+      "imagem": "fotos/braco-completo.jpg",
+      "recorte": [
+        415,
+        1820,
+        230
+      ],
+      "escuro": 0.76,
+      "posicao": "inf-dir",
+      "etiqueta": "Seis",
+      "titulo": "*Cho Ku Rei*, o símbolo de poder.",
+      "tam_titulo": 64,
+      "texto": "Primeiro símbolo do Reiki, traduzido como coloque o poder do universo aqui. Usado para proteção e para abrir a passagem de energia."
+    },
+    {
+      "imagem": "fotos/braco-completo.jpg",
+      "recorte": [
+        272,
+        1442,
+        175
+      ],
+      "escuro": 0.74,
+      "posicao": "sup-esq",
+      "etiqueta": "Sete",
+      "titulo": "*777*",
+      "tam_titulo": 120,
+      "texto": "Número angelical, lido como conexão espiritual e intuição. A fama de sorte e dinheiro é equívoco: o 777 nunca foi sobre isso."
+    },
+    {
+      "imagem": "fotos/braco-completo.jpg",
+      "recorte": [
+        705,
+        1545,
+        175
+      ],
+      "escuro": 0.76,
+      "posicao": "inf-esq",
+      "etiqueta": "Oito",
+      "titulo": "*888*",
+      "tam_titulo": 120,
+      "texto": "Abundância e karma. O princípio de que volta para você aquilo que você faz."
+    },
+    {
+      "imagem": "fotos/braco-completo.jpg",
+      "recorte": [
+        340,
+        1880,
+        200
+      ],
+      "escuro": 0.78,
+      "posicao": "sup-dir",
+      "etiqueta": "E o décimo",
+      "titulo": "*520*",
+      "tam_titulo": 120,
+      "texto": "Esse eu não explico. Não encontrei leitura tradicional para ele: é do dono do braço. Toda peça boa tem uma parte que só o dono entende."
+    }
+  ]
+}

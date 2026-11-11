@@ -15,6 +15,8 @@ Campos por slide:
   titulo    palavra entre *asteriscos* sai em cursiva dourada
   texto     corpo
   escuro    0..1, forca do escurecimento
+  veu       0..1, camada escura chapada sobre a foto inteira. Use em capa de
+            quiz, onde a imagem fica quase transparente e o texto manda
 
 A tattoo nunca e redesenhada: so luz, cor e enquadramento.
 """
@@ -90,6 +92,8 @@ def tratar(cfg):
         return base
 
     if cfg.get('formato') == 'story':
+        if cfg.get('veu'):
+            im = Image.blend(im, Image.new('RGB', (W, H), ESCURO), float(cfg['veu']))
         g = Image.new('L', (W, H), 0); d = ImageDraw.Draw(g)
         for y in range(H):
             t = min(1.0, max(0.0, (y - H * 0.30) / (H * 0.32)))
@@ -99,6 +103,9 @@ def tratar(cfg):
         for y in range(int(H * 0.22)):
             d.line([(0, y), (W, y)], fill=int(150 * (1 - y / (H * 0.22)) ** 1.5))
         return Image.composite(Image.new('RGB', (W, H), ESCURO), im, gt)
+    v = cfg.get('veu')
+    if v:
+        im = Image.blend(im, Image.new('RGB', (W, H), ESCURO), float(v))
     pos = cfg.get('posicao', 'sup-esq')
     dire, vert = pos.split('-')[1], pos.split('-')[0]
     g1 = Image.new('L', (W, H), 0); d = ImageDraw.Draw(g1)

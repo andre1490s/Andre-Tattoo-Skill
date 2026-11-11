@@ -27,6 +27,7 @@ O gerador (`_template/gerar.py`) monta 6 slides 1080x1350 a partir do `config.js
 |---|---|---|---|
 | 01 | Preto e cinza desbota com o tempo? | `TINTA` | publicado |
 | 02 | Os símbolos do portal energético | `PORTAL` | pronto |
+| 03 | Quiz: consegue identificar os elementos? | `PORTAL` | pronto |
 | 03 | Dá pra cobrir qualquer tatuagem? | `REFORMA` | a produzir |
 | 04 | Quanto tempo leva um fechamento de braço? | `FECHAMENTO` | a produzir |
 | 05 | Qual lugar do corpo dói mais (e por quê) | `DOR` | a produzir |
@@ -51,3 +52,9 @@ O `REFORMA` é o de maior valor comercial: filtra quem já tem tatuagem ruim, p�
 - **`recorte: [cx, cy, largura]`** em pixels da foto original, para dar zoom num detalhe. É assim que o carrossel 02 explica símbolo por símbolo dentro da mesma peça.
 - **`posicao`**: `sup-esq`, `inf-esq`, `sup-dir`, `inf-dir`. O degradê de escurecimento acompanha o bloco de texto, e o recorte deve ser centrado de modo que o símbolo caia no lado **oposto** ao texto.
 - Variar a posição entre os slides evita que o carrossel fique repetitivo.
+
+## Capa de quiz
+
+Pergunta na capa gera comentário, que é a métrica mais fraca do perfil (0,5 por Reels). O campo **`veu`** (0 a 1) joga uma camada escura chapada sobre a foto inteira, deixando a imagem quase transparente para o texto mandar. Usado a 0,52 na capa do carrossel 03.
+
+A pergunta fica no título e o pedido do número no corpo. O gate continua só na legenda.
